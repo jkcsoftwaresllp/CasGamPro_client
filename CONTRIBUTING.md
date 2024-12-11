@@ -1,6 +1,6 @@
-# Contributing to **itsRIGHTtime** & its **Projects**
+# Contributing to **JKC Softwares LLP** & its **Projects**
 
-Thank you for your commitment to improving **itsRIGHTtime**, its products, or its subsidiaries! We value your efforts to enhance our internal projects. Please adhere to these guidelines to ensure effective collaboration within our team.
+Thank you for your commitment to improving **JKC Softwares LLP**, its products! We value your efforts to enhance our internal projects. Please adhere to these guidelines to ensure effective collaboration within our team.
 
 ## Table of Contents
 
