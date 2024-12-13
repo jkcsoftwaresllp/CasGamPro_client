@@ -1,6 +1,7 @@
 .teenPatti {
   display: flex;
   width: 100vw;
+  gap: 10px;
 }
 
 .playSection {
@@ -9,15 +10,17 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  gap: 10px;
 }
 
 .cardSimulation {
   display: flex;
   width: 100%;
   height: 50%;
+  gap: 10px;
 }
 
-.betSection{
-    margin-bottom: 100px;
-    padding: 20px;
+.betSection {
+  margin-bottom: 100px;
+  padding: 20px;
 }
