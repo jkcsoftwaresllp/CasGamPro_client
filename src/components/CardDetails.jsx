@@ -1,37 +1,13 @@
 import React from "react";
 import styles from "./css/CardDetails.module.css";
+import { CardRender } from "./CardRender";
 
-export const CardDetails = () => {
+export const CardDetails = ({ playerACards, playerBCards }) => {
   return (
     <>
       <div className={styles.container}>
-        <div className={styles.playerLabel}>Player 1</div>
-        <div className={styles.cardsContainer} id="player1-cards">
-          <div className={styles.card}>
-            <img src="placeholder.png" alt="Card" />
-          </div>
-          <div className={styles.card}>
-            <img src="placeholder.png" alt="Card" />
-          </div>
-          <div className={styles.card}>
-            <img src="placeholder.png" alt="Card" />
-          </div>
-        </div>
-        <div className={`${styles.playerLabel} ${styles.mt3}`}>Player 2</div>
-        <div
-          className={`${styles.cardsContainer} ${styles.mt2}`}
-          id="player2-cards"
-        >
-          <div className={styles.card}>
-            <img src="placeholder.png" alt="Card" />
-          </div>
-          <div className={styles.card}>
-            <img src="placeholder.png" alt="Card" />
-          </div>
-          <div className={styles.card}>
-            <img src="placeholder.png" alt="Card" />
-          </div>
-        </div>
+        <CardRender playerName={"Player A"} cards={playerACards} />
+        <CardRender playerName={"Player B"} cards={playerBCards} />
       </div>
     </>
   );

@@ -2,28 +2,30 @@ import React, { useState, useEffect } from "react";
 import { Simulation } from "./Simulation";
 import axios from "axios";
 import styles from "./css/SimulationWindow.module.css"; // Import the CSS module
+import { proxyApiUrl } from "./helper/proxyApiUrl";
 
-const API_Url = (route) => `http://localhost:4320${route}`;
-
-export const SimulationWindow = () => {
+export const SimulationWindow = ({setPlayerACards, setPlayerBCards}) => {
   const [statusMessage, setStatusMessage] = useState("");
   const [timer, setTimer] = useState(null);
+  const [gameId, setGameId] = useState(null);
   const [showSimulation, setShowSimulation] = useState(false);
+  
 
   const handlePlayClick = async () => {
     try {
       setStatusMessage("Shuffling cards...");
 
       // API call to randomize cards
-      const response = await axios.post(API_Url("/api/startGame"));
+      const response = await axios.get(proxyApiUrl("/api/startGame"));
 
-      if (response.status === 200) {
+      if (response.status === 201) {
         setStatusMessage("Cards are shuffled!");
+        setGameId(response.data.gameId);
 
         // Wait 3 seconds before starting the timer
         setTimeout(() => {
           setStatusMessage("");
-          setTimer(30); // Start a 30-second timer
+          setTimer(3); // Start a 30-second timer
         }, 3000);
       } else {
         setStatusMessage("Failed to shuffle cards. Please try again.");
@@ -65,7 +67,13 @@ export const SimulationWindow = () => {
           </p>
         )}
 
-        {showSimulation && <Simulation />}
+        {showSimulation && (
+          <Simulation
+            game_Id={gameId}
+            onFetchedPlayerA={setPlayerACards}
+            onFetchedPlayerB={setPlayerBCards}
+          />
+        )}
 
         <button
           onClick={handlePlayClick}

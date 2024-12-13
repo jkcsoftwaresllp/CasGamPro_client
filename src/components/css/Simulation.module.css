@@ -1,50 +1,67 @@
-/* Simulation.module.css */
+/* Simulation container */
 .container {
-  text-align: center;
-  padding: 20px;
-  font-family: Arial, sans-serif;
-  background-color: #dfffe0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 20px;
 }
 
+/* Timer display */
 .timer {
+  font-size: 1.2em;
   font-weight: bold;
   margin-bottom: 20px;
+  color: #333;
 }
 
-.cardWrapper {
-  margin-bottom: 20px;
+
+
+
+
+/* Styling for Player A cards */
+.playerACard {
+  background-color: #e1f7d5; /* Light green */
+  border: 2px solid #4caf50;
 }
 
-.gameStatus {
-  font-weight: bold;
+/* Styling for Player B cards */
+.playerBCard {
+  background-color: #ffebee; /* Light red */
+  border: 2px solid #f44336;
 }
 
-.cardStyle {
-  display: inline-block;
-  margin: 5px;
-  font-size: 18px;
-  border-radius: 5px;
-  text-align: center;
+/* Styling for Blind card */
+.blindCard {
+  background-color: #e0e0e0;
+  border: 2px dashed #888;
+  opacity: 0.5;
 }
 
+/* Card image styling */
 .cardImage {
-  width: 55px;
+  width: 80%;
+  height: auto;
+  border-radius: 5px;
+  object-fit: contain;
 }
 
-.greenCard {
-  border: 2px solid green;
-  background-color: green;
-  color: white;
+/* Card wrappers */
+.cardWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
 }
 
-.redCard {
-  border: 2px solid red;
-  background-color: red;
-  color: white;
-}
-
+/* Winner text */
 .winnerText {
-  margin-top: 30px;
-  font-size: 28px;
+  font-size: 1.5em;
   font-weight: bold;
+  margin-top: 20px;
+  color: green; /* Default to green if player wins */
+}
+
+.winnerText.red {
+  color: red; /* Red for a loss or tie */
 }
