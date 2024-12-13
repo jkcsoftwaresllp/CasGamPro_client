@@ -6,7 +6,7 @@ export const PlaySection = () => {
   return (
     <div className={styles.playSection}>
       <SimulationSection />
-      <BetSection />
+      <BetSection/>
     </div>
   );
 };

@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./css/CoinsUI.module.css";
 
-export const CoinsUI = () => {
+export const CoinsUI = ({ setResult }) => {
   const coins = [
     "10",
     "20",
@@ -19,9 +19,17 @@ export const CoinsUI = () => {
     <div className={styles.container}>
       <div className={styles.betButtons}>
         {coins.map((coin, index) => (
-          <a key={index} href="https://#" className={styles.betButton}>
+          <div
+            key={index}
+            className={styles.betButton}
+            onClick={() =>
+              setResult(
+                coin[coin.length - 1] === "K" ? parseInt(coin) * 1000 : coin
+              )
+            }
+          >
             {coin}
-          </a>
+          </div>
         ))}
       </div>
     </div>

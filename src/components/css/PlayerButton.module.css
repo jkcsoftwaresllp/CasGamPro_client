@@ -1,7 +1,7 @@
 .container {
   display: flex;
   justify-content: space-between;
-  margin-top: 20px; 
+  margin-top: 20px;
 }
 
 .button {
@@ -17,5 +17,13 @@
 }
 
 .button:hover {
-  background-color: #218838; 
+  background-color: #218838;
+}
+
+.msg {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 3px;
 }
