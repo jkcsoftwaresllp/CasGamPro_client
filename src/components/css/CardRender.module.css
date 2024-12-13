@@ -1,0 +1,23 @@
+/* Wrapper for each player's cards */
+.cardWrapper {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin: 10px 0;
+  gap: 10px;
+}
+
+/* Title for each player's hand */
+.gameStatus {
+  font-size: 1.2em;
+  font-weight: bold;
+  border: 1px solid #9696d6;
+  height: 100px;
+  width: 100px;
+  border-radius: 7px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 0;
+  color: #9696d6;
+}

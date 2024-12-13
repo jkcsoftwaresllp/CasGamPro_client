@@ -1,8 +1,11 @@
-import './App.css';
+import "./App.css";
+import { TeenPatti } from "./components/TeenPatti";
 
 function App() {
   return (
-    <></>
+    <>
+      <TeenPatti />
+    </>
   );
 }
 
