@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 
 export const Simulation = () => {
   const [playerACards, setPlayerACards] = useState([]);
@@ -10,7 +10,7 @@ export const Simulation = () => {
 
   useEffect(() => {
     // Initialize the deck
-    fetch('https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1')
+    fetch("https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1")
       .then((response) => response.json())
       .then((data) => {
         setDeckId(data.deck_id);
@@ -74,15 +74,15 @@ export const Simulation = () => {
 
   const getCardValue = (rank) => {
     const rankValues = {
-      '2': 2,
-      '3': 3,
-      '4': 4,
-      '5': 5,
-      '6': 6,
-      '7': 7,
-      '8': 8,
-      '9': 9,
-      '10': 10,
+      2: 2,
+      3: 3,
+      4: 4,
+      5: 5,
+      6: 6,
+      7: 7,
+      8: 8,
+      9: 9,
+      10: 10,
       J: 11,
       Q: 12,
       K: 13,
@@ -94,120 +94,136 @@ export const Simulation = () => {
   const determineWinner = (playerACards, playerBCards) => {
     const handRank = (cards) => {
       const values = cards.map((card) => card.value).sort((a, b) => a - b);
-  
+
       const isSequence =
         values[2] - values[1] === 1 && values[1] - values[0] === 1;
       const isSet = values[0] === values[1] && values[1] === values[2];
-  
+
       if (isSet) return { rank: 3, highCard: values[2], tiebreakers: values };
-      if (isSequence) return { rank: 2, highCard: values[2], tiebreakers: values };
-      return { rank: 1, highCard: Math.max(...values), tiebreakers: values.reverse() };
+      if (isSequence)
+        return { rank: 2, highCard: values[2], tiebreakers: values };
+      return {
+        rank: 1,
+        highCard: Math.max(...values),
+        tiebreakers: values.reverse(),
+      };
     };
-  
+
     const compareHands = (handA, handB) => {
       if (handA.rank > handB.rank) {
-        return 'Player A Wins!';
+        return "Player A Wins!";
       } else if (handB.rank > handA.rank) {
-        return 'Player B Wins!';
+        return "Player B Wins!";
       } else {
         // Same rank, compare high cards using tiebreakers
         for (let i = 0; i < handA.tiebreakers.length; i++) {
-          if (handA.tiebreakers[i] > handB.tiebreakers[i]) return 'Player A Wins!';
-          if (handB.tiebreakers[i] > handA.tiebreakers[i]) return 'Player B Wins!';
+          if (handA.tiebreakers[i] > handB.tiebreakers[i])
+            return "Player A Wins!";
+          if (handB.tiebreakers[i] > handA.tiebreakers[i])
+            return "Player B Wins!";
         }
         return "It's a Tie!";
       }
     };
-  
+
     const playerAHand = handRank(playerACards);
     const playerBHand = handRank(playerBCards);
     const result = compareHands(playerAHand, playerBHand);
-  
+
     setWinner(result);
   };
-  
+
   const getCardStyle = (player) => {
     if (!winner) return {};
-    if ((winner.includes('Player A') && player === 'A') || (winner.includes('Player B') && player === 'B')) {
-      return {border: '2px solid green', backgroundColor: 'green', color: 'white' };
+    if (
+      (winner.includes("Player A") && player === "A") ||
+      (winner.includes("Player B") && player === "B")
+    ) {
+      return {
+        border: "2px solid green",
+        backgroundColor: "green",
+        color: "white",
+      };
     }
-    return { border: '2px solid red',backgroundColor: 'red', color: 'white' };
+    return { border: "2px solid red", backgroundColor: "red", color: "white" };
   };
 
   return (
     <div
       style={{
-        textAlign: 'center',
-        padding: '20px',
-        fontFamily: 'Arial, sans-serif',
-        backgroundColor: '#dfffe0',
+        textAlign: "center",
+        padding: "20px",
+        fontFamily: "Arial, sans-serif",
+        backgroundColor: "#dfffe0",
       }}
     >
       {!isDrawing ? (
-        <h5 style={{ fontWeight: 'bold' }}>
-          Game starts in: {timer} second{timer > 1 ? 's' : ''}...
+        <h5 style={{ fontWeight: "bold" }}>
+          Game starts in: {timer} second{timer > 1 ? "s" : ""}...
         </h5>
       ) : (
-        <h5 style={{ fontWeight: 'bold' }}>Cards are being drawn...</h5>
+        <h5 style={{ fontWeight: "bold" }}>Cards are being drawn...</h5>
       )}
 
-      <div style={{ marginBottom: '20px' }}>
-        <h6 style={{ fontWeight: 'bold' }}>Player A:           {playerACards.map((card, index) => (
+      <div style={{ marginBottom: "20px" }}>
+        <h6 style={{ fontWeight: "bold" }}>
+          Player A:{" "}
+          {playerACards.map((card, index) => (
             <div
               key={index}
               style={{
-                display: 'inline-block',
-                margin: '5px',
-                fontSize: '18px',
-                borderRadius: '5px',
-                textAlign: 'center',
-                ...getCardStyle('A'),
+                display: "inline-block",
+                margin: "5px",
+                fontSize: "18px",
+                borderRadius: "5px",
+                textAlign: "center",
+                ...getCardStyle("A"),
               }}
             >
               <img
                 src={card.image}
                 alt={`${card.rank} of ${card.suit}`}
-                style={{ width: '55px' }}
+                style={{ width: "55px" }}
               />
             </div>
           ))}
         </h6>
-        <div>
-        </div>
+        <div></div>
       </div>
 
-      <div style={{ marginBottom: '20px' }}>
-        <h6 style={{ fontWeight: 'bold' }}>Player B:           {playerBCards.map((card, index) => (
+      <div style={{ marginBottom: "20px" }}>
+        <h6 style={{ fontWeight: "bold" }}>
+          Player B:{" "}
+          {playerBCards.map((card, index) => (
             <div
               key={index}
               style={{
-                display: 'inline-block',
-                margin: '5px',
-                fontSize: '18px',
-                borderRadius: '5px',
-                textAlign: 'center',
-                ...getCardStyle('B'),
+                display: "inline-block",
+                margin: "5px",
+                fontSize: "18px",
+                borderRadius: "5px",
+                textAlign: "center",
+                ...getCardStyle("B"),
               }}
             >
               <img
                 src={card.image}
                 alt={`${card.rank} of ${card.suit}`}
-                style={{ width: '55px' }}
+                style={{ width: "55px" }}
               />
             </div>
           ))}
         </h6>
-        <div>
-        </div>
+        <div></div>
       </div>
 
       {winner && (
         <div
           style={{
-            marginTop: '30px',
-            fontSize: '28px',
-            fontWeight: 'bold',
-            color: winner.includes('Wins') ? 'green' : 'red',
+            marginTop: "30px",
+            fontSize: "28px",
+            fontWeight: "bold",
+            color: winner.includes("Wins") ? "green" : "red",
           }}
         >
           {winner}
