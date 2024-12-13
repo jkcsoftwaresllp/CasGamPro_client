@@ -1,0 +1,42 @@
+.container {
+  width: 25%; /* Equivalent to col-md-3 */
+  border: 1px solid #ddd; /* Mimic bordered class */
+  border-radius: 5px;
+  padding: 10px;
+  background-color: #fff;
+}
+
+.playerLabel {
+  text-align: center; /* Mimic text-center */
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.cardsContainer {
+  display: flex; /* Mimic d-flex */
+  justify-content: center; /* Mimic justify-content-center */
+  margin-top: 10px; /* Space between player sections */
+}
+
+.card {
+  width: 60px;
+  height: 90px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  overflow: hidden;
+  margin: 5px; /* Space between cards */
+}
+
+.card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.mt2 {
+  margin-top: 8px;
+}
+
+.mt3 {
+  margin-top: 16px;
+}

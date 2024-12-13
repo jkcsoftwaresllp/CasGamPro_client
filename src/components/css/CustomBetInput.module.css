@@ -1,0 +1,45 @@
+.container {
+  margin-top: 10px; /* Replaces mt-2 */
+  display: flex;
+  justify-content: center;
+}
+
+.inputGroup {
+  display: flex;
+  align-items: center; /* Aligns items vertically */
+  justify-content: center; /* Centers items horizontally */
+  margin-bottom: 16px; /* Replaces mb-3 */
+}
+
+.button {
+  width: 40px;
+  height: 40px;
+  font-size: 20px;
+  border: 1px solid #6c757d; /* Mimics btn-outline-secondary */
+  border-radius: 5px;
+  background-color: transparent;
+  color: #6c757d;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.button:hover {
+  background-color: #e9ecef; /* Adds hover effect */
+}
+
+.input {
+  width: 200px;
+  height: 40px;
+  text-align: center;
+  border: 1px solid #ccc; /* Mimics form-control */
+  border-radius: 5px;
+  font-size: 16px;
+  padding: 0 8px;
+  margin: 0 8px; /* Replaces mx-2 */
+}
+
+.input:read-only {
+  background-color: #f8f9fa; /* Gray background for read-only state */
+}

@@ -1,0 +1,24 @@
+.container {
+  display: flex;
+  justify-content: space-between; /* Aligns items with space between */
+  align-items: center; /* Vertically centers items */
+  margin: 0; /* Optional: remove margin for row */
+}
+
+.heading {
+  font-size: 1.25rem; /* Equivalent to h5 */
+  margin-bottom: 0; /* Equivalent to mb-0 */
+}
+
+.button {
+  border: 1px solid #6c757d; /* Mimics btn-outline-secondary */
+  border-radius: 5px;
+  background-color: transparent;
+  color: #6c757d;
+  padding: 5px 15px;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: #e9ecef; /* Hover effect for the button */
+}

@@ -1,31 +1,35 @@
 import React from "react";
+import styles from "./css/CardDetails.module.css";
 
 export const CardDetails = () => {
   return (
     <>
-      <div className="col-md-3 bordered">
-        <div className="player-label text-center">Player 1</div>
-        <div className="d-flex justify-content-center" id="player1-cards">
-          <div className="card">
-            <img src="placeholder.png" alt="Card"></img>
+      <div className={styles.container}>
+        <div className={styles.playerLabel}>Player 1</div>
+        <div className={styles.cardsContainer} id="player1-cards">
+          <div className={styles.card}>
+            <img src="placeholder.png" alt="Card" />
           </div>
-          <div className="card">
-            <img src="placeholder.png" alt="Card"></img>
+          <div className={styles.card}>
+            <img src="placeholder.png" alt="Card" />
           </div>
-          <div className="card">
-            <img src="placeholder.png" alt="Card"></img>
+          <div className={styles.card}>
+            <img src="placeholder.png" alt="Card" />
           </div>
         </div>
-        <div className="player-label text-center mt-3">Player 2</div>
-        <div className="d-flex mt-2 justify-content-center" id="player2-cards">
-          <div className="card">
-            <img src="placeholder.png" alt="Card"></img>
+        <div className={`${styles.playerLabel} ${styles.mt3}`}>Player 2</div>
+        <div
+          className={`${styles.cardsContainer} ${styles.mt2}`}
+          id="player2-cards"
+        >
+          <div className={styles.card}>
+            <img src="placeholder.png" alt="Card" />
           </div>
-          <div className="card">
-            <img src="placeholder.png" alt="Card"></img>
+          <div className={styles.card}>
+            <img src="placeholder.png" alt="Card" />
           </div>
-          <div className="card">
-            <img src="placeholder.png" alt="Card"></img>
+          <div className={styles.card}>
+            <img src="placeholder.png" alt="Card" />
           </div>
         </div>
       </div>

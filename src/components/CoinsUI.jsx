@@ -1,44 +1,29 @@
 import React from "react";
+import styles from "./css/CoinsUI.module.css";
 
 export const CoinsUI = () => {
+  const coins = [
+    "10",
+    "20",
+    "50",
+    "100",
+    "500",
+    "1K",
+    "5K",
+    "10K",
+    "100K",
+    "500K",
+  ];
+
   return (
-    <>
-      <div className="row">
-        <div className="col-md-12 d-flex justify-content-center bet-buttons">
-          <div>
-            <a href="#" style={{ margin: "3px" }}>
-              10
-            </a>
-            <a href="#" style={{ margin: "3px" }}>
-              20
-            </a>
-            <a href="#" style={{ margin: "3px" }}>
-              50
-            </a>
-            <a href="#" style={{ margin: "3px" }}>
-              100
-            </a>
-            <a href="#" style={{ margin: "3px" }}>
-              500
-            </a>
-            <a href="#" style={{ margin: "3px" }}>
-              1K
-            </a>
-            <a href="#" style={{ margin: "3px" }}>
-              5K
-            </a>
-            <a href="#" style={{ margin: "3px" }}>
-              10K
-            </a>
-            <a href="#" style={{ margin: "3px" }}>
-              100K
-            </a>
-            <a href="#" style={{ margin: "3px" }}>
-              500K
-            </a>
-          </div>
-        </div>
+    <div className={styles.container}>
+      <div className={styles.betButtons}>
+        {coins.map((coin, index) => (
+          <a key={index} href="https://#" className={styles.betButton}>
+            {coin}
+          </a>
+        ))}
       </div>
-    </>
+    </div>
   );
 };

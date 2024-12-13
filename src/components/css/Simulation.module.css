@@ -1,0 +1,50 @@
+/* Simulation.module.css */
+.container {
+  text-align: center;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  background-color: #dfffe0;
+}
+
+.timer {
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.cardWrapper {
+  margin-bottom: 20px;
+}
+
+.gameStatus {
+  font-weight: bold;
+}
+
+.cardStyle {
+  display: inline-block;
+  margin: 5px;
+  font-size: 18px;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.cardImage {
+  width: 55px;
+}
+
+.greenCard {
+  border: 2px solid green;
+  background-color: green;
+  color: white;
+}
+
+.redCard {
+  border: 2px solid red;
+  background-color: red;
+  color: white;
+}
+
+.winnerText {
+  margin-top: 30px;
+  font-size: 28px;
+  font-weight: bold;
+}

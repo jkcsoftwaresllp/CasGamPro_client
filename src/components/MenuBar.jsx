@@ -1,16 +1,11 @@
 import React from "react";
+import styles from "./css/MenuBar.module.css";
 
 export const MenuBar = () => {
   return (
-    <>
-      <div class="row menu-bar">
-        <div class="col-md-12 d-flex justify-content-between align-items-center">
-          <h5 class="mb-0">Teen Patti</h5>
-          <button class="btn btn-outline-secondary">Menu</button>
-        </div>
-      </div>
-    </>
+    <div className={styles.container}>
+      <h5 className={styles.heading}>Teen Patti</h5>
+      <button className={styles.button}>Menu</button>
+    </div>
   );
 };
-
-// export default MenuBar;
