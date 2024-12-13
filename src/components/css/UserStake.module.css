@@ -23,7 +23,7 @@
 /* Button style */
 .refreshButton {
   padding: 10px 20px;
-  background-color: #007bff;
+  background-color: #9696d6;
   color: white;
   border: none;
   border-radius: 5px;
@@ -36,7 +36,7 @@
 }
 
 .refreshButton:hover {
-  background-color: #0056b3;
+  background-color: #b8b8dd;
 }
 
 /* Loading message */
@@ -89,6 +89,6 @@
 
 /* Amount style */
 .amount {
-  color: #27ae60;
+  color: #75cf9b;
   font-weight: bold;
 }
