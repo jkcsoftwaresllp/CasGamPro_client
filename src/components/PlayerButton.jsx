@@ -15,7 +15,8 @@ export const PlayerButton = ({ betAmount }) => {
       };
 
       const response = await axios.post(proxyApiUrl("/api/setBet"), payload);
-      setMsg(`Bet placed successfully on ${player}! of ${betAmount}`);
+      if (response.status === 201)
+        setMsg(`Bet placed successfully on ${player}! of ${betAmount}`);
     } catch (error) {
       setMsg("Error placing bet. Please try again.");
       console.error("Error placing bet:", error);

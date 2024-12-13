@@ -6,7 +6,7 @@
 
 .button {
   width: 48%;
-  background-color: #28a745;
+  background-color: #9696d6;
   color: white;
   border: none;
   padding: 12px;
@@ -17,7 +17,7 @@
 }
 
 .button:hover {
-  background-color: #218838;
+  background-color: #b1b1e9;
 }
 
 .msg {
