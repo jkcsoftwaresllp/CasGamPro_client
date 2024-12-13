@@ -2,66 +2,17 @@
 .container {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  align-items: flex-start;
+  justify-content: flex-start;
   margin: 20px;
+  width: 100%;
+  padding-left: 10px;
+  min-height: 350px;
 }
 
-/* Timer display */
-.timer {
-  font-size: 1.2em;
-  font-weight: bold;
-  margin-bottom: 20px;
-  color: #333;
-}
-
-
-
-
-
-/* Styling for Player A cards */
-.playerACard {
-  background-color: #e1f7d5; /* Light green */
-  border: 2px solid #4caf50;
-}
-
-/* Styling for Player B cards */
-.playerBCard {
-  background-color: #ffebee; /* Light red */
-  border: 2px solid #f44336;
-}
-
-/* Styling for Blind card */
-.blindCard {
-  background-color: #e0e0e0;
-  border: 2px dashed #888;
-  opacity: 0.5;
-}
-
-/* Card image styling */
-.cardImage {
-  width: 80%;
-  height: auto;
-  border-radius: 5px;
-  object-fit: contain;
-}
-
-/* Card wrappers */
-.cardWrapper {
+.blind {
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 20px;
-}
-
-/* Winner text */
-.winnerText {
-  font-size: 1.5em;
-  font-weight: bold;
-  margin-top: 20px;
-  color: green; /* Default to green if player wins */
-}
-
-.winnerText.red {
-  color: red; /* Red for a loss or tie */
 }

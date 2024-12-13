@@ -1,12 +1,12 @@
 .container {
   display: flex;
-  justify-content: space-between; /* Creates space between buttons */
-  margin-top: 20px; /* Replaces mt-3 */
+  justify-content: space-between;
+  margin-top: 20px; 
 }
 
 .button {
-  width: 48%; /* Ensures buttons take equal space and remain responsive */
-  background-color: #28a745; /* btn-success color */
+  width: 48%;
+  background-color: #28a745;
   color: white;
   border: none;
   padding: 12px;
@@ -17,5 +17,5 @@
 }
 
 .button:hover {
-  background-color: #218838; /* Darker green for hover effect */
+  background-color: #218838; 
 }

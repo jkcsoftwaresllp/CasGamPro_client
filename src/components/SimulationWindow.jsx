@@ -4,12 +4,11 @@ import axios from "axios";
 import styles from "./css/SimulationWindow.module.css"; // Import the CSS module
 import { proxyApiUrl } from "./helper/proxyApiUrl";
 
-export const SimulationWindow = ({setPlayerACards, setPlayerBCards}) => {
+export const SimulationWindow = ({ setPlayerACards, setPlayerBCards }) => {
   const [statusMessage, setStatusMessage] = useState("");
   const [timer, setTimer] = useState(null);
   const [gameId, setGameId] = useState(null);
   const [showSimulation, setShowSimulation] = useState(false);
-  
 
   const handlePlayClick = async () => {
     try {
@@ -75,13 +74,15 @@ export const SimulationWindow = ({setPlayerACards, setPlayerBCards}) => {
           />
         )}
 
-        <button
-          onClick={handlePlayClick}
-          disabled={statusMessage !== "" || timer !== null}
-          className={styles.playButton}
-        >
-          Play
-        </button>
+        {!showSimulation && (
+          <button
+            onClick={handlePlayClick}
+            disabled={statusMessage !== "" || timer !== null}
+            className={styles.playButton}
+          >
+            Start Game
+          </button>
+        )}
       </div>
     </div>
   );

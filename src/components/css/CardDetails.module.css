@@ -1,21 +1,22 @@
 .container {
-  width: 25%; /* Equivalent to col-md-3 */
-  border: 1px solid #ddd; /* Mimic bordered class */
+  width: 25%; 
+  border: 1px solid #ddd; 
   border-radius: 5px;
   padding: 10px;
   background-color: #fff;
+  width: 40%;
 }
 
 .playerLabel {
-  text-align: center; /* Mimic text-center */
+  text-align: center; 
   font-weight: bold;
   margin-top: 10px;
 }
 
 .cardsContainer {
-  display: flex; /* Mimic d-flex */
-  justify-content: center; /* Mimic justify-content-center */
-  margin-top: 10px; /* Space between player sections */
+  display: flex; 
+  justify-content: center; 
+  margin-top: 10px; 
 }
 
 .card {
@@ -24,7 +25,7 @@
   border: 1px solid #ddd;
   border-radius: 5px;
   overflow: hidden;
-  margin: 5px; /* Space between cards */
+  margin: 5px;
 }
 
 .card img {

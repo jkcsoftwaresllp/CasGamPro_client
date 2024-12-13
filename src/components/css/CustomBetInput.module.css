@@ -15,7 +15,7 @@
   width: 40px;
   height: 40px;
   font-size: 20px;
-  border: 1px solid #6c757d; /* Mimics btn-outline-secondary */
+  border: 1px solid #6c757d; 
   border-radius: 5px;
   background-color: transparent;
   color: #6c757d;
@@ -26,20 +26,20 @@
 }
 
 .button:hover {
-  background-color: #e9ecef; /* Adds hover effect */
+  background-color: #e9ecef; 
 }
 
 .input {
   width: 200px;
   height: 40px;
   text-align: center;
-  border: 1px solid #ccc; /* Mimics form-control */
+  border: 1px solid #ccc; 
   border-radius: 5px;
   font-size: 16px;
   padding: 0 8px;
-  margin: 0 8px; /* Replaces mx-2 */
+  margin: 0 8px; 
 }
 
 .input:read-only {
-  background-color: #f8f9fa; /* Gray background for read-only state */
+  background-color: #f8f9fa; 
 }

@@ -65,11 +65,13 @@ export const Simulation = ({ onFetchedPlayerA, onFetchedPlayerB, game_Id }) => {
 
       {/* Blind card */}
       {blindCard && (
-        <CardComponent
-          code={blindCard}
-          isShow={false}
-          setResult={() => {}}
-        ></CardComponent>
+        <div className={styles.blind}>
+          <CardComponent
+            code={blindCard}
+            isShow={false}
+            setResult={() => {}}
+          ></CardComponent>
+        </div>
       )}
     </div>
   );
