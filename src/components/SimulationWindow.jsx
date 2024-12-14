@@ -11,10 +11,15 @@ export const SimulationWindow = ({
 }) => {
   const [statusMessage, setStatusMessage] = useState("");
   const [timer, setTimer] = useState(null);
-  const [gameId, setGameId] = useState(null);
+  const [gameId, setGameId] = useState(null); // Store the current gameId
   const [showSimulation, setShowSimulation] = useState(false);
 
-  const handlePlayClick = async () => {
+  useEffect(() => {
+    // Automatically start the game when the component mounts
+    startGame();
+  }, []); // Empty dependency array ensures this runs only once when the component mounts
+
+  const startGame = async () => {
     try {
       setStatusMessage("Shuffling cards...");
 
@@ -23,12 +28,12 @@ export const SimulationWindow = ({
 
       if (response.status === 201) {
         setStatusMessage("Cards are shuffled!");
-        setGameId(response.data.gameId);
+        setGameId(response.data.gameId); // Set the new gameId
 
         // Wait 3 seconds before starting the timer
         setTimeout(() => {
           setStatusMessage("");
-          setTimer(3); // Start a 30-second timer
+          setTimer(15); // Start the timer for 3 seconds (or any duration you prefer)
         }, 3000);
       } else {
         setStatusMessage("Failed to shuffle cards. Please try again.");
@@ -65,6 +70,17 @@ export const SimulationWindow = ({
     return () => clearInterval(countdownInterval); // Cleanup interval on unmount
   }, [timer, gameId, isAcceptingBets]);
 
+  // Function to handle the reset and automatic restart of the game
+  const resetAndStartNewGame = () => {
+    // Reset current game state
+    setShowSimulation(false);
+    setPlayerACards([]);
+    setPlayerBCards([]);
+    isAcceptingBets(true);
+    // Start a new game
+    startGame();
+  };
+
   return (
     <div className={styles.container}>
       <div className={styles.cardContainer}>
@@ -82,20 +98,11 @@ export const SimulationWindow = ({
 
         {showSimulation && (
           <Simulation
-            game_Id={gameId}
+            game_Id={gameId} // Pass the current gameId
             onFetchedPlayerA={setPlayerACards}
             onFetchedPlayerB={setPlayerBCards}
+            onGameComplete={resetAndStartNewGame} // Automatically start a new game after this one ends
           />
-        )}
-
-        {!showSimulation && (
-          <button
-            onClick={handlePlayClick}
-            disabled={statusMessage !== "" || timer !== null}
-            className={styles.playButton}
-          >
-            Start Game
-          </button>
         )}
       </div>
     </div>

@@ -5,8 +5,12 @@ import { proxyApiUrl } from "./helper/proxyApiUrl";
 import { Card as CardComponent } from "./Card";
 import { CardRender } from "./CardRender";
 
-export const Simulation = ({ onFetchedPlayerA, onFetchedPlayerB, game_Id }) => {
-  // State to manage cards and timer
+export const Simulation = ({
+  onFetchedPlayerA,
+  onFetchedPlayerB,
+  game_Id,
+  onGameComplete,
+}) => {
   const [playerACards, setPlayerACards] = useState([]); // Cards for Player A
   const [playerBCards, setPlayerBCards] = useState([]); // Cards for Player B
   const [blindCard, setBlindCard] = useState(null); // Blind card (not revealed)
@@ -15,7 +19,7 @@ export const Simulation = ({ onFetchedPlayerA, onFetchedPlayerB, game_Id }) => {
   const [showResult, setShowResult] = useState(false); // Store the result of the game
 
   useEffect(() => {
-    // Fetching cards every 3 seconds until we have all 7 cards
+    // Automatically fetch cards when component mounts and keep playing
     const interval = setInterval(() => {
       if (cardIndex < 7) {
         fetchCardFromAPI(cardIndex);
@@ -81,20 +85,20 @@ export const Simulation = ({ onFetchedPlayerA, onFetchedPlayerB, game_Id }) => {
     setTimeout(() => {
       setGameResult(null); // Reset the result after 3 seconds
       resetGame(); // Reset the game state for the next game
+      onGameComplete(); // Trigger the parent to start a new game
     }, 3000); // Show result for 3 seconds
   };
 
   // Function to reset the game state for the next game
   const resetGame = () => {
-    onFetchedPlayerA([]);
-    onFetchedPlayerB([]);
+    onFetchedPlayerA([]); // Reset Player A's cards
+    onFetchedPlayerB([]); // Reset Player B's cards
     setPlayerACards([]);
     setPlayerBCards([]);
     setBlindCard(null);
     setCardIndex(0);
     setShowResult(false);
   };
-
 
   return (
     <div className={styles.container}>
