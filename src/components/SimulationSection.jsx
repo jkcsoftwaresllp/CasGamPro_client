@@ -3,7 +3,7 @@ import { CardDetails } from "./CardDetails";
 import { SimulationWindow } from "./SimulationWindow";
 import styles from "./css/TeenPatti.module.css";
 
-export const SimulationSection = () => {
+export const SimulationSection = ({ isAcceptingBets }) => {
   const [playerACards, setPlayerACards] = useState([]); // Cards for Player A
   const [playerBCards, setPlayerBCards] = useState([]); // Cards for Player B
 
@@ -13,6 +13,7 @@ export const SimulationSection = () => {
       <SimulationWindow
         setPlayerACards={setPlayerACards}
         setPlayerBCards={setPlayerBCards}
+        isAcceptingBets={isAcceptingBets}
       />
     </div>
   );

@@ -4,7 +4,11 @@ import axios from "axios";
 import styles from "./css/SimulationWindow.module.css"; // Import the CSS module
 import { proxyApiUrl } from "./helper/proxyApiUrl";
 
-export const SimulationWindow = ({ setPlayerACards, setPlayerBCards }) => {
+export const SimulationWindow = ({
+  setPlayerACards,
+  setPlayerBCards,
+  isAcceptingBets,
+}) => {
   const [statusMessage, setStatusMessage] = useState("");
   const [timer, setTimer] = useState(null);
   const [gameId, setGameId] = useState(null);
@@ -24,7 +28,7 @@ export const SimulationWindow = ({ setPlayerACards, setPlayerBCards }) => {
         // Wait 3 seconds before starting the timer
         setTimeout(() => {
           setStatusMessage("");
-          setTimer(3); // Start a 30-second timer
+          setTimer(30); // Start a 30-second timer
         }, 3000);
       } else {
         setStatusMessage("Failed to shuffle cards. Please try again.");
@@ -45,11 +49,21 @@ export const SimulationWindow = ({ setPlayerACards, setPlayerBCards }) => {
       } else {
         clearInterval(countdownInterval);
         setTimer(null);
-        setShowSimulation(true); // Show simulation after timer ends
+        isAcceptingBets(false); // Notify parent that the 30 seconds are over
+
+        // Call the API after 30 seconds
+        axios
+          .post(proxyApiUrl("/api/stopAcceptBets"), { gameId })
+          .then(() => {
+            setShowSimulation(true); // Show simulation after timer ends
+          })
+          .catch((error) => {
+            console.error("Error accepting bets:", error);
+          });
       }
     }
     return () => clearInterval(countdownInterval); // Cleanup interval on unmount
-  }, [timer]);
+  }, [timer, gameId, isAcceptingBets]);
 
   return (
     <div className={styles.container}>
