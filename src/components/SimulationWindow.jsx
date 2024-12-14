@@ -28,7 +28,7 @@ export const SimulationWindow = ({
         // Wait 3 seconds before starting the timer
         setTimeout(() => {
           setStatusMessage("");
-          setTimer(30); // Start a 30-second timer
+          setTimer(3); // Start a 30-second timer
         }, 3000);
       } else {
         setStatusMessage("Failed to shuffle cards. Please try again.");
