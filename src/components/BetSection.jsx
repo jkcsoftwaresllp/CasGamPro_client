@@ -9,7 +9,13 @@ export const BetSection = (gameId) => {
 
   return (
     <div className={styles.betSection}>
-      <CustomBetInput setResult={setBetValue} betValue={betValue} />
+      <div className={styles.betPlacing}>
+        <CustomBetInput setResult={setBetValue} betValue={betValue} />
+        <div className={styles.winningAmount}>
+          Winning Amount: 
+          <span className={styles.amount}> {betValue * 1.96}</span>
+        </div>
+      </div>
       <CoinsUI setResult={setBetValue} />
       <PlayerButton betAmount={betValue} />
     </div>

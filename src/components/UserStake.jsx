@@ -15,7 +15,7 @@ export const UserStake = () => {
     try {
       const response = await axios.get(proxyApiUrl("/api/getStakes")); // Fetch data from API
       const filteredStakes = response.data.map((stake) => ({
-        player: stake.player,
+        player: stake.player === "Player-1" ? "Player A" : "Player B",
         amount: stake.amount,
       })); // Process response to get only player name and amount
       setStakes(filteredStakes); // Update stakes in state
@@ -40,7 +40,7 @@ export const UserStake = () => {
           stakes.map((stake, index) => (
             <div key={index} className={styles.stakeItem}>
               <span className={styles.player}>{stake.player}</span>
-              <span className={styles.amount}>${stake.amount}</span>
+              <span className={styles.amount}>{stake.amount}</span>
             </div>
           ))
         ) : (

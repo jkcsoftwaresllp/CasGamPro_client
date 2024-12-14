@@ -1,14 +1,12 @@
 .container {
-  margin-top: 10px; /* Replaces mt-2 */
   display: flex;
   justify-content: center;
 }
 
 .inputGroup {
   display: flex;
-  align-items: center; /* Aligns items vertically */
-  justify-content: center; /* Centers items horizontally */
-  margin-bottom: 16px; /* Replaces mb-3 */
+  align-items: center; 
+  justify-content: center; 
 }
 
 .button {
