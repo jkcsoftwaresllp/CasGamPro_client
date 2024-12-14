@@ -1,0 +1,43 @@
+.container {
+  width: 25%; 
+  border: 1px solid #ddd; 
+  border-radius: 5px;
+  padding: 10px;
+  background-color: #fff;
+  width: 40%;
+}
+
+.playerLabel {
+  text-align: center; 
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.cardsContainer {
+  display: flex; 
+  justify-content: center; 
+  margin-top: 10px; 
+}
+
+.card {
+  width: 60px;
+  height: 90px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  overflow: hidden;
+  margin: 5px;
+}
+
+.card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.mt2 {
+  margin-top: 8px;
+}
+
+.mt3 {
+  margin-top: 16px;
+}

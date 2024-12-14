@@ -1,0 +1,27 @@
+.container {
+  display: flex; 
+  justify-content: center; 
+  margin: 10px 0;
+}
+
+.betButtons {
+  display: flex;
+  flex-wrap: wrap; 
+  gap: 6px; 
+}
+
+.betButton {
+  text-decoration: none; 
+  padding: 8px 12px; 
+  border: 1px solid #ddd; 
+  border-radius: 5px;
+  background-color: #f8f9fa; 
+  color: #000;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.betButton:hover {
+  background-color: #e9ecef; 
+  color: #007bff; 
+}
