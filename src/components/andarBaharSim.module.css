@@ -1,0 +1,64 @@
+.game-container {
+  text-align: center;
+  font-family: Arial, sans-serif;
+  padding: 20px;
+}
+
+.joker-card {
+  width: 100px;
+  height: 50px;
+  margin: 10px 0;
+  transition: transform 0.5s;
+}
+
+.card-piles {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.andar-pile,
+.bahar-pile {
+  margin-bottom: 20px;
+}
+
+.cards {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 10px;
+  transition: all 0.5s ease-in-out;
+}
+
+.card {
+  width: 70px;
+  margin: 5px;
+  transform: scale(0.95);
+  transition: transform 0.3s ease-in-out;
+  margin: 10px;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+.winner {
+  margin-top: 20px;
+  color: green;
+  font-size: 1.5em;
+}
+@keyframes fadeInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.card {
+  animation: fadeInLeft 0.6s ease-out;
+}
