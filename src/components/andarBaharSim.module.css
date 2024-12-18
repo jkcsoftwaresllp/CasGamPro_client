@@ -62,3 +62,50 @@
 .card {
   animation: fadeInLeft 0.6s ease-out;
 }
+/* Smooth movement of blind card to the right */
+@keyframes cardToRight {
+  0% {
+    transform: translateX(-200px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.animate-card-to-right {
+  animation: cardToRight 1.5s ease-in-out forwards;
+}
+
+/* Smooth movement of joker card to the left */
+@keyframes cardToLeft {
+  0% {
+    transform: translateX(200px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.animate-card-to-left {
+  animation: cardToLeft 1.5s ease-in-out forwards;
+}
+
+/* Card dealing animation */
+@keyframes cardDeal {
+  0% {
+    transform: translateY(-50px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.animate-card-deal {
+  animation: cardDeal 0.8s ease-in-out forwards;
+}
