@@ -1,5 +1,9 @@
 import React, { useState, useEffect } from "react";
 import "./andarBaharSim.module.css";
+import { fetchDeck } from "./helper/fetchDeck";
+import { drawBlindCard } from "./helper/drawBlindCard";
+import { drawJokerCard } from "./helper/drawJokerCard";
+import { dealCardsAuto } from "./helper/dealCardsAuto";
 
 const AndarBaharSim = () => {
   const [deckId, setDeckId] = useState(null);
@@ -8,146 +12,123 @@ const AndarBaharSim = () => {
   const [baharPile, setBaharPile] = useState([]);
   const [winner, setWinner] = useState("");
   const [gameOver, setGameOver] = useState(false);
+  const [blindCard, setBlindCard] = useState(null);
+  const [deckVisible, setDeckVisible] = useState(true);
 
   useEffect(() => {
-    fetchDeck();
+    fetchDeck(setDeckId, (id) =>
+      drawBlindCard(id, setBlindCard, (id) =>
+        drawJokerCard(id, setJokerCard, (id, joker) =>
+          dealCardsAuto(
+            id,
+            joker,
+            setAndarPile,
+            setBaharPile,
+            setWinner,
+            setGameOver,
+            setDeckVisible
+          )
+        )
+      )
+    );
   }, []);
 
-  const fetchDeck = async () => {
-    try {
-      const response = await fetch(
-        "https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1"
-      );
-      const data = await response.json();
-      setDeckId(data.deck_id);
-      drawJokerCard(data.deck_id);
-    } catch (error) {
-      console.error("Error fetching deck:", error);
-    }
-  };
-
-  const drawJokerCard = async (deckId) => {
-    try {
-      const response = await fetch(
-        `https://deckofcardsapi.com/api/deck/${deckId}/draw/?count=1`
-      );
-      const data = await response.json();
-      setJokerCard(data.cards[0]);
-      dealCardsAutomatically(deckId, data.cards[0]);
-    } catch (error) {
-      console.error("Error drawing Joker card:", error);
-    }
-  };
-
-  const dealCardsAutomatically = async (deckId, joker) => {
-    let andar = [];
-    let bahar = [];
-    let gameFinished = false;
-
-    const interval = setInterval(async () => {
-      if (gameFinished || !deckId) {
-        clearInterval(interval);
-        return;
-      }
-
-      try {
-        const response = await fetch(
-          `https://deckofcardsapi.com/api/deck/${deckId}/draw/?count=2`
-        );
-        const data = await response.json();
-
-        if (data.cards.length > 0) {
-          const [cardForAndar, cardForBahar] = data.cards;
-
-          // Add to Andar pile
-          andar.push(cardForAndar);
-          setAndarPile([...andar]);
-
-          if (cardForAndar.value === joker.value) {
-            setWinner("Andar");
-            setGameOver(true);
-            clearInterval(interval);
-            gameFinished = true;
-            return;
-          }
-
-          setTimeout(() => {
-            if (!gameFinished) {
-              // Add to Bahar pile
-              bahar.push(cardForBahar);
-              setBaharPile([...bahar]);
-
-              if (cardForBahar.value === joker.value) {
-                setWinner("Bahar");
-                setGameOver(true);
-                clearInterval(interval);
-                gameFinished = true;
-              }
-            }
-          }, 500);
-        } else {
-          clearInterval(interval);
-        }
-      } catch (error) {
-        console.error("Error dealing cards:", error);
-        clearInterval(interval);
-      }
-    }, 1200);
-  };
-
   return (
-    <div className="game-container text-center p-5 font-sans">
-      <h1 className="text-2xl font-bold mb-5">Andar Bahar Simulation</h1>
+    <div className="min-h-screen bg-gray-100 text-center p-5 font-sans relative">
+      {/* Host Section */}
+      <div className="absolute left-1/2 transform -translate-x-1/2 top-5">
+        <h1 className="text-2xl font-bold mb-2 text-gray-800">Game Host</h1>
+        <p className="text-gray-600 text-sm italic">
+          "Drawing cards for Andar and Bahar..."
+        </p>
+      </div>
+
+      {/* Deck at Host */}
+      {deckVisible && (
+        <div className="deck-container absolute left-1/2 transform -translate-x-1/2 top-20">
+          <img
+            src="./deck.png"
+            alt="Deck of Cards"
+            className="deck w-24 h-32"
+          />
+        </div>
+      )}
+
+      {/* Blind Card */}
+      {blindCard && (
+        <div className="absolute right-20 top-32 animate-card-to-right">
+          <img
+            src="https://via.placeholder.com/100x150?text=Blind"
+            alt="Blind Card"
+            className="w-24 h-32 rounded-lg"
+          />
+        </div>
+      )}
+
+      {/* Joker Card */}
       {jokerCard && (
-        <>
-          <div className="joker-card-container mb-8">
-            <h2 className="text-lg font-semibold text-gray-700 mb-4">
-              Joker Card:
-            </h2>
-            <img
-              src={jokerCard.image}
-              alt={`Joker ${jokerCard.value}`}
-              className="joker-card mx-auto w-32 h-48"
-            />
+        <div className="absolute left-20 top-32 animate-card-to-left">
+          <img
+            src={jokerCard.image}
+            alt={`Joker ${jokerCard.value}`}
+            className="w-24 h-32"
+          />
+          <p className="text-gray-800">Joker</p>
+        </div>
+      )}
+
+      {/* Card Piles with Line */}
+      <div className="flex flex-col items-center mt-96">
+        <div className="flex justify-center w-full relative">
+          {/* Left Labels */}
+          <div className="absolute left-10 top-1/2 transform -translate-y-1/2 flex flex-col items-start gap-20 text-lg font-bold text-gray-700">
+            <p className="mb-20">Andar</p>
+            <p>Bahar</p>
           </div>
-          <div className="card-piles flex justify-around mt-10">
-            {/* Andar Pile */}
-            <div className="andar-pile">
-              <h3 className="text-lg font-bold mb-4">A - Andar</h3>
-              <div className="cards flex flex-wrap justify-center gap-3">
+
+          {/* Cards Section */}
+          <div className="flex flex-col items-center">
+            {/* Andar Cards */}
+            <div className="flex flex-col items-center mb-5">
+              <div className="flex flex-wrap justify-center gap-3">
                 {andarPile.map((card, index) => (
                   <img
                     key={`andar-${index}`}
                     src={card.image}
                     alt={`${card.value} of ${card.suit}`}
-                    className="card w-16 h-24 mx-1"
+                    className="card w-16 h-24 animate-card-deal"
                   />
                 ))}
               </div>
             </div>
 
-            {/* Bahar Pile */}
-            <div className="bahar-pile">
-              <h3 className="text-lg font-bold mb-4">B - Bahar</h3>
-              <div className="cards flex flex-wrap justify-center gap-3">
+            {/* Divider Line - Shown Dynamically */}
+            {andarPile.length > 0 && (
+              <hr className="w-1/2 border-t-2 border-gray-600 mb-5 animate-fade-in" />
+            )}
+
+            {/* Bahar Cards */}
+            <div className="flex flex-col items-center">
+              <div className="flex flex-wrap justify-center gap-3">
                 {baharPile.map((card, index) => (
                   <img
                     key={`bahar-${index}`}
                     src={card.image}
                     alt={`${card.value} of ${card.suit}`}
-                    className="card w-16 h-24 mx-1"
+                    className="card w-16 h-24 animate-card-deal"
                   />
                 ))}
               </div>
             </div>
           </div>
+        </div>
+      </div>
 
-          {gameOver && (
-            <h2 className="winner text-xl font-bold mt-5">
-              Winner: {winner} 🎉
-            </h2>
-          )}
-        </>
+      {/* Winner Announcement */}
+      {gameOver && (
+        <h2 className="text-xl font-bold mt-5 text-green-600">
+          Winner: {winner} 🎉
+        </h2>
       )}
     </div>
   );
