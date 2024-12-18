@@ -88,36 +88,39 @@ const AndarBaharSim = () => {
 
           {/* Cards Section */}
           <div className="flex flex-col items-center">
-            {/* Andar Cards */}
-            <div className="flex flex-col items-center mb-5">
-              <div className="flex flex-wrap justify-center gap-3">
-                {andarPile.map((card, index) => (
-                  <img
-                    key={`andar-${index}`}
-                    src={card.image}
-                    alt={`${card.value} of ${card.suit}`}
-                    className="card w-16 h-24 animate-card-deal"
-                  />
-                ))}
+            {/* Card Window (Fixed width, Horizontally Scrollable) */}
+            <div className="relative overflow-x-auto w-[800px]  p-2 rounded-lg">
+              {/* Andar Cards */}
+              <div className="flex flex-col items-center mb-5">
+                <div className="flex gap-1">
+                  {andarPile.map((card, index) => (
+                    <img
+                      key={`andar-${index}`}
+                      src={card.image}
+                      alt={`${card.value} of ${card.suit}`}
+                      className="card w-16 h-24"
+                    />
+                  ))}
+                </div>
               </div>
-            </div>
 
-            {/* Divider Line - Shown Dynamically */}
-            {andarPile.length > 0 && (
-              <hr className="w-1/2 border-t-2 border-gray-600 mb-5 animate-fade-in" />
-            )}
+              {/* Divider Line - Shown Dynamically */}
+              {andarPile.length > 0 && (
+                <hr className="w-full border-t-2 border-gray-600 mb-5 animate-fade-in" />
+              )}
 
-            {/* Bahar Cards */}
-            <div className="flex flex-col items-center">
-              <div className="flex flex-wrap justify-center gap-3">
-                {baharPile.map((card, index) => (
-                  <img
-                    key={`bahar-${index}`}
-                    src={card.image}
-                    alt={`${card.value} of ${card.suit}`}
-                    className="card w-16 h-24 animate-card-deal"
-                  />
-                ))}
+              {/* Bahar Cards */}
+              <div className="flex flex-col items-center">
+                <div className="flex gap-1">
+                  {baharPile.map((card, index) => (
+                    <img
+                      key={`bahar-${index}`}
+                      src={card.image}
+                      alt={`${card.value} of ${card.suit}`}
+                      className="card w-16 h-24"
+                    />
+                  ))}
+                </div>
               </div>
             </div>
           </div>
