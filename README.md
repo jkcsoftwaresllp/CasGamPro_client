@@ -12,22 +12,22 @@ Welcome to the **CasGamPro** Project! This guide will walk you through the steps
 - **Clone the entire repository** (with all branches):  
    If you want to clone the entire repository, including all branches, use the following command:
    ```bash
-   git clone <repository_url>
-   cd <repository_name>
+   git clone https://github.com/jkcsoftwaresllp/CasGamPro_client.git
+   cd CasGamPro_client
    ```
    This will clone the whole repository, and you can switch between branches as needed.
 
 - **Clone only the `development` branch**:  
    If you only want the `development` branch, use this command:
    ```bash
-   git clone --single-branch --branch development <repository_url>
+   git clone --single-branch --branch development https://github.com/jkcsoftwaresllp/CasGamPro_client.git
    ```
 
 - **Clone specific branches (e.g., `development`, `feature/xyz`, `hotfix/abc`)**:  
    If you want to clone multiple specific branches, first clone the `development` branch and then fetch additional branches:
    ```bash
-   git clone --single-branch --branch development <repository_url>
-   cd <repository_name>
+   git clone --single-branch --branch development https://github.com/jkcsoftwaresllp/CasGamPro_client.git
+   cd CasGamPro_client
    git fetch origin feature/xyz:feature/xyz
    git fetch origin hotfix/abc:hotfix/abc
    ```
