@@ -1,4 +1,9 @@
 :root {
+  --textBold: 700;
+  --textNormal: 400;
+  --borderRadius: 6px;
+  --borderRadius-md: 15px;
+  --borderRadius-lg: 25px;
   /* dark mode */
   /* Special Cases */
   --color-special-yellow: #e6c000;
@@ -18,4 +23,14 @@
   --color-text-dark-primary: #c0c0c0;
   --color-text-dark-secondary: #e6e6e6;
   --color-text-dark-tertiary: #f7f7f7;
+
+  /* text light */
+  --color-text-primary: #1b1b1b;
+  --color-text-secondary: #565656;
+  --color-text-tertiary: #7b7b7b;
+
+  /* background light*/
+  --color-bg-primary: #c0c0c0;
+  --color-bg-secondary: #e6e6e6;
+  --color-bg-tertiary: #f7f7f7;
 }

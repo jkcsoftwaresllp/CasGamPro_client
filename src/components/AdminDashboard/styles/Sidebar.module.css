@@ -1,0 +1,16 @@
+.sideBar {
+  --sideBarWidth: 200px;
+}
+
+.sideBar {
+  height: 100%;
+  width: var(--sideBarWidth);
+  background-color: var(--color-bg-dark-secondary);
+  color: var(--color-text-dark-tertiary);
+  padding: 10px;
+}
+
+.label {
+  text-align: center;
+  padding: 5px;
+}

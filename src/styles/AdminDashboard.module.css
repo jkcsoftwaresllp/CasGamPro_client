@@ -1,0 +1,14 @@
+.casGamPro {
+  --windowHeight: 100vh;
+  --windowWidth: 100vw;
+}
+
+.casGamPro {
+  height: calc(var(--hei));
+  width: var(--windowWidth);
+  height: var(--windowHei);
+}
+
+.mainContent {
+  height: calc(var(--windowHei) - var(--headerHight));
+}
