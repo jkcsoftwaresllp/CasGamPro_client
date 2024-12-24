@@ -11,31 +11,47 @@ const ClientRegisterPage = () => {
     userId: "",
     firstName: "",
     lastName: "",
-    fixLimit: "",
-    myMatchShare: "",
-    userMatchCommission: "0",
-    userSessionCommission: "0",
+    fixLimit: 0,
+    myMatchShare: 0,
+    userMatchCommission: 0,
+    userSessionCommission: 0,
     password: "",
     confirmPassword: "",
   });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+
+    // If the value is a number (for fields that expect numbers), parse it as a float
+    const parsedValue =
+      name === "fixLimit" ||
+      name === "myMatchShare" ||
+      name === "userMatchCommission" ||
+      name === "userSessionCommission"
+        ? parseFloat(value)
+        : value;
+
     setFormData((prev) => ({
       ...prev,
-      [name]: value,
+      [name]: parsedValue,
     }));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    // Basic password check
+    if (formData.password !== formData.confirmPassword) {
+      alert("Passwords do not match.");
+      return;
+    }
     console.log("Form submitted:", formData);
   };
 
   return (
     <form onSubmit={handleSubmit} className={style.form}>
       <h2>New User</h2>
-      <UserIdInput value={formData.userId} />
+      <UserIdInput value={formData.userId} onChange={handleChange} />
+
       <TextInput
         label="First Name"
         name="firstName"
@@ -57,6 +73,8 @@ const ClientRegisterPage = () => {
         onChange={handleChange}
         placeholder="Enter Fix Limit"
         note="Fix Limit can be set from 0 to 18.00"
+        min={0}
+        max={18.0}
       />
       <NumberInput
         label="My Match Share"
@@ -65,6 +83,8 @@ const ClientRegisterPage = () => {
         onChange={handleChange}
         placeholder="Enter My Match Share"
         note="My Match Share can be set from 0 to 15.0"
+        min={0}
+        max={Math.min(formData.fixLimit, 15.0)} // Dynamic max based on fixLimit
       />
       <NumberInput
         label="User Match Commission"
@@ -73,6 +93,8 @@ const ClientRegisterPage = () => {
         onChange={handleChange}
         placeholder="Enter User Match Commission"
         note="Match Commission can be set from 0 to 3"
+        min={0}
+        max={3}
       />
       <NumberInput
         label="User Session Commission"
@@ -81,6 +103,8 @@ const ClientRegisterPage = () => {
         onChange={handleChange}
         placeholder="Enter User Session Commission"
         note="Session Commission can be set from 0 to 3"
+        min={0}
+        max={3}
       />
       <PasswordInput
         label="Password"
