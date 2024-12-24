@@ -1,0 +1,15 @@
+.sideTab {
+  --borderRadius: 3px;
+}
+
+.sideTab {
+  padding: 5px;
+  margin: 7px 5px;
+  border-radius: var(--borderRadius);
+  border: 1px solid var(--colorBackground);
+  font-weight: var(--textBold);
+}
+
+.sideTab:hover {
+  background-color: var(--colorBackground);
+}

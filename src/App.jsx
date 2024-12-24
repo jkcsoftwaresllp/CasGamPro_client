@@ -1,5 +1,5 @@
 import "./App.css";
-import { CasGamPro } from "./components/CasGamPro";
+import { CasGamPro } from "./components/page/jsx/CasGamPro";
 
 function App() {
 
