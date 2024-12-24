@@ -9,7 +9,6 @@ const NumberInput = ({ label, name, value, onChange, placeholder, note }) => (
       value={value}
       onChange={onChange}
       placeholder={placeholder}
-      style={{ width: "100%", padding: "8px" }}
     />
     {note && <small>{note}</small>}
   </div>
