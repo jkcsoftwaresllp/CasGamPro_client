@@ -1,11 +1,10 @@
 import "./App.css";
-import { CasGamPro } from "./components/CasGamPro";
+import LoginPage from "./pages/LoginPage";
 
 function App() {
-
   return (
     <div>
-      <CasGamPro />
+      <LoginPage />
     </div>
   );
 }

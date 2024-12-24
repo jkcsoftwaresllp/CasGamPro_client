@@ -4,6 +4,27 @@
   padding: 2rem;
   text-align: center;
 }
+:root {
+  /* dark mode */
+  /* Special Cases */
+  --color-special-yellow: #e6c000;
+  --color-special-green: #50c878;
+  --color-special-red: #b22222;
+
+  /* Highlighters */
+  --color-highlighter-dark-primary: #213555;
+  --color-highlighter-dark-secondary: #001f3f;
+
+  /* Background */
+  --color-bg-dark-primary: #1b1b1b;
+  --color-bg-dark-secondary: #565656;
+  --color-bg-dark-tertiary: #7b7b7b;
+
+  /* Text */
+  --color-text-dark-primary: #c0c0c0;
+  --color-text-dark-secondary: #e6e6e6;
+  --color-text-dark-tertiary: #f7f7f7;
+}
 
 .logo {
   height: 6em;
