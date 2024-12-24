@@ -1,7 +1,27 @@
-*{
+:root {
+  --colorHighlighter: #001f3f;
+  --colorHighlighter2: #213555;
+  --colorBackground: #1b1b1b;
+  --colorBackground2: #565656;
+  --colorBackground3: #7b7b7b;
+  --colorText: #f7f7f7;
+  --colorText2: #e6e6e6;
+  --colorText3: #c0c0c0;
+  --colorRed: #b22222;
+  --colorGreen: #50c878;
+  --colorYellow: #e6c000;
+
+  --textBold: 700;
+}
+
+* {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-
   font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+body {
+  background-color: var(--colorBackground);
+  color: var(--colorText);
 }

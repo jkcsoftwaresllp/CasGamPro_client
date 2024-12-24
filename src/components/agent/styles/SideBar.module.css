@@ -1,0 +1,14 @@
+.sideBar {
+  --sideBarWidth: 250px;
+}
+
+.sideBar {
+  height: 100%;
+  width: var(--sideBarWidth);
+  background-color: var(--colorBackground2);
+}
+
+.label {
+  text-align: center;
+  padding: 5px;
+}
