@@ -1,0 +1,27 @@
+.sidebar {
+  width: 250px; /* Sidebar width */
+  background-color: var(--color-bg-primary);
+  padding: 10px;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar li {
+  padding: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.sidebar li:hover {
+  background-color: var(--color-bg-tertiary);
+}
+
+.sidebar .active {
+  font-weight: var(--textBold);
+  background-color: var(--color-special-green);
+  color: white;
+}
