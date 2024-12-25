@@ -1,11 +1,7 @@
-// src/App.js
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router } from "react-router-dom";
 import "./App.css";
-import LoginPage from "./pages/LoginPage"; // Login page component
-
 import Header from "./components/Main/Header"; // Header component
-import Home from "./pages/Home"; // Home page component
-import AdminDashboard from "./pages/AdminDashboard/AdminDashboard";
+import Routing from "./Routing"; // Import the Routing component
 
 function App() {
   return (
@@ -13,14 +9,8 @@ function App() {
       {/* Header will be visible on all pages */}
       <Header />
 
-      {/* Define all routes */}
-      <Routes>
-        {/* Public routes */}
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/" element={<Home />} />
-        <Route path="/Admindashboard" element={<AdminDashboard />} />{" "}
-        {/* Dashboard route */}
-      </Routes>
+      {/* Use the centralized Routing component */}
+      <Routing />
     </Router>
   );
 }

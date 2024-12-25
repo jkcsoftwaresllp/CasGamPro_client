@@ -1,12 +1,10 @@
-// src/pages/ManageClient.js
-import React from "react";
 import { useNavigate } from "react-router-dom"; // Import useNavigate from React Router
 
 const ManageClients = () => {
   const navigate = useNavigate(); // Initialize navigate function
 
   const handleCreateUserClick = () => {
-    navigate("/admin/newUser"); // Redirect to the new user creation page
+    navigate("/user"); // Redirect to the new user creation page
   };
 
   return (
