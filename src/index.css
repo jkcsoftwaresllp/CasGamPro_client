@@ -3,3 +3,12 @@
 * {
   font-family: "Urbanist", sans-serif;
 }
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: var(
+    --color-bg-dark-primary
+  ); /* Ensure it matches the container's background */
+}
