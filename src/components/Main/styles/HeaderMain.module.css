@@ -14,6 +14,7 @@
 .header__title {
   margin: 0;
   font-weight: var(--textBold);
+  cursor: pointer;
 }
 .rightSection {
   display: flex;

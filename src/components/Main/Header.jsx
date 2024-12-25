@@ -29,10 +29,15 @@ const Header = () => {
   const handleLoginClick = () => {
     navigate("/login");
   };
+  const handleHomeClick = () => {
+    navigate("/");
+  };
 
   return (
     <header className={style.header}>
-      <h1 className={style.header__title}>Header</h1>
+      <h1 className={style.header__title} onClick={handleHomeClick}>
+        Header
+      </h1>
       <div className={style.rightSection}>
         <img
           src="/login-svg.svg"

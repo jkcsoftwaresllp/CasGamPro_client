@@ -1,6 +1,3 @@
-// ManagePassword.js
-import React from "react";
-
 const ManagePassword = () => {
   return (
     <div>
