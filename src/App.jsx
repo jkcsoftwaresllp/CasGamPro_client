@@ -5,7 +5,7 @@ import LoginPage from "./pages/LoginPage"; // Login page component
 
 import Header from "./components/Main/Header"; // Header component
 import Home from "./pages/Home"; // Home page component
-import Page from "./pages/AdminDashboard/AdminDashboard";
+import AdminDashboard from "./pages/AdminDashboard/AdminDashboard";
 
 function App() {
   return (
@@ -18,7 +18,8 @@ function App() {
         {/* Public routes */}
         <Route path="/login" element={<LoginPage />} />
         <Route path="/" element={<Home />} />
-        <Route path="/dashboard" element={<Page />} /> {/* Dashboard route */}
+        <Route path="/dashboard" element={<AdminDashboard />} />{" "}
+        {/* Dashboard route */}
       </Routes>
     </Router>
   );

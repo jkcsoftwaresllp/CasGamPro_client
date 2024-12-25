@@ -7,7 +7,7 @@ import Settings from "./Setting";
 import Sidebar from "../../components/AdminDashboard/AdminSidebar";
 import style from "../../styles/AdminDashboard.module.css";
 
-const Page = () => {
+const AdminDashboard = () => {
   const [selectedOption, setSelectedOption] = useState("dashboard"); // Default to 'dashboard'
 
   const handleOptionSelect = (option) => {
@@ -43,4 +43,4 @@ const Page = () => {
   );
 };
 
-export default Page;
+export default AdminDashboard;
