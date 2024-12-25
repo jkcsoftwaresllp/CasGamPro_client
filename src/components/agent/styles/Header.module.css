@@ -1,0 +1,14 @@
+:root {
+  --headerHight: 30px;
+}
+
+
+.header {
+  width: 100%;
+  height: var(--headerHight);
+  background-color: var(--colorHighlighter2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: var(--textBold);
+}
