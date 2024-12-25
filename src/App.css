@@ -1,11 +1,14 @@
+/* Global Styles in app.css */
+
+/* Default theme (Light Mode) */
 :root {
   --textBold: 700;
   --textNormal: 400;
   --borderRadius: 6px;
   --borderRadius-md: 15px;
   --borderRadius-lg: 25px;
-  /* dark mode */
-  /* Special Cases */
+
+  /* Light Mode Colors */
   --color-special-yellow: #e6c000;
   --color-special-green: #50c878;
   --color-special-red: #b22222;
@@ -15,22 +18,33 @@
   --color-highlighter-dark-secondary: #001f3f;
 
   /* Background */
-  --color-bg-dark-primary: #1b1b1b;
-  --color-bg-dark-secondary: #565656;
-  --color-bg-dark-tertiary: #7b7b7b;
-
-  /* Text */
-  --color-text-dark-primary: #c0c0c0;
-  --color-text-dark-secondary: #e6e6e6;
-  --color-text-dark-tertiary: #f7f7f7;
-
-  /* text light */
-  --color-text-primary: #1b1b1b;
-  --color-text-secondary: #565656;
-  --color-text-tertiary: #7b7b7b;
-
-  /* background light*/
   --color-bg-primary: #c0c0c0;
   --color-bg-secondary: #e6e6e6;
   --color-bg-tertiary: #f7f7f7;
+
+  /* Text */
+  --color-text-primary: #1b1b1b;
+  --color-text-secondary: #565656;
+  --color-text-tertiary: #7b7b7b;
+}
+
+/* Dark Mode Colors */
+[data-theme="dark"] {
+  --color-special-yellow: #e6c000;
+  --color-special-green: #50c878;
+  --color-special-red: #b22222;
+
+  /* Highlighters */
+  --color-highlighter-dark-primary: #213555;
+  --color-highlighter-dark-secondary: #001f3f;
+
+  /* Background */
+  --color-bg-primary: #1b1b1b;
+  --color-bg-secondary: #565656;
+  --color-bg-tertiary: #7b7b7b;
+
+  /* Text */
+  --color-text-primary: #c0c0c0;
+  --color-text-secondary: #e6e6e6;
+  --color-text-tertiary: #f7f7f7;
 }

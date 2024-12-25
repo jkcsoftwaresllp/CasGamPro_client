@@ -1,12 +1,16 @@
+/* .container styles */
 .container {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
   margin: 0;
-  background-color: var(--color-bg-dark-primary);
+  background-color: var(
+    --color-bg-primary
+  ); /* Light or dark background based on theme */
 }
 
+/* .form styles */
 .form {
   display: flex;
   justify-content: center;
@@ -23,35 +27,34 @@
   gap: 20px; /* Spacing between elements */
 }
 
+/* .form_details styles */
 .form_details {
   font-size: 35px;
   font-weight: 600;
   padding-bottom: 12px;
-  color: var(--color-text-dark-secondary);
+  color: var(
+    --color-text-primary
+  ); /* Light/dark text color based on the theme */
 }
 
+/* .input styles */
 .input {
   width: 245px;
   min-height: 45px;
   font-size: 18px;
-  color: var(--color-text-dark-primary);
+  color: var(--color-text-primary); /* Light/dark text color */
   outline: none;
   transition: 0.35s;
   padding: 0px 7px;
-  background-color: var(--color-bg-dark-primary);
-  border-radius: 6px;
-  border: 2px solid var(--color-bg-dark-primary);
-  box-shadow: 6px 6px 10px var(--color-bg-dark-primary),
+  background-color: var(--color-bg-secondary); /* Light/dark background color */
+  border-radius: var(--borderRadius); /* Border radius */
+  border: 2px solid var(--color-bg-secondary); /* Light/dark border color */
+  box-shadow: 6px 6px 10px var(--color-bg-secondary),
     1px 1px 10px rgba(255, 255, 255, 0.6);
 }
 
 .input::placeholder {
-  color: var(--color-text-dark-primary);
-}
-
-.input:focus.input::placeholder {
-  transition: 0.3s;
-  opacity: 0;
+  color: var(--color-text-secondary); /* Light/dark placeholder text */
 }
 
 .input:focus {
@@ -61,15 +64,18 @@
     inset -1px -1px 5px rgba(255, 255, 255, 0.6);
 }
 
+/* .btn styles */
 .btn {
   padding: 10px 35px;
   cursor: pointer;
-  background-color: var(--color-highlighter-dark-secondary);
-  border-radius: 6px;
-  border: 2px solid var(--color-highlighter-dark-primary);
+  background-color: var(
+    --color-highlighter-dark-primary
+  ); /* Light/dark button color */
+  border-radius: var(--borderRadius); /* Border radius */
+  border: 2px solid var(--color-highlighter-dark-primary); /* Light/dark border color */
   box-shadow: 6px 6px 10px rgba(0, 0, 0, 1),
     1px 1px 10px rgba(255, 255, 255, 0.6);
-  color: var(--color-text-dark-primary);
+  color: var(--color-text-primary); /* Light/dark text color */
   font-size: 18px;
   font-weight: bold;
   transition: 0.35s;
@@ -78,7 +84,7 @@
 .btn:hover {
   transform: scale(1.05);
   box-shadow: 6px 6px 10px rgba(0, 0, 0, 1),
-    1px 1px 10px var(--color-highlighter-dark-primary);
+    1px 1px 10px var(--color-highlighter-dark-primary); /* Hover effect */
 }
 
 .btn:focus {
@@ -88,9 +94,10 @@
     inset -1px -1px 5px rgba(255, 255, 255, 0.6);
 }
 
+/* .switch styles for theme toggling */
 .form .switch {
   font-size: 23px;
-  color: var(--color-text-dark-primary);
+  color: var(--color-text-primary); /* Light/dark text color */
 }
 
 .form .switch .signup_tog {
