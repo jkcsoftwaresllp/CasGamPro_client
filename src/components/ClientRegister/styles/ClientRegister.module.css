@@ -63,17 +63,16 @@ h2 {
 .btn {
   padding: 10px 35px;
   cursor: pointer;
-  background-color: var(
-    --color-highlighter-dark-primary
-  ); /* Light/dark button color */
-  border-radius: 6px;
+  background-color: var(--color-dark-primary); /* Light/dark button color */
+  border-radius: var(--borderRadius); /* Border radius */
+  border: 2px solid var(--color-highlighter-dark-primary); /* Light/dark border color */
+  box-shadow: 6px 6px 10px rgba(0, 0, 0, 1),
+    1px 1px 10px rgba(255, 255, 255, 0.6);
   color: var(--color-text-primary); /* Light/dark text color */
   font-size: 18px;
   font-weight: bold;
-  transition: transform 0.35s, box-shadow 0.35s;
-  margin: 5px;
-  border: none; /* Added for cleaner appearance */
-  align-self: flex-start; /* Align buttons with form content */
+  transition: 0.35s;
+  margin-right: 10px; /* Added margin to the right */
 }
 
 .btn:hover {

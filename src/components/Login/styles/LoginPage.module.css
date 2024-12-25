@@ -68,9 +68,7 @@
 .btn {
   padding: 10px 35px;
   cursor: pointer;
-  background-color: var(
-    --color-highlighter-dark-primary
-  ); /* Light/dark button color */
+  background-color: var(--color-dark-primary); /* Light/dark button color */
   border-radius: var(--borderRadius); /* Border radius */
   border: 2px solid var(--color-highlighter-dark-primary); /* Light/dark border color */
   box-shadow: 6px 6px 10px rgba(0, 0, 0, 1),
