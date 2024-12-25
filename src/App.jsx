@@ -18,7 +18,7 @@ function App() {
         {/* Public routes */}
         <Route path="/login" element={<LoginPage />} />
         <Route path="/" element={<Home />} />
-        <Route path="/dashboard" element={<AdminDashboard />} />{" "}
+        <Route path="/Admindashboard" element={<AdminDashboard />} />{" "}
         {/* Dashboard route */}
       </Routes>
     </Router>

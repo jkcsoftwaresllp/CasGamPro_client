@@ -15,6 +15,11 @@
   margin: 0;
   font-weight: var(--textBold);
 }
+.rightSection {
+  display: flex;
+  align-items: center;
+  gap: 15px; /* Add spacing between toggle and login icon */
+}
 
 /* Switch styles */
 .switch {
@@ -67,4 +72,14 @@ input:checked + .slider:before {
   left: calc(100% - (var(--size-of-icon) + var(--slider-offset)));
   background: #303136;
   box-shadow: inset -3px -2px 5px -2px #8983f7, inset -10px -4px 0 0 #a3dafb;
+}
+
+.loginIcon {
+  transition: transform 0.2s ease;
+  cursor: pointer;
+  color: var(--color-text-primary);
+}
+
+.loginIcon:hover {
+  transform: scale(1.1); /* Add hover effect */
 }

@@ -1,8 +1,10 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import style from "./styles/HeaderMain.module.css";
 
 const Header = () => {
   const [isDarkMode, setIsDarkMode] = useState(false);
+  const navigate = useNavigate();
 
   // On mount, check the user's previous theme preference
   useEffect(() => {
@@ -20,18 +22,30 @@ const Header = () => {
     const newTheme = !isDarkMode ? "dark" : "light";
     setIsDarkMode(!isDarkMode);
     document.documentElement.setAttribute("data-theme", newTheme);
-
-    // Save the theme preference in localStorage
     localStorage.setItem("theme", newTheme);
+  };
+
+  // Handle click on login icon
+  const handleLoginClick = () => {
+    navigate("/login");
   };
 
   return (
     <header className={style.header}>
       <h1 className={style.header__title}>Header</h1>
-      <label className={style.switch}>
-        <input type="checkbox" checked={isDarkMode} onChange={toggleTheme} />
-        <span className={style.slider}></span>
-      </label>
+      <div className={style.rightSection}>
+        <img
+          src="/login-svg.svg"
+          alt="Login"
+          className={style.loginIcon}
+          onClick={handleLoginClick}
+          title="Login"
+        />
+        <label className={style.switch}>
+          <input type="checkbox" checked={isDarkMode} onChange={toggleTheme} />
+          <span className={style.slider}></span>
+        </label>
+      </div>
     </header>
   );
 };
