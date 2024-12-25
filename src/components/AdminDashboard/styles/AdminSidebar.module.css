@@ -1,11 +1,12 @@
 .sidebar {
-  width: 250px; /* Sidebar width */
+  width: 200px; /* Sidebar width */
   background-color: var(--color-bg-primary);
   padding: 10px;
   box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
 }
 
 .sidebar ul {
+  font-size: var(--text-sm);
   list-style: none;
   padding: 0;
 }
@@ -23,5 +24,5 @@
 .sidebar .active {
   font-weight: var(--textBold);
   background-color: var(--color-special-green);
-  color: white;
+  color: var(--color-text-primary);
 }
