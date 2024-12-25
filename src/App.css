@@ -12,42 +12,46 @@
   --text-lg: "24px";
 
   /* Light Mode Colors */
-  --color-special-yellow: #e6c000;
-  --color-special-green: #50c878;
-  --color-special-red: #b22222;
+  --color-special-gold: #f4c542; /* Bright and warm gold */
+  --color-special-green: #3cb371; /* Fresh casino table green */
+  --color-special-red: #d32f2f; /* Lively casino red */
+  --color-special-black: #2f2f2f; /* Dark grey-black for text */
+  --color-special-white: #f8f8f8; /* Soft white for background */
 
   /* Highlighters */
-  --color-highlighter-dark-primary: #213555;
-  --color-highlighter-dark-secondary: #001f3f;
+  --color-highlighter-light-primary: #ffcc00; /* Golden yellow for highlights */
+  --color-highlighter-light-secondary: #ff5733; /* Bright orange for accents */
 
   /* Background */
-  --color-bg-primary: #c0c0c0;
-  --color-bg-secondary: #e6e6e6;
-  --color-bg-tertiary: #f7f7f7;
+  --color-bg-primary: #ffffff; /* Clean white for the main background */
+  --color-bg-secondary: #f2f2f2; /* Light grey for sections */
+  --color-bg-tertiary: #e8e8e8; /* Subtle grey for contrast sections */
 
   /* Text */
-  --color-text-primary: #1b1b1b;
-  --color-text-secondary: #565656;
-  --color-text-tertiary: #7b7b7b;
+  --color-text-primary: #212121; /* Dark grey for readability */
+  --color-text-secondary: #4e4e4e; /* Mid-grey for secondary text */
+  --color-text-tertiary: #7d7d7d; /* Light grey for tertiary text */
 }
 
 /* Dark Mode Colors */
 [data-theme="dark"] {
-  --color-special-yellow: #e6c000;
-  --color-special-green: #50c878;
-  --color-special-red: #b22222;
+  --color-special-gold: #ffd700; /* Brightened gold */
+  --color-special-green: #50c878; /* Vibrant casino green */
+  --color-special-red: #ff4500; /* Bright red */
+  --color-special-black: #101820; /* Dark black */
+  --color-special-white: #dcdcdc;
 
   /* Highlighters */
-  --color-highlighter-dark-primary: #213555;
-  --color-highlighter-dark-secondary: #001f3f;
+  --color-highlighter-dark-primary: #6a0dad; /* Deep purple for highlights */
+  --color-highlighter-dark-secondary: #b03060; /* Maroon for accents */
 
   /* Background */
-  --color-bg-primary: #1b1b1b;
-  --color-bg-secondary: #565656;
-  --color-bg-tertiary: #7b7b7b;
+  --color-bg-primary: #0b0b0b; /* Darker black for deep contrast */
+  --color-bg-secondary: #1a1a1a; /* Dark grey for sections */
+  --color-bg-tertiary: #2e2e2e; /* Medium grey for subtle contrast */
 
   /* Text */
-  --color-text-primary: #c0c0c0;
-  --color-text-secondary: #e6e6e6;
-  --color-text-tertiary: #f7f7f7;
+  --color-text-primary: #ffffff; /* Bright white for readability */
+  --color-text-secondary: #c0c0c0; /* Soft white for secondary text */
+  --color-text-tertiary: #8a8a8a; /* Subtle grey for tertiary text */
 }
