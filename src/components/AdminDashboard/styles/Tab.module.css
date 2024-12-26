@@ -12,6 +12,7 @@
 .tab:hover {
   background-color: var(--color-special-hover);
   color: var(--color-text-placeholder);
+  min-width: 50px;
 }
 .text {
   white-space: nowrap; /* Prevent text from wrapping */
