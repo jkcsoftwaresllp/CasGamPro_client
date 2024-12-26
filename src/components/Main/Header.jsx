@@ -39,13 +39,13 @@ const Header = () => {
         Header
       </h1>
       <div className={style.rightSection}>
-        <img
-          src="/login-svg.svg"
+        {/* <img
+          src=""
           alt="Login"
           className={style.loginIcon}
           onClick={handleLoginClick}
           title="Login"
-        />
+        /> */}
         <label className={style.switch}>
           <input type="checkbox" checked={isDarkMode} onChange={toggleTheme} />
           <span className={style.slider}></span>

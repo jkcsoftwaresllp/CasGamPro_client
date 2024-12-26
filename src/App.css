@@ -2,8 +2,8 @@
 
 /* Default theme (Light Mode) */
 :root {
-  --textBold: 700;
-  --textNormal: 400;
+  --textBold: 800;
+  --textNormal: 500;
   --borderRadius: 6px;
   --borderRadius-md: 15px;
   --borderRadius-lg: 25px;
@@ -20,8 +20,8 @@
   --color-special-hover: #212121; /* Black for hover effects */
 
   /* Highlighters */
-  --color-highlighter-light-primary: #c19a6b; /* Antique bronze for highlights */
-  --color-highlighter-light-secondary: #cd7f32; /* Classic copper for accents */
+  --color-highlighter-primary: #333; /* Antique bronze for highlights */
+  --color-highlighter-secondary: #cd7f32; /* Classic copper for accents */
 
   /* Background */
   --color-bg-primary: #fbfeff; /* Warm cream background for elegance */
@@ -48,8 +48,8 @@
   --color-special-hover: #fbfeff; /* White for hover effects */
 
   /* Highlighters */
-  --color-highlighter-dark-primary: #8b4513; /* Saddle brown for highlights */
-  --color-highlighter-dark-secondary: #a0522d; /* Rusty brown for accents */
+  --color-highlighter-primary: #8b4513; /* Saddle brown for highlights */
+  --color-highlighter-secondary: #a0522d; /* Rusty brown for accents */
 
   /* Background */
   --color-bg-primary: #0b0b0b; /* Deep black for elegance */

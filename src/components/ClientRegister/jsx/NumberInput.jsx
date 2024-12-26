@@ -10,19 +10,25 @@ const NumberInput = ({
   min,
   max,
 }) => (
-  <div className={style.input}>
-    <label>{label}</label>
-    <input
-      type="number"
-      name={name}
-      value={value}
-      onChange={onChange}
-      placeholder={placeholder}
-      min={min}
-      max={max}
-    />
-    {note && <small>{note.replace("{min}", min).replace("{max}", max)}</small>}
-  </div>
+  <>
+    <div className={style.input}>
+      <label>{label}</label>
+      <input
+        type="number"
+        name={name}
+        value={value}
+        onChange={onChange}
+        placeholder={placeholder}
+        min={min}
+        max={max}
+      />
+    </div>
+    {note && (
+      <small className={style.note}>
+        {note.replace("{min}", min).replace("{max}", max)}
+      </small>
+    )}
+  </>
 );
 
 export default NumberInput;

@@ -6,7 +6,7 @@ import PasswordInput from "../components/ClientRegister/jsx/PasswordInput";
 import Button from "../components/Common/Button";
 import style from "../components/ClientRegister/styles/ClientRegister.module.css";
 
-const ClientRegisterPage = () => {
+const AgentNewUser = () => {
   const [formData, setFormData] = useState({
     userId: "",
     firstName: "",
@@ -132,4 +132,4 @@ const ClientRegisterPage = () => {
   );
 };
 
-export default ClientRegisterPage;
+export default AgentNewUser;

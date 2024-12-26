@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import style from "./style/Input.module.css";
-import Show from "../../../public/show.svg";
-import Hide from "../../../public/hide.svg";
+import Show from "../../../public/icons/show.svg";
+import Hide from "../../../public/icons/hide.svg";
 
 const PasswordInput = () => {
   const [passwordVisible, setPasswordVisible] = useState(false);

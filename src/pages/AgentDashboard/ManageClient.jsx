@@ -6,15 +6,19 @@ const ManageClients = () => {
   const navigate = useNavigate(); // Initialize navigate function
 
   const handleCreateUserClick = () => {
-    navigate("/user"); // Redirect to the new user creation page
+    // Navigate to the desired route
+    navigate("/agent/manageClient/adduser");
   };
 
   return (
     <div>
       <h2>Manage Clients</h2>
       {/* Button to create a new user */}
-
-      <Button label="+ New User" onClick={handleCreateUserClick} />
+      <Button
+        style={style.button}
+        label="+ New User"
+        onClick={handleCreateUserClick}
+      />
       {/* Add more content related to managing clients here */}
     </div>
   );

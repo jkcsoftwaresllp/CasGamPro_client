@@ -1,17 +1,15 @@
 import { useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 import style from "./styles/AdminSidebar.module.css";
-import Collapse from "../../../public/collapse.svg";
-import Expand from "../../../public/expand.svg";
+import Collapse from "./images/collapse.svg";
+import Expand from "./images/expand.svg";
 
-const Sidebar = ({ selectedOption, onOptionSelect }) => {
+import { Tab } from "./Tab";
+import { sidebarItems } from "./helper/sidebarItems";
+
+const Sidebar = () => {
   const [isMinimized, setIsMinimized] = useState(false);
-
-  const sidebarItems = [
-    { label: "Dashboard", value: "dashboard" },
-    { label: "Manage Clients", value: "manageClients" },
-    { label: "Manage Password", value: "managePassword" },
-    { label: "Settings", value: "settings" },
-  ];
+  const location = useLocation();
 
   const toggleSidebar = () => setIsMinimized(!isMinimized);
 
@@ -23,17 +21,19 @@ const Sidebar = ({ selectedOption, onOptionSelect }) => {
           alt={isMinimized ? "Expand" : "Collapse"}
         />
       </button>
-      <ul>
+      <div>
         {sidebarItems.map((item) => (
-          <li
+          <Link
             key={item.value}
-            className={selectedOption === item.value ? style.active : ""}
-            onClick={() => onOptionSelect(item.value)}
+            to={`/agent/${item.value}`}
+            className={`${style.tab} ${
+              location.pathname.includes(item.value) ? style.active : ""
+            }`}
           >
-            {item.label}
-          </li>
+            <Tab icon={item.icon} title={item.label} />
+          </Link>
         ))}
-      </ul>
+      </div>
     </div>
   );
 };
