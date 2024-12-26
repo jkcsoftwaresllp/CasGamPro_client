@@ -17,7 +17,7 @@
 
 .window {
   flex-grow: 1; /* Take the remaining space */
-  padding: 20px;
+
   background-color: var(--color-bg-secondary);
   color: var(--color-text-primary);
   height: 100%; /* Match the height of the container */
