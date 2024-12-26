@@ -1,0 +1,18 @@
+.tab{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    border-radius: var(--borderRadius);
+    cursor: pointer;
+    margin: 3px;
+}
+
+.tab:hover{
+    background-color: var(--color-special-hover);
+    color: var(--color-text-placeholder);
+}
+
+.text{
+    text-wrap: no-wrap;
+}
