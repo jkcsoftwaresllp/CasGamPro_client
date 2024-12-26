@@ -15,6 +15,7 @@ const AdminWindow = () => {
       <div className={style.window}>
         <Routes>
           <Route path="dashboard" element={<Dashboard />} />
+          <Route path="" element={<Dashboard />} />
           <Route path="manageClients" element={<ManageClients />} />
           <Route path="manageClient/adduser" element={<AgentNewUser />} />{" "}
           <Route path="managePassword" element={<ManagePassword />} />
