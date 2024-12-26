@@ -71,3 +71,12 @@
 
   margin-right: 10px; /* Adjust space between icon and text */
 }
+.tab {
+  text-decoration: none; /* Remove underline */
+  color: inherit; /* Inherit color from the parent element */
+}
+
+.tab.active {
+  /* Add any styles for the active tab */
+  color: yourActiveColor; /* Customize the active tab color */
+}

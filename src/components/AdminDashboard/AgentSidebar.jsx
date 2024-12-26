@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 import style from "./styles/AdminSidebar.module.css";
 import Collapse from "./images/collapse.svg";
 import Expand from "./images/expand.svg";
@@ -6,8 +7,9 @@ import Expand from "./images/expand.svg";
 import { Tab } from "./Tab";
 import { sidebarItems } from "./helper/sidebarItems";
 
-const Sidebar = ({ selectedOption, onOptionSelect }) => {
+const Sidebar = () => {
   const [isMinimized, setIsMinimized] = useState(false);
+  const location = useLocation();
 
   const toggleSidebar = () => setIsMinimized(!isMinimized);
 
@@ -21,17 +23,15 @@ const Sidebar = ({ selectedOption, onOptionSelect }) => {
       </button>
       <div>
         {sidebarItems.map((item) => (
-          <div
+          <Link
             key={item.value}
-            className={selectedOption === item.value ? style.active : ""}
-            onClick={() => onOptionSelect(item.value)}
+            to={`/agent/${item.value}`}
+            className={`${style.tab} ${
+              location.pathname.includes(item.value) ? style.active : ""
+            }`}
           >
-            <Tab
-              icon={item.icon}
-              title={item.label}
-              onClickValue={item.value}
-            />
-          </div>
+            <Tab icon={item.icon} title={item.label} />
+          </Link>
         ))}
       </div>
     </div>

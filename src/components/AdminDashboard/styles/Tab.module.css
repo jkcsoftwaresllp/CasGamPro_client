@@ -6,6 +6,7 @@
   border-radius: var(--borderRadius);
   cursor: pointer;
   margin: 3px;
+  color: var(--color-text-primary);
 }
 
 .tab:hover {
@@ -16,4 +17,5 @@
   white-space: nowrap; /* Prevent text from wrapping */
   overflow: hidden; /* Hide overflowed content */
   text-overflow: ellipsis; /* Add ellipsis (...) to indicate truncated text */
+  text-decoration: none; /* Remove underline or any other text decoration */
 }
