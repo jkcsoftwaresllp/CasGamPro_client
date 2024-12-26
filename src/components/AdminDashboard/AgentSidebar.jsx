@@ -1,14 +1,14 @@
 import { useState } from "react";
 import style from "./styles/AdminSidebar.module.css";
-import Collapse from "../../../public/icons/collapse.svg";
-import Expand from "../../../public/icons/expand.svg";
+import Collapse from "./images/collapse.svg";
+import Expand from "./images/expand.svg";
 
 import { Tab } from "./Tab";
 import { sidebarItems } from "./helper/sidebarItems";
 
 const Sidebar = ({ selectedOption, onOptionSelect }) => {
   const [isMinimized, setIsMinimized] = useState(false);
-  
+
   const toggleSidebar = () => setIsMinimized(!isMinimized);
 
   return (

@@ -4,7 +4,7 @@
   cursor: pointer;
   background-color: var(--color-dark-primary); /* Light/dark button color */
   border-radius: var(--borderRadius); /* Border radius */
-  border: 2px solid var(--color-highlighter-dark-primary); /* Light/dark border color */
+  border: 2px solid var(--color-highlighter-primary); /* Light/dark border color */
 
   color: var(--color-text-primary); /* Light/dark text color */
   font-size: 18px;
