@@ -1,0 +1,65 @@
+/* Global Styles in app.css */
+
+/* Default theme (Light Mode) */
+:root {
+  --textBold: 700;
+  --textNormal: 400;
+  --borderRadius: 6px;
+  --borderRadius-md: 15px;
+  --borderRadius-lg: 25px;
+  --text-sm: "16px";
+  --text-md: "20px";
+  --text-lg: "24px";
+
+  /* Light Mode Colors */
+  --color-special-gold: #daa520; /* Rich, old-timey gold */
+  --color-special-green: #006400; /* Deep casino table green */
+  --color-special-red: #8b0000; /* Crimson red for a vintage look */
+  --color-special-black: #2b2b2b; /* Classic deep black for text */
+  --color-special-white: #fefbf3; /* Off-white with a parchment feel */
+  --color-special-hover: #212121; /* Black for hover effects */
+
+  /* Highlighters */
+  --color-highlighter-light-primary: #c19a6b; /* Antique bronze for highlights */
+  --color-highlighter-light-secondary: #cd7f32; /* Classic copper for accents */
+
+  /* Background */
+  --color-bg-primary: #fbfeff; /* Warm cream background for elegance */
+  --color-bg-secondary: #f5e6c6; /* Light tan for subtle contrast */
+  --color-bg-tertiary: #e8d7b5; /* Parchment-like tone for sections */
+
+  /* Borders */
+  --color-border-gold: #b8860b; /* Aged gold for borders and dividers */
+
+  /* Text */
+  --color-text-primary: #2b2b2b; /* Deep black for readability */
+  --color-text-secondary: #4a4a4a; /* Charcoal for secondary text */
+  --color-text-tertiary: #7d7d7d; /* Subtle grey for tertiary text */
+  --color-text-placeholder: #a0a0a0; /* Light grey for placeholder text */
+}
+
+/* Dark Mode Colors */
+[data-theme="dark"] {
+  --color-special-gold: #b8860b; /* Deepened gold */
+  --color-special-green: #228b22; /* Vibrant casino green */
+  --color-special-red: #b22222; /* Classic bright red */
+  --color-special-black: #1b1b1b; /* Dark black for text */
+  --color-special-white: #dcdcdc; /* Soft white for text */
+  --color-special-hover: #fbfeff; /* White for hover effects */
+
+  /* Highlighters */
+  --color-highlighter-dark-primary: #8b4513; /* Saddle brown for highlights */
+  --color-highlighter-dark-secondary: #a0522d; /* Rusty brown for accents */
+
+  /* Background */
+  --color-bg-primary: #0b0b0b; /* Deep black for elegance */
+  --color-bg-secondary: #1a1a1a; /* Dark grey for sections */
+  --color-bg-tertiary: #2e2e2e; /* Medium grey for subtle contrast */
+  --color-text-placeholder: #333; /* Dark grey for placeholder text */
+  --color-text-hover: #fff; /* White for hover effects */
+
+  /* Text */
+  --color-text-primary: #ffffff; /* Bright white for readability */
+  --color-text-secondary: #c0c0c0; /* Soft white for secondary text */
+  --color-text-tertiary: #8a8a8a; /* Subtle grey for tertiary text */
+}
