@@ -1,7 +1,7 @@
-import DashboardIcon from "../../../../public/icons/dashboard.svg";
-import ManageClientsIcon from "../../../../public/icons/manage_accounts.svg";
-import ManagePasswordIcon from "../../../../public/icons/password.svg";
-import SettingsIcon from "../../../../public/icons/settings.svg";
+import DashboardIcon from "../images/dashboard.svg";
+import ManageClientsIcon from "../images/manage_accounts.svg";
+import ManagePasswordIcon from "../images/password.svg";
+import SettingsIcon from "../images/settings.svg";
 
 export const sidebarItems = [
   { label: "Dashboard", value: "dashboard", icon: DashboardIcon },
