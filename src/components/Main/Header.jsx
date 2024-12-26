@@ -40,7 +40,7 @@ const Header = () => {
       </h1>
       <div className={style.rightSection}>
         <img
-          src="/login-svg.svg"
+          src="icons/login-svg.svg"
           alt="Login"
           className={style.loginIcon}
           onClick={handleLoginClick}

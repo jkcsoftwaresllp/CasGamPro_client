@@ -2,8 +2,8 @@
 
 /* Default theme (Light Mode) */
 :root {
-  --textBold: 700;
-  --textNormal: 400;
+  --textBold: 800;
+  --textNormal: 500;
   --borderRadius: 6px;
   --borderRadius-md: 15px;
   --borderRadius-lg: 25px;
