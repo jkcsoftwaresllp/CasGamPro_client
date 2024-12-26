@@ -1,0 +1,82 @@
+.sidebar {
+  width: 200px; /* Default sidebar width */
+  background-color: var(--color-bg-primary);
+  padding: 10px;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  transition: width 0.3s ease; /* Smooth transition for collapsing/expanding */
+  overflow: hidden; /* Hide content when minimized */
+}
+
+.sidebar.minimized {
+  width: 60px; /* Minimized sidebar width */
+}
+
+.sidebar ul {
+  font-size: var(--text-sm);
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar li {
+  padding: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s, padding 0.3s; /* Adjust padding for smoother effect */
+  white-space: nowrap; /* Prevent text wrapping */
+  overflow: hidden; /* Hide overflowing text */
+  text-overflow: ellipsis; /* Show "..." for truncated text */
+  margin-bottom: 5px;
+}
+
+.sidebar li:hover {
+  background-color: var(--color-bg-tertiary);
+  border-radius: var(--borderRadius);
+}
+
+.sidebar .active {
+  font-weight: var(--textBold);
+  background-color: var(--color-special-hover);
+  color: var(--color-text-placeholder);
+  border-radius: var(--borderRadius);
+}
+
+.sidebar .active:hover {
+  font-weight: var(--textBold);
+  background-color: var(--color-special-hover);
+  color: var(--color-text-placeholder);
+}
+
+.sidebar .toggleButton {
+  display: block;
+
+  padding: 8px 12px;
+
+  cursor: pointer;
+  background-color: var(--color-dark-primary); /* Light/dark button color */
+  border-radius: var(--borderRadius); /* Border radius */
+  border: 2px solid var(--color-highlighter-dark-primary); /* Light/dark border color */
+
+  color: var(--color-text-primary); /* Light/dark text color */
+  font-size: 18px;
+  font-weight: bold;
+  transition: 0.35s;
+}
+
+.sidebar .toggleButton:hover {
+  background-color: var(--color-bg-tertiary);
+}
+.icon {
+  width: 20px; /* Adjust the icon size */
+  height: 20px; /* Adjust the icon size */
+  font-weight: var(--textBold);
+
+  margin-right: 10px; /* Adjust space between icon and text */
+}
+.tab {
+  text-decoration: none; /* Remove underline */
+  color: inherit; /* Inherit color from the parent element */
+}
+
+.tab.active {
+  /* Add any styles for the active tab */
+  color: yourActiveColor; /* Customize the active tab color */
+}
