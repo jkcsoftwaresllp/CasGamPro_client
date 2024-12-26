@@ -1,6 +1,7 @@
-import UsernameInput from "../components/Login/UsernameInput";
-import PasswordInput from "../components/Login/PasswordInput";
-import LoginButton from "../components/Login/LoginButton";
+import UsernameInput from "../components/Common/UserNameInput";
+import PasswordInput from "../components/Common/PasswordInput";
+import Button from "../components/Common/Button";
+
 import style from "../components/Login/styles/LoginPage.module.css";
 
 const LoginPage = () => {
@@ -11,7 +12,7 @@ const LoginPage = () => {
           <div className={style.form_details}>Login</div>
           <UsernameInput />
           <PasswordInput />
-          <LoginButton />
+          <Button label="Login" />
         </div>
       </form>
     </div>

@@ -1,10 +1,9 @@
-// src/Page.js
 import React, { useState } from "react";
 import Dashboard from "./Dashboard";
 import ManageClients from "./ManageClient";
 import ManagePassword from "./ManagePassword";
 import Settings from "./Setting";
-import Sidebar from "../../components/AdminDashboard/AdminSidebar";
+import Sidebar from "../../components/AdminDashboard/AgentSidebar";
 import style from "../../styles/AdminDashboard.module.css";
 
 const AdminDashboard = () => {

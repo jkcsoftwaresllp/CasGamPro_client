@@ -2,9 +2,9 @@ import { Routes, Route } from "react-router-dom";
 
 // Import page components
 import LoginPage from "./pages/LoginPage";
-import ClientRegistration from "./pages/ClientRegisterPage";
+import ClientRegistration from "./pages/Agent-newUser";
 import Home from "./pages/Home";
-import AdminDashboard from "./pages/AdminDashboard/AdminDashboard";
+import AgentDashboard from "./pages/AgentDashboard/AdminDashboard";
 
 const Routing = () => {
   return (
@@ -13,7 +13,7 @@ const Routing = () => {
       <Route path="/login" element={<LoginPage />} />
       <Route path="/" element={<Home />} />
       <Route path="/user" element={<ClientRegistration />} />
-      <Route path="/Admindashboard" element={<AdminDashboard />} />
+      <Route path="/agent" element={<AgentDashboard />} />
     </Routes>
   );
 };

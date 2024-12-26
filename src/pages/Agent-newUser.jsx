@@ -1,9 +1,9 @@
 import { useState } from "react";
-import UserIdInput from "../components/ClientRegister/UserId";
-import TextInput from "../components/ClientRegister/TextInput";
-import NumberInput from "../components/ClientRegister/NumberInput";
-import PasswordInput from "../components/ClientRegister/PasswordInput";
-import Button from "../components/ClientRegister/Button";
+import UserIdInput from "../components/ClientRegister/jsx/UserId";
+import TextInput from "../components/ClientRegister/jsx/TextInput";
+import NumberInput from "../components/ClientRegister/jsx/NumberInput";
+import PasswordInput from "../components/ClientRegister/jsx/PasswordInput";
+import Button from "../components/Common/Button";
 import style from "../components/ClientRegister/styles/ClientRegister.module.css";
 
 const ClientRegisterPage = () => {
@@ -72,40 +72,44 @@ const ClientRegisterPage = () => {
         value={formData.fixLimit}
         onChange={handleChange}
         placeholder="Enter Fix Limit"
-        note="Fix Limit can be set from 0 to 18.00"
+        note="Fix Limit can be set from {min} to {max}"
         min={0}
         max={18.0}
       />
+
       <NumberInput
         label="My Match Share"
         name="myMatchShare"
         value={formData.myMatchShare}
         onChange={handleChange}
         placeholder="Enter My Match Share"
-        note="My Match Share can be set from 0 to 15.0"
+        note="My Match Share can be set from {min} to {max}"
         min={0}
-        max={Math.min(formData.fixLimit, 15.0)} // Dynamic max based on fixLimit
+        max={15} // Dynamic max based on fixLimit
       />
+
       <NumberInput
         label="User Match Commission"
         name="userMatchCommission"
         value={formData.userMatchCommission}
         onChange={handleChange}
         placeholder="Enter User Match Commission"
-        note="Match Commission can be set from 0 to 3"
+        note="Match Commission can be set from {min} to {max}"
         min={0}
         max={3}
       />
+
       <NumberInput
         label="User Session Commission"
         name="userSessionCommission"
         value={formData.userSessionCommission}
         onChange={handleChange}
         placeholder="Enter User Session Commission"
-        note="Session Commission can be set from 0 to 3"
+        note="Session Commission can be set from {min} to {max}"
         min={0}
         max={3}
       />
+
       <PasswordInput
         label="Password"
         name="password"

@@ -1,4 +1,4 @@
-import style from "./styles/ClientRegister.module.css";
+import style from "../styles/ClientRegister.module.css";
 
 const PasswordInput = ({ label, name, value, onChange, placeholder }) => (
   <div className={style.input}>

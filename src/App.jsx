@@ -9,7 +9,6 @@ function App() {
       {/* Header will be visible on all pages */}
       <Header />
 
-      {/* Use the centralized Routing component */}
       <Routing />
     </Router>
   );
