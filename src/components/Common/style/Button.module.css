@@ -10,7 +10,9 @@
   font-size: 18px;
   font-weight: bold;
   transition: 0.35s;
-  margin-right: 5px;
+  margin-right: 15px;
+  margin-top: 10px;
+  margin-bottom: 50px;
 }
 
 .btn:hover {

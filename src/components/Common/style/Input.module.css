@@ -33,9 +33,9 @@
 .visibilityIcon {
   position: absolute;
   right: 10px; /* Position on the right side of the input */
-  top: 60%;
+  top: 50%;
 
-  padding: 5px;
+  padding: 0px;
   background: none;
   border: none;
   cursor: pointer;

@@ -20,14 +20,18 @@ h2 {
   width: 100%;
   max-width: 545px;
   display: flex;
-  flex-direction: column;
-  gap: 5px; /* Reduced spacing between label, input, and note */
+  margin-bottom: 10px;
+  flex-direction: row; /* Align label and input on the same line */
+  gap: 20px; /* Adjusted spacing between label and input */
+  align-items: center; /* Vertically center label and input */
   color: var(--color-text-primary); /* Light/dark text color */
 }
 
 .input label {
   font-weight: bold;
   font-size: 18px;
+  flex-shrink: 0; /* Prevent label from shrinking */
+  width: 120px; /* Set a fixed width for the label */
 }
 
 .input input {
@@ -42,6 +46,7 @@ h2 {
   background-color: var(
     --color-bg-secondary
   ); /* Light/dark background color for input */
+  flex-grow: 1; /* Ensure input box takes up remaining space */
 }
 
 .input input:focus {
@@ -50,28 +55,12 @@ h2 {
 }
 
 .input small {
-  font-size: 15px;
+  font-size: 10px;
   color: var(--color-text-secondary); /* Light/dark text color for small text */
 }
 
-/* .btn styles */
-.btn {
-  padding: 10px 35px;
-  cursor: pointer;
-  background-color: var(--color-dark-primary); /* Light/dark button color */
-  border-radius: var(--borderRadius); /* Border radius */
-  border: 2px solid var(--color-highlighter-dark-primary); /* Light/dark border color */
-  box-shadow: 6px 6px 10px rgba(0, 0, 0, 1),
-    1px 1px 10px rgba(255, 255, 255, 0.6);
-  color: var(--color-text-primary); /* Light/dark text color */
-  font-size: 18px;
-  font-weight: bold;
-  transition: 0.35s;
-  margin-top: 10px; /* Added margin-top instead of right margin */
-}
+.note {
+  margin-bottom: 10px; /* Existing margin */
 
-.btn:hover {
-  transform: scale(1.05);
-  box-shadow: 6px 6px 10px rgba(0, 0, 0, 1),
-    1px 1px 10px var(--color-highlighter-dark-primary); /* Hover effect */
+  float: left; /* Floats the element to the left */
 }
