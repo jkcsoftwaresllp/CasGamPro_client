@@ -1,0 +1,35 @@
+/* .input styles */
+.input {
+  width: 300px;
+  min-height: 45px;
+  font-size: 18px;
+  color: var(--color-text-primary); /* Light/dark text color */
+  outline: none;
+  transition: 0.35s;
+  padding: 0px 7px;
+  background-color: var(--color-bg-secondary); /* Light/dark background color */
+  border-radius: var(--borderRadius); /* Border radius */
+  border: 2px solid var(--color-bg-secondary); /* Light/dark border color */
+  position: relative; /* Position relative to place the button inside */
+}
+
+/* Placeholder styles */
+.input::placeholder {
+  color: var(--color-text-secondary); /* Light/dark placeholder text */
+}
+
+
+/* .visibilityIcon styles */
+.visibilityIcon {
+  position: absolute;
+  right: 10px; /* Position on the right side of the input */
+  top: 50%;
+
+  padding: 0px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  border-radius: var(--borderRadius-lg); /* Rounded button */
+  transition: 0.3s;
+  margin-top: -5px;
+}
