@@ -56,3 +56,7 @@
 .container #signup_toggle:checked + .form {
   transform: rotateY(-180deg);
 }
+
+.error{
+  color: var(--color-text-primary);
+}
