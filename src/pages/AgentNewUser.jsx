@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { apiCall } from "../components/Common/apiCall.js"; // Import the reusable API call function
 import UserIdInput from "../components/ClientRegister/jsx/UserId";
 import TextInput from "../components/ClientRegister/jsx/TextInput";
 import NumberInput from "../components/ClientRegister/jsx/NumberInput";
@@ -19,10 +20,12 @@ const AgentNewUser = () => {
     confirmPassword: "",
   });
 
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
+
   const handleChange = (e) => {
     const { name, value } = e.target;
 
-    // If the value is a number (for fields that expect numbers), parse it as a float
     const parsedValue =
       name === "fixLimit" ||
       name === "myMatchShare" ||
@@ -37,21 +40,34 @@ const AgentNewUser = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setError("");
+    setSuccess("");
+
     // Basic password check
     if (formData.password !== formData.confirmPassword) {
-      alert("Passwords do not match.");
+      setError("Passwords do not match.");
       return;
     }
-    console.log("Form submitted:", formData);
+
+    try {
+      // Send form data to the backend
+      const response = await apiCall("/api/register", "POST", formData);
+      setSuccess("User registered successfully!");
+      console.log("Form submitted successfully:", response);
+    } catch (err) {
+      console.error("Registration error:", err);
+      setError(
+        err.response?.data?.message || "An error occurred during registration."
+      );
+    }
   };
 
   return (
-    <form onSubmit={handleSubmit} className={style.form}>
+    <form className={style.form}>
       <h2>New User</h2>
       <UserIdInput value={formData.userId} onChange={handleChange} />
-
       <TextInput
         label="First Name"
         name="firstName"
@@ -76,7 +92,6 @@ const AgentNewUser = () => {
         min={0}
         max={18.0}
       />
-
       <NumberInput
         label="My Match Share"
         name="myMatchShare"
@@ -87,7 +102,6 @@ const AgentNewUser = () => {
         min={0}
         max={15} // Dynamic max based on fixLimit
       />
-
       <NumberInput
         label="User Match Commission"
         name="userMatchCommission"
@@ -98,7 +112,6 @@ const AgentNewUser = () => {
         min={0}
         max={3}
       />
-
       <NumberInput
         label="User Session Commission"
         name="userSessionCommission"
@@ -109,7 +122,6 @@ const AgentNewUser = () => {
         min={0}
         max={3}
       />
-
       <PasswordInput
         label="Password"
         name="password"
@@ -124,9 +136,13 @@ const AgentNewUser = () => {
         onChange={handleChange}
         placeholder="Confirm Password"
       />
+      {error && <div className={style.error}>{error}</div>}{" "}
+      {/* Display error */}
+      {success && <div className={style.success}>{success}</div>}{" "}
+      {/* Display success */}
       <div>
         <Button label="Cancel" />
-        <Button label="Save Changes" type="submit" />
+        <Button label="Save Changes" onClick={handleSubmit} />
       </div>
     </form>
   );
