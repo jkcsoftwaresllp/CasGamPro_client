@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import Dashboard from "./Dashboard";
-import ManageClients from "./ManageClient";
-import ManagePassword from "./ManagePassword";
-import Settings from "./Setting";
+import Dashboard from "./dashboardContent/Dashboard";
+import ManageClients from "./dashboardContent/ManageClient";
+import ManagePassword from "./dashboardContent/ManagePassword";
+import Settings from "./dashboardContent/Setting";
 import Sidebar from "../../components/AdminDashboard/AgentSidebar";
 import style from "../../styles/AdminDashboard.module.css";
 
