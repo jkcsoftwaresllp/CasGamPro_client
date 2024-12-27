@@ -1,0 +1,50 @@
+.WinnerHistory {
+  background: var(--color-bg-tertiary);
+  padding: 20px;
+
+  color: var(--color-text-primary);
+  max-width: 400px;
+  text-align: center;
+}
+
+.WinnerRectangle {
+  display: flex;
+  flex-wrap: nowrap; /* Prevent wrapping of items */
+  gap: 10px;
+
+  overflow-x: auto; /* Enable horizontal scrolling */
+  padding: 10px;
+  background-color: var(
+    --color-bg-tertiary
+  ); /* Background color for the rectangle */
+  border-radius: 8px;
+  scrollbar-width: thin; /* Optional: Thin scrollbar for modern browsers */
+}
+
+.WinnerRectangle::-webkit-scrollbar {
+  height: 6px; /* Scrollbar height for horizontal scrolling */
+}
+
+.WinnerRectangle::-webkit-scrollbar-thumb {
+  background: var(--color-bg-secondary); /* Scrollbar color */
+  border-radius: 4px;
+}
+
+.WinnerRectangle::-webkit-scrollbar-thumb:hover {
+  background: var(--color-bg-secondary); /* Scrollbar hover color */
+}
+
+.WinnerBox {
+  width: 50px;
+  height: 50px;
+  background: #555;
+  color: var(--color-special-yellow);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 5px;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
