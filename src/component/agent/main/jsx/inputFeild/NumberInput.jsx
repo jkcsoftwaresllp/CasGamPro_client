@@ -1,4 +1,4 @@
-import style from "../styles/ClientRegister.module.css";
+import style from "../../styles/AgentNewUser.module.css";
 
 const NumberInput = ({
   label,
@@ -6,7 +6,6 @@ const NumberInput = ({
   value,
   onChange,
   placeholder,
-  note,
   min,
   max,
 }) => (
@@ -23,11 +22,10 @@ const NumberInput = ({
         max={max}
       />
     </div>
-    {note && (
-      <small className={style.note}>
-        {note.replace("{min}", min).replace("{max}", max)}
-      </small>
-    )}
+
+    <div className={style.note}>
+      Fix Limit can be set from {min} to {max}
+    </div>
   </>
 );
 

@@ -1,3 +1,4 @@
+import style from "../styles/ContentPage.module.css";
 const ManagePassword = () => {
   return (
     <div>

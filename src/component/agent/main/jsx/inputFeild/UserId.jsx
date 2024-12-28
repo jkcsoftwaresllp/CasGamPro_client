@@ -1,4 +1,4 @@
-import style from "../styles/ClientRegister.module.css";
+import style from "../../styles/AgentNewUser.module.css";
 
 const UserIdInput = ({ value }) => (
   <div className={style.input}>

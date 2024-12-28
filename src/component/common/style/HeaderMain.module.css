@@ -3,12 +3,13 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 5px 10px;
+  padding-right: 50px;
   background-color: var(--color-bg-primary);
   color: var(--color-text-primary);
   font-family: Arial, sans-serif;
   font-size: 1.2em;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  height: var(--header-height);
 }
 
 .header__title {
@@ -78,7 +79,6 @@ input:checked + .slider:before {
 .loginIcon {
   transition: transform 0.2s ease;
   cursor: pointer;
-  color: var(--color-text-primary);
 }
 
 .loginIcon:hover {

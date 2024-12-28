@@ -6,7 +6,7 @@ import Settings from "./dashboardContent/Setting";
 import Sidebar from "../../components/AdminDashboard/AgentSidebar";
 import style from "../../styles/AdminDashboard.module.css";
 
-const AdminDashboard = () => {
+const AgentDashboard = () => {
   const [selectedOption, setSelectedOption] = useState("dashboard"); // Default to 'dashboard'
 
   const handleOptionSelect = (option) => {
@@ -42,4 +42,4 @@ const AdminDashboard = () => {
   );
 };
 
-export default AdminDashboard;
+export default AgentDashboard;

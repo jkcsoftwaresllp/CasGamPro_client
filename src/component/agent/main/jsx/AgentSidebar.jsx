@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import style from "./styles/AdminSidebar.module.css";
-import Collapse from "./images/collapse.svg";
-import Expand from "./images/expand.svg";
+import style from "../styles/AgentSidebar.module.css";
+import Collapse from "../images/collapse.svg";
+import Expand from "../images/expand.svg";
 
 import { Tab } from "./Tab";
-import { sidebarItems } from "./helper/sidebarItems";
+import { sidebarItems } from "../helper/sidebarItems";
 
 const Sidebar = () => {
   const [isMinimized, setIsMinimized] = useState(false);

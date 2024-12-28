@@ -1,11 +1,11 @@
 import { useState } from "react";
-import { apiCall } from "../components/Common/apiCall.js"; // Import the reusable API call function
-import UserIdInput from "../components/ClientRegister/jsx/UserId";
-import TextInput from "../components/ClientRegister/jsx/TextInput";
-import NumberInput from "../components/ClientRegister/jsx/NumberInput";
-import PasswordInput from "../components/ClientRegister/jsx/PasswordInput";
-import Button from "../components/Common/Button";
-import style from "../components/ClientRegister/styles/ClientRegister.module.css";
+import { apiCall } from "./helper/apiCall"; // Import the reusable API call function
+import UserIdInput from "../../../main/jsx/inputFeild/UserId";
+import TextInput from "../../../main/jsx/inputFeild/TextInput";
+import NumberInput from "../../../main/jsx/inputFeild/NumberInput";
+import PasswordInput from "../../../main/jsx/inputFeild/PasswordInput";
+import Button from "../../../../common/Button";
+import style from "./style/AgentNewUser.module.css";
 
 const AgentNewUser = () => {
   const [formData, setFormData] = useState({
@@ -88,7 +88,6 @@ const AgentNewUser = () => {
         value={formData.fixLimit}
         onChange={handleChange}
         placeholder="Enter Fix Limit"
-        note="Fix Limit can be set from {min} to {max}"
         min={0}
         max={18.0}
       />
@@ -98,7 +97,6 @@ const AgentNewUser = () => {
         value={formData.myMatchShare}
         onChange={handleChange}
         placeholder="Enter My Match Share"
-        note="My Match Share can be set from {min} to {max}"
         min={0}
         max={15} // Dynamic max based on fixLimit
       />
@@ -108,7 +106,6 @@ const AgentNewUser = () => {
         value={formData.userMatchCommission}
         onChange={handleChange}
         placeholder="Enter User Match Commission"
-        note="Match Commission can be set from {min} to {max}"
         min={0}
         max={3}
       />
@@ -118,7 +115,6 @@ const AgentNewUser = () => {
         value={formData.userSessionCommission}
         onChange={handleChange}
         placeholder="Enter User Session Commission"
-        note="Session Commission can be set from {min} to {max}"
         min={0}
         max={3}
       />

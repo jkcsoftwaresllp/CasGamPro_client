@@ -1,10 +1,9 @@
-// Dashboard.js
-import React from "react";
+import style from "../styles/ContentPage.module.css";
 
 const Dashboard = () => {
   return (
-    <div>
-      <h2>Dashboard </h2>
+    <div className={style.content}>
+      <h2 className={style.header}>Dashboard </h2>
       {/* Add your content here */}
     </div>
   );

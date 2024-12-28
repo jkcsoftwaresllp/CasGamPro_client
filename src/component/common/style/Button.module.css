@@ -4,7 +4,7 @@
   cursor: pointer;
   background-color: var(--color-dark-primary); /* Light/dark button color */
   border-radius: var(--borderRadius); /* Border radius */
-  border: 2px solid var(--color-highlighter-primary); /* Light/dark border color */
+  border: 2px solid var(--color-text-placeholder); /* Light/dark border color */
 
   color: var(--color-text-primary); /* Light/dark text color */
   font-size: 18px;
@@ -16,8 +16,7 @@
 }
 
 .btn:hover {
-  box-shadow: 6px 6px 10px rgba(0, 0, 0, 1),
-    1px 1px 10px var(--color-highlighter-dark-primary); /* Hover effect */
+  background-color: var(--color-bg-hover);
 }
 
 .btn:focus {

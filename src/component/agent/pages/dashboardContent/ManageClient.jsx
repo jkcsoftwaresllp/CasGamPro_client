@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom"; // Import useNavigate from React Router
-import style from "../../styles/ManageClient.module.css"; // Import CSS Module
-import Button from "../../components/Common/Button"; // Import Button component
+import style from "../styles/ContentPage.module.css";
+import Button from "../../../common/Button"; // Import Button component
 
 const ManageClients = () => {
   const navigate = useNavigate(); // Initialize navigate function
@@ -14,11 +14,7 @@ const ManageClients = () => {
     <div>
       <h2>Manage Clients</h2>
       {/* Button to create a new user */}
-      <Button
-        style={style.button}
-        label="+ New User"
-        onClick={handleCreateUserClick}
-      />
+      <Button label="+ New User" onClick={handleCreateUserClick} />
       {/* Add more content related to managing clients here */}
     </div>
   );

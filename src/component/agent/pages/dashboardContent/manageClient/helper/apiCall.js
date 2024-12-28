@@ -1,5 +1,5 @@
 import axios from "axios";
-import { baseURL } from "./baseURL.js";
+import { baseURL } from "./baseURL";
 
 // Reusable API call function with query parameters
 export const apiCall = async (

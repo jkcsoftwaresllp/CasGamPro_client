@@ -1,12 +1,16 @@
 import { Routes, Route } from "react-router-dom";
 import Sidebar from "./AgentSidebar";
-import ManageClients from "../../pages/AgentDashboard/ManageClient";
+// import ManageClients from "J:\CasGamPro_client\src\component\agent\pages\dashboardContent\ManageClient.jsx";
 
-import ManagePassword from "../../pages/AgentDashboard/ManagePassword";
-import Dashboard from "../../pages/AgentDashboard/Dashboard";
-import Settings from "../../pages/AgentDashboard/Setting";
-import style from "./styles/AdminWindow.module.css";
-import AgentNewUser from "../../pages/AgentNewUser";
+import ManageClients from "../../pages/dashboardContent/ManageClient";
+
+import ManagePassword from "../../pages/dashboardContent/ManagePassword";
+import Dashboard from "../../pages/dashboardContent/Dashboard";
+import Settings from "../../pages/dashboardContent/Setting";
+import style from "../styles/AgentWindow.module.css";
+
+// Import page components
+import AgentNewUser from "../../pages/dashboardContent/manageClient/AgentNewUser";
 
 const AdminWindow = () => {
   return (

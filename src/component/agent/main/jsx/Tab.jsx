@@ -1,7 +1,7 @@
 // Window.js
 import React from "react";
 
-import style from "./styles/Tab.module.css";
+import style from "../styles/Tab.module.css";
 
 export const Tab = ({ icon, title, onClickValue }) => {
   return (
