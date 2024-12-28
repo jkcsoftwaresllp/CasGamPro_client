@@ -64,4 +64,5 @@ h2 {
   margin-bottom: 10px; /* Existing margin */
 
   float: left; /* Floats the element to the left */
+  margin-left: -50px; /* Adjusted margin to the left  , need to be changed later*/
 }

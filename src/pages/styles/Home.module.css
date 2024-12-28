@@ -4,8 +4,10 @@
 .routing {
   height: 100%;
 }
+
 .home {
   display: flex;
+  flex-direction: column; /* Arrange elements vertically */
   justify-content: center;
   align-items: center;
   height: 100%; /* Full viewport height */
@@ -14,6 +16,7 @@
     --color-bg-primary
   ); /* Background color based on theme */
   color: var(--color-text-primary); /* Text color based on theme */
+  gap: 1.5em; /* Spacing between child elements */
 }
 
 .title {
@@ -21,4 +24,11 @@
   font-weight: var(--textBold); /* Bold text */
   text-align: center;
   color: var(--color-text-primary); /* Text color based on theme */
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: center; /* Center the button horizontally */
+  align-items: center; /* Center the button vertically */
+  margin-top: 2em; /* Add spacing above the button */
 }

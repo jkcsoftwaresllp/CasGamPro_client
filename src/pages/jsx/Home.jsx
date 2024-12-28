@@ -1,15 +1,22 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import style from "../styles/Home.module.css";
 import Loader from "../../component/common/Loader";
+import Button from "../../component/common/Button";
 
 const Home = () => {
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
-  // Simulate loading data
+  // Simulate data loading
   useEffect(() => {
-    // Set loading state to false after content is ready
-    setLoading(false);
+    const timer = setTimeout(() => setLoading(false), 1000); // Simulates a delay
+    return () => clearTimeout(timer); // Cleanup timer
   }, []);
+
+  const handleAgentClick = () => {
+    navigate("/agent");
+  };
 
   return (
     <div className={style.home}>
@@ -18,7 +25,15 @@ const Home = () => {
           <Loader />
         </div>
       ) : (
-        <h1 className={style.title}>casGamPro</h1>
+        <>
+          <div className={style.container}>
+            <h1 className={style.title}>casGamPro</h1>
+
+            <div className={style.buttonContainer}>
+              <Button label="Agent Dashboard" onClick={handleAgentClick} />
+            </div>
+          </div>
+        </>
       )}
     </div>
   );
