@@ -14,6 +14,7 @@ const Routing = () => {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/" element={<Home />} />
         <Route path="/agent/*" element={<AgentWindow />} />
+        <Route path="/test" />
       </Routes>
     </div>
   );
