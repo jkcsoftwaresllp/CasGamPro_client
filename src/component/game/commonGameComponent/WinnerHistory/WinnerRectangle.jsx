@@ -2,11 +2,11 @@ import React from "react";
 import WinnerBox from "./WinnerBox";
 import style from "./style/WinnerHistory.module.css";
 
-const WinnerRectangle = ({ results }) => {
+const WinnerRectangle = ({ gameId, results }) => {
   return (
     <div className={style.WinnerRectangle}>
-      {results.map((result, index) => (
-        <WinnerBox key={index} winner={result} />
+      {results.map((results, index) => (
+        <WinnerBox key={index} winner={results} />
       ))}
     </div>
   );

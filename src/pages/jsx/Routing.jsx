@@ -5,7 +5,7 @@ import LoginPage from "../../component/agent/pages/dashboardContent/LoginPage";
 
 import Home from "./Home";
 import AgentWindow from "../../component/agent/main/jsx/AgentWindow";
-
+import Test from "../../component/game/commonGameComponent/WinnerHistory/WinnerHistory";
 const Routing = () => {
   return (
     <div className={style.routing}>
@@ -14,7 +14,7 @@ const Routing = () => {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/" element={<Home />} />
         <Route path="/agent/*" element={<AgentWindow />} />
-        <Route path="/test" />
+        <Route path="/test" element={<Test />} />
       </Routes>
     </div>
   );
