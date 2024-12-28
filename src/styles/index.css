@@ -83,11 +83,3 @@ body {
     --color-bg-secondary
   ); /* Ensure it matches the container's background */
 }
-
-body {
-  background-color: var(--colorBackground);
-  color: var(--colorText);
-}
-/* Global Styles in app.css */
-
-/* Default theme (Light Mode) */
