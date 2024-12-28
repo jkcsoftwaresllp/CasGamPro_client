@@ -80,7 +80,7 @@ body {
   margin: 0;
   padding: 0;
   background-color: var(
-    --color-bg-dark-primary
+    --color-bg-secondary
   ); /* Ensure it matches the container's background */
 }
 
