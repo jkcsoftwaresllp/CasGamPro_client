@@ -1,5 +1,6 @@
 import style from "./style/GameLayout.module.css";
 import WinnerHistory from "../WinnerHistory/WinnerHistory";
+import Timer from "../Timer/Timer";
 
 const GameLayout = () => {
   return (
@@ -9,7 +10,12 @@ const GameLayout = () => {
         <div className={style.leftSection}>
           <div className={style.gameSimulationWrapper}>
             <div className={style.gameInterface}>Game Interface</div>
-            <div className={style.simulationSection}>Simulation Section</div>
+            <div className={style.simulationSection}>
+              Simulation Section
+              <div className={style.timerContainer}>
+                <Timer time={20} />
+              </div>
+            </div>
           </div>
           <div className={style.stakeSection}>Stake Section</div>
         </div>

@@ -41,8 +41,13 @@
   border: 1px solid green;
   display: flex;
   flex-direction: column;
+  position: relative;
 }
-
+.timerContainer {
+  position: absolute;
+  bottom: 10px; /* Adjust spacing from bottom */
+  right: 10px; /* Adjust spacing from right */
+}
 .stakeSection {
   border: 1px solid purple;
   height: 35%;
