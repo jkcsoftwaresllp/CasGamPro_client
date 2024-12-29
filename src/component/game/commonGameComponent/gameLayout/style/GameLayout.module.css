@@ -22,7 +22,7 @@
 .leftSection {
   display: flex;
   flex-direction: column;
-  width: 70%;
+  width: 75%;
 }
 
 .gameSimulationWrapper {
@@ -32,12 +32,12 @@
 }
 
 .gameInterface {
-  flex: 2;
+  flex: 1;
   border: 1px solid blue;
 }
 
 .simulationSection {
-  flex: 4;
+  flex: 5;
   border: 1px solid green;
   display: flex;
   flex-direction: column;
@@ -56,7 +56,7 @@
 .rightSection {
   display: flex;
   flex-direction: column;
-  width: 30%;
+  width: 25%;
 }
 
 .winnerHistory {
