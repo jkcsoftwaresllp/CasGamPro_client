@@ -25,9 +25,9 @@
   --color-highlighter-secondary: #cd7f32; /* Classic copper for accents */
 
   /* Background */
-  --color-bg-primary: #fbfeff; /* Warm cream background for elegance */
-  --color-bg-secondary: #f5e6c6; /* Light tan for subtle contrast */
-  --color-bg-tertiary: #e8d7b5; /* Parchment-like tone for sections */
+  --color-bg-primary: #fdfdfd; /* Warm cream background for elegance */
+  --color-bg-secondary: #fbfeff; /* Light tan for subtle contrast */
+  --color-bg-tertiary: #d8f4ff; /* Parchment-like tone for sections */
   --color-bg-hover: #f5e6c6; /* Light tan for hover effects */
 
   /* Borders */

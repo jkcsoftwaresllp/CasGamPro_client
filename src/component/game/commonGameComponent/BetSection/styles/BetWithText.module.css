@@ -8,7 +8,9 @@
   justify-content: center;
   align-items: center;
   gap: 2px;
+  color: var(--color-text-primary);
   margin: 100px;
+
 }
 
 .betWithText .betProfit {
@@ -23,8 +25,8 @@
   justify-content: center;
   align-items: center;
   background-color: var(--color-bg-tertiary);
-  color: var(--color-text-primary);
-  padding: 3px;
+  padding: 5px;
+
   border-radius: var(--borderRadius);
   cursor: pointer;
   position: relative;
