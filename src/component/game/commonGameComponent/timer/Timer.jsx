@@ -35,10 +35,10 @@ const Timer = ({ time }) => {
 
   const remainingPathColorClass =
     remainingPathColor === "green"
-      ? style.baseTimerPathRemainingGreen
+      ? style.green
       : remainingPathColor === "orange"
-      ? style.baseTimerPathRemainingOrange
-      : style.baseTimerPathRemainingRed;
+      ? style.orange
+      : style.red;
 
   return (
     <div className={style.baseTimer}>
@@ -55,7 +55,6 @@ const Timer = ({ time }) => {
             r="45"
           ></circle>
           <path
-            id="baseTimerPathRemaining"
             strokeDasharray={circleDasharray}
             className={`${style.baseTimerPathRemaining} ${remainingPathColorClass}`}
             d="M 50, 50
