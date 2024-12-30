@@ -1,0 +1,32 @@
+import axios from "axios";
+import { baseURL } from "./baseURL.js";
+
+// Reusable API call function with query parameters
+export const apiCall = async (
+  url,
+  method = "GET",
+  data = null,
+  headers = {},
+  params = {}
+) => {
+  try {
+    const API_Point = baseURL + url;
+
+    const response = await axios({
+      url: API_Point, 
+      method,
+      data,
+      headers,
+      params,
+    });
+
+    return response.data; 
+  } catch (error) {
+    console.error("API Call Error:", error);
+
+    // Throw a user-friendly error message
+    throw error.response
+      ? error.response.data
+      : "An unexpected error occurred.";
+  }
+};
