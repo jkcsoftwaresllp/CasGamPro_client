@@ -7,9 +7,9 @@
   --borderRadius: 6px;
   --borderRadius-md: 15px;
   --borderRadius-lg: 25px;
-  --text-sm: "16px";
-  --text-md: "20px";
-  --text-lg: "24px";
+  --text-sm: 16px;
+  --text-md: 20px;
+  --text-lg: 24px;
 
   /* Light Mode Colors */
   --color-special-gold: #daa520; /* Rich, old-timey gold */
