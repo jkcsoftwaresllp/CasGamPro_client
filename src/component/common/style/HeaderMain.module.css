@@ -16,6 +16,7 @@
   margin: 0;
   font-weight: var(--textBold);
   cursor: pointer;
+  margin: 10px;
 }
 .rightSection {
   display: flex;

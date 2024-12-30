@@ -5,6 +5,9 @@ import LoginPage from "../../component/agent/pages/dashboardContent/LoginPage";
 
 import Home from "./Home";
 import AgentWindow from "../../component/agent/main/jsx/AgentWindow";
+// import Test from "../../component/game/commonGameComponent/PlaceStake/header/StakeHeader";
+
+import GameLayout from "../../component/game/commonGameComponent/gameLayout/GameLayout";
 
 const Routing = () => {
   return (
@@ -14,6 +17,8 @@ const Routing = () => {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/" element={<Home />} />
         <Route path="/agent/*" element={<AgentWindow />} />
+        {/* <Route path="/test" element={<Test />} /> */}
+        <Route path="/game" element={<GameLayout />} />
       </Routes>
     </div>
   );
