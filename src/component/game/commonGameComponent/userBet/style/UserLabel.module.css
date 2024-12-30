@@ -1,4 +1,8 @@
 .label {
   color: var(--color-text-primary);
   font-size: var(--text-md);
+
+  display: flex;
+  flex: 1;
+  justify-content: center;
 }

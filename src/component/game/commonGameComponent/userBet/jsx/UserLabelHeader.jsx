@@ -1,6 +1,6 @@
 import React from "react";
-import UserLabel from "../userLabel/UserLabel";
-import style from "./style/UserLabelHeader.module.css";
+import UserLabel from "../jsx/UserLabel";
+import style from "../style/UserLabelHeader.module.css";
 
 const UserLabelHeader = ({
   name = "Name",

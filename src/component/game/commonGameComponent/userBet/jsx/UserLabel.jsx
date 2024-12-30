@@ -1,4 +1,4 @@
-import style from "./style/UserLabel.module.css";
+import style from "../style/UserLabel.module.css";
 
 const UserLabel = ({ label }) => {
   return <p className={style.label}>{label}</p>;

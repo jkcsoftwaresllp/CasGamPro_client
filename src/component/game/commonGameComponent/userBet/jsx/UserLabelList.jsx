@@ -1,6 +1,6 @@
 import React from "react";
-import UserLabel from "../userLabel/UserLabel";
-import style from "./style/UserLabelList.module.css";
+import UserLabel from "../jsx/UserLabel";
+import style from "../style/UserLabelList.module.css";
 const UserLabelList = ({ name, odd, stake, profit }) => {
   return (
     <div className={style.list}>

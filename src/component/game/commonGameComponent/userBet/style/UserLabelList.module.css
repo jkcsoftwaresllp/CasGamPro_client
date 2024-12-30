@@ -1,7 +1,7 @@
 .list {
   background-color: var(--color-bg-secondary);
   display: flex;
-  justify-content: space-between;
+
   border: 0.01rem solid var(--color-text-primary);
   padding: 10px;
   font-weight: var(--text);

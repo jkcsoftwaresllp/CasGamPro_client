@@ -1,5 +1,5 @@
-import UserLabelHeader from "../userLabelHeader/UserLabelHeader";
-import UserLabelListWindow from "../userLabelListWindow/UserLabelListWindow";
+import UserLabelHeader from "../jsx/UserLabelHeader";
+import UserLabelListWindow from "../jsx/UserLabelListWindow";
 
 const UserBetSection = () => {
   return (

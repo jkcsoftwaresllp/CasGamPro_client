@@ -1,6 +1,6 @@
-import UserBetHeader from "./UserBetHeader/UserBetHeader";
-import UserBetSection from "./UserBetSection/UserBetSection";
-import style from "./style/UserBetMain.module.css";
+import UserBetHeader from "../jsx/UserBetHeader";
+import UserBetSection from "../jsx/UserBetSection";
+import style from "../style/UserBetMain.module.css";
 const UserBetMain = () => {
   return (
     <div className={style.main}>

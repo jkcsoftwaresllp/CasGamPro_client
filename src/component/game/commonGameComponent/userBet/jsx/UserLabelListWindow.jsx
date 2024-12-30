@@ -1,12 +1,11 @@
-import React from "react";
-import UserLabelList from "../userLabelList/UserLabelList"; // Adjust the path based on your folder structure
-import style from "./style/UserLabelListWindow.module.css";
+import UserLabelList from "../jsx/UserLabelList"; // Adjust the path based on your folder structure
+import style from "../style/UserLabelListWindow.module.css";
 
 const UserLabelListWindow = () => {
   const lists = [
-    { name: "A", odd: "1.5", stake: "$100", profit: "$150" },
-    { name: "B", odd: "2.0", stake: "$200", profit: "$400" },
-    { name: "C", odd: "1.8", stake: "$150", profit: "$270" },
+    { name: "A", odd: "1.5", stake: "100", profit: "150" },
+    { name: "B", odd: "2.0", stake: "200", profit: "400" },
+    { name: "C", odd: "1.8", stake: "150", profit: "270" },
   ];
 
   return (
