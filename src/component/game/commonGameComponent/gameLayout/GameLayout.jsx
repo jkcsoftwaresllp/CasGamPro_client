@@ -1,5 +1,5 @@
 import style from "./style/GameLayout.module.css";
-import WinnerHistory from "../WinnerHistory/WinnerHistory";
+import WinnerHistory from "../WinnerHistory/jsx/WinnerHistory";
 import Timer from "../Timer/Timer";
 
 const GameLayout = () => {
