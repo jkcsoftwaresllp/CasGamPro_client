@@ -1,13 +1,13 @@
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap");
 :root {
   --textBold: 800;
-  --textNormal: 500;
+  --text: 500;
   --borderRadius: 6px;
   --borderRadius-md: 15px;
   --borderRadius-lg: 25px;
-  --text-sm: "16px";
-  --text-md: "20px";
-  --text-lg: "24px";
+  --text-sm: 16px;
+  --text-md: 20px;
+  --text-lg: 24px;
 
   --header-height: 50px;
 
@@ -25,9 +25,9 @@
   --color-highlighter-secondary: #cd7f32; /* Classic copper for accents */
 
   /* Background */
-  --color-bg-primary: #fbfeff; /* Warm cream background for elegance */
-  --color-bg-secondary: #f5e6c6; /* Light tan for subtle contrast */
-  --color-bg-tertiary: #e8d7b5; /* Parchment-like tone for sections */
+  --color-bg-primary: #fdfdfd; /* Warm cream background for elegance */
+  --color-bg-secondary: #fbfeff; /* Light tan for subtle contrast */
+  --color-bg-tertiary: #d8f4ff; /* Parchment-like tone for sections */
   --color-bg-hover: #f5e6c6; /* Light tan for hover effects */
 
   /* Borders */
