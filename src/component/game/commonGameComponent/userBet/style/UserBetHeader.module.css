@@ -1,0 +1,8 @@
+.header {
+  text-align: left;
+  padding: 10px;
+  font-weight: var(--textBold);
+  font-size: var(--text-md);
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-primary);
+}

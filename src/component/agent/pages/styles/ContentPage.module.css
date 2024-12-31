@@ -1,0 +1,8 @@
+/* Add padding to the container */
+.content {
+}
+
+.header {
+  text-align: center;
+  color: var(--color-text-primary);
+}

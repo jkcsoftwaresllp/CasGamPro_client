@@ -1,0 +1,9 @@
+.list {
+  background-color: var(--color-bg-secondary);
+  display: flex;
+
+  border: 0.01rem solid var(--color-text-primary);
+  padding: 7px;
+  font-weight: var(--text);
+  font-size: var(--text-md);
+}

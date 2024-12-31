@@ -1,0 +1,106 @@
+.WinnerHistory {
+  background: var(--color-bg-tertiary);
+  padding: 20px;
+
+  color: var(--color-text-primary);
+  width: 100%;
+  text-align: center;
+}
+
+.WinnerRectangle {
+  display: flex;
+  flex-wrap: nowrap; /* Prevent wrapping of items */
+  gap: 10px;
+
+  overflow-x: auto; /* Enable horizontal scrolling */
+  padding: 10px;
+  background-color: var(
+    --color-bg-tertiary
+  ); /* Background color for the rectangle */
+  border-radius: 8px;
+  scrollbar-width: thin; /* Optional: Thin scrollbar for modern browsers */
+}
+
+.WinnerRectangle::-webkit-scrollbar {
+  height: 1px; /* Scrollbar height for horizontal scrolling */
+}
+
+.WinnerRectangle::-webkit-scrollbar-thumb {
+  background: var(--color-bg-secondary); /* Scrollbar color */
+  border-radius: 20px;
+}
+
+.WinnerRectangle::-webkit-scrollbar-thumb:hover {
+  background: var(--color-bg-secondary); /* Scrollbar hover color */
+}
+
+.WinnerBox {
+  width: 50px;
+  height: 50px;
+  background: #555;
+  color: var(--color-special-yellow);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 5px;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 4px;
+  flex-shrink: 0;
+  cursor: pointer;
+}
+.CancelIconButton {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background-color: var(--color-bg-tertiary);
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+.CancelIconButton:hover {
+  border-radius: 50%; /* Make the button round */
+  background-color: var(--color-bg-tertiary); /* Change background on hover */
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.3); /* More pronounced shadow on hover */
+}
+
+.CancelIconButton img {
+  width: 16px;
+  height: 16px;
+  display: block;
+  border-radius: 50%;
+}
+
+.SmallWindow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 300px;
+  padding: 25px;
+  color: var(--color-text-primary);
+  background-color: var(--color-bg-tertiary);
+
+  border-radius: 5px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 10;
+}
+
+.SmallWindow h4 {
+  margin: 0 0 10px 0;
+}
+
+.SmallWindow p {
+  margin: 5px 0;
+}
+
+.SmallWindow button {
+  display: block;
+  margin: 10px auto 0;
+  padding: 5px 10px;
+
+  color: var(--color-text-primary);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
