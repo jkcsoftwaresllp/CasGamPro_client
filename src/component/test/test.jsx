@@ -1,10 +1,10 @@
-import { Card } from "../game/commonGameComponent/cardSection/jsx/Card";
+import { CardSection } from "../game/commonGameComponent/cardSection/jsx/CardSection";
 
 const Test = () => {
   return (
-    <div style={{ backgroundColor: "#fff", padding: "10px" }}>
+    <div style={{ backgroundColor: "#fff", padding: "10px", height: '50vh' }}>
       {/* <div> */}
-      <Card code={"D10"} onClick={() => {}} />
+      <CardSection />
     </div>
   );
 };
