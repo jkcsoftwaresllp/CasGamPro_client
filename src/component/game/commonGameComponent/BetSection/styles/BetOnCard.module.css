@@ -1,0 +1,26 @@
+.betOnCard {
+  background-color: #fff;
+  width: 65px;
+  height: 90px;
+  border-radius: var(--borderRadius);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 3px;
+}
+
+.label {
+  font-weight: var(--textBold);
+  font-size: calc(var(--text-lg));
+}
+
+.card {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.betAmount {
+  font-size: calc(0.8 * var(--text-sm));
+}

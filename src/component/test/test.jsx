@@ -1,19 +1,11 @@
-import { BetWithColor } from "../game/commonGameComponent/BetSection/jsx/BetWithColor";
-import { BetWithText } from "../game/commonGameComponent/BetSection/jsx/BetWithText";
+import { BetOnCard } from "../game/commonGameComponent/BetSection/jsx/BetOnCard";
 
 const Test = () => {
   return (
-    // <div style={{backgroundColor: '#fff'}}>
+    // <div style={{backgroundColor: '#fff', padding: '10px'}}>
     <div>
-      <BetWithColor
-        color={"red"}
-        betAmount={"0.0"}
-        betProfit={"1.75"}
-        onClick={() => {}}
-        isLock={false}
-      />
-      <BetWithText
-        label={"Player A"}
+      <BetOnCard
+        label={"A"}
         betAmount={"0.0"}
         betProfit={"1.75"}
         onClick={() => {}}
