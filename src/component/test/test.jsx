@@ -1,10 +1,10 @@
-import UserBetMain from "../game/commonGameComponent/userBet/jsx/UserBetMain";
+import { Card } from "../game/commonGameComponent/cardSection/jsx/Card";
+
 const Test = () => {
   return (
-    <div>
-      <UserBetMain />
-
-      {/* hey */}
+    <div style={{ backgroundColor: "#fff", padding: "10px" }}>
+      {/* <div> */}
+      <Card code={"D10"} onClick={() => {}} />
     </div>
   );
 };
