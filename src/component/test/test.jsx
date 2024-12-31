@@ -1,18 +1,10 @@
-import { BetOnCard } from "../game/commonGameComponent/BetSection/jsx/BetOnCard";
+import { Card } from "../game/commonGameComponent/cardSection/jsx/Card";
 
 const Test = () => {
   return (
     <div style={{ backgroundColor: "#fff", padding: "10px" }}>
       {/* <div> */}
-      <BetOnCard
-        label={"A"}
-        betAmount={"0.0"}
-        betProfit={"1.75"}
-        onClick={(value) => {
-          console.log(value);
-        }}
-        isLock={false}
-      />
+      <Card code={"D10"} onClick={() => {}} />
     </div>
   );
 };
