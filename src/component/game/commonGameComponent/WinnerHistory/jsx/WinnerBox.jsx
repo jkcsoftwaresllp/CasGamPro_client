@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import style from "../style/WinnerHistory.module.css";
-import Cancel from "../images/cancel.svg";
+import WinnerDetails from "./WinnerDetail";
 
-const WinnerBox = ({ winner, roundId, details }) => {
+const WinnerBox = ({ winner, roundId, gameId }) => {
   const [showDetails, setShowDetails] = useState(false);
 
   const toggleDetails = (e) => {
-    e.stopPropagation(); // Prevents event bubbling
+    e?.stopPropagation();
     setShowDetails(!showDetails);
   };
 
@@ -18,22 +18,12 @@ const WinnerBox = ({ winner, roundId, details }) => {
       {winner}
 
       {showDetails && (
-        <div className={style.SmallWindow}>
-          <h4>Round Details</h4>
-          <p>
-            <strong>Round ID:</strong> {roundId}
-          </p>
-          <p>
-            <strong>Winner:</strong> {winner}
-          </p>
-          <button
-            onClick={toggleDetails}
-            className={style.CancelIconButton}
-            aria-label="Close details"
-          >
-            <img src={Cancel} alt="Cancel" />
-          </button>
-        </div>
+        <WinnerDetails
+          roundId={roundId}
+          gameId={gameId}
+          winner={winner}
+          toggleDetails={toggleDetails}
+        />
       )}
     </div>
   );
