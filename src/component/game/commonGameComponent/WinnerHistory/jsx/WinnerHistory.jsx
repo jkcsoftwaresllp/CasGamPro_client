@@ -3,7 +3,13 @@ import WinnerRectangle from "./WinnerRectangle";
 import style from "../style/WinnerHistory.module.css";
 
 const WinnerHistory = () => {
-  const results = ["A", "B", "B", "B", "A", "B", "B", "A", "B", "B"]; // Move the results array here
+  const results = [
+    { winner: "A", roundId: 1, gameId: 1 },
+    { winner: "B", roundId: 2, gameId: 1 },
+    { winner: "A", roundId: 3, gameId: 1 },
+    { winner: "A", roundId: 4, gameId: 1 },
+    { winner: "B", roundId: 5, gameId: 1 },
+  ]; // Move the results array here
 
   return (
     <div className={style.WinnerHistory}>
