@@ -1,4 +1,4 @@
-import { BetOnCard } from "../game/commonGameComponent/BetSection/jsx/BetOnCard";
+import { BetOnCard } from "../game/commonGameComponent/betSection/jsx/BetOnCard";
 
 const Test = () => {
   return (
