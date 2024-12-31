@@ -1,6 +1,6 @@
 import React from "react";
 import WinnerRectangle from "./WinnerRectangle";
-import style from "./style/WinnerHistory.module.css";
+import style from "../style/WinnerHistory.module.css";
 
 const WinnerHistory = () => {
   const results = ["A", "B", "B", "B", "A", "B", "B", "A", "B", "B"]; // Move the results array here

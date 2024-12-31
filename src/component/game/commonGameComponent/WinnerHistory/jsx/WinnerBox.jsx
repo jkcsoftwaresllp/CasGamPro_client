@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import style from "./style/WinnerHistory.module.css";
-import Cancel from "./images/cancel.svg";
+import style from "../style/WinnerHistory.module.css";
+import Cancel from "../images/cancel.svg";
 
 const WinnerBox = ({ winner, roundId, details }) => {
   const [showDetails, setShowDetails] = useState(false);
