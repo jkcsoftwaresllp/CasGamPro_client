@@ -1,10 +1,33 @@
-import UserBetMain from "../game/commonGameComponent/userBet/jsx/UserBetMain";
+import { BetWithColor } from "../game/commonGameComponent/BetSection/jsx/BetWithColor";
+
 const Test = () => {
   return (
     <div>
-      <UserBetMain />
-
-      {/* hey */}
+      <BetWithColor
+        color={"red"}
+        betAmount={"0.0"}
+        betProfit={"1.76"}
+        onClick={(value) => {
+          console.log("click ", value );
+        }}
+      />
+      <BetWithColor
+        color={"black"}
+        betAmount={"0.0"}
+        betProfit={"1.76"}
+        onClick={(value) => {
+          console.log("click ", value );
+        }}
+      />
+      <BetWithColor
+        color={"red"}
+        betAmount={"0.0"}
+        betProfit={"1.76"}
+        onClick={(value) => {
+          console.log("click ", value );
+        }}
+        isLock={true}
+      />
     </div>
   );
 };
