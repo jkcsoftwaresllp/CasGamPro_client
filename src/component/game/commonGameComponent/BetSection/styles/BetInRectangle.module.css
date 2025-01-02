@@ -14,6 +14,26 @@
   padding-left: var(--paddingLeft);
   padding-right: var(--paddingRight);
 }
+.betInPair {
+  display: flex;
+  height: 55px;
+  flex-direction: column;
+  padding-left: var(--paddingLeft);
+  padding-right: var(--paddingRight);
+  border: 1px solid #ccc;
+  border-radius: 5px;
+
+  color: var(--color-text-primary);
+  background-color: var(--color-bg-tertiary);
+  cursor: pointer;
+  position: relative;
+}
+.rowContainer {
+  display: flex;
+  flex-direction: row; /* Place label and column in a row */
+  align-items: center; /* Align the label and column container vertically */
+  justify-content: space-between; /* Adjust space between label and column */
+}
 
 .betInRectangle .betProfit {
   font-weight: var(--textBold);

@@ -3,7 +3,7 @@ import { BetCardSection } from "../game/commonGameComponent/BetSection/jsx/BetCa
 const Test = () => {
   return (
     <div>
-      <BetCardSection isLock={false}/>
+      <BetCardSection isLock={false} />
     </div>
   );
 };

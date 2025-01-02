@@ -1,11 +1,12 @@
 import React from "react";
-import style from "../style/WinnerHistory.module.css";
+import style from "../style/Window.module.css";
 import Cancel from "../images/cancel.svg";
+import DetailCards from "./DetailCards";
+import Button from "../../../../common/Button";
 
 const WinnerDetail = ({ roundId, gameId, winner, toggleDetails }) => {
-  // Sample cards (could be dynamically generated as needed)
   const cards = [
-    { id: 1, value: "A", suit: "♥" },
+    { id: 1, value: "A", suit: "♣" },
     { id: 2, value: "2", suit: "♦" },
     { id: 3, value: "3", suit: "♣" },
     { id: 4, value: "4", suit: "♠" },
@@ -18,38 +19,31 @@ const WinnerDetail = ({ roundId, gameId, winner, toggleDetails }) => {
   ];
 
   return (
-    <div className={style.SmallWindow}>
-      <div className={style.TopLeftDetails}>
-        <p>Round ID: {roundId}</p>
-        <p>Game ID: {gameId}</p>
+    <div className={style.Overlay}>
+      <div className={style.SmallWindow}>
+        <div className={style.TopRightDetails}>
+          <p>Round ID: {roundId}</p>
+          <p>Game ID: {gameId}</p>
+        </div>
+        <br />
+        <br />
+        <p className={style.TopLeftDetails}>
+          <strong>Winner:</strong> {winner}
+        </p>
+
+        <DetailCards cards={cards} />
+        <br />
+        <button
+          onClick={(e) => {
+            e.stopPropagation();
+            toggleDetails();
+          }}
+          className={style.CancelIconButton}
+          aria-label="Close details"
+        >
+          <img src={Cancel} alt="Cancel" />
+        </button>
       </div>
-      <br />
-      <br />
-      <p>
-        <strong>Winner:</strong> {winner}
-      </p>
-      <p>Winner Cards:</p>
-      <div className={style.CardScrollContainer}>
-        {cards.map((card) => (
-          <div key={card.id} className={style.Card}>
-            <div className={style.CardContent}>
-              <p>{card.value}</p>
-              <p>{card.suit}</p>
-            </div>
-          </div>
-        ))}
-      </div>
-      <br />
-      <button
-        onClick={(e) => {
-          e.stopPropagation();
-          toggleDetails();
-        }}
-        className={style.CancelIconButton}
-        aria-label="Close details"
-      >
-        <img src={Cancel} alt="Cancel" />
-      </button>
     </div>
   );
 };

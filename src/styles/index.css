@@ -54,7 +54,7 @@
   --color-highlighter-secondary: #a0522d; /* Rusty brown for accents */
 
   /* Background */
-  --color-bg-primary: #0b0b0b; /* Deep black for elegance */
+  --color-bg-primary: #212121; /* Deep black for elegance */
   --color-bg-secondary: #1a1a1a; /* Dark grey for sections */
   --color-bg-tertiary: #2e2e2e; /* Medium grey for subtle contrast */
   --color-bg-hover: #1a1a1a; /* Dark grey for hover effects */
@@ -79,7 +79,29 @@ body {
   height: 100%;
   margin: 0;
   padding: 0;
+  scrollbar-width: thin; /* For Firefox: "auto" or "thin" */
+  scrollbar-color: var(--color-bg-secondary) rgba(255, 255, 255, 0); /* Thumb and track colors */
   background-color: var(
     --color-bg-secondary
   ); /* Ensure it matches the container's background */
+}
+
+/* WebKit scrollbar styling */
+::-webkit-scrollbar {
+  width: 2px; /* Width of the scrollbar */
+  height: 2px; /* Height of the scrollbar for horizontal scrollbars */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--color-bg-secondary); /* Scroll thumb color */
+  border-radius: 50%; /* Roundness of the thumb */
+}
+
+::-webkit-scrollbar-track {
+  background-color: var(--color-text-tertiary); /* Scroll track color */
+  border-radius: 50%; /* Roundness of the track */
+}
+
+::-webkit-scrollbar-corner {
+  background-color: var(--color-bg-secondary);
 }
