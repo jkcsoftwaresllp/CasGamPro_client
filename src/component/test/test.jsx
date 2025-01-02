@@ -1,10 +1,11 @@
-import { Card } from "../game/commonGameComponent/cardSection/jsx/Card";
-
+import MainBetSection from "../game/gameDragonTiger/customBetSection/jsx/MainBetSection";
 const Test = () => {
   return (
-    <div style={{ backgroundColor: "#fff", padding: "10px" }}>
+    <div style={{ padding: "10px" }}>
       {/* <div> */}
-      <Card code={"D10"} onClick={() => {}} />
+      <MainBetSection />
+
+      {/* </div> */}
     </div>
   );
 };

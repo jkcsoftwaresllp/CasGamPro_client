@@ -1,0 +1,18 @@
+.mainSection {
+  display: flex;
+  flex-direction: column;
+  gap: 2px; /* Space between BetHeader and LowerBetRow */
+  padding: 2px;
+}
+
+.lowerBetRow {
+  display: flex;
+  flex-direction: row;
+  gap: 2px; /* Space between the two LowerBetSection components */
+  justify-content: space-between; /* Adjust alignment if needed */
+}
+.separator {
+  width: 2px; /* Width of the separator line */
+  background-color: #ccc; /* Line color */
+  height: auto; /* Stretch to match content height */
+}

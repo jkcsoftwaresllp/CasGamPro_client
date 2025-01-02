@@ -1,8 +1,8 @@
 import React from "react";
 import styles from "../styles/BetInRectangle.module.css";
-import { LockOverlay } from "./LockOverlay";
+import LockOverlay from "./LockOverlay";
 
-export const BetInRectangle = ({
+const BetInRectangle = ({
   label,
   betProfit,
   betAmount,
@@ -22,13 +22,15 @@ export const BetInRectangle = ({
         onClick={() => onClick(betProfit)}
         style={cssVariable}
       >
-        <div className={styles.labelBetAmount}>
+        <div className={styles.betProfit}>
           <p>{label}</p>
-          <p>{betAmount}</p>
+          <p>{betProfit}</p>
         </div>
-        <p className={styles.betProfit}>{betProfit}</p>
+        <p className={styles.labelBetAmount}>{betAmount}</p>
         {isLock && <LockOverlay />}
       </div>
     </>
   );
 };
+
+export default BetInRectangle;
