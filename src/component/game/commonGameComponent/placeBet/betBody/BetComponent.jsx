@@ -1,0 +1,54 @@
+import React, { useState } from "react";
+import CoinsSection from "./CoinsSection";
+import BetStatus from "./BetStatus";
+import CustomButton from "./CustomButton";
+import {
+  handleStakeChange,
+  handleProfitChange,
+  handleReset,
+  handleSubmit,
+} from "./helper/betHelper";
+import styles from "./style/BetBody.module.css";
+
+const BetComponent = ({ betFor, profit, stake }) => {
+  const [stakeValue, setStakeValue] = useState(stake);
+  const [currentProfit, setCurrentProfit] = useState(profit);
+
+  const stakeChangeHandler = handleStakeChange(setStakeValue);
+  const profitChangeHandler = handleProfitChange(setCurrentProfit);
+  const resetHandler = handleReset(
+    setStakeValue,
+    setCurrentProfit,
+    stake,
+    profit
+  );
+  const submitHandler = handleSubmit(stakeValue, currentProfit);
+
+  return (
+    <div className={styles.component}>
+      <BetStatus
+        betFor={betFor}
+        stakeValue={stakeValue}
+        currentProfit={currentProfit}
+        onProfitChange={profitChangeHandler}
+      />
+      <CoinsSection onCoinClick={stakeChangeHandler} />
+      <div className={styles.buttonContainer}>
+        <CustomButton
+          label="Reset"
+          onClick={resetHandler}
+          backgroundColor="Red"
+          textColor="White"
+        />
+        <CustomButton
+          label="Submit"
+          onClick={submitHandler}
+          backgroundColor="Green"
+          textColor="white"
+        />
+      </div>
+    </div>
+  );
+};
+
+export default BetComponent;

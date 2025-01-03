@@ -1,9 +1,9 @@
-import MainBetSection from "../game/gameDragonTiger/customBetSection/jsx/MainBetSection";
+import MainBet from "../game/commonGameComponent/placeBet/MainBet";
 const Test = () => {
   return (
     <div style={{ padding: "10px" }}>
       {/* <div> */}
-      <MainBetSection />
+      <MainBet betFor="Andar" profit={0.96} stake={0} />
 
       {/* </div> */}
     </div>

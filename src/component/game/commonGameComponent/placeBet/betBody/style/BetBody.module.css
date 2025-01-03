@@ -1,0 +1,105 @@
+.betCoins {
+  color: var(--color-text-primary);
+  background-color: var(--color-special-green);
+  width: 70px;
+  font-size: var(--text-md);
+  font-weight: var(--textBold);
+  flex: 1;
+}
+.adjuster {
+  color: var(--color-text-primary);
+  cursor: pointer;
+}
+.profit {
+  color: var(--color-text-primary);
+}
+.betFor {
+  color: var(--color-text-primary);
+
+  font-weight: var(--textBold);
+}
+.container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  border: 1px solid var(--color-text-primary);
+  padding: 10px;
+  border-radius: var(--borderRadius);
+}
+.column {
+  display: flex;
+  flex-direction: column;
+  gap: 10px; /* Space between rows */
+}
+
+.row {
+  display: flex;
+  justify-content: space-between; /* Justify items with space between */
+  gap: 10px; /* Space between items in each row */
+}
+
+.inline {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  width: 100%;
+
+  margin-bottom: 10px;
+  flex: 1;
+  padding: 10px;
+}
+.betFor,
+.input,
+.profit,
+.currentProfit {
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+
+  display: flex;
+  font-size: var(--text-md);
+}
+
+.currentProfit {
+  color: var(--color-text-primary);
+}
+.input {
+  width: 80px; /* Fixed width */
+  padding: 10px; /* Padding for better text alignment */
+  border: 2px solid var(--color-text-primary); /* Light border color */
+  border-radius: 5px; /* Rounded corners */
+
+  text-align: center; /* Center text inside the input */
+  background-color: var(--color-bg-primary); /* Light background color */
+  color: var(--color-text-primary);
+  transition: border-color 0.3s ease, background-color 0.3s ease; /* Smooth transition for focus */
+}
+
+span {
+  font-weight: bold;
+}
+
+.button {
+  padding: 15px;
+  font-size: var(--text-md);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: var(--textBold);
+  width: 150px;
+
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.button:active {
+  transform: scale(0.95);
+}
+
+.button:hover {
+  opacity: 0.9;
+}
+.buttonContainer {
+  display: flex;
+  justify-content: space-between; /* Align Reset and Submit to opposite ends */
+  margin-top: 20px;
+}
