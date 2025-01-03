@@ -1,9 +1,11 @@
-import { BetCardSection } from "../game/commonGameComponent/BetSection/jsx/BetCardSection";
-
+import MainBet from "../game/commonGameComponent/placeBet/MainBet";
 const Test = () => {
   return (
-    <div>
-      <BetCardSection isLock={false} />
+    <div style={{ padding: "10px" }}>
+      {/* <div> */}
+      <MainBet betFor="Andar" profit={0.96} stake={0} />
+
+      {/* </div> */}
     </div>
   );
 };

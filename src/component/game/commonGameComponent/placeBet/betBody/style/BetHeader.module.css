@@ -1,0 +1,9 @@
+.labelHeader {
+  background-color: var(--color-bg-tertiary);
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  font-size: var(--text-md);
+  font-weight: var(--textBold);
+  margin-bottom: 5px;
+}
