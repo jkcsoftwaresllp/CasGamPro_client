@@ -66,7 +66,8 @@
 .input {
   width: 80px; /* Fixed width */
   padding: 10px; /* Padding for better text alignment */
-  border: 2px solid var(--color-text-primary); /* Light border color */
+  border: none;
+  outline: none;
   border-radius: 5px; /* Rounded corners */
 
   text-align: center; /* Center text inside the input */
