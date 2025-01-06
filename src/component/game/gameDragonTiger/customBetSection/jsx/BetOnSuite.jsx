@@ -1,6 +1,6 @@
 import React from "react";
-import { BetWithText } from "../../../commonGameComponent/BetSection/jsx/BetWithText";
-import { BetWithColor } from "../../../commonGameComponent/BetSection/jsx/BetWithColor";
+import { BetWithText } from "../../../common/BetSection/jsx/BetWithText";
+import { BetWithColor } from "../../../common/BetSection/jsx/BetWithColor";
 import styles from "../style/LowerBetSection.module.css";
 
 const BetOnSuite = () => {

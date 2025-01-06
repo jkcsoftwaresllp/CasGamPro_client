@@ -7,7 +7,7 @@ import Home from "./Home";
 import AgentWindow from "../../component/agent/main/jsx/AgentWindow";
 import Test from "../../component/test/test";
 
-import GameLayout from "../../component/game/commonGameComponent/gameLayout/GameLayout";
+import GameLayout from "../../component/game/common/gameLayout/GameLayout";
 
 const Routing = () => {
   return (

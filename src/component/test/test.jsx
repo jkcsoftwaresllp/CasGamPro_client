@@ -1,4 +1,4 @@
-import MainBet from "../game/commonGameComponent/placeBet/MainBet";
+import MainBet from "../game/common/placeBet/MainBet";
 const Test = () => {
   return (
     <div style={{ padding: "10px" }}>

@@ -1,4 +1,4 @@
-import BetInPair from "../../../commonGameComponent/BetSection/jsx/BetInPair";
+import BetInPair from "../../../common/BetSection/jsx/BetInPair";
 import styles from "../style/BetHeader.module.css";
 
 const BetHeaderLeft = () => {
