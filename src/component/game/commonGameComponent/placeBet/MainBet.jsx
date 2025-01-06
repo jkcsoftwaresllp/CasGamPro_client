@@ -1,7 +1,7 @@
 import React from "react";
-import BetComponent from "./betBody/BetComponent";
-import BetHeader from "./betBody/BetHeader";
-import MainHeader from "./betHeader/MainHeader";
+import { BetComponent } from "./betBody/BetComponent";
+import { BetHeader } from "./betBody/BetHeader";
+import { MainHeader } from "./betHeader/MainHeader";
 
 const MainBet = () => {
   return (

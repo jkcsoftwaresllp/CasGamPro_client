@@ -1,7 +1,12 @@
 import React from "react";
 import styles from "./style/BetBody.module.css";
 
-const CustomButton = ({ label, onClick, backgroundColor, textColor }) => {
+export const CustomButton = ({
+  label,
+  onClick,
+  backgroundColor,
+  textColor,
+}) => {
   return (
     <button
       className={styles.button}
@@ -12,5 +17,3 @@ const CustomButton = ({ label, onClick, backgroundColor, textColor }) => {
     </button>
   );
 };
-
-export default CustomButton;

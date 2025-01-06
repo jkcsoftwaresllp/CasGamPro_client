@@ -2,7 +2,12 @@ import React from "react";
 
 import styles from "./style/BetBody.module.css";
 
-const BetStatus = ({ betFor, stakeValue, currentProfit, onProfitChange }) => {
+export const BetStatus = ({
+  betFor,
+  stakeValue,
+  currentProfit,
+  onProfitChange,
+}) => {
   return (
     <div className={styles.inline}>
       <div className={styles.betFor}>{betFor}</div>
@@ -20,5 +25,3 @@ const BetStatus = ({ betFor, stakeValue, currentProfit, onProfitChange }) => {
     </div>
   );
 };
-
-export default BetStatus;

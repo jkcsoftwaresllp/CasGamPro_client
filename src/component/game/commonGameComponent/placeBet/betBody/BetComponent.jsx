@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import CoinsSection from "./CoinsSection";
-import BetStatus from "./BetStatus";
-import CustomButton from "./CustomButton";
+import { CoinsSection } from "./CoinsSection";
+import { BetStatus } from "./BetStatus";
+import { CustomButton } from "./CustomButton";
 import {
   handleStakeChange,
   handleProfitChange,
@@ -10,7 +10,7 @@ import {
 } from "./helper/betHelper";
 import styles from "./style/BetBody.module.css";
 
-const BetComponent = ({ betFor, profit, stake }) => {
+export const BetComponent = ({ betFor, profit, stake }) => {
   const [stakeValue, setStakeValue] = useState(stake);
   const [currentProfit, setCurrentProfit] = useState(profit);
 
@@ -50,5 +50,3 @@ const BetComponent = ({ betFor, profit, stake }) => {
     </div>
   );
 };
-
-export default BetComponent;

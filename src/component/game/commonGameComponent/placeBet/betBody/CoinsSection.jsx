@@ -1,8 +1,8 @@
 import React from "react";
-import BetCoins from "./BetCoins";
+import { BetCoins } from "./BetCoins";
 import styles from "./style/BetBody.module.css";
 
-const CoinSection = ({ onCoinClick }) => {
+export const CoinSection = ({ onCoinClick }) => {
   const row1 = [100, 200, 250, 500];
   const row2 = [700, 1000, 2000, 5000];
 
@@ -21,5 +21,3 @@ const CoinSection = ({ onCoinClick }) => {
     </div>
   );
 };
-
-export default CoinSection;

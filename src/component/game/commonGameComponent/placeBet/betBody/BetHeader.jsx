@@ -1,8 +1,8 @@
 import React from "react";
-import UserLabel from "../../userBet/jsx/UserLabel";
+import { UserLabel } from "../../userBet/jsx/UserLabel";
 import style from "./style/BetHeader.module.css";
 
-const UserLabelHeader = ({
+export const UserLabelHeader = ({
   name = "(Bet For)",
   odd = "Odds",
   stake = "Stake",
@@ -17,5 +17,3 @@ const UserLabelHeader = ({
     </div>
   );
 };
-
-export default UserLabelHeader;

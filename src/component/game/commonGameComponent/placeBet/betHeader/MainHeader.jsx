@@ -1,7 +1,7 @@
 import React from "react";
 import style from "./style/MainHeader.module.css";
 
-const Header = () => {
+export const Header = () => {
   return (
     <header className={style.header}>
       <div className={style.headerLeft}>PLACE BET</div>
@@ -9,5 +9,3 @@ const Header = () => {
     </header>
   );
 };
-
-export default Header;
