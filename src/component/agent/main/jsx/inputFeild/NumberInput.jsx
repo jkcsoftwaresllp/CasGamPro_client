@@ -1,6 +1,6 @@
 import style from "../../styles/AgentNewUser.module.css";
 
-const NumberInput = ({
+export const NumberInput = ({
   label,
   name,
   value,
@@ -28,5 +28,3 @@ const NumberInput = ({
     </div>
   </>
 );
-
-export default NumberInput;

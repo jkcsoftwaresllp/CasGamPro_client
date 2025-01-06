@@ -1,6 +1,12 @@
 import style from "../../styles/AgentNewUser.module.css";
 
-const PasswordInput = ({ label, name, value, onChange, placeholder }) => (
+export const PasswordInput = ({
+  label,
+  name,
+  value,
+  onChange,
+  placeholder,
+}) => (
   <div className={style.input}>
     <label>{label}</label>
     <input
@@ -12,5 +18,3 @@ const PasswordInput = ({ label, name, value, onChange, placeholder }) => (
     />
   </div>
 );
-
-export default PasswordInput;

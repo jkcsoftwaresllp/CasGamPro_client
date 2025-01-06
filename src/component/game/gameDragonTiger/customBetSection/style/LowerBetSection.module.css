@@ -1,0 +1,29 @@
+.betOnSuiteContainer {
+  display: flex;
+  justify-content: space-between; /* Space out the items */
+  align-items: center; /* Align items vertically */
+}
+
+.betOnCard {
+  display: flex;
+  flex-direction: column; /* Ensures rows are stacked vertically */
+  align-items: center; /* Centers the rows horizontally */
+  gap: 5px; /* Optional spacing between the rows */
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  gap: 5px; /* Gap between cards in the row */
+}
+.lowerBetSection {
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Adjust the gap between components if needed */
+  padding: 10px;
+}
+.separator {
+  width: 2px; /* Width of the separator line */
+  background-color: #ccc; /* Line color */
+  height: auto; /* Stretch to match content height */
+}

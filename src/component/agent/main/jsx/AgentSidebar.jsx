@@ -7,7 +7,7 @@ import Expand from "../images/expand.svg";
 import { Tab } from "./Tab";
 import { sidebarItems } from "../helper/sidebarItems";
 
-const Sidebar = () => {
+export const Sidebar = () => {
   const [isMinimized, setIsMinimized] = useState(false);
   const location = useLocation();
 
@@ -38,4 +38,3 @@ const Sidebar = () => {
   );
 };
 
-export default Sidebar;

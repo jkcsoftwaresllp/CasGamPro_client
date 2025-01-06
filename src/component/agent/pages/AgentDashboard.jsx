@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import Dashboard from "./dashboardContent/Dashboard";
-import ManageClients from "./dashboardContent/ManageClient";
-import ManagePassword from "./dashboardContent/ManagePassword";
-import Settings from "./dashboardContent/Setting";
-import Sidebar from "../../components/AdminDashboard/AgentSidebar";
+import { Dashboard } from "./dashboardContent/Dashboard";
+import { ManageClients } from "./dashboardContent/ManageClient";
+import { ManagePassword } from "./dashboardContent/ManagePassword";
+import { Settings } from "./dashboardContent/Setting";
+import { Sidebar } from "../../components/AdminDashboard/AgentSidebar";
 import style from "../../styles/AdminDashboard.module.css";
 
-const AgentDashboard = () => {
+export const AgentDashboard = () => {
   const [selectedOption, setSelectedOption] = useState("dashboard"); // Default to 'dashboard'
 
   const handleOptionSelect = (option) => {
@@ -41,5 +41,3 @@ const AgentDashboard = () => {
     </div>
   );
 };
-
-export default AgentDashboard;

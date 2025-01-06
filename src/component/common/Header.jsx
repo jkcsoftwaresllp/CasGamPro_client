@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import style from "./style/HeaderMain.module.css";
 
-const Header = () => {
+export const Header = () => {
   const [isDarkMode, setIsDarkMode] = useState(false);
   const navigate = useNavigate();
 
@@ -56,4 +56,3 @@ const Header = () => {
   );
 };
 
-export default Header;

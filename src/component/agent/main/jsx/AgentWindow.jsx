@@ -1,18 +1,17 @@
 import { Routes, Route } from "react-router-dom";
-import Sidebar from "./AgentSidebar";
-// import ManageClients from "J:\CasGamPro_client\src\component\agent\pages\dashboardContent\ManageClient.jsx";
+import { Sidebar } from "./AgentSidebar";
 
-import ManageClients from "../../pages/dashboardContent/ManageClient";
+import { ManageClients } from "../../pages/dashboardContent/ManageClient";
 
-import ManagePassword from "../../pages/dashboardContent/ManagePassword";
-import Dashboard from "../../pages/dashboardContent/Dashboard";
-import Settings from "../../pages/dashboardContent/Setting";
+import { ManagePassword } from "../../pages/dashboardContent/ManagePassword";
+import { Dashboard } from "../../pages/dashboardContent/Dashboard";
+import { Settings } from "../../pages/dashboardContent/Setting";
 import style from "../styles/AgentWindow.module.css";
 
 // Import page components
-import AgentNewUser from "../../pages/dashboardContent/manageClient/AgentNewUser";
+import { AgentNewUser } from "../../pages/dashboardContent/manageClient/AgentNewUser";
 
-const AdminWindow = () => {
+export const AgentWindow = () => {
   return (
     <div className={style.container}>
       <Sidebar />
@@ -34,5 +33,3 @@ const AdminWindow = () => {
     </div>
   );
 };
-
-export default AdminWindow;

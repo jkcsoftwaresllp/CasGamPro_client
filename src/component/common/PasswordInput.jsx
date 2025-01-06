@@ -3,7 +3,7 @@ import style from "./style/Input.module.css";
 import Show from "./images/show.svg";
 import Hide from "./images/hide.svg";
 
-const PasswordInput = ({ placeholder = "Password", onChange }) => {
+export const PasswordInput = ({ placeholder = "Password", onChange }) => {
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [password, setPassword] = useState("");
 
@@ -41,5 +41,3 @@ const PasswordInput = ({ placeholder = "Password", onChange }) => {
     </div>
   );
 };
-
-export default PasswordInput;

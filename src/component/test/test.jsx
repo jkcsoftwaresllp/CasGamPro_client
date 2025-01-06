@@ -1,11 +1,9 @@
-import { BetCardSection } from "../game/commonGameComponent/BetSection/jsx/BetCardSection";
+import { MainBetSection } from "../game/gameDragonTiger/customBetSection/jsx/MainBetSection";
 
-const Test = () => {
+export const Test = () => {
   return (
-    <div>
-      <BetCardSection isLock={false}/>
+    <div style={{ padding: "10px" }}>
+      <MainBetSection />
     </div>
   );
 };
-
-export default Test;
