@@ -1,8 +1,8 @@
 import React from "react";
 import styles from "../styles/BetInRectangle.module.css";
-import LockOverlay from "./LockOverlay";
+import { LockOverlay } from "./LockOverlay";
 
-const BetInPair = ({
+export const BetInPair = ({
   label,
   betProfit,
   betAmount,
@@ -35,5 +35,3 @@ const BetInPair = ({
     </div>
   );
 };
-
-export default BetInPair;

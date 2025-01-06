@@ -1,8 +1,14 @@
 import React from "react";
 import styles from "../styles/BetWithText.module.css";
-import LockOverlay from "./LockOverlay";
+import { LockOverlay } from "./LockOverlay";
 
-const BetWithText = ({ label, betProfit, betAmount, onClick, isLock }) => {
+export const BetWithText = ({
+  label,
+  betProfit,
+  betAmount,
+  onClick,
+  isLock,
+}) => {
   return (
     <>
       <div className={styles.betWithText}>
@@ -16,5 +22,3 @@ const BetWithText = ({ label, betProfit, betAmount, onClick, isLock }) => {
     </>
   );
 };
-
-export default BetWithText;

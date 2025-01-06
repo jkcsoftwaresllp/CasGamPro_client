@@ -1,9 +1,9 @@
 import React from "react";
 import styles from "../styles/BetOnCard.module.css";
-import LockOverlay from "./LockOverlay";
+import { LockOverlay } from "./LockOverlay";
 import { clubIcon, diamondIcon, heartIcon, spadeIcon } from "../helper/icons";
 
-const BetOnCard = ({ label, betProfit, betAmount, onClick, isLock }) => {
+export const BetOnCard = ({ label, betProfit, betAmount, onClick, isLock }) => {
   return (
     <>
       <div className={styles.betOnCard} onClick={() => onClick(betProfit)}>
@@ -21,5 +21,3 @@ const BetOnCard = ({ label, betProfit, betAmount, onClick, isLock }) => {
     </>
   );
 };
-
-export default BetOnCard;

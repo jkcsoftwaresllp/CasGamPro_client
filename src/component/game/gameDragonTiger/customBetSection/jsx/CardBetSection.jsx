@@ -1,5 +1,5 @@
 import React from "react";
-import BetOnCard from "../../../commonGameComponent/BetSection/jsx/BetOnCard";
+import { BetOnCard } from "../../../commonGameComponent/BetSection/jsx/BetOnCard";
 import style from "../style/LowerBetSection.module.css";
 
 const CardBetSection = () => {

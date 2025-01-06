@@ -1,6 +1,6 @@
 import styles from "../styles/BetPlacing.module.css";
 
-const LockOverlay = () => {
+export const LockOverlay = () => {
   return (
     <div
       className={styles.lockOverlay}
@@ -22,5 +22,3 @@ const LockOverlay = () => {
     </div>
   );
 };
-
-export default LockOverlay;

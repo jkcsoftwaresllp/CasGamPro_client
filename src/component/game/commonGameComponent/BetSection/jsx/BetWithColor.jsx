@@ -1,9 +1,15 @@
 import React from "react";
 import styles from "../styles/BetWithText.module.css";
-import LockOverlay from "./LockOverlay";
+import { LockOverlay } from "./LockOverlay";
 import { clubIcon, diamondIcon, heartIcon, spadeIcon } from "../helper/icons";
 
-const BetWithColor = ({ color, betProfit, betAmount, onClick, isLock }) => {
+export const BetWithColor = ({
+  color,
+  betProfit,
+  betAmount,
+  onClick,
+  isLock,
+}) => {
   // Use the correct icon component based on the color
   const Icon1 = color === "red" ? diamondIcon : clubIcon;
   const Icon2 = color === "red" ? heartIcon : spadeIcon;
@@ -21,4 +27,3 @@ const BetWithColor = ({ color, betProfit, betAmount, onClick, isLock }) => {
     </div>
   );
 };
-export default BetWithColor;

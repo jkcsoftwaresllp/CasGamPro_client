@@ -1,6 +1,6 @@
 import React from "react";
-import BetInCircle from "../../../commonGameComponent/BetSection/jsx/BetInCircle";
-import BetInRectangle from "../../../commonGameComponent/BetSection/jsx/BetInRectangle";
+import { BetInCircle } from "../../../commonGameComponent/BetSection/jsx/BetInCircle";
+import { BetInRectangle } from "../../../commonGameComponent/BetSection/jsx/BetInRectangle";
 import styles from "../style/BetHeader.module.css";
 
 const BetHeaderRight = () => {

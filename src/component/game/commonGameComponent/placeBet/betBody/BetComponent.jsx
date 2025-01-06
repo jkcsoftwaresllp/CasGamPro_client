@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { CoinsSection } from "./CoinsSection";
+import { CoinSection } from "./CoinsSection";
 import { BetStatus } from "./BetStatus";
 import { CustomButton } from "./CustomButton";
 import {
@@ -32,7 +32,7 @@ export const BetComponent = ({ betFor, profit, stake }) => {
         currentProfit={currentProfit}
         onProfitChange={profitChangeHandler}
       />
-      <CoinsSection onCoinClick={stakeChangeHandler} />
+      <CoinSection onCoinClick={stakeChangeHandler} />
       <div className={styles.buttonContainer}>
         <CustomButton
           label="Reset"
