@@ -1,8 +1,8 @@
 import style from "./style/GameLayout.module.css";
-import WinnerHistory from "../WinnerHistory/jsx/WinnerHistory";
-import Timer from "../Timer/Timer";
+import { WinnerHistory } from "../WinnerHistory/jsx/WinnerHistory";
+import { Timer } from "../Timer/Timer";
 
-const GameLayout = () => {
+export const GameLayout = () => {
   return (
     <div className={style.container}>
       <div className={style.menuBar}>Menu Bar</div>
@@ -29,5 +29,3 @@ const GameLayout = () => {
     </div>
   );
 };
-
-export default GameLayout;

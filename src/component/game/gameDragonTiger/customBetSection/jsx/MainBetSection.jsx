@@ -1,9 +1,9 @@
 import React from "react";
-import BetHeader from "./BetHeader";
-import LowerBetSection from "./LowerBetSection";
+import { BetHeader } from "./BetHeader";
+import { LowerBetSection } from "./LowerBetSection";
 import style from "../style/MainSection.module.css";
 
-const MainBetSection = () => {
+export const MainBetSection = () => {
   return (
     <div className={style.mainSection}>
       <BetHeader />
@@ -16,5 +16,3 @@ const MainBetSection = () => {
     </div>
   );
 };
-
-export default MainBetSection;

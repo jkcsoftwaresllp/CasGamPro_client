@@ -7,7 +7,7 @@ import {
   getRemainingPathColor,
 } from "./helper/helper";
 
-const Timer = ({ time }) => {
+export const Timer = ({ time }) => {
   const [timeLeft, setTimeLeft] = useState(time);
   const [remainingPathColor, setRemainingPathColor] = useState("green");
 
@@ -68,5 +68,3 @@ const Timer = ({ time }) => {
     </div>
   );
 };
-
-export default Timer;

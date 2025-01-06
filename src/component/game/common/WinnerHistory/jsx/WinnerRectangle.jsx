@@ -1,8 +1,8 @@
 import React from "react";
-import WinnerBox from "./WinnerBox";
+import { WinnerBox } from "./WinnerBox";
 import style from "../style/WinnerHistory.module.css";
 
-const WinnerRectangle = ({ results }) => {
+export const WinnerRectangle = ({ results }) => {
   return (
     <div className={style.WinnerRectangle}>
       {results.map((result, index) => (
@@ -17,4 +17,3 @@ const WinnerRectangle = ({ results }) => {
   );
 };
 
-export default WinnerRectangle;

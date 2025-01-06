@@ -1,5 +1,6 @@
 import style from "./style/Loader.module.css";
-const Loader = () => {
+
+export const Loader = () => {
   return (
     <div className={style.loader}>
       <svg
@@ -30,4 +31,3 @@ const Loader = () => {
   );
 };
 
-export default Loader;

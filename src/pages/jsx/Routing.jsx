@@ -1,15 +1,15 @@
 import { Routes, Route } from "react-router-dom";
 import style from "../styles/Home.module.css";
 // Import page components
-import LoginPage from "../../component/agent/pages/dashboardContent/LoginPage";
+import { LoginPage } from "../../component/agent/pages/dashboardContent/LoginPage";
 
-import Home from "./Home";
-import AgentWindow from "../../component/agent/main/jsx/AgentWindow";
-import Test from "../../component/test/test";
+import { Home } from "./Home";
+import { AgentWindow } from "../../component/agent/main/jsx/AgentWindow";
+import { Test } from "../../component/test/test";
 
-import GameLayout from "../../component/game/common/gameLayout/GameLayout";
+import { GameLayout } from "../../component/game/common/gameLayout/GameLayout";
 
-const Routing = () => {
+export const Routing = () => {
   return (
     <div className={style.routing}>
       <Routes>
@@ -23,5 +23,3 @@ const Routing = () => {
     </div>
   );
 };
-
-export default Routing;

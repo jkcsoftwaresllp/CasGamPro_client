@@ -1,7 +1,8 @@
 import React from "react";
-import UserLabel from "../jsx/UserLabel";
+import { UserLabel } from "../jsx/UserLabel";
 import style from "../style/UserLabelList.module.css";
-const UserLabelList = ({ name, odd, stake, profit }) => {
+
+export const UserLabelList = ({ name, odd, stake, profit }) => {
   return (
     <div className={style.list}>
       <UserLabel label={name} />
@@ -11,5 +12,3 @@ const UserLabelList = ({ name, odd, stake, profit }) => {
     </div>
   );
 };
-
-export default UserLabelList;

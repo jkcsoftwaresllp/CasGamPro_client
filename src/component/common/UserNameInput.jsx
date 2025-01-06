@@ -1,7 +1,7 @@
 import { useState } from "react";
 import style from "./style/Input.module.css";
 
-const UsernameInput = ({ placeholder = "Username", onChange }) => {
+export const UsernameInput = ({ placeholder = "Username", onChange }) => {
   const [value, setValue] = useState("");
 
   const handleChange = (e) => {
@@ -23,5 +23,3 @@ const UsernameInput = ({ placeholder = "Username", onChange }) => {
     />
   );
 };
-
-export default UsernameInput;

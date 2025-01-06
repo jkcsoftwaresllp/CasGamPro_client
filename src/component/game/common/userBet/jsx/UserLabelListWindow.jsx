@@ -1,7 +1,7 @@
-import UserLabelList from "../jsx/UserLabelList"; // Adjust the path based on your folder structure
+import {UserLabelList} from "../jsx/UserLabelList"; // Adjust the path based on your folder structure
 import style from "../style/UserLabelListWindow.module.css";
 
-const UserLabelListWindow = () => {
+export const UserLabelListWindow = () => {
   const lists = [
     { name: "A", odd: "1.5", stake: "100", profit: "150" },
     { name: "B", odd: "2.0", stake: "200", profit: "400" },
@@ -24,5 +24,3 @@ const UserLabelListWindow = () => {
     </div>
   );
 };
-
-export default UserLabelListWindow;

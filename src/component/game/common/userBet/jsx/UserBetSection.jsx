@@ -1,7 +1,7 @@
-import UserLabelHeader from "../jsx/UserLabelHeader";
-import UserLabelListWindow from "../jsx/UserLabelListWindow";
+import { UserLabelHeader } from "../jsx/UserLabelHeader";
+import { UserLabelListWindow } from "../jsx/UserLabelListWindow";
 
-const UserBetSection = () => {
+export const UserBetSection = () => {
   return (
     <div>
       <UserLabelHeader />
@@ -9,4 +9,3 @@ const UserBetSection = () => {
     </div>
   );
 };
-export default UserBetSection;

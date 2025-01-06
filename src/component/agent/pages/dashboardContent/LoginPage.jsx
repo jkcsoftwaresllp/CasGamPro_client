@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import UsernameInput from "../../../common/UserNameInput.jsx";
-import PasswordInput from "../../../common/PasswordInput.jsx";
-import Button from "../../../common/Button.jsx";
+import { UsernameInput } from "../../../common/UserNameInput.jsx";
+import { PasswordInput } from "../../../common/PasswordInput.jsx";
+import { Button } from "../../../common/Button.jsx";
 import { apiCall } from "./manageClient/helper/apiCall.js";
 import style from "../styles/LoginPage.module.css";
-import Loader from "../../../common/Loader.jsx";
+import { Loader } from "../../../common/Loader.jsx";
 
-const LoginPage = () => {
+export const LoginPage = () => {
   const [userId, setUserId] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -60,5 +60,3 @@ const LoginPage = () => {
     </div>
   );
 };
-
-export default LoginPage;

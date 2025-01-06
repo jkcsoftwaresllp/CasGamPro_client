@@ -3,7 +3,7 @@ import { BetInCircle } from "../../../common/BetSection/jsx/BetInCircle";
 import { BetInRectangle } from "../../../common/BetSection/jsx/BetInRectangle";
 import styles from "../style/BetHeader.module.css";
 
-const BetHeaderRight = () => {
+export const BetHeaderRight = () => {
   const handleClick = (value) => {
     console.log("Clicked with value:", value);
   };
@@ -40,5 +40,3 @@ const BetHeaderRight = () => {
     </div>
   );
 };
-
-export default BetHeaderRight;

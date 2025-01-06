@@ -1,7 +1,7 @@
 import React from "react";
 import style from "../style/Window.module.css";
 
-const DetailsCards = ({ cards }) => {
+export const DetailCards = ({ cards }) => {
   return (
     <div className={style.CardScrollContainer}>
       {cards.map((card) => (
@@ -15,5 +15,3 @@ const DetailsCards = ({ cards }) => {
     </div>
   );
 };
-
-export default DetailsCards;

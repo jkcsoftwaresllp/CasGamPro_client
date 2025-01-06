@@ -1,13 +1,13 @@
 import { useState } from "react";
 import { apiCall } from "./helper/apiCall"; // Import the reusable API call function
-import UserIdInput from "../../../main/jsx/inputFeild/UserId";
-import TextInput from "../../../main/jsx/inputFeild/TextInput";
-import NumberInput from "../../../main/jsx/inputFeild/NumberInput";
-import PasswordInput from "../../../main/jsx/inputFeild/PasswordInput";
-import Button from "../../../../common/Button";
+import { UserIdInput } from "../../../main/jsx/inputFeild/UserId";
+import { TextInput } from "../../../main/jsx/inputFeild/TextInput";
+import { NumberInput } from "../../../main/jsx/inputFeild/NumberInput";
+import { PasswordInput } from "../../../main/jsx/inputFeild/PasswordInput";
+import { Button } from "../../../../common/Button";
 import style from "./style/AgentNewUser.module.css";
 
-const AgentNewUser = () => {
+export const AgentNewUser = () => {
   const [formData, setFormData] = useState({
     userId: "",
     firstName: "",
@@ -144,4 +144,3 @@ const AgentNewUser = () => {
   );
 };
 
-export default AgentNewUser;

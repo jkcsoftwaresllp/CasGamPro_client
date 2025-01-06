@@ -1,6 +1,6 @@
 import style from "../styles/ContentPage.module.css";
 
-const Dashboard = () => {
+export const Dashboard = () => {
   return (
     <div className={style.content}>
       <h2 className={style.header}>Dashboard </h2>
@@ -9,4 +9,3 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;

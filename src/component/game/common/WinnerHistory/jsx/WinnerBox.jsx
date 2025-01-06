@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import style from "../style/WinnerHistory.module.css";
-import WinnerDetails from "./WinnerDetail";
+import { WinnerDetail } from "./WinnerDetail";
 
-const WinnerBox = ({ winner, roundId, gameId }) => {
+export const WinnerBox = ({ winner, roundId, gameId }) => {
   const [showDetails, setShowDetails] = useState(false);
 
   const toggleDetails = (e) => {
@@ -18,7 +18,7 @@ const WinnerBox = ({ winner, roundId, gameId }) => {
       {winner}
 
       {showDetails && (
-        <WinnerDetails
+        <WinnerDetail
           roundId={roundId}
           gameId={gameId}
           winner={winner}
@@ -29,4 +29,3 @@ const WinnerBox = ({ winner, roundId, gameId }) => {
   );
 };
 
-export default WinnerBox;

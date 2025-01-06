@@ -1,6 +1,6 @@
 import style from "../../styles/AgentNewUser.module.css";
 
-const TextInput = ({ label, name, value, onChange, placeholder }) => (
+export const TextInput = ({ label, name, value, onChange, placeholder }) => (
   <div className={style.input}>
     <label className={style.label}>{label}</label>
     <input
@@ -13,5 +13,3 @@ const TextInput = ({ label, name, value, onChange, placeholder }) => (
     />
   </div>
 );
-
-export default TextInput;

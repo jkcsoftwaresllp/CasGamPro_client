@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import style from "../styles/Home.module.css";
-import Loader from "../../component/common/Loader";
-import Button from "../../component/common/Button";
+import { Loader } from "../../component/common/Loader";
+import { Button } from "../../component/common/Button";
 
-const Home = () => {
+export const Home = () => {
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
@@ -39,4 +39,3 @@ const Home = () => {
   );
 };
 
-export default Home;

@@ -1,10 +1,10 @@
 import React from "react";
-import BetHeaderRight from "./BetHeaderRight";
-import BetHeaderLeft from "./BetHeaderLeft";
+import {BetHeaderRight} from "./BetHeaderRight";
+import {BetHeaderLeft} from "./BetHeaderLeft";
 
 import style from "../style/BetHeader.module.css";
 
-const BetHeader = () => {
+export const BetHeader = () => {
   return (
     <div className={style.BetHeader}>
       <BetHeaderRight />
@@ -13,4 +13,3 @@ const BetHeader = () => {
   );
 };
 
-export default BetHeader;

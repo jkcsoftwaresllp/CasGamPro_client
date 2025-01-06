@@ -1,8 +1,8 @@
-import UserBetHeader from "../jsx/UserBetHeader";
-import UserBetSection from "../jsx/UserBetSection";
+import { UserBetHeader } from "../jsx/UserBetHeader";
+import { UserBetSection } from "../jsx/UserBetSection";
 import style from "../style/UserBetMain.module.css";
 
-const UserBetMain = () => {
+export const UserBetMain = () => {
   return (
     <div className={style.main}>
       <UserBetHeader />
@@ -10,4 +10,3 @@ const UserBetMain = () => {
     </div>
   );
 };
-export default UserBetMain;

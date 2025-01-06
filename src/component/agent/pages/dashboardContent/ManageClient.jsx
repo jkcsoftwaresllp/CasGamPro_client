@@ -1,8 +1,8 @@
 import { useNavigate } from "react-router-dom"; // Import useNavigate from React Router
 import style from "../styles/ContentPage.module.css";
-import Button from "../../../common/Button"; // Import Button component
+import {Button} from "../../../common/Button"; // Import Button component
 
-const ManageClients = () => {
+export const ManageClients = () => {
   const navigate = useNavigate(); // Initialize navigate function
 
   const handleCreateUserClick = () => {
@@ -20,4 +20,3 @@ const ManageClients = () => {
   );
 };
 
-export default ManageClients;

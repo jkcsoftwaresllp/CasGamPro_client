@@ -2,7 +2,7 @@ import React from "react";
 import { BetOnCard } from "../../../common/BetSection/jsx/BetOnCard";
 import style from "../style/LowerBetSection.module.css";
 
-const CardBetSection = () => {
+export const CardBetSection = () => {
   const firstRowCards = ["A", "2", "3", "4", "5", "6", "7", "8", "9"];
   const secondRowCards = ["10", "J", "Q", "K"];
 
@@ -38,5 +38,3 @@ const CardBetSection = () => {
     </div>
   );
 };
-
-export default CardBetSection;

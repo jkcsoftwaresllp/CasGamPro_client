@@ -1,10 +1,10 @@
 import React from "react";
 import style from "../style/Window.module.css";
 import Cancel from "../images/cancel.svg";
-import DetailCards from "./DetailCards";
-import Button from "../../../../common/Button";
+import { DetailCards } from "./DetailCards";
+import { Button } from "../../../../common/Button";
 
-const WinnerDetail = ({ roundId, gameId, winner, toggleDetails }) => {
+export const WinnerDetail = ({ roundId, gameId, winner, toggleDetails }) => {
   const cards = [
     { id: 1, value: "A", suit: "♣" },
     { id: 2, value: "2", suit: "♦" },
@@ -48,4 +48,3 @@ const WinnerDetail = ({ roundId, gameId, winner, toggleDetails }) => {
   );
 };
 
-export default WinnerDetail;

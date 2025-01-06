@@ -3,7 +3,7 @@ import { BetComponent } from "./betBody/BetComponent";
 import { UserLabelHeader } from "./betBody/BetHeader";
 import { MainHeader } from "./betHeader/MainHeader";
 
-const MainBet = () => {
+export const MainBet = () => {
   return (
     <div
       style={{
@@ -18,4 +18,3 @@ const MainBet = () => {
   );
 };
 
-export default MainBet;

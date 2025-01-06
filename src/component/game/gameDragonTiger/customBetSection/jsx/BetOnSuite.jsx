@@ -3,7 +3,7 @@ import { BetWithText } from "../../../common/BetSection/jsx/BetWithText";
 import { BetWithColor } from "../../../common/BetSection/jsx/BetWithColor";
 import styles from "../style/LowerBetSection.module.css";
 
-const BetOnSuite = () => {
+export const BetOnSuite = () => {
   return (
     <div className={styles.betOnSuiteContainer}>
       <BetWithText label="Even" betProfit={0} betAmount={0} />
@@ -13,5 +13,3 @@ const BetOnSuite = () => {
     </div>
   );
 };
-
-export default BetOnSuite;

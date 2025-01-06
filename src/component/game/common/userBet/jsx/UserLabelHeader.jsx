@@ -1,8 +1,8 @@
 import React from "react";
-import UserLabel from "../jsx/UserLabel";
+import { UserLabel } from "../jsx/UserLabel";
 import style from "../style/UserLabelHeader.module.css";
 
-const UserLabelHeader = ({
+export const UserLabelHeader = ({
   name = "Name",
   odd = "Odd",
   stake = "Stake",
@@ -17,5 +17,3 @@ const UserLabelHeader = ({
     </div>
   );
 };
-
-export default UserLabelHeader;

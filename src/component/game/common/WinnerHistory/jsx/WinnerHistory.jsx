@@ -1,8 +1,8 @@
 import React from "react";
-import WinnerRectangle from "./WinnerRectangle";
+import {WinnerRectangle} from "./WinnerRectangle";
 import style from "../style/WinnerHistory.module.css";
 
-const WinnerHistory = () => {
+export const WinnerHistory = () => {
   const results = [
     { winner: "A", roundId: 1, gameId: 1 },
     { winner: "B", roundId: 2, gameId: 1 },
@@ -18,5 +18,3 @@ const WinnerHistory = () => {
     </div>
   );
 };
-
-export default WinnerHistory;

@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import UsernameInput from "../components/Common/UserNameInput";
-import PasswordInput from "../components/Common/PasswordInput";
-import Button from "../components/Common/Button";
+import { UsernameInput } from "../components/Common/UserNameInput";
+import { PasswordInput } from "../components/Common/PasswordInput";
+import { Button } from "../components/Common/Button";
 import { apiCall } from "../components/Common/apiCall.js";
 import style from "../components/Login/styles/LoginPage.module.css";
 
-const LoginPage = () => {
+export const LoginPage = () => {
   const [userId, setUserId] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -13,7 +13,7 @@ const LoginPage = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     setError("");
-    console.log("Clicked")
+    console.log("Clicked");
 
     // Validate input fields
     if (!userId || !password) {
@@ -50,5 +50,3 @@ const LoginPage = () => {
     </div>
   );
 };
-
-export default LoginPage;

@@ -1,7 +1,7 @@
-import BetInPair from "../../../common/BetSection/jsx/BetInPair";
+import { BetInPair } from "../../../common/BetSection/jsx/BetInPair";
 import styles from "../style/BetHeader.module.css";
 
-const BetHeaderLeft = () => {
+export const BetHeaderLeft = () => {
   const handleClick = (value) => {
     console.log("Clicked with value:", value);
   };
@@ -20,5 +20,3 @@ const BetHeaderLeft = () => {
     </div>
   );
 };
-
-export default BetHeaderLeft;

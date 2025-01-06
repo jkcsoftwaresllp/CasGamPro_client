@@ -1,5 +1,5 @@
 import style from "../styles/ContentPage.module.css";
-const ManagePassword = () => {
+export const ManagePassword = () => {
   return (
     <div>
       <h2>Manage Password</h2>
@@ -7,5 +7,3 @@ const ManagePassword = () => {
     </div>
   );
 };
-
-export default ManagePassword;
