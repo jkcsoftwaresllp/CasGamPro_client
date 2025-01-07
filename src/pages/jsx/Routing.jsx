@@ -1,12 +1,10 @@
 import { Routes, Route } from "react-router-dom";
-import style from "../styles/Home.module.css";
-// Import page components
-import { LoginPage } from "../../component/agent/pages/dashboardContent/LoginPage";
+import style from "../styles/Routing.module.css";
 
 import { Home } from "./Home";
+import { LoginPage } from "../../component/agent/pages/dashboardContent/LoginPage";
 import { AgentWindow } from "../../component/agent/main/jsx/AgentWindow";
 import { Test } from "../../component/test/test";
-
 import { GameLayout } from "../../component/game/common/gameLayout/GameLayout";
 
 export const Routing = () => {

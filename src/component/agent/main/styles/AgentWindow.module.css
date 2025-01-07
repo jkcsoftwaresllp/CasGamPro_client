@@ -1,7 +1,7 @@
 /* Window.css */
 .container {
   display: flex; /* Flexbox layout for sidebar and main content */
-  height: 100vh; /* Full viewport height */
+  height: 100%; /* Full viewport height */
 }
 
 .sidebar {

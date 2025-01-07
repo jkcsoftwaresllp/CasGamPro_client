@@ -1,0 +1,6 @@
+.routing {
+  height: calc(100vh - var(--header-height));
+  width: 100vw;
+  overflow: auto;
+  border: 1px solid red;
+}
