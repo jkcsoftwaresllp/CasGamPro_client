@@ -11,6 +11,14 @@
   flex-direction: column;
 }
 
+.gameInterface {
+  width: 30%;
+}
+
+.simulationSection {
+  width: 70%;
+}
+
 .detailsSection {
   width: 30%;
   height: 100%;
@@ -21,4 +29,30 @@
 .gameControls {
   height: 200%;
   display: flex;
+}
+
+@media (max-width: 900px) {
+  .game {
+    flex-direction: column;
+  }
+
+  .mainContent {
+    width: 100%;
+  }
+
+  .detailsSection {
+    width: 100%;
+  }
+
+  .gameInterface {
+    width: 30%;
+  }
+
+  .simulationSection {
+    width: 70%;
+  }
+
+  .simulationSection {
+    width: 100%;
+  }
 }

@@ -11,8 +11,12 @@ export const Game = () => {
     <div className={styles.game}>
       <div className={styles.mainContent}>
         <div className={styles.gameControls}>
-          <GameInterface />
-          <SimulationSection />
+          <div className={styles.gameInterface}>
+            <GameInterface />
+          </div>
+          <div className={styles.simulationSection}>
+            <SimulationSection />
+          </div>
         </div>
         <BetSection />
       </div>
