@@ -9,15 +9,17 @@ import { Game } from "../../component/game/common/layout/jsx/Game";
 
 export const Routing = () => {
   return (
-    <div className={style.routing}>
-      <Routes>
-        {/* Public routes */}
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/" element={<Home />} />
-        <Route path="/agent/*" element={<AgentWindow />} />
-        <Route path="/test" element={<Test />} />
-        <Route path="/game" element={<Game />} />
-      </Routes>
+    <div className={style.routingWrapper}>
+      <div className={style.routing}>
+        <Routes>
+          {/* Public routes */}
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/agent/*" element={<AgentWindow />} />
+          <Route path="/test" element={<Test />} />
+          <Route path="/game" element={<Game />} />
+        </Routes>
+      </div>
     </div>
   );
 };

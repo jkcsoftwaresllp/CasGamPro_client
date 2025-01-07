@@ -1,27 +1,38 @@
-/* Header styles */
+.headerWrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
 .header {
+  max-width: 1440px;
+}
+
+.header {
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-right: 50px;
   background-color: var(--color-bg-primary);
   color: var(--color-text-primary);
   font-family: Arial, sans-serif;
   font-size: 1.2em;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
   height: var(--header-height);
+  padding: 0 10px;
 }
 
 .header__title {
   margin: 0;
   font-weight: var(--textBold);
+  font-size: var(--text-lg);
   cursor: pointer;
-  margin: 10px;
 }
+
 .rightSection {
   display: flex;
   align-items: center;
-  gap: 15px; /* Add spacing between toggle and login icon */
+  gap: 15px;
 }
 
 /* Switch styles */

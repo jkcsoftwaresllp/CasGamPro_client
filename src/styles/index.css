@@ -5,11 +5,12 @@
   --borderRadius: 6px;
   --borderRadius-md: 15px;
   --borderRadius-lg: 25px;
-  --text-sm: 16px;
-  --text-md: 20px;
-  --text-lg: 24px;
+  --text-sm: 1rem;
+  --text-md: 1.2rem;
+  --text-lg: 1.3rem;
 
   --header-height: 50px;
+  --maximum-responsive-width: 1440px;
 
   /* Light Mode Colors */
   --color-special-gold: #daa520; /* Rich, old-timey gold */
@@ -73,6 +74,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-size: var(--text-sm);
 }
 
 html {
