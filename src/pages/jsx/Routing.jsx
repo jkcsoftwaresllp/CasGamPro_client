@@ -5,7 +5,7 @@ import { Home } from "./Home";
 import { LoginPage } from "../../component/agent/pages/dashboardContent/LoginPage";
 import { AgentWindow } from "../../component/agent/main/jsx/AgentWindow";
 import { Test } from "../../component/test/test";
-import { GameLayout } from "../../component/game/common/gameLayout/GameLayout";
+import { Game } from "../../component/game/common/layout/jsx/Game";
 
 export const Routing = () => {
   return (
@@ -16,7 +16,7 @@ export const Routing = () => {
         <Route path="/" element={<Home />} />
         <Route path="/agent/*" element={<AgentWindow />} />
         <Route path="/test" element={<Test />} />
-        <Route path="/game" element={<GameLayout />} />
+        <Route path="/game" element={<Game />} />
       </Routes>
     </div>
   );

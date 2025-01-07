@@ -1,0 +1,24 @@
+.game {
+  width: 100%;
+  height: 100%;
+  display: flex;
+}
+
+.mainContent {
+  width: 70%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.detailsSection {
+  width: 30%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.gameControls {
+  height: 200%;
+  display: flex;
+}
