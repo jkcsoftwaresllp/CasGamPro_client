@@ -1,9 +1,9 @@
-import { MainBetSection } from "../game/gameDragonTiger/customBetSection/jsx/MainBetSection";
+import { VideoSection } from "../game/common/vedioSection/jsx/Vediosection";
 
 export const Test = () => {
   return (
-    <div style={{ padding: "10px" }}>
-      <MainBetSection />
+    <div>
+      <VideoSection />
     </div>
   );
 };
