@@ -5,11 +5,12 @@
   --borderRadius: 6px;
   --borderRadius-md: 15px;
   --borderRadius-lg: 25px;
-  --text-sm: 16px;
-  --text-md: 20px;
-  --text-lg: 24px;
+  --text-sm: 1rem;
+  --text-md: 1.2rem;
+  --text-lg: 1.3rem;
 
   --header-height: 50px;
+  --maximum-responsive-width: 1440px;
 
   /* Light Mode Colors */
   --color-special-gold: #daa520; /* Rich, old-timey gold */
@@ -73,35 +74,27 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-}
-html,
-body {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  scrollbar-width: thin; /* For Firefox: "auto" or "thin" */
-  scrollbar-color: var(--color-bg-secondary) rgba(255, 255, 255, 0); /* Thumb and track colors */
-  background-color: var(
-    --color-bg-secondary
-  ); /* Ensure it matches the container's background */
+  font-size: var(--text-sm);
 }
 
-/* WebKit scrollbar styling */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-bg-secondary);
+}
+
 ::-webkit-scrollbar {
-  width: 2px; /* Width of the scrollbar */
-  height: 2px; /* Height of the scrollbar for horizontal scrollbars */
+  width: 4px;
+  height: 4px;
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: var(--color-bg-secondary); /* Scroll thumb color */
-  border-radius: 50%; /* Roundness of the thumb */
+  background-color: var(--color-text-secondary);
+  border-radius: 10px;
 }
 
 ::-webkit-scrollbar-track {
-  background-color: var(--color-text-tertiary); /* Scroll track color */
-  border-radius: 50%; /* Roundness of the track */
-}
-
-::-webkit-scrollbar-corner {
-  background-color: var(--color-bg-secondary);
+  background-color: var(--color-bg-tertiary);
 }
