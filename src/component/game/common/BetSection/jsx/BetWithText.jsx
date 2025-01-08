@@ -13,7 +13,10 @@ export const BetWithText = ({
     <>
       <div className={styles.betWithText}>
         <p className={styles.betProfit}>{betProfit}</p>
-        <div className={styles.bet} onClick={() => onClick(label, betProfit)}>
+        <div
+          className={styles.bet}
+          onClick={() => onClick(label.toLowerCase(), betProfit)}
+        >
           <p>{label}</p>
           <p>{betAmount}</p>
           {isLock && <LockOverlay />}
