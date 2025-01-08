@@ -18,7 +18,7 @@ const cardCodes = [
   "K",
 ];
 
-export const BetCardSection = ({ gameId, isLock, label }) => {
+export const BetCardSection = ({ onClick, isLock, label }) => {
   return (
     <div className={styles.betSection}>
       <div className={styles.name}>{label}</div>
@@ -29,6 +29,7 @@ export const BetCardSection = ({ gameId, isLock, label }) => {
             label={code}
             betAmount={"0.0"}
             isLock={isLock}
+            onClick={onClick}
           />
         ))}
       </div>
