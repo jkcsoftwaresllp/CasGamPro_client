@@ -9,6 +9,11 @@ export const WinnerHistory = () => {
     { winner: "A", roundId: 3, gameId: 1 },
     { winner: "A", roundId: 4, gameId: 1 },
     { winner: "B", roundId: 5, gameId: 1 },
+    { winner: "A", roundId: 1, gameId: 1 },
+    { winner: "B", roundId: 2, gameId: 1 },
+    { winner: "A", roundId: 3, gameId: 1 },
+    { winner: "A", roundId: 4, gameId: 1 },
+    { winner: "B", roundId: 5, gameId: 1 },
   ]; // Move the results array here
 
   return (
