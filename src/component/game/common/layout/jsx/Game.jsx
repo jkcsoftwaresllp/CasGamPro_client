@@ -7,6 +7,7 @@ import { SimulationSection } from "./SimulationSection";
 import { StakeSection } from "./StakeSection";
 
 export const Game = () => {
+  const game = "lucky7B";
   return (
     <div className={styles.game}>
       <div className={styles.mainContent}>
@@ -18,7 +19,7 @@ export const Game = () => {
             <SimulationSection />
           </div>
         </div>
-        <BetSection />
+        <BetSection game={game} />
       </div>
       <div className={styles.detailsSection}>
         <GameHistory />
