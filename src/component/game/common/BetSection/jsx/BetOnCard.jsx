@@ -6,7 +6,10 @@ import { clubIcon, diamondIcon, heartIcon, spadeIcon } from "../helper/icons";
 export const BetOnCard = ({ label, betProfit, betAmount, onClick, isLock }) => {
   return (
     <>
-      <div className={styles.betOnCard} onClick={() => onClick(betProfit)}>
+      <div
+        className={styles.betOnCard}
+        onClick={() => onClick(label, betProfit)}
+      >
         <div className={`${styles.card} ${styles.label}`}>{label}</div>
 
         <div className={styles.card}>

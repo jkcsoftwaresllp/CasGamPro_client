@@ -3,6 +3,7 @@ import styles from "../style/BetSection.module.css";
 import { BetOnEvOdReBl } from "../../BetSection/jsx/BetOnEvOdReBl";
 import { BetCardSection } from "../../BetSection/jsx/BetCardSection";
 import { BetWithText } from "../../BetSection/jsx/BetWithText";
+import { BetOnCard } from "../../BetSection/jsx/BetOnCard";
 
 export const BetSection = () => {
   let isLock = false;
@@ -34,6 +35,15 @@ export const BetSection = () => {
             isLock={isLock}
             onClick={handleLowClick}
           />
+
+          <BetOnCard
+            label={"7"}
+            betProfit={"1.96"}
+            betAmount={"0.0"}
+            isLock={isLock}
+            onClick={handleCardSectionClick}
+          />
+          
           <BetWithText
             label={"High"}
             betProfit={"1.96"}

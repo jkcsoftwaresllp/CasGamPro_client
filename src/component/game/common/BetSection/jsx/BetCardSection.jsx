@@ -23,8 +23,9 @@ export const BetCardSection = ({
             key={code}
             label={code}
             betAmount={betAmount[code] || "0.0"}
+            betProfit={profit}
             isLock={isLock}
-            onClick={onClick}
+            onClick={(label, value) => onClick(label, value)}
           />
         ))}
       </div>
