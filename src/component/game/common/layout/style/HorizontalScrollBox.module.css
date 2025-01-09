@@ -1,0 +1,9 @@
+.scrollBox {
+  display: flex;
+  overflow-x: auto;
+  white-space: nowrap;
+  scroll-behavior: smooth;
+  box-sizing: border-box;
+  padding-bottom: 5px;
+  gap: 5px;
+}
