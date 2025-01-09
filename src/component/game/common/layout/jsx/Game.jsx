@@ -13,7 +13,7 @@ export const Game = () => {
       <div className={styles.mainContent}>
         <div className={styles.gameControls}>
           <div className={styles.gameInterface}>
-            <GameInterface />
+            <GameInterface game={game} />
           </div>
           <div className={styles.simulationSection}>
             <SimulationSection />
