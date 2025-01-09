@@ -6,6 +6,8 @@ import { LoginPage } from "../../component/agent/pages/dashboardContent/LoginPag
 import { AgentWindow } from "../../component/agent/main/jsx/AgentWindow";
 import { Test } from "../../component/test/test";
 import { Game } from "../../component/game/common/layout/jsx/Game";
+import { ProtectedRoutes } from "./ProtectedRoutes"; // Import the ProtectedRoute
+import { ErrorPage } from "./Error"; // Import the ErrorPage
 
 export const Routing = () => {
   return (
@@ -15,9 +17,34 @@ export const Routing = () => {
           {/* Public routes */}
           <Route path="/login" element={<LoginPage />} />
           <Route path="/" element={<Home />} />
-          <Route path="/agent/*" element={<AgentWindow />} />
           <Route path="/test" element={<Test />} />
-          <Route path="/game" element={<Game />} />
+          <Route
+            path="*"
+            element={
+              <ErrorPage
+                errorCode="ERR404"
+                errorMessage="The page you are looking for does not exist."
+              />
+            }
+          />
+
+          {/* Protected routes */}
+          <Route
+            path="/agent/*"
+            element={
+              <ProtectedRoutes>
+                <AgentWindow />
+              </ProtectedRoutes>
+            }
+          />
+          <Route
+            path="/game"
+            element={
+              <ProtectedRoutes>
+                <Game />
+              </ProtectedRoutes>
+            }
+          />
         </Routes>
       </div>
     </div>

@@ -13,3 +13,15 @@
   width: 100vw;
   overflow: auto;
 }
+.loaderContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Full viewport height */
+  width: 100vw; /* Full viewport width */
+  position: fixed; /* Fixed position to cover entire screen */
+  top: 0;
+  left: 0;
+
+  z-index: 9999; /* Ensure loader appears on top */
+}
