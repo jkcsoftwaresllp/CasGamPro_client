@@ -1,0 +1,31 @@
+.videoSectionContainer {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.videoCanvas {
+  border: 2px solid #000;
+  border-radius: 4px;
+  background-color: #000;
+  max-width: 100%;
+  width: 640px;
+  height: 360px;
+}
+
+.buttonContainer {
+  position: absolute; /* Position it over the video player */
+  top: 10px; /* Position from the top of the container */
+  right: 10px; /* Position from the right side */
+  display: flex;
+  flex-direction: row; /* Align buttons in a row */
+  align-items: center; /* Align buttons vertically in the center */
+  gap: 10px; /* Space between buttons */
+  z-index: 1; /* Ensure buttons are placed on top of the video */
+}
