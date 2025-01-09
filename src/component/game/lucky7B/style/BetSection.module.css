@@ -6,6 +6,7 @@
   align-items: center;
   flex-direction: column;
   gap: 10px;
+  padding: 10px 5px;
 }
 
 .lowHighEvenOdd {
@@ -20,4 +21,10 @@
   justify-content: center;
   align-items: center;
   gap: 8px;
+}
+
+@media (max-width: 1024px) {
+  .lowHighEvenOdd {
+    flex-direction: column;
+  }
 }
