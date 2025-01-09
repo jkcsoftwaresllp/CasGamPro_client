@@ -1,33 +1,28 @@
 import React from "react";
 import styles from "../styles/BetSection.module.css";
 import { BetOnCard } from "./BetOnCard";
+import { cardCodes } from "../helper/BetCardSection";
 
-const cardCodes = [
-  "A",
-  "2",
-  "3",
-  "4",
-  "5",
-  "6",
-  "7",
-  "8",
-  "9",
-  "10",
-  "J",
-  "Q",
-  "K",
-];
+export const BetCardSection = ({
+  onClick,
+  isLock,
+  betProfit = null,
+  betAmount = {},
+}) => {
+  let profit = betProfit;
+  if (profit === null) {
+    profit = "1.96";
+  }
 
-export const BetCardSection = ({ onClick, isLock, label }) => {
   return (
     <div className={styles.betSection}>
-      <div className={styles.name}>{label}</div>
+      <div className={styles.name}>{profit}</div>
       <div className={styles.cards}>
         {cardCodes.map((code) => (
           <BetOnCard
             key={code}
             label={code}
-            betAmount={"0.0"}
+            betAmount={betAmount[code] || "0.0"}
             isLock={isLock}
             onClick={onClick}
           />

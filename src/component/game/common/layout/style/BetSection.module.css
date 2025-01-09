@@ -1,8 +1,23 @@
 .betSection {
-  background-color: #d85a5a;
   height: 100%;
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.lowHighEvenOdd {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+}
+
+.lowHigh {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
 }

@@ -1,14 +1,21 @@
-.name{
-    color: var(--color-text-primary);
-    font-size: var(--text-lg);
-    font-weight: 700;
-    text-align: center;
-    padding: 20px;
+.betSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.cards{
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    justify-content: center;
+.name {
+  color: var(--color-text-primary);
+  font-size: var(--text-lg);
+  font-weight: 700;
+  text-align: center;
+  padding-bottom: 5px;
+  display: flex;
+}
+
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
 }
