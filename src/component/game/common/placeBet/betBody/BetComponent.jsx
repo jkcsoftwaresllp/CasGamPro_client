@@ -15,7 +15,6 @@ export const BetComponent = ({ betFor, profit, stake }) => {
   const [currentProfit, setCurrentProfit] = useState(profit);
 
   const stakeChangeHandler = handleStakeChange(setStakeValue);
-  const profitChangeHandler = handleProfitChange(setCurrentProfit);
   const resetHandler = handleReset(
     setStakeValue,
     setCurrentProfit,
@@ -30,7 +29,6 @@ export const BetComponent = ({ betFor, profit, stake }) => {
         betFor={betFor}
         stakeValue={stakeValue}
         currentProfit={currentProfit}
-        onProfitChange={profitChangeHandler}
         setStakeValue={setStakeValue}
       />
       <CoinSection onCoinClick={stakeChangeHandler} />

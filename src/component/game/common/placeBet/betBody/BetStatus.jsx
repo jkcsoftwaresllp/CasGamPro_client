@@ -5,7 +5,6 @@ export const BetStatus = ({
   betFor,
   stakeValue,
   currentProfit,
-  onProfitChange,
   setStakeValue,
 }) => {
   const handleStakeChange = (event) => {
