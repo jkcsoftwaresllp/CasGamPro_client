@@ -28,7 +28,7 @@ export const LoginPage = () => {
 
     try {
       // Send login data to the backend
-      const response = await apiCall("/api/auth/login", "POST", {
+      const response = await apiCall("/api/login", "POST", {
         userId,
         password,
       });
