@@ -1,5 +1,8 @@
 .simulationSection {
-  background-color: #69d85a;
+  background-color: var(--color-bg-tertiary);
+  color: var(--color-text-primary);
+  font-weight: 800;
+  border: 1px solid #8b3b3b;
   height: 100%;
   width: 100%;
   display: flex;
