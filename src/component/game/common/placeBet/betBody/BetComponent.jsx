@@ -31,6 +31,7 @@ export const BetComponent = ({ betFor, profit, stake }) => {
         stakeValue={stakeValue}
         currentProfit={currentProfit}
         onProfitChange={profitChangeHandler}
+        setStakeValue={setStakeValue}
       />
       <CoinSection onCoinClick={stakeChangeHandler} />
       <div className={styles.buttonContainer}>

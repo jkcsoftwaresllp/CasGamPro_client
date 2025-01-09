@@ -5,14 +5,18 @@
   font-size: var(--text-md);
   font-weight: var(--textBold);
   flex: 1;
+  padding: 5px;
 }
+
 .adjuster {
   color: var(--color-text-primary);
   cursor: pointer;
 }
+
 .profit {
   color: var(--color-text-primary);
 }
+
 .betFor {
   color: var(--color-text-primary);
 
@@ -26,6 +30,7 @@
   padding: 10px;
   border-radius: var(--borderRadius);
 }
+
 .column {
   display: flex;
   flex-direction: column;
@@ -43,11 +48,10 @@
   justify-content: space-between;
   gap: 10px;
   width: 100%;
-
   margin-bottom: 10px;
   flex: 1;
-  padding: 10px;
 }
+
 .betFor,
 .input,
 .profit,
@@ -63,17 +67,16 @@
 .currentProfit {
   color: var(--color-text-primary);
 }
+
 .input {
-  width: 80px; /* Fixed width */
-  padding: 10px; /* Padding for better text alignment */
+  width: 70px;
+  padding: 5px; 
   border: none;
   outline: none;
-  border-radius: 5px; /* Rounded corners */
-
-  text-align: center; /* Center text inside the input */
-  background-color: var(--color-bg-primary); /* Light background color */
+  border-radius: var(--borderRadius);
+  text-align: center; 
+  background-color: var(--color-bg-primary); 
   color: var(--color-text-primary);
-  transition: border-color 0.3s ease, background-color 0.3s ease; /* Smooth transition for focus */
 }
 
 span {
@@ -81,10 +84,10 @@ span {
 }
 
 .button {
-  padding: 15px;
+  padding: 5px;
   font-size: var(--text-md);
   border: none;
-  border-radius: 5px;
+  border-radius: var(--borderRadius);
   cursor: pointer;
   font-weight: var(--textBold);
   width: 150px;
@@ -99,8 +102,9 @@ span {
 .button:hover {
   opacity: 0.9;
 }
+
 .buttonContainer {
   display: flex;
-  justify-content: space-between; /* Align Reset and Submit to opposite ends */
+  justify-content: space-between; 
   margin-top: 20px;
 }

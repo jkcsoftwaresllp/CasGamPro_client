@@ -1,7 +1,6 @@
 .window {
   background-color: var(--color-bg-primary);
-  overflow-y: auto; /* Enable vertical scrolling */
-
-  scrollbar-width: thin;
-  /* height: 150px; */
+  border: 1px solid red;
+  padding: 5px 8px;
+  height: 100%;
 }

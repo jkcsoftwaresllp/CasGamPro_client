@@ -2,14 +2,13 @@ import React from "react";
 import { BetComponent } from "./betBody/BetComponent";
 import { UserLabelHeader } from "./betBody/BetHeader";
 import { MainHeader } from "./betHeader/MainHeader";
+import styles from './MainBet.module.css';  
 
 export const MainBet = () => {
   return (
     <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-      }}
+     
+      className={styles.mainBet}
     >
       <MainHeader />
       <UserLabelHeader />
@@ -17,4 +16,3 @@ export const MainBet = () => {
     </div>
   );
 };
-

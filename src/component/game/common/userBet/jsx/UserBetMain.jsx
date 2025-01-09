@@ -4,7 +4,7 @@ import style from "../style/UserBetMain.module.css";
 
 export const UserBetMain = () => {
   return (
-    <div className={style.main}>
+    <div className={style.userBetMain}>
       <UserBetHeader />
       <UserBetSection />
     </div>
