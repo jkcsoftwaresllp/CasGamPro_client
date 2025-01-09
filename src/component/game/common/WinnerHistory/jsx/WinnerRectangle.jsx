@@ -1,12 +1,12 @@
 import React from "react";
 import { WinnerBox } from "./WinnerBox";
 import style from "../style/WinnerHistory.module.css";
-import { HorizontalScrollBox } from "../../layout/jsx/HorizontalScrollBox";
+import { ScrollBox } from "../../layout/jsx/ScrollBox";
 
 export const WinnerRectangle = ({ results }) => {
   return (
     <div className={style.WinnerRectangle}>
-      <HorizontalScrollBox>
+      <ScrollBox direction="horizontal">
         {results.map((result, index) => (
           <WinnerBox
             key={index}
@@ -15,7 +15,7 @@ export const WinnerRectangle = ({ results }) => {
             roundId={result.roundId}
           />
         ))}
-      </HorizontalScrollBox>
+      </ScrollBox>
     </div>
   );
 };
