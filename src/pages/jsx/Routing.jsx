@@ -30,17 +30,17 @@ export const Routing = () => {
 
           {/* Protected routes */}
           <Route
-            path="/agent"
+            path="/agent/*"
             element={
-              <ProtectedRoutes allowedRoles={["agent"]}>
+              <ProtectedRoutes allowedRoles={["AGENT"]}>
                 <AgentWindow />
               </ProtectedRoutes>
             }
           />
           <Route
-            path="/game"
+            path="/game/*"
             element={
-              <ProtectedRoutes allowedRoles={["player", "agent"]}>
+              <ProtectedRoutes allowedRoles={["CLIENT"]}>
                 <Game />
               </ProtectedRoutes>
             }

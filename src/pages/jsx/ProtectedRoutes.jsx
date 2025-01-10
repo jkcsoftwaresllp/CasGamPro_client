@@ -5,28 +5,35 @@ import { checkAuthStatus } from "../helper/authHelper";
 import LoadingState from "../helper/LoadingState"; // Import the LoadingState component
 
 export const ProtectedRoutes = ({ children, allowedRoles }) => {
-  const { user, setUser } = useContext(UserContext);
+  const { userContext, initializeContext, updateContext } =
+    useContext(UserContext);
+
   const [authState, setAuthState] = useState({
     loading: true,
     authorized: false,
   });
 
   useEffect(() => {
-    const cachedRole = user.role || localStorage.getItem("userRole");
-
-    if (cachedRole) {
+    // Check if userContext has been initialized and contains valid data
+    if (userContext && userContext.role) {
+      // If userContext is available, use its role to check authorization
       setAuthState({
         loading: false,
-        authorized: allowedRoles.includes(cachedRole),
+        authorized: allowedRoles.includes(userContext.role),
       });
     } else {
+      // If userContext is not initialized, call the API to fetch authentication status
       const fetchAuthStatus = async () => {
-        const status = await checkAuthStatus(allowedRoles, setUser);
+        const status = await checkAuthStatus(
+          allowedRoles,
+          updateContext,
+          initializeContext
+        );
         setAuthState(status);
       };
       fetchAuthStatus();
     }
-  }, [allowedRoles, user, setUser]);
+  }, [allowedRoles, userContext, updateContext, initializeContext]);
 
   if (authState.loading) {
     return <LoadingState />;

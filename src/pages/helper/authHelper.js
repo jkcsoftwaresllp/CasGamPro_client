@@ -1,3 +1,5 @@
+import { apiCall } from "../../component/agent/pages/dashboardContent/manageClient/helper/apiCall";
+
 // Helper function to check authentication status
 export const checkAuthStatus = async (allowedRoles, setUser) => {
   try {
