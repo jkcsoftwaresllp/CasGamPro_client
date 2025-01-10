@@ -8,7 +8,7 @@ import { StakeSection } from "./StakeSection";
 
 export const Game = () => {
   const [betItems, setBetItems] = useState(null);
-  const game = "lucky7B";
+  const game = "AndarBahar";
 
   return (
     <div className={styles.game}>
