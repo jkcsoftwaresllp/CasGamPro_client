@@ -95,3 +95,22 @@ input:checked + .slider:before {
 .loginIcon:hover {
   transform: scale(1.1); /* Add hover effect */
 }
+.balance {
+  margin-right: 20px;
+  display: flex;
+  align-items: center;
+  font-size: var(--text-md);
+  gap: 10px;
+}
+.user,
+.coins {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 5px;
+}
+.user p,
+.coins p {
+  font-size: var(--text-md);
+  font-weight: var(--textBold);
+}
