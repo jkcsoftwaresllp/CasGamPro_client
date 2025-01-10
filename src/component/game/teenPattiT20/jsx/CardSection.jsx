@@ -7,7 +7,7 @@ export const CardSection = ({}) => {
 
   return (
     <div className={styles.cardSection}>
-      <ABCardSection playerA="Andar" playerB="Bahar" cards={cards} />
+      <ABCardSection playerA="Player A" playerB="Player B" cards={cards} />
     </div>
   );
 };

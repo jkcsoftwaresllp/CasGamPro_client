@@ -3,7 +3,20 @@ import styles from "../style/CardSection.module.css";
 import { CardSection as ABCardSection } from "../../common/cardSection/jsx/CardSection";
 
 export const CardSection = ({}) => {
-  const cards = ["D10", "CA", "D5", "HQ", "H4", "H6", "D6", "D8"];
+  const cards = [
+    "D10",
+    "CA",
+    "D5",
+    "HQ",
+    "H4",
+    "H6",
+    "D6",
+    "D8",
+    "H9",
+    "H10",
+    "S2",
+    "S3",
+  ];
 
   return (
     <div className={styles.cardSection}>
