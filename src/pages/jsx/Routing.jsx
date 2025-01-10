@@ -37,6 +37,7 @@ export const Routing = () => {
               </ProtectedRoutes>
             }
           />
+          <Route path="/game" element={<Game />} />
           <Route
             path="/game"
             element={

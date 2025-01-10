@@ -3,12 +3,12 @@ import styles from "../style/BetSection.module.css";
 
 import { BetSection as Lucky7BBetSection } from "../../../lucky7B/jsx/BetSection";
 
-export const BetSection = ({ game }) => {
+export const BetSection = ({ game, onClick }) => {
   let content;
 
   switch (game) {
     case "lucky7B":
-      content = <Lucky7BBetSection />;
+      content = <Lucky7BBetSection onClick={onClick} />;
       break;
 
     default:

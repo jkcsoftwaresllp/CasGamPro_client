@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "../style/Game.module.css";
 import { BetSection } from "./BetSection";
 import { GameHistory } from "./GameHistory";
@@ -7,7 +7,9 @@ import { SimulationSection } from "./SimulationSection";
 import { StakeSection } from "./StakeSection";
 
 export const Game = () => {
+  const [betItems, setBetItems] = useState(null);
   const game = "lucky7B";
+
   return (
     <div className={styles.game}>
       <div className={styles.mainContent}>
@@ -19,11 +21,16 @@ export const Game = () => {
             <SimulationSection />
           </div>
         </div>
-        <BetSection game={game} />
+        <BetSection
+          game={game}
+          onClick={(label, value) => {
+            setBetItems({ label, value }); // {label: "Low", value: "0.0"}
+          }}
+        />
       </div>
       <div className={styles.detailsSection}>
         <GameHistory />
-        <StakeSection />
+        <StakeSection betItems={betItems} setBetItems={setBetItems} />
       </div>
     </div>
   );
