@@ -24,7 +24,6 @@ export const Game = () => {
         <BetSection
           game={game}
           onClick={(label, value) => {
-            console.log({ label, value });
             setBetItems({ label, value }); // {label: "Low", value: "0.0"}
           }}
         />
