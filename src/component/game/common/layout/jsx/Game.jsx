@@ -6,27 +6,42 @@ import { GameHistory } from "./GameHistory";
 import { GameInterface } from "./GameInterface";
 import { SimulationSection } from "./SimulationSection";
 import { StakeSection } from "./StakeSection";
+import { validateUrlParams } from "../helper/validateUrlParams";
 
 export const Game = () => {
   const [betItems, setBetItems] = useState(null);
   const [game, setGame] = useState("");
   const [roundId, setRoundId] = useState("");
-
+  const [error, setError] = useState(null); // To track errors
   const location = useLocation();
 
-  // Extract gameId and roundId from the query parameters
+  // Extract gameName and roundId from the query parameters
   useEffect(() => {
-    const queryParams = new URLSearchParams(location.search); // Get query parameters from URL
-    const gameId = queryParams.get("gameId");
+    const queryParams = new URLSearchParams(location.search);
+    const gameName = queryParams.get("gameName");
     const roundId = queryParams.get("roundId");
 
-    if (gameId) {
-      setGame(gameId);
-    }
-    if (roundId) {
-      setRoundId(roundId);
+    if (gameName && roundId) {
+      const errorMessage = validateUrlParams(gameName, roundId);
+      if (errorMessage) {
+        setError(errorMessage);
+      } else {
+        setGame(gameName);
+        setRoundId(roundId);
+        setError(null); // Reset error if valid
+      }
+    } else {
+      setError("Missing gameName or roundId in URL");
     }
   }, [location.search]); // Re-run whenever the search query changes
+
+  if (error) {
+    return (
+      <div className={styles.error}>
+        <p>{error}</p>
+      </div>
+    );
+  }
 
   return (
     <div className={styles.game}>
