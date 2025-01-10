@@ -2,13 +2,15 @@ import React from "react";
 import styles from "../style/CardSection.module.css";
 import { CardToPlayer } from "./CardToPlayer";
 
-export const CardSection = ({  }) => {
-  const cards = ["D10", "CA", "D5", "HQ", "H4", "H6", "D6", "D8"];
-
+export const CardSection = ({
+  playerA = "Player A",
+  playerB = "Player B",
+  cards = [],
+}) => {
   return (
     <div className={styles.cardSection}>
-      <CardToPlayer name={"Player A"} cards={cards} />
-      <CardToPlayer name={"Player B"} cards={cards} />
+      <CardToPlayer name={playerA} cards={cards} />
+      <CardToPlayer name={playerB} cards={cards} />
     </div>
   );
 };
