@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import styles from "../style/GameInterface.module.css";
 import { CardSection as Lucky7BCardSection } from "../../../lucky7B/jsx/CardSection";
 import { CardSection as AndarBaharCardSection } from "../../../AndarBahar/jsx/CardSection";
+import { CardSection as TeenPattiT20CardSection } from "../../../teenPattiT20/jsx/CardSection";
 
 export const GameInterface = ({ game, roundId = "A85745846" }) => {
   const [gameName, setGameName] = useState("");
@@ -17,6 +18,11 @@ export const GameInterface = ({ game, roundId = "A85745846" }) => {
       case "andarBahar":
         setContent(<AndarBaharCardSection />);
         setGameName("Andar Bahar");
+        break;
+
+      case "teenPattiT20":
+        setContent(<TeenPattiT20CardSection />);
+        setGameName("Teen Patti T20");
         break;
 
       default:
