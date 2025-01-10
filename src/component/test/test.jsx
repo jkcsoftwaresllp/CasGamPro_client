@@ -1,9 +1,8 @@
-// import { VideoSection } from "../game/common/vedioSection/jsx/Vediosection";
-
+import { GameList } from "../game/pages/GameList";
 export const Test = () => {
   return (
     <div>
-      {/* <VideoSection /> */}
+      <GameList />{" "}
     </div>
   );
 };
