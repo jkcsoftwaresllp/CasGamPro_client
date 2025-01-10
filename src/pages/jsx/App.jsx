@@ -6,14 +6,14 @@ import { UserContextProvider } from "../../context/userContext/UserContext"; // 
 
 function App() {
   return (
-    <div className={style.app}>
-      <UserContextProvider>
-        <Router>
+    <UserContextProvider>
+      <Router>
+        <div className={style.app}>
           <Header />
           <Routing />
-        </Router>
-      </UserContextProvider>
-    </div>
+        </div>
+      </Router>
+    </UserContextProvider>
   );
 }
 
