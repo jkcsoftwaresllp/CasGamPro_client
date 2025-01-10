@@ -1,43 +1,38 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import styles from "../style/GameInterface.module.css";
 import { CardSection as Lucky7BCardSection } from "../../../lucky7B/jsx/CardSection";
 import { CardSection as AndarBaharCardSection } from "../../../AndarBahar/jsx/CardSection";
 import { CardSection as TeenPattiT20CardSection } from "../../../teenPattiT20/jsx/CardSection";
 
 export const GameInterface = ({ game, roundId = "A85745846" }) => {
-  const [gameName, setGameName] = useState("");
-  const [content, setContent] = useState(null);
+  const betSectionMap = {
+    lucky7B: Lucky7BCardSection,
+    andarBahar: AndarBaharCardSection,
+    teenPattiT20: TeenPattiT20CardSection,
+  };
 
-  useEffect(() => {
-    switch (game) {
-      case "lucky7B":
-        setContent(<Lucky7BCardSection />);
-        setGameName("Lucky 7B");
-        break;
+  const gameNameMap = {
+    lucky7B: "Lucky 7B",
+    andarBahar: "Andar Bahar",
+    teenPattiT20: "Teen Patti T20",
+  };
 
-      case "andarBahar":
-        setContent(<AndarBaharCardSection />);
-        setGameName("Andar Bahar");
-        break;
-
-      case "teenPattiT20":
-        setContent(<TeenPattiT20CardSection />);
-        setGameName("Teen Patti T20");
-        break;
-
-      default:
-        setGameName("Game not found");
-        setContent(<div>Game not found</div>);
-    }
-  }, [game]);
+  const SelectedBetSection = betSectionMap[game] || null;
+  const gameName = gameNameMap[game] || null;
 
   return (
     <div className={styles.gameInterface}>
       <div className={styles.header}>
-        <div className={styles.gameDetail}>{gameName}</div>
+        <div className={styles.gameDetail}>{gameName ? gameName : "Error"}</div>
         <div className={styles.gameRoundId}>{roundId}</div>
       </div>
-      <div className={styles.content}>{content}</div>
+      <div className={styles.content}>
+        {SelectedBetSection ? (
+          <SelectedBetSection />
+        ) : (
+          <div>Game not found</div>
+        )}
+      </div>
     </div>
   );
 };

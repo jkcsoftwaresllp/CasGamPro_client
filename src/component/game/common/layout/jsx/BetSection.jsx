@@ -5,23 +5,21 @@ import { BetSection as AndarBaharBetSection } from "../../../AndarBahar/jsx/BetS
 import { BetSection as TeenPattiT20BetSection } from "../../../teenPattiT20/jsx/BetSection";
 
 export const BetSection = ({ game, onClick }) => {
-  let content;
+  const betSectionMap = {
+    lucky7B: Lucky7BBetSection,
+    andarBahar: AndarBaharBetSection,
+    teenPattiT20: TeenPattiT20BetSection,
+  };
 
-  switch (game) {
-    case "lucky7B":
-      content = <Lucky7BBetSection onClick={onClick} />;
-      break;
-    case "andarBahar":
-      content = <AndarBaharBetSection onClick={onClick} />;
-      break;
+  const SelectedBetSection = betSectionMap[game] || null;
 
-    case "teenPattiT20":
-      content = <TeenPattiT20BetSection onClick={onClick} />;
-      break;
-
-    default:
-      content = <div>Game not found</div>;
-  }
-
-  return <div className={styles.betSection}>{content}</div>;
+  return (
+    <div className={styles.betSection}>
+      {SelectedBetSection ? (
+        <SelectedBetSection onClick={onClick} />
+      ) : (
+        <div>Game not found</div>
+      )}
+    </div>
+  );
 };
