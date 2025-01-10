@@ -1,19 +1,22 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { BetComponent } from "./betBody/BetComponent";
 import { UserLabelHeader } from "./betBody/BetHeader";
 import { MainHeader } from "./betHeader/MainHeader";
 import styles from "./MainBet.module.css";
 
 export const MainBet = ({ betItems = {}, setBetItems }) => {
-  let player = null,
-    label = null;
+  const [player, setPlayer] = useState(null);
+  const [label, setLabel] = useState(null);
 
-  if (betItems && betItems.player) {
-    label = betItems.label.label;
-    player = betItems.player.player;
-  } else label = betItems.label.label;
-
-  label = label.toUpperCase();
+  useEffect(() => {
+    if (betItems && betItems.label && betItems.label.player) {
+      setPlayer(betItems.label.player);
+      setLabel(betItems.label.label.toUpperCase());
+    } else {
+      setPlayer(null);
+      setLabel(betItems.label.label.toUpperCase());
+    }
+  }, [betItems]);
 
   return (
     <div className={styles.mainBet}>
@@ -24,6 +27,7 @@ export const MainBet = ({ betItems = {}, setBetItems }) => {
         profit={0.96}
         stake={0}
         setBetItems={setBetItems}
+        player={player}
       />
     </div>
   );

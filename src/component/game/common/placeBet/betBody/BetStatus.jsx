@@ -6,6 +6,7 @@ export const BetStatus = ({
   stakeValue,
   currentProfit,
   setStakeValue,
+  player,
 }) => {
   const handleStakeChange = (event) => {
     const newStakeValue = parseFloat(event.target.value);
@@ -14,7 +15,9 @@ export const BetStatus = ({
 
   return (
     <div className={styles.inline}>
-      <div className={styles.betFor}>{betFor}</div>
+      <div className={styles.betFor}>
+        {player} {betFor}
+      </div>
       <div className={styles.currentProfit}>{currentProfit}</div>
 
       <input

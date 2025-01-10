@@ -9,7 +9,13 @@ import {
 } from "./helper/betHelper";
 import styles from "./style/BetBody.module.css";
 
-export const BetComponent = ({ betFor, profit, stake, setBetItems }) => {
+export const BetComponent = ({
+  betFor,
+  profit,
+  stake,
+  setBetItems,
+  player,
+}) => {
   const [stakeValue, setStakeValue] = useState(stake);
   const [currentProfit, setCurrentProfit] = useState(profit);
 
@@ -29,6 +35,7 @@ export const BetComponent = ({ betFor, profit, stake, setBetItems }) => {
         stakeValue={stakeValue}
         currentProfit={currentProfit}
         setStakeValue={setStakeValue}
+        player={player}
       />
       <CoinSection onCoinClick={stakeChangeHandler} />
       <div className={styles.buttonContainer}>

@@ -20,7 +20,7 @@ export const BetSection = ({ onClick }) => {
       <div className={styles.betCard}>
         <p className={styles.name}>Bahar</p>
         <BetCardSection
-          onClick={(label, value) => onClick({ player: "Andar", label }, value)}
+          onClick={(label, value) => onClick({ player: "Bahar", label }, value)}
           isLock={isLock}
           betAmount={{ 2: "200" }}
           betProfit={"1.96"}
