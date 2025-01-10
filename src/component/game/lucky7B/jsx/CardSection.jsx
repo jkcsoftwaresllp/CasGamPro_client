@@ -4,7 +4,8 @@ import { Card } from "../../common/cardSection/jsx/Card";
 
 export const CardSection = ({}) => {
   const [cardCode, setCardCode] = useState("D7");
-  
+  console.log("Lucky7BCardSection");
+
   return (
     <div className={styles.cardSection}>
       <Card code={cardCode} onClick={() => {}} isShow />
