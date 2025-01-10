@@ -8,7 +8,7 @@ import { StakeSection } from "./StakeSection";
 
 export const Game = () => {
   const [betItems, setBetItems] = useState(null);
-  const game = "AndarBahar";
+  const game = "andarBahar";
 
   return (
     <div className={styles.game}>
@@ -24,6 +24,7 @@ export const Game = () => {
         <BetSection
           game={game}
           onClick={(label, value) => {
+            console.log({ label, value });
             setBetItems({ label, value }); // {label: "Low", value: "0.0"}
           }}
         />

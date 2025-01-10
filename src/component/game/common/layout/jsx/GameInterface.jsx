@@ -5,12 +5,14 @@ import { CardSection as AndarBaharCardSection } from "../../../AndarBahar/jsx/Ca
 
 export const GameInterface = ({ game }) => {
   let content;
+  console.log(game);
 
   switch (game) {
     case "lucky7B":
       content = <Lucky7BCardSection />;
+      break;
 
-    case "AndarBahar":
+    case "andarBahar":
       content = <AndarBaharCardSection />;
       break;
 
