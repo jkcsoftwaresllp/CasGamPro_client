@@ -1,29 +1,42 @@
 import React from "react";
-import ReactDOM from "react-dom";
-import { Card } from "../common/gameTiles/GameTiles";
+import { useNavigate } from "react-router-dom";
+import { GameTile } from "../common/gameTiles/GameTiles";
+import style from "./style/GameList.module.css";
+
+// images
+
 import teenPatti from "./img/teenPatti/image.png";
 import luckyB from "./img/luckSevenB/luckyB.jpg";
 import andarBahar from "./img/andarBahar/andarBahar.png";
-import style from "./style/GameList.module.css";
 
 export const GameList = () => {
+  const navigate = useNavigate();
+
+  const handleCardClick = (route) => {
+    navigate(route); // Navigate to the provided route
+  };
+
   return (
     <div className={style.flexContainer}>
-      <Card
+      <GameTile
         imgSrc={teenPatti}
         label="Teen Patti"
-        onClick={() => alert("Card clicked!")}
-        className={style.card}
+        onClick={() => handleCardClick("/teenPatti")} // Navigate to Teen Patti page
       />
-      <Card
+      <GameTile
         imgSrc={luckyB}
-        label="Lucky 7B"
-        onClick={() => alert("Card clicked!")}
+        label="Luck 7B"
+        onClick={() => handleCardClick("/luckyb")} // Navigate to Lucky B page
       />
-      <Card
+      <GameTile
         imgSrc={andarBahar}
         label="Andar Bahar"
-        onClick={() => alert("Card clicked!")}
+        onClick={() => handleCardClick("/andarBahar")} // Navigate to Andar Bahar page
+      />
+      <GameTile
+        imgSrc="https://media.giphy.com/media/10SvWCbt1ytWCc/giphy.gif"
+        label="Card Title 4"
+        onClick={() => handleCardClick("/game4")} // Navigate to Game 4 page
       />
     </div>
   );
