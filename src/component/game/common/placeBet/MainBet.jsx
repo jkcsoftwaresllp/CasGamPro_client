@@ -24,7 +24,7 @@ export const MainBet = ({ betItems = {}, setBetItems }) => {
       <UserLabelHeader />
       <BetComponent
         betFor={label}
-        profit={betItems.value}
+        profit={parseFloat(betItems.value)}
         setBetItems={setBetItems}
         player={player}
       />
