@@ -1,13 +1,17 @@
-import React from "react";
-
+import React, { useState } from "react";
 import styles from "./style/BetBody.module.css";
 
 export const BetStatus = ({
   betFor,
   stakeValue,
   currentProfit,
-  onProfitChange,
+  setStakeValue,
 }) => {
+  const handleStakeChange = (event) => {
+    const newStakeValue = parseFloat(event.target.value);
+    setStakeValue(newStakeValue);
+  };
+
   return (
     <div className={styles.inline}>
       <div className={styles.betFor}>{betFor}</div>
@@ -16,8 +20,8 @@ export const BetStatus = ({
       <input
         type="number"
         value={stakeValue}
-        readOnly
         className={styles.input}
+        onChange={handleStakeChange}
       />
       <span className={styles.profit}>
         {(stakeValue * currentProfit).toFixed(2)}

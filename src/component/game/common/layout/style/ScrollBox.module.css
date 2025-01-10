@@ -1,0 +1,21 @@
+.scrollBox {
+  display: flex;
+  overflow-x: auto;
+  white-space: nowrap;
+  scroll-behavior: smooth;
+  gap: 5px;
+}
+
+
+.scrollBox.horizontal {
+  flex-direction: row;
+  overflow-x: auto;
+  white-space: nowrap;
+  padding-bottom: 5px;
+}
+
+.scrollBox.vertical {
+  flex-direction: column;
+  overflow-y: auto;
+  padding-right: 5px;
+}

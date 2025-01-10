@@ -17,7 +17,7 @@ export const BetWithColor = ({
   return (
     <div className={styles.betWithText}>
       <p className={styles.betProfit}>{betProfit}</p>
-      <div className={styles.bet} onClick={() => onClick(betProfit)}>
+      <div className={styles.bet} onClick={() => onClick(color, betProfit)}>
         <div>
           {Icon2} {Icon1}
         </div>

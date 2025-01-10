@@ -1,34 +1,34 @@
 .WinnerHistory {
   background: var(--color-bg-tertiary);
-  padding: 20px;
-
+  padding: 20px 5px;
   color: var(--color-text-primary);
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
   text-align: center;
 }
 
 .WinnerRectangle {
   display: flex;
-  flex-wrap: nowrap; /* Prevent wrapping of items */
-  gap: 10px;
-
-  overflow-x: auto; /* Enable horizontal scrolling */
-  padding: 10px;
-  background-color: var(
-    --color-bg-tertiary
-  ); /* Background color for the rectangle */
-  border-radius: 8px;
+  justify-content: center;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  white-space: nowrap;
+  background-color: var(--color-bg-tertiary);
+  gap: 5px;
+  padding-bottom: 6px;
 }
 
 .WinnerBox {
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
   background: #555;
   color: var(--color-special-yellow);
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 5px;
   font-size: 1rem;
   font-weight: bold;
   border-radius: 4px;

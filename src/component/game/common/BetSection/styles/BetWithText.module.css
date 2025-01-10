@@ -1,7 +1,6 @@
 .betWithText {
-  width: 150px;
+  width: 100px;
   height: 70px;
-  padding: 7px;
   border-radius: var(--borderRadius);
   display: flex;
   flex-direction: column;
@@ -18,6 +17,7 @@
 
 .bet {
   width: 100%;
+  height: 90%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -30,8 +30,8 @@
   position: relative;
 }
 
-.bet:hover{
-    opacity: 0.8;
+.bet:hover {
+  opacity: 0.8;
 }
 
 .bet p:first-child {

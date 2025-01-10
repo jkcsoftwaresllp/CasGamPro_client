@@ -1,5 +1,7 @@
 .betSection {
-  background-color: #d85a5a;
   height: 100%;
   width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
