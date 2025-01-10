@@ -14,7 +14,7 @@ export const MainBet = ({ betItems = {}, setBetItems }) => {
       setLabel(betItems.label.label.toUpperCase());
     } else {
       setPlayer(null);
-      setLabel(betItems.label.label.toUpperCase());
+      setLabel(betItems.label.toUpperCase());
     }
   }, [betItems]);
 
@@ -24,8 +24,7 @@ export const MainBet = ({ betItems = {}, setBetItems }) => {
       <UserLabelHeader />
       <BetComponent
         betFor={label}
-        profit={0.96}
-        stake={0}
+        profit={betItems.value}
         setBetItems={setBetItems}
         player={player}
       />
