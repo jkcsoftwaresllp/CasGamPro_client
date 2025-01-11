@@ -1,6 +1,6 @@
 export const GAME_TYPES = {
-  ANDAR_BAHAR: "ANDAR_BAHAR",
-  LUCKY7B: "LUCKY7B",
-  TEEN_PATTI: "TEEN_PATTI",
-  DRAGON_TIGER: "DRAGON_TIGER",
+  andarBahar: "ANDAR_BAHAR",
+  lucky7B: "LUCKY7B",
+  teenPattiT20: "TEEN_PATTI",
+  dragonTiger: "DRAGON_TIGER",
 };
