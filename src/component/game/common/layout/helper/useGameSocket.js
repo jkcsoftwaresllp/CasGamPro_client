@@ -26,8 +26,15 @@ export const useGameSocket = (
 
     subscribeToEvent("gameStateUpdate", (updatedState) => {
       if (updatedState) {
-        const { andarCards, baharCards, gameId, status, winner, startTime } =
-          updatedState;
+        const {
+          andarCards,
+          baharCards,
+          gameId,
+          status,
+          winner,
+          startTime,
+          jokerCard,
+        } = updatedState;
 
         // Update the relevant state
         setGameId(gameId);
@@ -48,7 +55,8 @@ export const useGameSocket = (
           }
         }
 
-        setTotalCards(combinedCards);
+        if (jokerCard !== null)
+          setTotalCards([jokerCard, null, ...combinedCards]);
       }
     });
 

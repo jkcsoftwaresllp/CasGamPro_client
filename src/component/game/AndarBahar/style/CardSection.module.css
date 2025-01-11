@@ -1,6 +1,21 @@
 .cardSection {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   justify-items: center;
   width: 100%;
+}
+
+.jokerCard {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.jokerText {
+  font-weight: bold;
+  color: #fff;
 }
