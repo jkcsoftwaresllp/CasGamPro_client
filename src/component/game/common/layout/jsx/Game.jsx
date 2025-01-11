@@ -127,7 +127,11 @@ export const Game = () => {
       <div className={styles.mainContent}>
         <div className={styles.gameControls}>
           <div className={styles.gameInterface}>
-            <GameInterface game={gameType} roundId={roundId} />
+            <GameInterface
+              game={gameType}
+              roundId={roundId}
+              cards={totalCards}
+            />
           </div>
           <div className={styles.simulationSection}>
             <SimulationSection />
