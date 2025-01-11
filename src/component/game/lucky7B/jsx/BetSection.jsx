@@ -6,9 +6,7 @@ import { BetCardSection } from "../../common/BetSection/jsx/BetCardSection";
 import { BetWithText } from "../../common/BetSection/jsx/BetWithText";
 import { BetOnCard } from "../../common/BetSection/jsx/BetOnCard";
 
-export const BetSection = ({ onClick }) => {
-  let isLock = false;
-
+export const BetSection = ({ onClick, isLock }) => {
   return (
     <div className={styles.betSection}>
       <div className={styles.lowHighEvenOdd}>
