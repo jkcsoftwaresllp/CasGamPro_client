@@ -6,7 +6,7 @@ import {
   disconnectSocket,
   subscribeToEvent,
   emitEvent,
-} from "../../services/socketService";
+} from "../../helper/socketService";
 import { GAME_TYPES } from "../../helper/gameTypes";
 
 export const CardSection = () => {
@@ -20,7 +20,6 @@ export const CardSection = () => {
     });
 
     subscribeToEvent("gameStateUpdate", (updatedState) => {
-      console.log("Updated State:", updatedState);
 
       if (updatedState) {
         const { andarCards, baharCards } = updatedState;
