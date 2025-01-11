@@ -36,6 +36,7 @@ export const useGameSocket = (
           jokerCard,
         } = updatedState;
 
+        console.log("Game state updated:", updatedState);
         // Update the relevant state
         setGameId(gameId);
         setStatus(status);
