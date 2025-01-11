@@ -10,7 +10,6 @@ export const BetSection = ({ game, onClick, status }) => {
     andarBahar: AndarBaharBetSection,
     teenPattiT20: TeenPattiT20BetSection,
   };
-  console.log(status);
 
   let isLock;
   if (status === "betting") isLock = false;

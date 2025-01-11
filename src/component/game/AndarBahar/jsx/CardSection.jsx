@@ -9,7 +9,6 @@ export const CardSection = ({ cards = [] }) => {
   const [jokerCard, blindCard] = cards;
   const servingCards = cards.slice(2);
 
-  console.log(jokerCard, blindCard, servingCards);
 
   return (
     <div className={styles.cardSection}>
