@@ -38,33 +38,39 @@ export const Game = () => {
 
   return (
     <div className={styles.game}>
-      <div className={styles.mainContent}>
-        <div className={styles.gameControls}>
-          <div className={styles.gameInterface}>
-            <GameInterface
+      {winner ? (
+        <div className={styles.winner}>{winner}</div>
+      ) : (
+        <>
+          <div className={styles.mainContent}>
+            <div className={styles.gameControls}>
+              <div className={styles.gameInterface}>
+                <GameInterface
+                  game={gameType}
+                  roundId={roundId}
+                  cards={totalCards}
+                />
+              </div>
+              <div className={styles.simulationSection}>
+                <SimulationSection />
+              </div>
+            </div>
+
+            <BetSection
+              status={status}
               game={gameType}
-              roundId={roundId}
-              cards={totalCards}
+              onClick={(label, value) => {
+                setBetItems({ label, value }); // Example: {label: "Low", value: "0.0"}
+              }}
             />
           </div>
-          <div className={styles.simulationSection}>
-            <SimulationSection />
+
+          <div className={styles.detailsSection}>
+            <GameHistory />
+            <StakeSection betItems={betItems} setBetItems={setBetItems} />
           </div>
-        </div>
-
-        <BetSection
-          status={status}
-          game={gameType}
-          onClick={(label, value) => {
-            setBetItems({ label, value }); // Example: {label: "Low", value: "0.0"}
-          }}
-        />
-      </div>
-
-      <div className={styles.detailsSection}>
-        <GameHistory />
-        <StakeSection betItems={betItems} setBetItems={setBetItems} />
-      </div>
+        </>
+      )}
     </div>
   );
 };
