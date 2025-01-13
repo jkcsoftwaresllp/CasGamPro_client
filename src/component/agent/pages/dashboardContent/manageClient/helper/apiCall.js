@@ -18,6 +18,7 @@ export const apiCall = async (
       data,
       headers,
       params,
+      withCredentials: true,
     });
 
     return response.data;

@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import styles from "../style/CardSection.module.css";
 import { Card } from "../../common/cardSection/jsx/Card";
+import { interleaveCards } from "../helper/interleaveCards";
 
-export const CardSection = ({ cards = [] }) => {
+export const CardSection = ({ cards = {} }) => {
   if (!cards.length) return null;
-
-
+  const cardsToSend = interleaveCards(cards);
 
   return (
     <div className={styles.cardSection}>

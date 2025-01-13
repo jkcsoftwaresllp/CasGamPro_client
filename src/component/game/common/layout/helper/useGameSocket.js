@@ -26,15 +26,8 @@ export const useGameSocket = (
 
     subscribeToEvent("gameStateUpdate", (updatedState) => {
       if (updatedState) {
-        const {
-          andarCards,
-          baharCards,
-          gameId,
-          status,
-          winner,
-          startTime,
-          jokerCard,
-        } = updatedState;
+        const { gameType, gameId, status, cards, winner, startTime } =
+          updatedState;
 
         console.log("Game state updated:", updatedState);
         // Update the relevant state
@@ -42,22 +35,7 @@ export const useGameSocket = (
         setStatus(status);
         setWinner(winner);
         setStartTime(startTime);
-
-        // Combine cards
-        const maxLength = Math.max(andarCards.length, baharCards.length);
-        const combinedCards = [];
-
-        for (let i = 0; i < maxLength; i++) {
-          if (i < baharCards.length && baharCards[i] !== null) {
-            combinedCards.push(baharCards[i]);
-          }
-          if (i < andarCards.length && andarCards[i] !== null) {
-            combinedCards.push(andarCards[i]);
-          }
-        }
-
-        if (jokerCard !== null)
-          setTotalCards([jokerCard, null, ...combinedCards]);
+        setTotalCards(cards);
       }
     });
 
@@ -75,3 +53,30 @@ export const useGameSocket = (
     };
   }, [gameType, setTotalCards, setGameId, setStatus, setWinner, setStartTime]);
 };
+
+/*
+ Response Comming from Server from gameStateUpdate
+
+{
+    "gameType": "ANDAR_BAHAR",
+    "gameId": "ANDAR_BAHAR_1736751351661",
+    "status": "dealing",
+    "cards": {
+        "jokerCard": "S3",
+        "blindCard": null,
+        "playerA": [
+            "S5",
+            "H7"
+        ],
+        "playerB": [
+            "D8"
+        ],
+        "playerC": []
+    },
+    "winner": null,
+    "startTime": 1736751351662
+}
+
+
+
+*/
