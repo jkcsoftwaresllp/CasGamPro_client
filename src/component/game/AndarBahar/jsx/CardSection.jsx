@@ -5,11 +5,12 @@ import { Card } from "../../common/cardSection/jsx/Card";
 import { interleaveCards } from "../helper/interleaveCards";
 
 export const CardSection = ({ cards = {} }) => {
-  if (!cards.length) return null;
-
-  const [jokerCard, blindCard] = cards;
-  const servingCards = cards.slice(2);
+  
+  const [jokerCard] = cards.jokerCard;
+  // const servingCards = cards.slice(2);
   const cardsToSend = interleaveCards(cards);
+
+  // console.log("CC", cardsToSend);
 
   return (
     <div className={styles.cardSection}>
@@ -17,7 +18,7 @@ export const CardSection = ({ cards = {} }) => {
         <p className={styles.jokerText}>Joker Card</p>
         <Card code={jokerCard} onClick={() => {}} isShow />
       </div>
-      <ABCardSection playerA="Andar" playerB="Bahar" cards={servingCards} />
+      <ABCardSection playerA="Andar" playerB="Bahar" cards={cardsToSend} />
     </div>
   );
 };

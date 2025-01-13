@@ -45,11 +45,11 @@ export const Game = () => {
           <div className={styles.mainContent}>
             <div className={styles.gameControls}>
               <div className={styles.gameInterface}>
-                <GameInterface
+                {status !== 'betting' && <GameInterface
                   game={gameType}
                   roundId={roundId}
                   cards={totalCards}
-                />
+                />}
               </div>
               <div className={styles.simulationSection}>
                 <SimulationSection />
