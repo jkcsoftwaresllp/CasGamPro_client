@@ -9,11 +9,12 @@
 
 .cardToPlayer {
   display: flex;
+  width: 100%;
+  flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  gap: 20px;
+  gap: 10px;
   padding: 10px;
-  background-color: var(--color-bg-tertiary);
   color: var(--color-text-primary);
   border-radius: var(--borderRadius);
   padding-left: 20px;
@@ -24,4 +25,6 @@
   justify-content: center;
   align-items: center;
   gap: 10px;
+  overflow-x: auto;
+  width: 100%;
 }

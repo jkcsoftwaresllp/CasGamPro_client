@@ -6,24 +6,8 @@ import { BetCardSection } from "../../common/BetSection/jsx/BetCardSection";
 import { BetWithText } from "../../common/BetSection/jsx/BetWithText";
 import { BetOnCard } from "../../common/BetSection/jsx/BetOnCard";
 
-export const BetSection = ({}) => {
+export const BetSection = ({ onClick }) => {
   let isLock = false;
-
-  const handleLowClick = (label, value) => {
-    console.log(label, value);
-  };
-
-  const handleHighClick = (label, value) => {
-    console.log(label, value);
-  };
-
-  const handleEvOdReBlClick = (label, value) => {
-    console.log(label, value);
-  };
-
-  const handleCardSectionClick = (label, value) => {
-    console.log(label, value);
-  };
 
   return (
     <div className={styles.betSection}>
@@ -34,7 +18,7 @@ export const BetSection = ({}) => {
             betProfit={"1.96"}
             betAmount={"0.0"}
             isLock={isLock}
-            onClick={handleLowClick}
+            onClick={onClick}
           />
 
           <BetOnCard
@@ -42,7 +26,7 @@ export const BetSection = ({}) => {
             betProfit={"1.96"}
             betAmount={"0.0"}
             isLock={isLock}
-            onClick={handleCardSectionClick}
+            onClick={onClick}
           />
 
           <BetWithText
@@ -50,18 +34,18 @@ export const BetSection = ({}) => {
             betProfit={"1.96"}
             betAmount={"0.0"}
             isLock={isLock}
-            onClick={handleHighClick}
+            onClick={onClick}
           />
         </div>
         <BetOnEvOdReBl
-          onClick={handleEvOdReBlClick}
+          onClick={onClick}
           isLock={isLock}
           betAmount={{ even: "0.0", odd: "0.0", red: "0.0", black: "0.0" }}
           betProfit={{ even: "1.96", odd: "1.96", red: "1.96", black: "1.96" }}
         />
       </div>
       <BetCardSection
-        onClick={handleCardSectionClick}
+        onClick={onClick}
         isLock={isLock}
         betAmount={{ 2: "200" }}
         betProfit={"1.96"}

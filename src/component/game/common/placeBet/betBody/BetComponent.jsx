@@ -4,13 +4,13 @@ import { BetStatus } from "./BetStatus";
 import { CustomButton } from "./CustomButton";
 import {
   handleStakeChange,
-  handleProfitChange,
   handleReset,
   handleSubmit,
 } from "./helper/betHelper";
 import styles from "./style/BetBody.module.css";
 
-export const BetComponent = ({ betFor, profit, stake }) => {
+export const BetComponent = ({ betFor, profit, setBetItems, player }) => {
+  const stake = 50;
   const [stakeValue, setStakeValue] = useState(stake);
   const [currentProfit, setCurrentProfit] = useState(profit);
 
@@ -21,7 +21,7 @@ export const BetComponent = ({ betFor, profit, stake }) => {
     stake,
     profit
   );
-  const submitHandler = handleSubmit(stakeValue, currentProfit);
+  const submitHandler = handleSubmit(stakeValue, currentProfit, setBetItems);
 
   return (
     <div className={styles.component}>
@@ -30,6 +30,7 @@ export const BetComponent = ({ betFor, profit, stake }) => {
         stakeValue={stakeValue}
         currentProfit={currentProfit}
         setStakeValue={setStakeValue}
+        player={player}
       />
       <CoinSection onCoinClick={stakeChangeHandler} />
       <div className={styles.buttonContainer}>
