@@ -1,10 +1,8 @@
-import { HeaderBtnGroup } from "../../layoutDash/jsx/HeaderBtnGroup";
-import Home from "./home.svg"; // Import SVG as a regular image
-
+import { HeaderMain } from "../../layoutDash/jsx/HeaderMain";
 export const Test = () => {
   return (
     <div>
-      <HeaderBtnGroup />
+      <HeaderMain />
     </div>
   );
 };

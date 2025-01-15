@@ -1,4 +1,5 @@
-import { HeaderBtn } from "./HeaderBtn";
+import { IconBtn } from "../../component/common/IconBtn";
+import { useNavigate } from "react-router-dom";
 import style from "../style/Header.module.css";
 import Home from "../images/home.svg";
 import Schedule from "../images/schedule.svg";
@@ -6,24 +7,26 @@ import Rules from "../images/rules.svg";
 import LogOut from "../images/logout.svg";
 
 export const HeaderBtnGroup = () => {
+  const navigate = useNavigate();
+
+  // Function to navigate to a specific path
+  const navigateTo = (path) => {
+    navigate(path);
+  };
   return (
     <div className={style.buttonContainer}>
-      <HeaderBtn
-        icon={Rules}
-        label="Rules"
-        onClick={() => console.log("Rules clicked")}
-      />
-      <HeaderBtn
+      <IconBtn icon={Rules} label="Rules" onClick={() => navigateTo("/dash")} />
+      <IconBtn
         icon={Home}
         label="Home"
-        onClick={() => console.log("Home clicked")}
+        onClick={() => navigateTo("/dash/home")}
       />
-      <HeaderBtn
+      <IconBtn
         icon={Schedule}
         label="Schedule"
-        onClick={() => console.log("Schedule clicked")}
+        onClick={() => navigateTo("/dash/schedule")}
       />
-      <HeaderBtn
+      <IconBtn
         icon={LogOut}
         label="LogOut"
         onClick={() => console.log("LogOut clicked")}

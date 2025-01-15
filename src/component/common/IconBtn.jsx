@@ -1,6 +1,6 @@
-import styles from "../style/Header.module.css";
+import styles from "./style/IconBtn.module.css";
 
-export const HeaderBtn = ({ icon, label, onClick }) => {
+export const IconBtn = ({ icon, label, onClick }) => {
   return (
     <div className={styles.divButton} onClick={onClick}>
       <img src={icon} alt={label} className={styles.icon} />{" "}

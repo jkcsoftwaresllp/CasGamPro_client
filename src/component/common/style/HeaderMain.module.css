@@ -37,10 +37,10 @@
 /* Switch styles */
 .switch {
   display: block;
-  --width-of-switch: 1.6em;
-  --height-of-switch: 0.9em;
-  --size-of-icon: 0.8em;
-  --slider-offset: 0.1em;
+  --width-of-switch: 1.5em;
+  --height-of-switch: 0.7em;
+  --size-of-icon: 1em;
+  --slider-offset: 0.001em;
   position: relative;
   width: var(--width-of-switch);
   height: var(--height-of-switch);
@@ -59,7 +59,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: #f4f4f5;
+  background-color: gray;
   transition: 0.4s;
   border-radius: 30px;
 }
