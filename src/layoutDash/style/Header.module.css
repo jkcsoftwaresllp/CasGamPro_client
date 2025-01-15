@@ -1,0 +1,39 @@
+.divButton {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 10px;
+  cursor: pointer;
+  border: 2px solid var(--color-text-primary);
+  border-radius: 25px;
+  background: var(--color-bg-primary);
+  user-select: none;
+  width: 125px;
+
+  justify-content: center; /* Ensure the content (icon + label) is centered */
+
+  transition: background-color 0.3s ease;
+}
+
+.divButton:hover {
+  background-color: var(
+    --color-bg-hover
+  ); /* Optional: Change background on hover */
+}
+
+.icon {
+  margin-right: 4px;
+}
+
+.label {
+  font-size: var(--text-md);
+  color: var(--color-text-primary);
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 16px;
+  padding: 20px;
+}
