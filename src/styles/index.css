@@ -24,6 +24,7 @@
   /* Highlighters */
   --color-highlighter-primary: #333; /* Antique bronze for highlights */
   --color-highlighter-secondary: #cd7f32; /* Classic copper for accents */
+  --color-rotate-primary: rgb(28, 178, 224);
 
   /* Background */
   --color-bg-primary: #fdfdfd; /* Warm cream background for elegance */
@@ -53,6 +54,7 @@
   /* Highlighters */
   --color-highlighter-primary: #8b4513; /* Saddle brown for highlights */
   --color-highlighter-secondary: #a0522d; /* Rusty brown for accents */
+  --color-rotate-primary: #1a1a1a;
 
   /* Background */
   --color-bg-primary: #212121; /* Deep black for elegance */
