@@ -3,6 +3,7 @@ import style from "../style/Rules.module.css";
 import { LangSelector } from "../jsx/rules/LangSelector";
 import { NotificationBox } from "../jsx/rules/NotificationBox";
 import { RulesList } from "../jsx/rules/RulesList";
+import { RotatingMessage } from "../jsx/rules/RotatingMessage";
 
 export const Rules = () => {
   const [isNotificationVisible, setNotificationVisible] = useState(true);
@@ -18,12 +19,7 @@ export const Rules = () => {
 
   return (
     <div className={style.container}>
-      <div className={style.rotateContainer}>
-        <div className={style.rotating}>
-          Welcome : This is an important notification! Please take note of the
-          following rules and guidelines.
-        </div>
-      </div>
+      <RotatingMessage headerMsg="Welcome: This is an important notification! Please take note of the following rules and guidelines." />
 
       {/* Language Selector */}
       <LangSelector
@@ -33,7 +29,13 @@ export const Rules = () => {
       <RulesList language={selectedLanguage} />
 
       {/* Notification Modal */}
-      {isNotificationVisible && <NotificationBox onClose={hideNotification} />}
+      {isNotificationVisible && (
+        <NotificationBox
+          onClose={hideNotification}
+          notificationText="This is an important notification! Please take note of the following
+        rules and guidelines carefully read kre."
+        />
+      )}
     </div>
   );
 };
