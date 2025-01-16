@@ -3,8 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { UserContext } from "../../context/userContext/UserContext"; // Import UserContext
 import style from "./style/HeaderMain.module.css";
 import { HeaderHelper } from "./helper/HeaderHelper";
-import Unauth from "./helper/Unauth";
-import Auth from "./helper/Auth";
+import { Unauth } from "./helper/Unauth";
+import { Auth } from "./helper/Auth";
 
 export const Header = () => {
   const [isDarkMode, setIsDarkMode] = useState(false);
