@@ -26,11 +26,6 @@ export const HeaderBtnGroup = () => {
         label="Schedule"
         onClick={() => navigateTo("/dash/schedule")}
       />
-      <IconBtn
-        icon={LogOut}
-        label="LogOut"
-        onClick={() => console.log("LogOut clicked")}
-      />
     </div>
   );
 };

@@ -2,7 +2,9 @@ import { HeaderMain } from "../../layoutDash/jsx/HeaderMain";
 export const Test = () => {
   return (
     <div>
-      <HeaderMain />
+      <button onClick={() => console.log("Test button clicked")}>
+        Test Button
+      </button>
     </div>
   );
 };

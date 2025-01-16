@@ -15,10 +15,12 @@
   align-items: center;
   background-color: var(--color-bg-primary);
   color: var(--color-text-primary);
-  font-family: Arial, sans-serif;
+
   font-size: 1.2em;
   height: var(--header-height);
   padding: 0 10px;
+
+  gap: 10px;
 }
 
 .header__title {
@@ -32,6 +34,10 @@
   display: flex;
   align-items: center;
   gap: 15px;
+}
+
+.fullSection {
+  flex: 1;
 }
 
 /* Switch styles */
