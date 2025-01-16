@@ -1,5 +1,5 @@
 // Valid game names (example)
-const validGames = ["lucky7B", "andarBahar", "teenPattiT20"];
+const validGames = ["lucky7B", "andarBahar2", "andarBahar1", "teenPattiT20"];
 
 // Validate URL parameters
 export const validateUrlParams = (gameName, roundId) => {
