@@ -1,6 +1,6 @@
 import React from "react";
 
-const Auth = ({ style, userId }) => (
+export const Auth = ({ style, userId }) => (
   <div className={style.balance}>
     <div className={style.coins}>
       <svg

@@ -52,9 +52,9 @@ export const Routing = () => {
           <Route
             path="/game"
             element={
-              <ProtectedRoutes allowedRoles={["player", "agent"]}>
+              // <ProtectedRoutes allowedRoles={["player", "agent"]}>
                 <Game />
-              </ProtectedRoutes>
+              // </ProtectedRoutes>
             }
           />
         </Routes>
