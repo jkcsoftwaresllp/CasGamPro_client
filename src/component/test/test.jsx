@@ -1,8 +1,10 @@
-import { GameList } from "../game/pages/GameList";
+import { HeaderMain } from "../../layoutDash/jsx/HeaderMain";
 export const Test = () => {
   return (
     <div>
-      <GameList />{" "}
+      <button onClick={() => console.log("Test button clicked")}>
+        Test Button
+      </button>
     </div>
   );
 };
