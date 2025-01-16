@@ -1,19 +1,25 @@
 import React from "react";
 import styles from "../style/BetSection.module.css";
-
 import { BetSection as Lucky7BBetSection } from "../../../lucky7B/jsx/BetSection";
+import { BetSection as AndarBaharBetSection } from "../../../AndarBahar/jsx/BetSection";
+import { BetSection as TeenPattiT20BetSection } from "../../../teenPattiT20/jsx/BetSection";
 
-export const BetSection = ({ game }) => {
-  let content;
+export const BetSection = ({ game, onClick }) => {
+  const betSectionMap = {
+    lucky7B: Lucky7BBetSection,
+    andarBahar: AndarBaharBetSection,
+    teenPattiT20: TeenPattiT20BetSection,
+  };
 
-  switch (game) {
-    case "lucky7B":
-      content = <Lucky7BBetSection />;
-      break;
+  const SelectedBetSection = betSectionMap[game] || null;
 
-    default:
-      content = <div>Game not found</div>;
-  }
-
-  return <div className={styles.betSection}>{content}</div>;
+  return (
+    <div className={styles.betSection}>
+      {SelectedBetSection ? (
+        <SelectedBetSection onClick={onClick} />
+      ) : (
+        <div>Game not found</div>
+      )}
+    </div>
+  );
 };
