@@ -7,7 +7,8 @@ import { CardSection as TeenPattiT20CardSection } from "../../../teenPattiT20/js
 export const GameInterface = ({ game, roundId = "A85745846" }) => {
   const betSectionMap = {
     lucky7B: Lucky7BCardSection,
-    andarBahar: AndarBaharCardSection,
+    andarBahar1: AndarBaharCardSection,
+    andarBahar2: AndarBaharCardSection,
     teenPattiT20: TeenPattiT20CardSection,
   };
 
