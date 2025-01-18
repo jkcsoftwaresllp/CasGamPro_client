@@ -19,7 +19,7 @@
 .row {
   display: flex;
   gap: 8px;
-  margin-bottom: 4px;
+  margin-bottom: 8px;
 }
 
 .userDetail {
@@ -29,12 +29,11 @@
 
 .balanceColumn {
   margin-top: 1px;
-  padding-top: 3px;
+  padding-top: 5px;
   border-top: 1px solid var(--color-text-primary);
   width: 150px;
 }
 
-/* MyComponent.css */
 .mainContainer {
   display: flex;
   justify-content: space-between; /* Places the elements on opposite sides */

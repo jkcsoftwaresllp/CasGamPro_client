@@ -2,16 +2,16 @@ import { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../../context/userContext/UserContext"; // Import UserContext
 import style from "./style/HeaderMain.module.css";
-import { HeaderHelper } from "./helper/HeaderHelper";
+import { HeaderHelper } from "../dashLayout/helper/HeaderHelper";
 import { Unauth } from "./helper/Unauth";
 import { Auth } from "./helper/Auth";
+import logo from "./images/logo.svg";
 
 export const Header = () => {
   const [isDarkMode, setIsDarkMode] = useState(false);
   const navigate = useNavigate();
   const { user } = useContext(UserContext); // Consume UserContext
 
-  // On mount, check the user's previous theme preference
   useEffect(() => {
     const savedTheme = localStorage.getItem("theme");
     if (savedTheme === "dark") {
@@ -22,9 +22,8 @@ export const Header = () => {
     }
   }, []);
 
-  // Toggle theme function
   const toggleTheme = () => {
-    const newTheme = !isDarkMode ? "dark" : "light";
+    const newTheme = isDarkMode ? "light" : "dark";
     setIsDarkMode(!isDarkMode);
     document.documentElement.setAttribute("data-theme", newTheme);
     localStorage.setItem("theme", newTheme);
@@ -33,6 +32,9 @@ export const Header = () => {
   // Handle click on login icon
   const handleLoginClick = () => {
     navigate("/login");
+  };
+  const handleLogoutClick = () => {
+    alert("Logout clicked");
   };
   const handleHomeClick = () => {
     navigate("/");
@@ -47,17 +49,21 @@ export const Header = () => {
     <header className={style.headerWrapper}>
       <div className={style.header}>
         <h1 className={style.header__title} onClick={handleHomeClick}>
-          Header
+          <img className={style.logo} src={logo} />
         </h1>
         <div className={style.fullSection}>
-          <HeaderHelper panel="client" />
+          <HeaderHelper panel={"client"} />
         </div>
 
         <div className={style.rightSection}>
           {!user.isAuthenticated ? (
-            <Unauth handleLoginClick={handleLoginClick} style={style} />
+            <Unauth
+              handleLoginClick={handleLoginClick}
+              style={style}
+              label={"Login"}
+            />
           ) : (
-            <Auth handleUserClick={handleUserClick} style={style} />
+            <Auth onclick={handleLogoutClick} label={"Logout"} />
           )}
 
           <label className={style.switch}>

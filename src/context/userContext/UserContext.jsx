@@ -4,33 +4,54 @@ import { apiCall } from "../../component/common/apiCall";
 export const UserContext = createContext();
 
 export const UserContextProvider = ({ children }) => {
-  const [user, setUser] = useState({ role: null, isAuthenticated: false });
+  const [user, setUser] = useState({
+    userId: null,
+    userName: null,
+    role: null,
+    isAuthenticated: false,
+  });
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        // const response = await apiCall("/api/auth/status", "GET");
+        // Simulate an API call
         const response = {
           data: {
             status: "success",
             user: {
+              userId: "12369",
+              userName: "John Doe",
               role: "admin",
             },
           },
         };
 
         if (response.data.status === "success") {
+          const { userId, userName, role } = response.data.user;
+
           setUser({
-            role: response.user.role,
+            userId,
+            userName,
+            role,
             isAuthenticated: true,
           });
         } else {
-          setUser({ role: null, isAuthenticated: false });
+          setUser({
+            userId: null,
+            userName: null,
+            role: null,
+            isAuthenticated: false,
+          });
         }
       } catch (error) {
         console.error("Error fetching user status:", error);
-        setUser({ role: null, isAuthenticated: false });
+        setUser({
+          userId: null,
+          userName: null,
+          role: null,
+          isAuthenticated: false,
+        });
       } finally {
         setLoading(false);
       }
