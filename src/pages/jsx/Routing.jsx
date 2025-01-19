@@ -7,6 +7,8 @@ import { AgentWindow } from "../../component/agent/main/jsx/AgentWindow";
 import { Test } from "../../component/test/test";
 import { Game } from "../../component/game/common/layout/jsx/Game";
 
+import { GameList } from "../../component/game/pages/GameList";
+
 import { LayoutDash } from "../../layoutDash/jsx/LayoutDash";
 import { Rules } from "../../layoutDash/pages/Rules";
 import { HomeDash } from "../../layoutDash/pages/HomeDash";
@@ -25,6 +27,7 @@ export const Routing = () => {
           <Route path="/" element={<Home />} />
 
           <Route path="/test" element={<Test />} />
+          <Route path="/gameList" element={<GameList />} />
 
           <Route path="/dash" element={<LayoutDash />}>
             <Route index element={<Rules />} />
@@ -53,7 +56,7 @@ export const Routing = () => {
             path="/game"
             element={
               // <ProtectedRoutes allowedRoles={["player", "agent"]}>
-                <Game />
+              <Game />
               // </ProtectedRoutes>
             }
           />
