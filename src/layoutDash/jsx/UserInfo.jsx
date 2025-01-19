@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "../style/Header.module.css"; // Import CSS module
 
-export const UserInfo = ({ userId, userName, balance }) => {
+export const UserInfo = ({ userId, userName, walletPoints }) => {
   return (
     <div className={styles.container}>
       <div className={styles.row}>
@@ -10,7 +10,7 @@ export const UserInfo = ({ userId, userName, balance }) => {
       </div>
       <div className={styles.balanceColumn}>
         <div>
-          <strong>Balance:</strong> {balance}
+          <strong>Balance:</strong> {walletPoints}
         </div>
       </div>
     </div>

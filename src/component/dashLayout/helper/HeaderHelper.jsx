@@ -1,4 +1,4 @@
-import { HeaderMain } from "../../../layoutDash/jsx/HeaderMain";
+import { ClientHeader as HeaderMain } from "../../client/jsx/ClientHeader";
 // import { Header } from "../Header";
 export const HeaderHelper = ({ panel }) => {
   const HeaderSectionMap = {
