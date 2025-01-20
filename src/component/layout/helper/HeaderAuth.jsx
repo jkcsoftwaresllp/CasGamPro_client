@@ -1,8 +1,11 @@
 import { useContext } from "react";
 import { loginIcon, logoutIcon } from "../../../assets/assets";
 import { UserContext } from "../../../context/userContext/UserContext";
+import { SetIcon } from "../../common/jsx/SetIcon";
+import { useNavigate } from "react-router-dom";
 
 export const HeaderAuth = () => {
+  const navigate = useNavigate();
   const { userContext } = useContext(UserContext);
 
   // Navigation handlers
@@ -11,8 +14,8 @@ export const HeaderAuth = () => {
 
   // Conditionally render user actions
   return !userContext?.isAuthenticated ? (
-    <div onClick={handleLoginClick}>{loginIcon}</div>
+    <SetIcon onClick={handleLoginClick} icon={loginIcon} />
   ) : (
-    <div onClick={handleLogoutClick}>{logoutIcon}</div>
+    <SetIcon onClick={handleLogoutClick} icon={logoutIcon} />
   );
 };
