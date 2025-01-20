@@ -1,12 +1,16 @@
+import { apiCall } from "../../component/common/apiCall";
+
 export const login = async (setUser, credentials) => {
   try {
     const response = await apiCall("/api/login", "POST", credentials);
     // Save user data from the response
+
+    console.log(response);
     setUser({
-      userID: response.data.userID,
-      name: response.data.name,
+      userId: response.data.userId,
+      username: response.data.username,
       profilePic: response.data.profilePic,
-      role: response.data.role,
+      userRole: response.data.userRole,
     });
   } catch (error) {
     console.error("Login failed:", error.response?.data || error.message);

@@ -2,12 +2,12 @@ import { apiCall } from "../../component/common/apiCall";
 
 export const checkSession = async (setUser, setLoading) => {
   try {
-    const response = await apiCall("/api/checkSession", "GET");
+    const response = await apiCall("/auth-api/checkSession", "GET");
     setUser({
-      userID: response.data.userID,
-      name: response.data.name,
+      userId: response.data.userId,
+      username: response.data.username,
       profilePic: response.data.profilePic,
-      role: response.data.role,
+      userRole: response.data.userRole,
     });
   } catch {
     setUser(null);

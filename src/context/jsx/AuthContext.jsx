@@ -1,5 +1,4 @@
 import React, { createContext, useState, useEffect } from "react";
-import { apiCall } from "../../component/common/apiCall";
 import { login } from "../helper/login";
 import { logout } from "../helper/logout";
 import { checkSession } from "../helper/checkSession";
@@ -13,6 +12,8 @@ export const AuthProvider = ({ children }) => {
 
   const handleLogin = async (credentials) => await login(setUser, credentials);
   const handleLogout = async () => logout();
+
+  console.log(user);
 
   // Check session on mount
   useEffect(() => {

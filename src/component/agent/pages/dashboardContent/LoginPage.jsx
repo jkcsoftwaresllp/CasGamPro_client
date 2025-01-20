@@ -1,69 +1,40 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { UsernameInput } from "../../../common/UserNameInput.jsx";
 import { PasswordInput } from "../../../common/PasswordInput.jsx";
 import { Button } from "../../../common/Button.jsx";
-import { apiCall } from "./manageClient/helper/apiCall.js";
 import style from "../styles/LoginPage.module.css";
 import { Loader } from "../../../common/Loader.jsx";
-import { UserContext } from "../../../../context/userContext/UserContext.jsx"; // Adjust the path as needed
+import { useAuth } from "../../../../context/jsx/AuthContext.jsx";
 
 export const LoginPage = () => {
   const [userId, setUserId] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-  const { initializeContext } = useContext(UserContext); // Access UserContext
+  const { user, handleLogin, loading } = useAuth();
 
-  const handleLogin = async (e) => {
+  const handleLoginFun = async (e) => {
     e.preventDefault();
-    setError(""); // Clear previous error
-    setLoading(true);
+    setError("");
 
     // Input validation
     if (!userId.trim() || !password.trim()) {
       setError("Both fields are required");
-      setLoading(false);
       return;
     }
 
-    try {
-      // Perform login API call
-      const response = await apiCall("/api/login", "POST", {
-        userId,
-        password,
-      });
+    await handleLogin({ userId, password });
 
+    const { userRole } = user;
 
-      if (response?.status === "success") {
-        const { role, userID } = response.user; // Extract role and userID
-
-        // Initialize UserContext with the user's data
-        initializeContext({
-          userID,
-          role,
-          isAuthenticated: true,
-          gameID: null,
-          roundID: null,
-        });
-
-        // Navigate based on role
-        if (role === "AGENT") {
-          navigate("/agent");
-        } else if (role === "CLIENT") {
-          navigate("/game");
-        } else {
-          setError("Unknown user role");
-        }
-      } else {
-        setError(response?.message || "Login failed");
-      }
-    } catch (err) {
-      console.error("Login Error:", err);
-      setError("Invalid username or password");
-    } finally {
-      setLoading(false);
+    // Navigate based on role
+    if (role === "AGENT") {
+      navigate("/agent");
+    } else if (role === "CLIENT") {
+      navigate("/client");
+    } else {
+      setError("Unknown user role");
     }
   };
 
@@ -78,7 +49,7 @@ export const LoginPage = () => {
             <UsernameInput onChange={setUserId} />
             <PasswordInput onChange={setPassword} />
             {error && <div className={style.error}>{error}</div>}{" "}
-            <Button label="Login" onClick={handleLogin} />
+            <Button label="Login" onClick={handleLoginFun} />
           </div>
         </div>
       )}
