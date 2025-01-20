@@ -1,12 +1,11 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
 import { Loader } from "../../component/common/Loader";
-import { UserContext } from "../../context/userContext/UserContext";
-import { checkAuthStatus } from "../helper/authHelper";
-import LoadingState from "../helper/LoadingState"; // Import the LoadingState component
+import { useAuth } from "../../context/jsx/AuthContext";
 
 export const ProtectedRoutes = ({ children, allowedRoles }) => {
-  const { user } = useContext(UserContext); // Get user context
+  const { user, loading } = useAuth();
+
   const [authState, setAuthState] = useState({
     loading: true,
     authorized: false,
@@ -14,7 +13,7 @@ export const ProtectedRoutes = ({ children, allowedRoles }) => {
 
   useEffect(() => {
     const checkAuthorization = () => {
-      if (user.isAuthenticated && allowedRoles.includes(user.role)) {
+      if (user && allowedRoles.includes(user.userRole)) {
         setAuthState({ loading: false, authorized: true });
       } else {
         setAuthState({ loading: false, authorized: false });
