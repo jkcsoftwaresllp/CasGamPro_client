@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { FavGameTile } from "./FavGameTile";
 import { fetchFavoriteGames } from "../helper/favoriteGamesHelper"; // Import the helper function
-import { likedIcon, hideIcon } from "../../../assets/assets";
+import { favIcon, closeIcon } from "../../../assets/assets";
 import styles from "../style/Heart.module.css";
 
 export const Heart = () => {
@@ -29,18 +29,20 @@ export const Heart = () => {
     <div>
       {/* Heart Button */}
       <div className={styles.heartButton} onClick={toggleModal}>
-        {likedIcon}
+        {favIcon}
       </div>
 
       {/* Modal for displaying favorite games */}
       <div className={`${styles.modal} ${isModalOpen ? styles.open : ""}`}>
         <div className={styles.modalContent}>
-          <p className={styles.heading}>Liked Games</p>
-          {hideIcon}
+          <p className={styles.heading}>Liked Games </p>
+          <div onClick={closeModal} className={styles.close}>
+            {closeIcon}
+          </div>
 
           <div className={styles.cardsContainer}>
             {favGames.length === 0 ? (
-              <p>No favorite games found.</p>
+              <div>No favorite games found.</div>
             ) : (
               favGames.map((game, index) => (
                 <FavGameTile

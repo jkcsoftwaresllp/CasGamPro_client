@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { fetchNotifications } from "./helper/notificationHelper";
 import style from "../../style/Rules.module.css";
+import { closeIcon } from "../../../assets/assets";
 
 export const NotificationBox = ({ onClose }) => {
   const [notifications, setNotifications] = useState([]);
@@ -18,7 +19,7 @@ export const NotificationBox = ({ onClose }) => {
       <div className={style.notificationHeader}>
         Important Notifications
         <div className={style.closeButton} onClick={onClose}>
-          &times;
+          {closeIcon}
         </div>
       </div>
       <div className={style.notificationBody}>

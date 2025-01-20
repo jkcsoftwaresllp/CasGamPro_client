@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import style from "./style/Input.module.css";
-import { showIcon, hideIcon } from "../../assets/assets"; // Import the SVG components
+import { hideIcon, showIcon } from "../../assets/assets";
 
 export const PasswordInput = ({ placeholder = "Password", onChange }) => {
   const [passwordVisible, setPasswordVisible] = useState(false);
@@ -26,15 +26,14 @@ export const PasswordInput = ({ placeholder = "Password", onChange }) => {
         onChange={handleChange}
         aria-label={placeholder}
       />
-      <button
+      <div
         type="button"
         onClick={toggleVisibility}
         className={style.visibilityIcon}
         aria-label={passwordVisible ? "Hide password" : "Show password"}
       >
-        {passwordVisible ? hideIcon : showIcon}{" "}
-        {/* Render the SVG directly here */}
-      </button>
+        {passwordVisible ? hideIcon : showIcon}
+      </div>
     </div>
   );
 };

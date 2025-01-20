@@ -57,14 +57,9 @@
 }
 
 .closeButton {
-  background: none;
-  border: none;
-
-  font-weight: bold;
-  color: red;
   cursor: pointer;
-  top: -20px;
-  right: -10px;
+  top: 1px;
+  right: 1px;
   position: absolute;
 }
 
