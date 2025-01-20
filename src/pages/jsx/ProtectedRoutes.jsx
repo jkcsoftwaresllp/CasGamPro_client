@@ -1,63 +1,47 @@
 import React, { useEffect, useState, useContext } from "react";
 import { Navigate } from "react-router-dom";
-import { apiCall } from "../../component/agent/pages/dashboardContent/manageClient/helper/apiCall";
-import { Loader } from "../../component/common/Loader";
 import { UserContext } from "../../context/userContext/UserContext";
-import styles from "../styles/Routing.module.css";
+import { checkAuthStatus } from "../helper/authHelper";
+import LoadingState from "../helper/LoadingState"; // Import the LoadingState component
 
 export const ProtectedRoutes = ({ children, allowedRoles }) => {
-  const { user, setUser } = useContext(UserContext);
+  const { userContext, initializeContext, updateContext } =
+    useContext(UserContext);
+
   const [authState, setAuthState] = useState({
     loading: true,
     authorized: false,
   });
 
   useEffect(() => {
-    const checkAuthStatus = async () => {
-      try {
-        // Check if the user is logged in and fetch their status from the server
-        const response = await apiCall("/api/auth/status", "GET");
-
-        if (
-          response.status === "success" &&
-          allowedRoles.includes(response.user.role)
-        ) {
-          setAuthState({ loading: false, authorized: true });
-          setUser({ role: response.user.role, userId: response.user.userId }); // Update the context with the user role
-          localStorage.setItem("userRole", response.user.role); // Optionally store the role in local storage
-        } else {
-          setAuthState({ loading: false, authorized: false });
-        }
-      } catch (err) {
-        console.error("Error checking authentication:", err);
-        setAuthState({ loading: false, authorized: false });
-      }
-    };
-
-    // If user role is already available in context or localStorage, bypass the check
-    if (user.role || localStorage.getItem("userRole")) {
+    // Check if userContext has been initialized and contains valid data
+    if (userContext && userContext.role) {
+      // If userContext is available, use its role to check authorization
       setAuthState({
         loading: false,
-        authorized: allowedRoles.includes(
-          user.role || localStorage.getItem("userRole")
-        ),
+        authorized: allowedRoles.includes(userContext.role),
       });
     } else {
-      checkAuthStatus(); // Otherwise, run the auth status check
+      // If userContext is not initialized, call the API to fetch authentication status
+      const fetchAuthStatus = async () => {
+        const status = await checkAuthStatus(
+          allowedRoles,
+          updateContext,
+          initializeContext
+        );
+        setAuthState(status);
+      };
+      fetchAuthStatus();
     }
-  }, [allowedRoles, user, setUser]);
+  }, [allowedRoles, userContext, updateContext, initializeContext]);
 
   if (authState.loading) {
-    return (
-      <div className={styles.loaderContainer}>
-        <Loader /> {/* Display loader while checking auth status */}
-      </div>
-    );
+    return <LoadingState />;
   }
 
   if (!authState.authorized) {
-    return <Navigate to="/login" replace />; // Redirect to login if not authorized
+    return <Navigate to="/login" replace />;
   }
 
-  return children; // Render protected content if authorized
+  return children;
 };

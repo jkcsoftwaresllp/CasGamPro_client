@@ -13,14 +13,15 @@ export const apiCall = async (
     const API_Point = baseURL + url;
 
     const response = await axios({
-      url: API_Point, 
+      url: API_Point,
       method,
       data,
       headers,
       params,
+      withCredentials: true,
     });
 
-    return response.data; 
+    return response.data;
   } catch (error) {
     console.error("API Call Error:", error);
 

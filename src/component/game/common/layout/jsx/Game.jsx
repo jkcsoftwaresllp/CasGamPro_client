@@ -1,39 +1,32 @@
-import React, { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import React, { useState } from "react";
 import styles from "../style/Game.module.css";
 import { BetSection } from "./BetSection";
 import { GameHistory } from "./GameHistory";
 import { GameInterface } from "./GameInterface";
 import { SimulationSection } from "./SimulationSection";
 import { StakeSection } from "./StakeSection";
-import { validateUrlParams } from "../helper/validateUrlParams";
+import { useQueryParams } from "../helper/useQueryParams";
+import { useGameSocket } from "../helper/useGameSocket";
 
 export const Game = () => {
+  const { gameType, roundId, error } = useQueryParams();
+
   const [betItems, setBetItems] = useState(null);
-  const [game, setGame] = useState("");
-  const [roundId, setRoundId] = useState("");
-  const [error, setError] = useState(null); // To track errors
-  const location = useLocation();
+  const [totalCards, setTotalCards] = useState([]);
+  const [gameId, setGameId] = useState(null);
+  const [status, setStatus] = useState(null);
+  const [winner, setWinner] = useState(null);
+  const [startTime, setStartTime] = useState(null);
 
-  // Extract gameName and roundId from the query parameters
-  useEffect(() => {
-    const queryParams = new URLSearchParams(location.search);
-    const gameName = queryParams.get("gameName");
-    const roundId = queryParams.get("roundId");
-
-    if (gameName && roundId) {
-      const errorMessage = validateUrlParams(gameName, roundId);
-      if (errorMessage) {
-        setError(errorMessage);
-      } else {
-        setGame(gameName);
-        setRoundId(roundId);
-        setError(null); // Reset error if valid
-      }
-    } else {
-      setError("Missing gameName or roundId in URL");
-    }
-  }, [location.search]); // Re-run whenever the search query changes
+  // Use the custom hook for socket logic
+  useGameSocket(
+    gameType,
+    setTotalCards,
+    setGameId,
+    setStatus,
+    setWinner,
+    setStartTime
+  );
 
   if (error) {
     return (
@@ -45,26 +38,39 @@ export const Game = () => {
 
   return (
     <div className={styles.game}>
-      <div className={styles.mainContent}>
-        <div className={styles.gameControls}>
-          <div className={styles.gameInterface}>
-            <GameInterface game={game} roundId={roundId} />
+      {winner ? (
+        <div className={styles.winner}>{winner}</div>
+      ) : (
+        <>
+          <div className={styles.mainContent}>
+            <div className={styles.gameControls}>
+              <div className={styles.gameInterface}>
+                {status !== 'betting' && <GameInterface
+                  game={gameType}
+                  roundId={roundId}
+                  cards={totalCards}
+                />}
+              </div>
+              <div className={styles.simulationSection}>
+                <SimulationSection />
+              </div>
+            </div>
+
+            <BetSection
+              status={status}
+              game={gameType}
+              onClick={(label, value) => {
+                setBetItems({ label, value }); // Example: {label: "Low", value: "0.0"}
+              }}
+            />
           </div>
-          <div className={styles.simulationSection}>
-            <SimulationSection />
+
+          <div className={styles.detailsSection}>
+            <GameHistory />
+            <StakeSection betItems={betItems} setBetItems={setBetItems} />
           </div>
-        </div>
-        <BetSection
-          game={game}
-          onClick={(label, value) => {
-            setBetItems({ label, value }); // {label: "Low", value: "0.0"}
-          }}
-        />
-      </div>
-      <div className={styles.detailsSection}>
-        <GameHistory />
-        <StakeSection betItems={betItems} setBetItems={setBetItems} />
-      </div>
+        </>
+      )}
     </div>
   );
 };

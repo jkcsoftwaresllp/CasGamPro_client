@@ -2,26 +2,21 @@ import { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../../context/userContext/UserContext"; // Import UserContext
 import style from "./style/HeaderMain.module.css";
-import { HeaderHelper } from "../dashLayout/helper/HeaderHelper";
-import { Unauth } from "./helper/Unauth";
-import { Auth } from "./helper/Auth";
-import logo from "./images/logo.svg";
+import Icon from "./images/icon"; // Import Icon component
 
 export const Header = () => {
   const [isDarkMode, setIsDarkMode] = useState(false);
   const navigate = useNavigate();
-  const { user } = useContext(UserContext); // Consume UserContext
+  const { userContext } = useContext(UserContext); // Consume UserContext
 
+  // Initialize theme preference on mount
   useEffect(() => {
-    const savedTheme = localStorage.getItem("theme");
-    if (savedTheme === "dark") {
-      setIsDarkMode(true);
-      document.documentElement.setAttribute("data-theme", "dark");
-    } else {
-      document.documentElement.setAttribute("data-theme", "light");
-    }
+    const savedTheme = localStorage.getItem("theme") || "light";
+    setIsDarkMode(savedTheme === "dark");
+    document.documentElement.setAttribute("data-theme", savedTheme);
   }, []);
 
+  // Toggle theme and save preference to localStorage
   const toggleTheme = () => {
     const newTheme = isDarkMode ? "light" : "dark";
     setIsDarkMode(!isDarkMode);
@@ -29,20 +24,31 @@ export const Header = () => {
     localStorage.setItem("theme", newTheme);
   };
 
-  // Handle click on login icon
-  const handleLoginClick = () => {
-    navigate("/login");
-  };
-  const handleLogoutClick = () => {
-    alert("Logout clicked");
-  };
-  const handleHomeClick = () => {
-    navigate("/");
-  };
+  // Navigation handlers
+  const handleLoginClick = () => navigate("/login");
+  const handleHomeClick = () => navigate("/");
+  const handleUserClick = () => navigate("/profile");
 
-  // Handle click on user icon (if logged in)
-  const handleUserClick = () => {
-    navigate("/profile"); // Or wherever you want the user to go
+  // Conditionally render user actions
+  const renderUserSection = () => {
+    if (!userContext?.isAuthenticated) {
+      return (
+        <Icon type="login" size={24} onClick={handleLoginClick} title="Login" />
+      );
+    }
+
+    return (
+      <div className={style.balance}>
+        <div className={style.coins}>
+          <Icon type="coin" size={40} />
+          <p>{userContext?.coins || 0}</p>
+        </div>
+        <div className={style.user} onClick={handleUserClick}>
+          <Icon type="user" size={30} />
+          <p>{userContext?.userID || "User"}</p>
+        </div>
+      </div>
+    );
   };
 
   return (
@@ -56,16 +62,7 @@ export const Header = () => {
         </div>
 
         <div className={style.rightSection}>
-          {!user.isAuthenticated ? (
-            <Unauth
-              handleLoginClick={handleLoginClick}
-              style={style}
-              label={"Login"}
-            />
-          ) : (
-            <Auth onclick={handleLogoutClick} label={"Logout"} />
-          )}
-
+          {renderUserSection()}
           <label className={style.switch}>
             <input
               type="checkbox"
