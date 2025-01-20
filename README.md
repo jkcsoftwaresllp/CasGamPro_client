@@ -109,7 +109,7 @@ Your branch must fall under one of these categories:
   Example: `refactor/sara-optimized-db`
 
 - **hotfix**: For critical fixes in production.  
-  Example: `hotfix/admin-authentication-bug`
+  Example: `hotfix/rishabh-authentication-bug`
 
 - **chore**: For maintenance tasks like dependency updates or build process changes.  
   Example: `chore/update-dependencies`

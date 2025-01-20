@@ -1,10 +1,13 @@
+// GameTile.js
 import React from "react";
 import style from "./style/GameTiles.module.css";
+import { FavBtn } from "./FavBtn";
 
-export const GameTile = ({ imgSrc, label, onClick }) => {
+export const GameTile = ({ imgSrc, label }) => {
   return (
     <div className={style.cardsList}>
-      <div className={`${style.card}`} onClick={onClick}>
+      <div className={style.card}>
+        <FavBtn className={style.favBtn} />
         <div className={style.cardImage}>
           <img src={imgSrc} alt="Card" />
         </div>
