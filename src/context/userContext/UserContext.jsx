@@ -1,5 +1,6 @@
 import { createContext, useState, useEffect } from "react";
 import { apiCall } from "../../component/common/apiCall";
+import { Loader } from "../../component/common/Loader";
 
 export const UserContext = createContext();
 
@@ -62,7 +63,13 @@ export const UserContextProvider = ({ children }) => {
 
   return (
     <UserContext.Provider value={{ user, setUser }}>
-      {loading ? <div>Loading...</div> : children}
+      {loading ? (
+        <div>
+          <Loader />
+        </div>
+      ) : (
+        children
+      )}
     </UserContext.Provider>
   );
 };

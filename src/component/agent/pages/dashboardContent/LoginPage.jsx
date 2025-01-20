@@ -58,7 +58,7 @@ export const LoginPage = () => {
   return (
     <div className={style.container}>
       {loading ? (
-        <Loader /> // Display loader
+        <Loader />
       ) : (
         <div className={style.form}>
           <div className={style.form_container}>
@@ -66,7 +66,6 @@ export const LoginPage = () => {
             <UsernameInput onChange={setUserId} />
             <PasswordInput onChange={setPassword} />
             {error && <div className={style.error}>{error}</div>}{" "}
-            {/* Display error */}
             <Button label="Login" onClick={handleLogin} />
           </div>
         </div>
