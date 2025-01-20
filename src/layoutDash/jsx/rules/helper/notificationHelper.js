@@ -1,3 +1,7 @@
+/**
+ * Fetches notifications from the backend.
+ * @returns {Promise<string[]>} An array of notification strings.
+ */
 export const fetchNotifications = async () => {
   try {
     const response = await fetch("/user/notifications");
