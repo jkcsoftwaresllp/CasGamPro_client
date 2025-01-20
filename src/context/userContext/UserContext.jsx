@@ -5,11 +5,12 @@ import { Loader } from "../../component/common/Loader";
 export const UserContext = createContext();
 
 export const UserContextProvider = ({ children }) => {
-  const [userContext, setUserContext] = useState(null); // Initially null, set only on login
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const updateContext = (updates) => {
-    if (userContext) {
-      setUserContext((prevState) => ({
+    if (user) {
+      setUser((prevState) => ({
         ...prevState,
         ...updates,
       }));
@@ -21,11 +22,35 @@ export const UserContextProvider = ({ children }) => {
   };
 
   const initializeContext = (initialData) => {
-    setUserContext(initialData);
+    setUser(initialData);
   };
 
+  // Example useEffect to simulate data fetching
+  useEffect(() => {
+    const fetchData = async () => {
+      setLoading(true);
+      try {
+        const data = await apiCall("/getUserContext"); // Simulate an API call
+        setUser(data);
+      } catch (error) {
+        console.error("Error fetching user context:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   return (
-    <UserContext.Provider value={{ user, setUser }}>
+    <UserContext.Provider
+      value={{
+        user,
+        setUser,
+        updateContext,
+        initializeContext,
+      }}
+    >
       {loading ? (
         <div>
           <Loader />

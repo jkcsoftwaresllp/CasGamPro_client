@@ -3,11 +3,14 @@ import { useNavigate } from "react-router-dom";
 import { UserContext } from "../../context/userContext/UserContext"; // Import UserContext
 import style from "./style/HeaderMain.module.css";
 import Icon from "./images/icon"; // Import Icon component
+import { HeaderHelper } from "../layout/helper/HeaderHelper";
 
 export const Header = () => {
   const [isDarkMode, setIsDarkMode] = useState(false);
   const navigate = useNavigate();
   const { userContext } = useContext(UserContext); // Consume UserContext
+
+  console.log(userContext);
 
   // Initialize theme preference on mount
   useEffect(() => {
@@ -55,7 +58,7 @@ export const Header = () => {
     <header className={style.headerWrapper}>
       <div className={style.header}>
         <h1 className={style.header__title} onClick={handleHomeClick}>
-          <img className={style.logo} src={logo} />
+          {/* <img className={style.logo} src={logo} /> */} Home
         </h1>
         <div className={style.fullSection}>
           <HeaderHelper panel={"client"} />
