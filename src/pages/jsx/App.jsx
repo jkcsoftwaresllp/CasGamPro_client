@@ -1,19 +1,19 @@
 import { BrowserRouter as Router } from "react-router-dom";
 import style from "../styles/App.module.css";
 import { Routing } from "./Routing"; // Import the Routing component
-import { UserContextProvider } from "../../context/userContext/UserContext"; // Import the UserContextProvider
 import { Header } from "../../component/layout/jsx/Header";
+import { AuthProvider } from "../../context/jsx/AuthContext";
 
 function App() {
   return (
-    <UserContextProvider>
+    <AuthProvider>
       <Router>
         <div className={style.app}>
           <Header />
           <Routing />
         </div>
       </Router>
-    </UserContextProvider>
+    </AuthProvider>
   );
 }
 

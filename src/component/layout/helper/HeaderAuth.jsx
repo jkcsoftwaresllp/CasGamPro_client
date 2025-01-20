@@ -1,21 +1,19 @@
-import { useContext } from "react";
 import { loginIcon, logoutIcon } from "../../../assets/assets";
-import { UserContext } from "../../../context/userContext/UserContext";
 import { SetIcon } from "../../common/jsx/SetIcon";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../../context/jsx/AuthContext";
 
 export const HeaderAuth = () => {
   const navigate = useNavigate();
-  const { userContext } = useContext(UserContext);
+  const { user, handleLogout } = useAuth();
 
   // Navigation handlers
   const handleLoginClick = () => navigate("/login");
-  const handleLogoutClick = () => navigate("/login");
 
   // Conditionally render user actions
-  return !userContext?.isAuthenticated ? (
+  return !user ? (
     <SetIcon onClick={handleLoginClick} icon={loginIcon} />
   ) : (
-    <SetIcon onClick={handleLogoutClick} icon={logoutIcon} />
+    <SetIcon onClick={handleLogout} icon={logoutIcon} />
   );
 };
