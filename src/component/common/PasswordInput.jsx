@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import style from "./style/Input.module.css";
-import Show from "./images/show.svg";
-import Hide from "./images/hide.svg";
+
+import { showIcon, hideIcon } from "../../assets/assets";
 
 export const PasswordInput = ({ placeholder = "Password", onChange }) => {
   const [passwordVisible, setPasswordVisible] = useState(false);
@@ -34,7 +34,7 @@ export const PasswordInput = ({ placeholder = "Password", onChange }) => {
         aria-label={passwordVisible ? "Hide password" : "Show password"}
       >
         <img
-          src={passwordVisible ? Hide : Show}
+          src={passwordVisible ? hideIcon : showIcon}
           alt={passwordVisible ? "Hide password" : "Show password"}
         />
       </button>

@@ -6,13 +6,13 @@
   justify-content: center;
   padding: 20px;
   background-color: #f9f9f9;
-  border-radius: 8px;
+  border-radius: var(--borderRadius);
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .videoCanvas {
   border: 2px solid #000;
-  border-radius: 4px;
+  border-radius: var(--borderRadius);
   background-color: #000;
   max-width: 100%;
   width: 640px;

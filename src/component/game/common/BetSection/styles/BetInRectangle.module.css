@@ -21,7 +21,7 @@
   padding-left: var(--paddingLeft);
   padding-right: var(--paddingRight);
   border: 1px solid #ccc;
-  border-radius: 5px;
+  border-radius: var(--borderRadius);
 
   color: var(--color-text-primary);
   background-color: var(--color-bg-tertiary);

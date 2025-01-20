@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { FavGameTile } from "./FavGameTile";
 import { fetchFavoriteGames } from "../helper/favoriteGamesHelper"; // Import the helper function
-import close from "../images/close.svg";
+import { likedIcon, hideIcon } from "../../../assets/assets";
 import styles from "../style/Heart.module.css";
-import fav from "../images/fav.svg";
 
 export const Heart = () => {
   const [isModalOpen, setIsModalOpen] = useState(false); // Modal visibility state
@@ -30,19 +29,14 @@ export const Heart = () => {
     <div>
       {/* Heart Button */}
       <div className={styles.heartButton} onClick={toggleModal}>
-        <img src={fav} alt="Heart Icon" />
+        {likedIcon}
       </div>
 
       {/* Modal for displaying favorite games */}
       <div className={`${styles.modal} ${isModalOpen ? styles.open : ""}`}>
         <div className={styles.modalContent}>
           <p className={styles.heading}>Liked Games</p>
-          <img
-            className={styles.closeButton}
-            onClick={closeModal}
-            src={close}
-            alt="close"
-          />
+          {hideIcon}
 
           <div className={styles.cardsContainer}>
             {favGames.length === 0 ? (
