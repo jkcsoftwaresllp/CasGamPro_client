@@ -9,6 +9,7 @@ export const HeaderAuth = () => {
 
   // Navigation handlers
   const handleLoginClick = () => navigate("/login");
+  console.log(user);
 
   // Conditionally render user actions
   return !user ? (

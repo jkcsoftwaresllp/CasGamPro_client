@@ -11,9 +11,7 @@ export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
 
   const handleLogin = async (credentials) => await login(setUser, credentials);
-  const handleLogout = async () => logout();
-
-  console.log(user);
+  const handleLogout = async () => logout(setUser);
 
   // Check session on mount
   useEffect(() => {

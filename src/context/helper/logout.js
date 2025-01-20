@@ -1,6 +1,6 @@
 import { apiCall } from "../../component/common/apiCall";
 
-export const logout = async () => {
+export const logout = async (setUser) => {
   try {
     await apiCall("/api/logout", "POST");
     console.log("Logout successful");
