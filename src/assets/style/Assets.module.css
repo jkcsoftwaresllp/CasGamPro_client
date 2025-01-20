@@ -1,0 +1,5 @@
+.svgIcon {
+  fill: var(
+    --color-text-primary
+  ); /* Change the fill color to green (or whatever color you prefer) */
+}

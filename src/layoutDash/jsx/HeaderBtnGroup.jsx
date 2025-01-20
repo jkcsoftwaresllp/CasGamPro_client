@@ -1,11 +1,8 @@
 import { IconBtn } from "../../component/common/IconBtn";
 import { useNavigate } from "react-router-dom";
 import style from "../style/Header.module.css";
-import Home from "../images/home.svg";
-import Schedule from "../images/schedule.svg";
-import Rules from "../images/rules.svg";
-import LogOut from "../images/logout.svg";
 
+import { scheduleIcon, rulesIcon, homeIcon } from "../../assets/assets";
 export const HeaderBtnGroup = () => {
   const navigate = useNavigate();
 
@@ -15,22 +12,21 @@ export const HeaderBtnGroup = () => {
   };
   return (
     <div className={style.buttonContainer}>
-      <IconBtn icon={Rules} label="Rules" onClick={() => navigateTo("/dash")} />
       <IconBtn
-        icon={Home}
+        icon={rulesIcon}
+        label="Rules"
+        onClick={() => navigateTo("/dash")}
+      />
+      <IconBtn
+        icon={homeIcon}
         label="Home"
         onClick={() => navigateTo("/dash/home")}
       />
       <IconBtn
-        icon={Schedule}
+        icon={scheduleIcon}
         label="Schedule"
         onClick={() => navigateTo("/dash/schedule")}
       />
-      {/* <IconBtn
-        icon={LogOut}
-        label="LogOut"
-        onClick={() => console.log("logout hogya")}
-      /> */}
     </div>
   );
 };

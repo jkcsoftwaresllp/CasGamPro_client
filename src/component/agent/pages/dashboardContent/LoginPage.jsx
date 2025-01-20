@@ -74,16 +74,10 @@ export const LoginPage = () => {
       ) : (
         <div className={style.form}>
           <div className={style.form_container}>
-            <h2 className={style.form_details}>Login</h2>
-            <UsernameInput
-              onChange={(value) => setUserId(value)}
-              value={userId}
-            />
-            <PasswordInput
-              onChange={(value) => setPassword(value)}
-              value={password}
-            />
-            {error && <div className={style.error}>{error}</div>}
+            <div className={style.form_details}>Login</div>
+            <UsernameInput onChange={setUserId} />
+            <PasswordInput onChange={setPassword} />
+            {error && <div className={style.error}>{error}</div>}{" "}
             <Button label="Login" onClick={handleLogin} />
           </div>
         </div>

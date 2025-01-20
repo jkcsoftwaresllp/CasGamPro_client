@@ -4,6 +4,7 @@ import { HeaderBtnGroup } from "../../../layoutDash/jsx/HeaderBtnGroup";
 import style from "../style/ClientHeader.module.css";
 import { fetchWalletPoints } from "../helper/walletPoints"; // Import helper
 import { UserContext } from "../../../context/userContext/UserContext"; // Adjust the path as needed
+import { Heart } from "./heart";
 
 export const ClientHeader = () => {
   const [walletPoints, setWalletPoints] = useState(1000); // Dummy wallet points
@@ -34,13 +35,15 @@ export const ClientHeader = () => {
 
   return (
     <div className={style.mainContainer}>
-      {/* Pass props to UserInfo */}
-      <UserInfo
-        userId={userId}
-        userName={userName}
-        walletPoints={walletPoints}
-      />
-      <HeaderBtnGroup />
+      <div className={style.flexContainer}>
+        <UserInfo
+          userId={userId}
+          userName={userName}
+          walletPoints={walletPoints}
+        />
+        <HeaderBtnGroup />
+        <Heart />
+      </div>
     </div>
   );
 };

@@ -1,10 +1,8 @@
-import { HeaderMain } from "../../layoutDash/jsx/HeaderMain";
+import { FavList } from "../client/jsx/FavList";
 export const Test = () => {
   return (
     <div>
-      <button onClick={() => console.log("Test button clicked")}>
-        Test Button
-      </button>
+      <FavList />
     </div>
   );
 };

@@ -13,7 +13,7 @@
   animation: scroll-left 20s linear infinite;
   color: var(--color-text-primary);
   font-size: var(--text-lg);
-  font-weight: var(--textBold);
+  font-weight: var(--text);
 }
 
 @keyframes scroll-left {
@@ -44,7 +44,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 22px;
+  font-size: var(--text-lg);
   font-weight: bold;
   margin-bottom: 10px;
   color: var(--color-text-primary);
@@ -52,19 +52,14 @@
 }
 
 .notificationBody {
-  font-size: 18px;
+  font-size: var(--text-md);
   color: var(--color-text-primary);
 }
 
 .closeButton {
-  background: none;
-  border: none;
-  font-size: 28px;
-  font-weight: bold;
-  color: red;
   cursor: pointer;
-  top: -20px;
-  right: -10px;
+  top: 1px;
+  right: 1px;
   position: absolute;
 }
 
@@ -113,7 +108,7 @@
 
 .rulesContainer h2 {
   margin-bottom: 10px;
-  font-size: 1.5em;
+  font-size: var(--text-lg);
   color: var(--color-text-primary);
 }
 
@@ -126,6 +121,6 @@
 
 .rulesContainer li {
   margin: 5px 0;
-  font-size: 1.2em;
+  font-size: var(--text-md);
   color: var(--color-text-primary);
 }
