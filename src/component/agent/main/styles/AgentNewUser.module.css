@@ -30,7 +30,7 @@ h2 {
 
 .input label {
   font-weight: bold;
-  font-size: 18px;
+  font-size: var(--text-md);
   flex-shrink: 0; /* Prevent label from shrinking */
   width: 120px; /* Set a fixed width for the label */
 }
@@ -38,11 +38,11 @@ h2 {
 .input input {
   width: 100%;
   min-height: 40px;
-  font-size: 20px;
+  font-size: var(--text-lg);
   color: var(--color-text-primary); /* Light/dark text color */
   padding: 0 10px;
   border: 1px solid var(--color-highlighter-dark-secondary); /* Light/dark border color */
-  border-radius: 6px;
+  border-radius: var(--borderRadius);
   outline: none;
   background-color: var(
     --color-bg-secondary
@@ -56,12 +56,12 @@ h2 {
 }
 
 .input small {
-  font-size: 10px;
+  font-size: var(--text-sm);
   color: var(--color-text-secondary); /* Light/dark text color for small text */
 }
 
 .note {
-  margin-bottom: 10px; /* Existing margin */
+  margin-bottom: var(--borderRadius-md); /* Existing margin */
 
   float: left; /* Floats the element to the left */
   margin-left: -50px; /* Adjusted margin to the left  , need to be changed later*/

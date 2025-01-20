@@ -3,8 +3,7 @@ import styles from "../style/BetSection.module.css";
 
 import { BetCardSection } from "../../common/BetSection/jsx/BetCardSection";
 
-export const BetSection = ({ onClick }) => {
-  let isLock = false;
+export const BetSection = ({ onClick, isLock }) => {
 
   return (
     <div className={styles.betSection}>

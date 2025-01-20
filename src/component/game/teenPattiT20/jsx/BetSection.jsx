@@ -3,9 +3,7 @@ import styles from "../style/BetSection.module.css";
 import { BetProfit } from "../../common/BetSection/jsx/BetProfit";
 import { PlayerLabel } from "../../common/BetSection/jsx/PlayerLabel";
 
-export const BetSection = ({ onClick }) => {
-  let isLock = false;
-
+export const BetSection = ({ onClick, isLock }) => {
   return (
     <div className={styles.betSection}>
       <div className={styles.betPlacing}>

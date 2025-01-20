@@ -1,19 +1,19 @@
 import { BrowserRouter as Router } from "react-router-dom";
 import style from "../styles/App.module.css";
-import { Header } from "../../component/common/Header"; // Header component
 import { Routing } from "./Routing"; // Import the Routing component
-import { UserContextProvider } from "../../context/userContext/UserContext"; // Import the UserContextProvider
+import { Header } from "../../component/layout/jsx/Header";
+import { AuthProvider } from "../../context/jsx/AuthContext";
 
 function App() {
   return (
-    <div className={style.app}>
-      <UserContextProvider>
-        <Router>
+    <AuthProvider>
+      <Router>
+        <div className={style.app}>
           <Header />
           <Routing />
-        </Router>
-      </UserContextProvider>
-    </div>
+        </div>
+      </Router>
+    </AuthProvider>
   );
 }
 

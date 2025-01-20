@@ -1,3 +1,11 @@
+.loader {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .container {
   --uib-size: 100px;
   --uib-color: var(--color-text-primary);

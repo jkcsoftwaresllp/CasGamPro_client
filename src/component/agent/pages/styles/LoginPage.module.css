@@ -30,7 +30,7 @@
 /* .form_details styles */
 .form_details {
   font-size: 35px;
-  font-weight: 600;
+  font-weight: var(--text-bold);
   padding-bottom: 12px;
   color: var(
     --color-text-primary
@@ -39,7 +39,7 @@
 
 /* .switch styles for theme toggling */
 .form .switch {
-  font-size: 23px;
+  font-size: var(--text-lg);
   color: var(--color-text-primary); /* Light/dark text color */
 }
 

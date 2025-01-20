@@ -5,7 +5,7 @@ import { BetSection as AndarBahar2BetSection } from "../../../AndarBahar2/jsx/Be
 import { BetSection as AndarBahar1BetSection } from "../../../AndarBahar1/jsx/BetSection";
 import { BetSection as TeenPattiT20BetSection } from "../../../teenPattiT20/jsx/BetSection";
 
-export const BetSection = ({ game, onClick }) => {
+export const BetSection = ({ game, onClick, status }) => {
   const betSectionMap = {
     lucky7B: Lucky7BBetSection,
     andarBahar2: AndarBahar2BetSection,
@@ -13,12 +13,16 @@ export const BetSection = ({ game, onClick }) => {
     teenPattiT20: TeenPattiT20BetSection,
   };
 
+  let isLock;
+  if (status === "betting") isLock = false;
+  else isLock = true;
+
   const SelectedBetSection = betSectionMap[game] || null;
 
   return (
     <div className={styles.betSection}>
       {SelectedBetSection ? (
-        <SelectedBetSection onClick={onClick} />
+        <SelectedBetSection onClick={onClick} isLock={isLock} />
       ) : (
         <div>Game not found</div>
       )}

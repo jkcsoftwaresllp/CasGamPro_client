@@ -4,7 +4,9 @@ import { CardSection as Lucky7BCardSection } from "../../../lucky7B/jsx/CardSect
 import { CardSection as AndarBaharCardSection } from "../../../AndarBahar2/jsx/CardSection";
 import { CardSection as TeenPattiT20CardSection } from "../../../teenPattiT20/jsx/CardSection";
 
-export const GameInterface = ({ game, roundId = "A85745846" }) => {
+export const GameInterface = ({ game, roundId = "A85745846", cards }) => {
+  if (!cards.playerA && !cards.playerB) return null;
+
   const betSectionMap = {
     lucky7B: Lucky7BCardSection,
     andarBahar1: AndarBaharCardSection,
@@ -30,7 +32,7 @@ export const GameInterface = ({ game, roundId = "A85745846" }) => {
       </div>
       <div className={styles.content}>
         {SelectedBetSection ? (
-          <SelectedBetSection />
+          <SelectedBetSection cards={cards} />
         ) : (
           <div>Game not found</div>
         )}

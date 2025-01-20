@@ -3,15 +3,15 @@ import { UserInfo } from "../../../layoutDash/jsx/UserInfo";
 import { HeaderBtnGroup } from "../../../layoutDash/jsx/HeaderBtnGroup";
 import style from "../style/ClientHeader.module.css";
 import { fetchWalletPoints } from "../helper/walletPoints"; // Import helper
-import { UserContext } from "../../../context/userContext/UserContext"; // Adjust the path as needed
 import { Heart } from "./heart";
+import { useAuth } from "../../../context/jsx/AuthContext";
 
 export const ClientHeader = () => {
   const [walletPoints, setWalletPoints] = useState(1000); // Dummy wallet points
   const [error, setError] = useState(null);
+  const { user } = useAuth();
 
   // Fetch userId and userName from UserContext
-  const { user } = useContext(UserContext);
   const userId = user.userId;
   const userName = user.userName;
 

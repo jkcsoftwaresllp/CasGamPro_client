@@ -5,7 +5,8 @@ export const HeaderHelper = ({ panel }) => {
     client: HeaderMain,
   };
 
-  const SelectedHeader = HeaderSectionMap[panel] || null;
+  // const SelectedHeader = HeaderSectionMap[panel] || null;
+  const SelectedHeader = null;
 
   return (
     <div>
