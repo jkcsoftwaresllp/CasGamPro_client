@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
-import { Loader } from "../../component/common/Loader";
-import { useAuth } from "../../context/jsx/AuthContext";
+import { Loader } from "../../common/Loader";
+import { useAuth } from "../../../context/jsx/AuthContext";
 
 export const ProtectedRoutes = ({ children, allowedRoles }) => {
   const { user } = useAuth();

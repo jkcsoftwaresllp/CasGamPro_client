@@ -1,18 +1,18 @@
 import { Routes, Route } from "react-router-dom";
-import style from "../styles/Routing.module.css";
+import style from "../style/Routing.module.css";
 
-import { Home } from "./Home";
-import { AgentWindow } from "../../component/agent/main/jsx/AgentWindow";
-import { Test } from "../../component/test/test";
-import { Game } from "../../component/game/common/layout/jsx/Game";
-import { GameList } from "../../component/game/pages/GameList";
-import { LayoutDash } from "../../layoutDash/jsx/LayoutDash";
-import { Rules } from "../../layoutDash/pages/Rules";
-import { HomeDash } from "../../layoutDash/pages/HomeDash";
-import { Schedule } from "../../layoutDash/pages/Schedule";
-import { ErrorPage } from "./Error";
-import { ProtectedRoutes } from "./ProtectedRoutes";
-import { LoginPage } from "./LoginPage";
+import { Home } from "../../../pages/jsx/Home";
+import { AgentWindow } from "../../agent/main/jsx/AgentWindow";
+import { Test } from "../../test/test";
+import { Game } from "../../game/common/layout/jsx/Game";
+import { GameList } from "../../game/pages/GameList";
+import { LayoutDash } from "../../../layoutDash/jsx/LayoutDash";
+import { Rules } from "../../../layoutDash/pages/Rules";
+import { HomeDash } from "../../../layoutDash/pages/HomeDash";
+import { Schedule } from "../../../layoutDash/pages/Schedule";
+import { ErrorPage } from "../../../pages/jsx/Error";
+import { ProtectedRoutes } from "../helper/ProtectedRoutes";
+import { LoginPage } from "../../../pages/jsx/LoginPage";
 
 export const Routing = () => {
   return (
@@ -28,18 +28,20 @@ export const Routing = () => {
           <Route
             path="/gameList"
             element={
-              <ProtectedRoutes allowedRoles={["player", "agent", "admin"]}>
-                <GameList />
-              </ProtectedRoutes>
+              <ProtectedRoutes
+                allowedRoles={["player", "agent", "admin"]}
+                children={<GameList />}
+              />
             }
           />
 
           <Route
             path="/dash/*"
             element={
-              <ProtectedRoutes allowedRoles={["player", "agent", "admin"]}>
-                <LayoutDash />
-              </ProtectedRoutes>
+              <ProtectedRoutes
+                allowedRoles={["player", "agent", "admin"]}
+                children={<LayoutDash />}
+              />
             }
           >
             <Route index element={<Rules />} />
