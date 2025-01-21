@@ -2,37 +2,35 @@
   position: relative;
 }
 
-/* .input styles */
 .input {
   width: 300px;
   min-height: 45px;
   font-size: 18px;
-  color: var(--color-text-primary); /* Light/dark text color */
+  padding: 0 7px;
+  background-color: var(--color-bg-secondary);
+  border-radius: var(--borderRadius);
+  border: 2px solid var(--color-bg-secondary);
+  color: var(--color-text-primary);
   outline: none;
   transition: 0.35s;
-  padding: 0px 7px;
-  background-color: var(--color-bg-secondary); /* Light/dark background color */
-  border-radius: var(--borderRadius); /* Border radius */
-  border: 2px solid var(--color-bg-secondary); /* Light/dark border color */
 }
 
-/* Placeholder styles */
 .input::placeholder {
-  color: var(--color-text-secondary); /* Light/dark placeholder text */
+  color: var(--color-text-secondary);
 }
 
-/* .visibilityIcon styles */
 .visibilityIcon {
   position: absolute;
-  height: 100%;
+  top: 50%;
   right: 10px;
-  top: 0;
+  transform: translateY(-50%);
   cursor: pointer;
   transition: 0.3s;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 0 2px;
+}
+
+input[type="password"] {
+  letter-spacing: 2px;
+ 
 }
 
 .visibilityIcon svg path {
