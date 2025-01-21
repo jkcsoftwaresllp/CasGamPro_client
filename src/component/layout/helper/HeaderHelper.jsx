@@ -1,8 +1,8 @@
-import { ClientHeader as HeaderMain } from "../../client/jsx/ClientHeader";
+import { ClientHeader } from "../../client/jsx/ClientHeader";
 // import { Header } from "../Header";
 export const HeaderHelper = ({ panel }) => {
   const HeaderSectionMap = {
-    client: HeaderMain,
+    client: ClientHeader,
   };
 
   // const SelectedHeader = HeaderSectionMap[panel] || null;
