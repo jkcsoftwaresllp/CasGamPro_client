@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { fetchNotifications } from "../helper/notificationHelper";
 import style from "../style/Rules.module.css";
 import { closeIcon } from "../../../../assets/assets";
 
@@ -7,11 +6,7 @@ export const NotificationBox = ({ onClose }) => {
   const [notifications, setNotifications] = useState([]);
 
   useEffect(() => {
-    const getNotifications = async () => {
-      const fetchedNotifications = await fetchNotifications();
-      setNotifications(fetchedNotifications);
-    };
-    getNotifications();
+    // TODO: Fetch notifications from the server
   }, []);
 
   return (

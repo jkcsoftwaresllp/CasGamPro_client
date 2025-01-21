@@ -1,3 +1,6 @@
+.container {
+}
+
 .rotateContainer {
   background-color: var(--color-rotate-primary);
   padding: 5px;
@@ -5,12 +8,13 @@
   overflow: hidden; /* Ensures content outside the container is clipped */
   position: relative;
   white-space: nowrap;
+  width: 100%;
 }
 
 .rotating {
   display: inline-block;
   white-space: nowrap;
-  animation: scroll-left 20s linear infinite;
+  animation: scroll-left 15s linear infinite;
   color: var(--color-text-primary);
   font-size: var(--text-lg);
   font-weight: var(--text);
@@ -77,19 +81,11 @@
   justify-content: flex-end;
   gap: 10px;
   margin-top: 20px;
+  padding-right: 20px;
   color: var(--color-text-primary);
 }
 
-.languageButton {
-  padding: 10px;
-  font-size: var(--text-sm);
-
-  border-radius: var(--borderRadius);
-  background-color: var(--color-bg-tertiary);
-  cursor: pointer;
-}
-
-.selected {
+.btnContainer .selected button {
   background-color: rgb(28, 178, 224);
   color: white;
   font-weight: var(--textBold);
@@ -99,9 +95,8 @@
   margin: auto;
   padding: 15px;
   background-color: var(--color-bg-primary);
-
   border-radius: var(--borderRadius);
-  max-width: 600px;
+  max-width: 1000px;
   text-align: center;
   /* box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); Add a subtle shadow */
 }
@@ -112,8 +107,7 @@
   color: var(--color-text-primary);
 }
 
-.rulesContainer ul {
-  list-style-type: disc;
+.rulesContainer ol {
   padding-left: 20px;
   text-align: left; /* Align list items to the left for readability */
   margin: auto;

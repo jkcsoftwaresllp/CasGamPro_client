@@ -4,6 +4,7 @@ import { ErrorPage } from "../../../pages/jsx/Error";
 import { Home } from "../../client/jsx/Home";
 import { TempComp } from "../helper/TempComp";
 import { GameCatagoryRoutes } from "./GameCatagoryRoutes";
+import { Rules } from "../../client/rules/jsx/Rules";
 
 export const ClientRoutes = () => {
   return (
@@ -16,7 +17,7 @@ export const ClientRoutes = () => {
         path={path.playHistory}
         element={<TempComp label={"Play History"} />}
       />
-      <Route path={path.rules} element={<TempComp label={"Rules"} />} />
+      <Route path={path.rules} element={<Rules />} />
       <Route path={path.settings} element={<TempComp label={"Settings"} />} />
 
       <Route

@@ -1,17 +1,11 @@
 import { useState } from "react";
 import style from "../style/Rules.module.css";
 import { LangSelector } from "./LangSelector";
-import { NotificationBox } from "./NotificationBox";
 import { RulesList } from "./RulesList";
 import { RotatingMessage } from "./RotatingMessage";
 
 export const Rules = () => {
-  const [isNotificationVisible, setNotificationVisible] = useState(true);
   const [selectedLanguage, setSelectedLanguage] = useState("hindi"); // Default to Hindi
-
-  const hideNotification = () => {
-    setNotificationVisible(false);
-  };
 
   const handleLanguageChange = (language) => {
     setSelectedLanguage(language);
@@ -27,15 +21,6 @@ export const Rules = () => {
         onLanguageChange={handleLanguageChange}
       />
       <RulesList language={selectedLanguage} />
-
-      {/* Notification Modal */}
-      {isNotificationVisible && (
-        <NotificationBox
-          onClose={hideNotification}
-          notificationText="This is an important notification! Please take note of the following
-        rules and guidelines carefully read kre."
-        />
-      )}
     </div>
   );
 };

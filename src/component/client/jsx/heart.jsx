@@ -11,6 +11,19 @@ export const Heart = () => {
     setIsModalOpen(!isModalOpen); // Toggle the modal visibility state
   };
 
+  useEffect(() => {
+    const fetchWalletPoints = async () => {
+      try {
+        // const response = await apiCall(
+        //   "/auth-api/client/favorite-games",
+        //   "GET"
+        // );
+      } catch (err) {}
+    };
+
+    fetchWalletPoints();
+  }, []);
+
   const closeModal = () => {
     setIsModalOpen(false); // Close the modal
   };

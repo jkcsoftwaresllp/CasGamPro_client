@@ -1,18 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { fetchNotifications } from "../helper/notificationHelper"; // Import the helper function
 import style from "../style/Rules.module.css";
 export const RotatingMessage = () => {
-  const [notifications, setNotifications] = useState("");
+  const [notifications, setNotifications] = useState(
+    "No notifications available."
+  );
 
   useEffect(() => {
-    const getNotifications = async () => {
-      const fetchedNotifications = await fetchNotifications();
-      // Join notifications with a bullet separator
-      const formattedNotifications = fetchedNotifications.join(" ♦ ");
-      setNotifications(formattedNotifications || "No notifications available.");
-    };
-
-    getNotifications();
+    // TODO: Fetch notifications from the server
   }, []);
 
   return (
