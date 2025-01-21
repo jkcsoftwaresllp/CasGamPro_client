@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { UsernameInput } from "../../../common/UserNameInput.jsx";
-import { PasswordInput } from "../../../common/PasswordInput.jsx";
-import { Button } from "../../../common/Button.jsx";
+import { UsernameInput } from "../../component/common/UserNameInput.jsx";
+import { PasswordInput } from "../../component/common/PasswordInput.jsx";
+import { Button } from "../../component/common/Button.jsx";
 import style from "../styles/LoginPage.module.css";
-import { Loader } from "../../../common/Loader.jsx";
-import { useAuth } from "../../../../context/jsx/AuthContext.jsx";
+import { Loader } from "../../component/common/Loader.jsx";
+import { useAuth } from "../../context/jsx/AuthContext.jsx";
+import { roles } from "../../utils/roles.js";
 
 export const LoginPage = () => {
   const [userId, setUserId] = useState("");
@@ -13,6 +14,7 @@ export const LoginPage = () => {
   const [error, setError] = useState("");
   const navigate = useNavigate();
   const { user, handleLogin, loading } = useAuth();
+  roles;
 
   const handleLoginFun = async (e) => {
     e.preventDefault();
@@ -28,10 +30,9 @@ export const LoginPage = () => {
     const { userRole } = user;
 
     // Navigate based on role
-    if (userRole === "AGENT") navigate("/agent");
-    else if (userRole === "CLIENT") navigate("/client");
+    if (userRole === roles.AGENT) navigate("/agent");
+    else if (userRole === roles.CLIENT) navigate("/client");
     else setError("Unknown user role");
-    
   };
 
   return (
