@@ -3,15 +3,13 @@ import { routesPathClient as path } from "../helper/routesPathClient";
 import { ErrorPage } from "../../../pages/jsx/Error";
 import { GameCatagory } from "../../client/jsx/GameCatagory";
 import { TempComp } from "../helper/TempComp";
+import { GameList } from "../../game/pages/GameList";
 
 export const GameCatagoryRoutes = () => {
   return (
     <Routes>
       <Route path={path.home} index element={<GameCatagory />} />
-      <Route
-        path={path.catagory1}
-        element={<TempComp label={"Casino Games"} />}
-      />
+      <Route path={path.catagory1} element={<GameList />} />
       <Route
         path={path.catagory2}
         element={<TempComp label={"Lattery games"} />}
