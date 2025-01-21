@@ -1,10 +1,10 @@
 import React from "react";
 import styles from "../style/Home.module.css";
 import { Button } from "../../common/Button";
-import { homeButtonDetails as btnDetails } from "../helper/homeButtonDetails";
+import { gameCatagoryButtonDetails as btnDetails } from "../helper/gameCatagoryButtonDetails";
 import { useButtonNavigation } from "../../../hooks/useButtonNavigation";
 
-export const Home = ({}) => {
+export const GameCatagory = ({}) => {
   const handleNavigation = useButtonNavigation();
   return (
     <div className={styles.home}>

@@ -1,4 +1,5 @@
 export const routesPathClient = {
+  // /client
   home: "/",
   gameCatagory: "/gameCatagory",
   ledger: "/ledger",
@@ -6,4 +7,9 @@ export const routesPathClient = {
   settings: "/settings",
   rules: "/rules",
   playHistory: "/playHistory",
+
+  // /client/gameCatagory
+  catagory1: "/casino",
+  catagory2: "/lottery",
+  catagory3: "/criket",
 };
