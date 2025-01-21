@@ -1,16 +1,20 @@
+import { useAuth } from "../../../context/jsx/AuthContext";
+import { roles } from "../../../utils/roles";
+import { AgentHeader } from "../../agent/main/jsx/AgentHeader";
 import { ClientHeader } from "../../client/jsx/ClientHeader";
-// import { Header } from "../Header";
-export const HeaderHelper = ({ panel }) => {
+
+export const HeaderHelper = () => {
+  const {
+    user: { userRole },
+  } = useAuth();
+
   const HeaderSectionMap = {
-    client: ClientHeader,
+    [roles.CLIENT]: ClientHeader,
+    [roles.AGENT]: AgentHeader,
   };
 
-  // const SelectedHeader = HeaderSectionMap[panel] || null;
+  // const SelectedHeader = HeaderSectionMap[userRole] || null;
   const SelectedHeader = null;
 
-  return (
-    <div>
-      {SelectedHeader ? <SelectedHeader /> : <div>Header not found</div>}
-    </div>
-  );
+  return <div>{SelectedHeader ? <SelectedHeader /> : <></>}</div>;
 };

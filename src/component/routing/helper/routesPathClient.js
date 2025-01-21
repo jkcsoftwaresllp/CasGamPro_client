@@ -1,4 +1,9 @@
 export const routesPathClient = {
+  // /
+  client: "/client",
+  agent: "/agent",
+  admin: "/admin",
+
   // /client
   home: "/",
   gameCatagory: "/gameCatagory",

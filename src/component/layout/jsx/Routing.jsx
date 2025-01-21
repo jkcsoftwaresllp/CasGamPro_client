@@ -5,6 +5,7 @@ import { LoginPage } from "../../../pages/jsx/LoginPage";
 import { roles } from "../../../utils/roles";
 import { ClientRoutes } from "../../routing/client/clientRoutes";
 import { ErrorPage } from "../../../pages/jsx/Error";
+import { routesPathClient } from "../../routing/helper/routesPathClient";
 
 export const Routing = () => {
   return (
@@ -14,7 +15,7 @@ export const Routing = () => {
 
       {/* Protected routes */}
       <Route
-        path="/client/*"
+        path={`${routesPathClient.client}/*`}
         element={
           <ProtectedRoutes
             allowedRoles={[roles.CLIENT]}

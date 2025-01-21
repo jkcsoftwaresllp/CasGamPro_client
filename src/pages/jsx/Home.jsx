@@ -1,21 +1,16 @@
-import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import style from "../styles/Home.module.css";
 import { Loader } from "../../component/common/Loader";
 import { Button } from "../../component/common/Button";
+import { routesPathClient } from "../../component/routing/helper/routesPathClient";
+import { useAuth } from "../../context/jsx/AuthContext";
 
 export const Home = () => {
-  const [loading, setLoading] = useState(true);
+  const { loading } = useAuth();
   const navigate = useNavigate();
 
-  // Simulate data loading
-  useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 1000); // Simulates a delay
-    return () => clearTimeout(timer); // Cleanup timer
-  }, []);
-
   const handleAgentClick = () => {
-    navigate("/agent");
+    navigate(routesPathClient.client);
   };
 
   return (
@@ -30,7 +25,7 @@ export const Home = () => {
             <h1 className={style.title}>CasGamPro</h1>
 
             <div className={style.buttonContainer}>
-              <Button label="Just Play Buddy" onClick={handleAgentClick} />
+              <Button label="Let's Play Game" onClick={handleAgentClick} />
             </div>
           </div>
         </>

@@ -1,5 +1,4 @@
 import React, { useEffect, useState, useContext } from "react";
-import { UserInfo } from "../../../layoutDash/jsx/UserInfo";
 import { HeaderBtnGroup } from "../../../layoutDash/jsx/HeaderBtnGroup";
 import style from "../style/ClientHeader.module.css";
 import { fetchWalletPoints } from "../helper/walletPoints"; // Import helper
@@ -36,11 +35,7 @@ export const ClientHeader = () => {
   return (
     <div className={style.mainContainer}>
       <div className={style.flexContainer}>
-        <UserInfo
-          userId={userId}
-          userName={userName}
-          walletPoints={walletPoints}
-        />
+       {/* TODO : Wallel Point */}
         <HeaderBtnGroup />
         <Heart />
       </div>
