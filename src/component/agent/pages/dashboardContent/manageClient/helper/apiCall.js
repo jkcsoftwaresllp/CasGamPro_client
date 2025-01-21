@@ -23,11 +23,9 @@ export const apiCall = async (
 
     return response.data;
   } catch (error) {
-    console.error("API Call Error:", error);
+    // console.error("API Call Error:", error);
 
     // Throw a user-friendly error message
-    throw error.response
-      ? error.response.data
-      : "An unexpected error occurred.";
+    throw error.response ? error.response.data : error;
   }
 };

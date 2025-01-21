@@ -3,7 +3,7 @@ import React from "react";
 import style from "./style/GameTiles.module.css";
 import { FavBtn } from "./FavBtn";
 
-export const GameTile = ({ imgSrc, label }) => {
+export const GameTile = ({ imgSrc, label, onClick }) => {
   return (
     <div className={style.cardsList}>
       <div className={style.card}>

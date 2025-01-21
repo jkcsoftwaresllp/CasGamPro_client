@@ -3,9 +3,13 @@ import style from "../style/Header.module.css";
 import { HeaderHelper } from "../helper/HeaderHelper";
 import { HeaderToggle } from "../helper/HeaderToggle";
 import { HeaderAuth } from "../helper/HeaderAuth";
+import { useAuth } from "../../../context/jsx/AuthContext";
 
 export const Header = () => {
   const navigate = useNavigate();
+  const {
+    user: { userId, username },
+  } = useAuth();
 
   // Navigation handlers
   const handleHomeClick = () => navigate("/");
@@ -17,10 +21,12 @@ export const Header = () => {
           CasGamPro
         </h1>
         <div className={style.fullSection}>
-          <HeaderHelper panel={"client"} />
+          <HeaderHelper />
         </div>
 
         <div className={style.rightSection}>
+          <p>{username} </p>
+          <p>{userId} </p>
           <HeaderAuth />
           <HeaderToggle />
         </div>

@@ -30,7 +30,7 @@
 .rightSection {
   display: flex;
   align-items: center;
-  gap: 15px;
+  gap: var(--header-gap);
 }
 
 .fullSection {

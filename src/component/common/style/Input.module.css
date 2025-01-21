@@ -1,35 +1,38 @@
-/* .input styles */
+.inputWrapper {
+  position: relative;
+}
+
 .input {
   width: 300px;
   min-height: 45px;
   font-size: 18px;
-  color: var(--color-text-primary); /* Light/dark text color */
+  padding: 0 7px;
+  background-color: var(--color-bg-secondary);
+  border-radius: var(--borderRadius);
+  border: 2px solid var(--color-bg-secondary);
+  color: var(--color-text-primary);
   outline: none;
   transition: 0.35s;
-  padding: 0px 7px;
-  background-color: var(--color-bg-secondary); /* Light/dark background color */
-  border-radius: var(--borderRadius); /* Border radius */
-  border: 2px solid var(--color-bg-secondary); /* Light/dark border color */
-  position: relative; /* Position relative to place the button inside */
 }
 
-/* Placeholder styles */
 .input::placeholder {
-  color: var(--color-text-secondary); /* Light/dark placeholder text */
+  color: var(--color-text-secondary);
 }
 
-/* .visibilityIcon styles */
 .visibilityIcon {
-  position: fixed;
-  right: 10px; /* Position on the right side of the input */
-  margin-top: 10px;
-  padding: 0px;
-
-  border: none;
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
   cursor: pointer;
-  border-radius: var(--borderRadius-lg); /* Rounded button */
   transition: 0.3s;
 }
-.visibilityIcon:hover {
-  background-color: var(--color-bg-secondary); /* Light/dark background color */
+
+input[type="password"] {
+  letter-spacing: 2px;
+ 
+}
+
+.visibilityIcon svg path {
+  color: var(--color-text-primary);
 }
