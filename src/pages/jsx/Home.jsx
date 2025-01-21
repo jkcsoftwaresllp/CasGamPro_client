@@ -27,10 +27,10 @@ export const Home = () => {
       ) : (
         <>
           <div className={style.container}>
-            <h1 className={style.title}>casGamPro</h1>
+            <h1 className={style.title}>CasGamPro</h1>
 
             <div className={style.buttonContainer}>
-              <Button label="Agent Dashboard" onClick={handleAgentClick} />
+              <Button label="Just Play Buddy" onClick={handleAgentClick} />
             </div>
           </div>
         </>
@@ -38,4 +38,3 @@ export const Home = () => {
     </div>
   );
 };
-

@@ -14,7 +14,7 @@
 
 .title {
   font-size: 4em; /* Large text for the title */
-  font-weight: var(--textBold); /* Bold text */
+  font-weight: var(--text-bold); /* Bold text */
   text-align: center;
   color: var(--color-text-primary); /* Text color based on theme */
 }

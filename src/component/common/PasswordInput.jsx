@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import style from "./style/Input.module.css";
 import { hideIcon, showIcon } from "../../assets/assets";
+import { SetIcon } from "./jsx/SetIcon";
 
 export const PasswordInput = ({ placeholder = "Password", onChange }) => {
   const [passwordVisible, setPasswordVisible] = useState(false);
@@ -26,13 +27,15 @@ export const PasswordInput = ({ placeholder = "Password", onChange }) => {
         onChange={handleChange}
         aria-label={placeholder}
       />
+
       <div
-        type="button"
-        onClick={toggleVisibility}
         className={style.visibilityIcon}
         aria-label={passwordVisible ? "Hide password" : "Show password"}
       >
-        {passwordVisible ? hideIcon : showIcon}
+        <SetIcon
+          icon={passwordVisible ? hideIcon : showIcon}
+          onClick={toggleVisibility}
+        />
       </div>
     </div>
   );

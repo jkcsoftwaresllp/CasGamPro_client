@@ -25,17 +25,13 @@ export const LoginPage = () => {
     }
 
     await handleLogin({ userId, password });
-
     const { userRole } = user;
 
     // Navigate based on role
-    if (role === "AGENT") {
-      navigate("/agent");
-    } else if (role === "CLIENT") {
-      navigate("/client");
-    } else {
-      setError("Unknown user role");
-    }
+    if (userRole === "AGENT") navigate("/agent");
+    else if (userRole === "CLIENT") navigate("/client");
+    else setError("Unknown user role");
+    
   };
 
   return (

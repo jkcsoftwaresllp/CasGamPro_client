@@ -4,7 +4,7 @@ import { Loader } from "../../component/common/Loader";
 import { useAuth } from "../../context/jsx/AuthContext";
 
 export const ProtectedRoutes = ({ children, allowedRoles }) => {
-  const { user, loading } = useAuth();
+  const { user } = useAuth();
 
   const [authState, setAuthState] = useState({
     loading: true,
@@ -25,11 +25,7 @@ export const ProtectedRoutes = ({ children, allowedRoles }) => {
   }, [user, allowedRoles]);
 
   if (authState.loading) {
-    return (
-      <div className={styles.loaderContainer}>
-        <Loader /> {/* Display loader while checking authorization */}
-      </div>
-    );
+    return <Loader />;
   }
 
   if (!authState.authorized) {
