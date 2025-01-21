@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { fetchNotifications } from "./helper/notificationHelper"; // Import the helper function
-import style from "../../style/Rules.module.css";
+import { fetchNotifications } from "../helper/notificationHelper"; // Import the helper function
+import style from "../style/Rules.module.css";
 export const RotatingMessage = () => {
   const [notifications, setNotifications] = useState("");
 

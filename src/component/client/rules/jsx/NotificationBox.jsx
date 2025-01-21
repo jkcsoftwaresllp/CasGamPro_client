@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { fetchNotifications } from "./helper/notificationHelper";
-import style from "../../style/Rules.module.css";
-import { closeIcon } from "../../../assets/assets";
+import { fetchNotifications } from "../helper/notificationHelper";
+import style from "../style/Rules.module.css";
+import { closeIcon } from "../../../../assets/assets";
 
 export const NotificationBox = ({ onClose }) => {
   const [notifications, setNotifications] = useState([]);

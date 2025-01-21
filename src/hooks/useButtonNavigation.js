@@ -12,3 +12,12 @@ export const useButtonNavigation = () => {
 
   return handleNavigation;
 };
+
+/*
+
+Use it:
+
+  const handleNavigation = useButtonNavigation();
+
+
+*/

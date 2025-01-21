@@ -1,0 +1,15 @@
+.buttonContainer {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: right;
+  gap: var(--header-gap);
+}
+
+.buttonContainer .button {
+  all: unset;
+  font-weight: bold;
+  font-size: var(--text-md);
+  height: 100%;
+  cursor: pointer;
+}

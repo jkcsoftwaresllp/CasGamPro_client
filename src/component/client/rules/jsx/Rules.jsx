@@ -1,9 +1,9 @@
 import { useState } from "react";
 import style from "../style/Rules.module.css";
-import { LangSelector } from "../jsx/rules/LangSelector";
-import { NotificationBox } from "../jsx/rules/NotificationBox";
-import { RulesList } from "../jsx/rules/RulesList";
-import { RotatingMessage } from "../jsx/rules/RotatingMessage";
+import { LangSelector } from "./LangSelector";
+import { NotificationBox } from "./NotificationBox";
+import { RulesList } from "./RulesList";
+import { RotatingMessage } from "./RotatingMessage";
 
 export const Rules = () => {
   const [isNotificationVisible, setNotificationVisible] = useState(true);

@@ -1,4 +1,4 @@
-import style from "../../style/Rules.module.css";
+import style from "../style/Rules.module.css";
 
 export const LangSelector = ({ selectedLanguage, onLanguageChange }) => {
   return (

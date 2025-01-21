@@ -1,5 +1,5 @@
 import React from "react";
-import style from "../../style/Rules.module.css";
+import style from "../style/Rules.module.css";
 
 export const RulesList = ({ language }) => {
   const rules = {

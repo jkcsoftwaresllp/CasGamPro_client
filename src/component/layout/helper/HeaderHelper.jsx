@@ -13,8 +13,8 @@ export const HeaderHelper = () => {
     [roles.AGENT]: AgentHeader,
   };
 
-  // const SelectedHeader = HeaderSectionMap[userRole] || null;
-  const SelectedHeader = null;
+  const SelectedHeader = HeaderSectionMap[userRole] || null;
+  // const SelectedHeader = null;
 
   return <div>{SelectedHeader ? <SelectedHeader /> : <></>}</div>;
 };
