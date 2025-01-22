@@ -4,9 +4,9 @@ import { AgentHeader } from "../../agent/main/jsx/AgentHeader";
 import { ClientHeader } from "../../client/jsx/ClientHeader";
 
 export const HeaderHelper = () => {
-  const {
-    user: { userRole },
-  } = useAuth();
+  const { user } = useAuth();
+  let userRole;
+  if (user) userRole = user.userRole;
 
   const HeaderSectionMap = {
     [roles.CLIENT]: ClientHeader,

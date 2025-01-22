@@ -5,7 +5,6 @@ import { CardSection as AndarBaharCardSection } from "../../../AndarBahar2/jsx/C
 import { CardSection as TeenPattiT20CardSection } from "../../../teenPattiT20/jsx/CardSection";
 
 export const GameInterface = ({ game, roundId = "A85745846", cards }) => {
-  if (!cards.playerA && !cards.playerB) return null;
 
   const betSectionMap = {
     lucky7B: Lucky7BCardSection,
