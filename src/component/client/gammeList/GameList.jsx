@@ -19,30 +19,28 @@ export const GameList = () => {
         <GameTile
           imgSrc={teenPatti}
           label="Teen Patti T-20"
-          onClick={() =>
-            handleCardClick(getGamePath("teenPattiT20", "DS01254"))
-          }
+          onClick={() => handleCardClick(getGamePath("teenPattiT20"))}
         />
         <GameTile
           imgSrc={luckyB}
           label="Luck 7B"
-          onClick={() => handleCardClick(getGamePath("lucky7B", "DS01254"))} // Navigate to Lucky B page
+          onClick={() => handleCardClick(getGamePath("lucky7B"))}
         />
         <GameTile
           imgSrc={andarBahar}
           label="Andar Bahar 1"
-          onClick={() => handleCardClick(getGamePath("andarBahar1", "DS01254"))} // Navigate to Andar Bahar page
+          onClick={() => handleCardClick(getGamePath("andarBahar1"))}
         />
 
         <GameTile
           imgSrc={andarBahar}
           label="Andar Bahar 2"
-          onClick={() => handleCardClick(getGamePath("andarBahar2", "DS01254"))} // Navigate to Andar Bahar page
+          onClick={() => handleCardClick(getGamePath("andarBahar2"))}
         />
         <GameTile
           imgSrc="https://media.giphy.com/media/10SvWCbt1ytWCc/giphy.gif"
           label="Card Title 4"
-          onClick={() => {}} // Navigate to Game 4 page
+          onClick={() => {}}
         />
       </div>
     </div>

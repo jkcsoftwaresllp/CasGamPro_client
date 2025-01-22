@@ -6,20 +6,17 @@ export const useQueryParams = () => {
   const location = useLocation();
   const [error, setError] = useState(null);
   const [gameType, setGameType] = useState(null);
-  const [roundId, setRoundId] = useState("");
 
   useEffect(() => {
     const queryParams = new URLSearchParams(location.search);
     const gameName = queryParams.get("gameName");
-    const roundId = queryParams.get("roundId");
 
-    if (gameName && roundId) {
-      const errorMessage = validateUrlParams(gameName, roundId);
+    if (gameName) {
+      const errorMessage = validateUrlParams(gameName);
       if (errorMessage) {
         setError(errorMessage);
       } else {
         setGameType(gameName);
-        setRoundId(roundId);
         setError(null); // Reset error state
       }
     } else {
@@ -27,5 +24,5 @@ export const useQueryParams = () => {
     }
   }, [location.search]);
 
-  return { gameType, roundId, error };
+  return { gameType, error };
 };
