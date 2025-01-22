@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { GameTile } from "../common/gameTiles/GameTiles";
+import { GameTile } from "./gameTiles/GameTiles";
 import style from "./style/GameList.module.css";
 
 // images

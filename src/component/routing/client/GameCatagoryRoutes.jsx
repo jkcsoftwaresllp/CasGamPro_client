@@ -2,8 +2,8 @@ import { Routes, Route } from "react-router-dom";
 import { routesPathClient as path } from "../helper/routesPathClient";
 import { ErrorPage } from "../../../pages/jsx/Error";
 import { GameCatagory } from "../../client/jsx/GameCatagory";
+import { GameList } from "../../client/gammeList/GameList";
 import { TempComp } from "../helper/TempComp";
-import { GameList } from "../../game/pages/GameList";
 
 export const GameCatagoryRoutes = () => {
   return (
