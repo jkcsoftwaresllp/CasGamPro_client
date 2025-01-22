@@ -5,7 +5,8 @@ import { Card } from "../../common/cardSection/jsx/Card";
 import { interleaveCards } from "../helper/interleaveCards";
 
 export const CardSection = ({ cards = {} }) => {
-  
+  if (!cards.length) return null;
+
   const [jokerCard] = cards.jokerCard;
   // const servingCards = cards.slice(2);
   const cardsToSend = interleaveCards(cards);

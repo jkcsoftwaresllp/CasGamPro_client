@@ -2,14 +2,14 @@ import { Routes, Route } from "react-router-dom";
 import { routesPathClient as path } from "../helper/routesPathClient";
 import { ErrorPage } from "../../../pages/jsx/Error";
 import { GameCatagory } from "../../client/jsx/GameCatagory";
-import { GameList } from "../../client/gammeList/GameList";
 import { TempComp } from "../helper/TempComp";
+import { GameRoutes } from "./GamesRoutes";
 
 export const GameCatagoryRoutes = () => {
   return (
     <Routes>
       <Route path={path.home} index element={<GameCatagory />} />
-      <Route path={path.catagory1} element={<GameList />} />
+      <Route path={`${path.catagory1}/*`} element={<GameRoutes />} />
       <Route
         path={path.catagory2}
         element={<TempComp label={"Lattery games"} />}
