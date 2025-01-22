@@ -6,15 +6,11 @@ import {
   emitEvent,
 } from "../../../helper/socketService";
 import { GAME_TYPES } from "../../../helper/gameTypes";
+import { useGameDispatch } from "./GameStateContext";
 
-export const useGameSocket = (
-  gameType,
-  setTotalCards,
-  setGameId,
-  setStatus,
-  setWinner,
-  setStartTime
-) => {
+export const useGameSocket = (gameType) => {
+  const dispatch = useGameDispatch();
+
   useEffect(() => {
     if (!gameType) return;
 
@@ -26,16 +22,20 @@ export const useGameSocket = (
 
     subscribeToEvent("gameStateUpdate", (updatedState) => {
       if (updatedState) {
-        const { gameType, gameId, status, cards, winner, startTime } =
-          updatedState;
-
         console.log("Game state updated:", updatedState);
-        // Update the relevant state
-        setGameId(gameId);
-        setStatus(status);
-        setWinner(winner);
-        setStartTime(startTime);
-        setTotalCards(cards);
+
+        // Dispatch an action to update the game state
+        dispatch({
+          type: "UPDATE_GAME_STATE",
+          payload: {
+            gameType: updatedState.gameType,
+            gameId: updatedState.gameId,
+            status: updatedState.status,
+            cards: updatedState.cards,
+            winner: updatedState.winner,
+            startTime: updatedState.startTime,
+          },
+        });
       }
     });
 
@@ -51,32 +51,5 @@ export const useGameSocket = (
     return () => {
       disconnectSocket();
     };
-  }, [gameType, setTotalCards, setGameId, setStatus, setWinner, setStartTime]);
+  }, [gameType, dispatch]);
 };
-
-/*
- Response Comming from Server from gameStateUpdate
-
-{
-    "gameType": "ANDAR_BAHAR",
-    "gameId": "ANDAR_BAHAR_1736751351661",
-    "status": "dealing",
-    "cards": {
-        "jokerCard": "S3",
-        "blindCard": null,
-        "playerA": [
-            "S5",
-            "H7"
-        ],
-        "playerB": [
-            "D8"
-        ],
-        "playerC": []
-    },
-    "winner": null,
-    "startTime": 1736751351662
-}
-
-
-
-*/
