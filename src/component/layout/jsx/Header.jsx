@@ -7,13 +7,6 @@ import { useAuth } from "../../../context/jsx/AuthContext";
 
 export const Header = () => {
   const navigate = useNavigate();
-  const { user } = useAuth();
-  let userId, username;
-
-  if (user) {
-    userId = user.userId;
-    username = user.username;
-  }
 
   // Navigation handlers
   const handleHomeClick = () => navigate("/");
@@ -29,8 +22,6 @@ export const Header = () => {
         </div>
 
         <div className={style.rightSection}>
-          {user && <p>{username} </p>}
-          {user && <p>{userId} </p>}
           <HeaderAuth />
           <HeaderToggle />
         </div>
