@@ -29,8 +29,7 @@ export const ProtectedRoutes = ({ children, allowedRoles }) => {
   }
 
   if (!authState.authorized) {
-    // return <Navigate to="/login" replace />;
-    console.log("Unauthorized");
+    return <Navigate to="/login" replace />;
   }
 
   return children;
