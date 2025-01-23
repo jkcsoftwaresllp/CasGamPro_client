@@ -14,7 +14,7 @@ export const handleSubmit = async ({
       "/auth-api/client/games/bet",
       "POST",
       {
-        gameId: gameType,
+        gameId: roundId,
         side: player,
         roundId,
         amount: stakeValue,

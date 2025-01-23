@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { UsernameInput } from "../../component/common/UserNameInput.jsx";
 import { PasswordInput } from "../../component/common/PasswordInput.jsx";
@@ -6,7 +6,7 @@ import { Button } from "../../component/common/Button.jsx";
 import style from "../styles/LoginPage.module.css";
 import { Loader } from "../../component/common/Loader.jsx";
 import { useAuth } from "../../context/jsx/AuthContext.jsx";
-import { roles } from "../../utils/roles.js";
+import { navigateByRole } from "../helper/navigateByRole.js";
 
 export const LoginPage = () => {
   const [userId, setUserId] = useState("");
@@ -14,7 +14,13 @@ export const LoginPage = () => {
   const [error, setError] = useState("");
   const navigate = useNavigate();
   const { user, handleLogin, loading } = useAuth();
-  roles;
+
+  // Redirect after login
+  useEffect(() => {
+    if (user?.userRole) {
+      navigateByRole(user.userRole, navigate, setError);
+    }
+  }, [user, navigate]);
 
   const handleLoginFun = async (e) => {
     e.preventDefault();
@@ -26,13 +32,11 @@ export const LoginPage = () => {
       return;
     }
 
-    await handleLogin({ userId, password });
-    const { userRole } = user;
-
-    // Navigate based on role
-    if (userRole === roles.AGENT) navigate("/agent");
-    else if (userRole === roles.CLIENT) navigate("/client");
-    else setError("Unknown user role");
+    try {
+      await handleLogin({ userId, password });
+    } catch (err) {
+      setError(err.message || "Login failed. Please try again.");
+    }
   };
 
   return (
@@ -42,10 +46,10 @@ export const LoginPage = () => {
       ) : (
         <div className={style.form}>
           <div className={style.form_container}>
-            <div className={style.form_details}>Login</div>
-            <UsernameInput onChange={setUserId} />
-            <PasswordInput onChange={setPassword} />
-            {error && <div className={style.error}>{error}</div>}{" "}
+            <h2 className={style.form_details}>Login</h2>
+            <UsernameInput value={userId} onChange={setUserId} />
+            <PasswordInput value={password} onChange={setPassword} />
+            {error && <div className={style.error}>{error}</div>}
             <Button label="Login" onClick={handleLoginFun} />
           </div>
         </div>

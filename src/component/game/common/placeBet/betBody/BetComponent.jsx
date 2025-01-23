@@ -6,11 +6,11 @@ import { CustomButton } from "./CustomButton";
 import { handleSubmit } from "./helper/betHelper";
 import styles from "./style/BetBody.module.css";
 import { useQueryParams } from "../../layout/helper/useQueryParams";
+import { useGameState } from "../../layout/helper/GameStateContext";
 
 export const BetComponent = ({ betFor, profit, setBetItems, player }) => {
   const [stakeValue, setStakeValue] = useState(50);
   const [currentProfit, setCurrentProfit] = useState(profit || 0);
-  const { gameType, roundId } = useQueryParams();
 
   const onStakeChange = (value) => setStakeValue((prev) => prev + value);
   const onReset = () => {
@@ -18,13 +18,15 @@ export const BetComponent = ({ betFor, profit, setBetItems, player }) => {
     setCurrentProfit(profit || 0);
   };
 
+  const { gameType, gameId } = useGameState();
+
   const onSubmit = () =>
     handleSubmit({
       stakeValue,
       currentProfit,
       player,
       gameType,
-      roundId,
+      gameId,
       setBetItems,
     });
 
