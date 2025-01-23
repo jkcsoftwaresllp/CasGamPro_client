@@ -1,16 +1,36 @@
-export const handleStakeChange = (setStakeValue) => (value) => {
-  setStakeValue((prev) => prev + value);
-};
+// betHelper.js
+import { apiCall } from "../../../../../common/apiCall";
 
-export const handleReset =
-  (setStakeValue, setCurrentProfit, initialStake, initialProfit) => () => {
-    setStakeValue(initialStake);
-    setCurrentProfit(initialProfit);
-  };
+export const handleSubmit = async ({
+  stakeValue,
+  currentProfit,
+  player,
+  gameType,
+  roundId,
+  setBetItems,
+}) => {
+  try {
+    const response = await apiCall(
+      "/auth-api/client/games/bet",
+      "POST",
+      {
+        gameId: roundId,
+        side: player,
+        roundId,
+        amount: stakeValue,
+      }
+    );
 
-export const handleSubmit = (stakeValue, currentProfit, setBetItems) => () => {
-  console.log(
-    `Stake submitted: ${stakeValue}, Profit: ${currentProfit.toFixed(2)}`
-  );
-  setBetItems(null);
+    console.log(response);
+
+    // if (uniqueCode === "CGP00G05") {
+    //   console.log("Stake submitted successfully");
+    // } else {
+    //   console.error(`Error submitting stake: ${message}`);
+    // }
+  } catch (error) {
+    console.error("Error during stake submission:", error.message);
+  } finally {
+    setBetItems(null);
+  }
 };

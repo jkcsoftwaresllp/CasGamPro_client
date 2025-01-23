@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "../style/Game.module.css";
 import { BetSection } from "./BetSection";
 import { GameHistory } from "./GameHistory";
@@ -7,26 +7,22 @@ import { SimulationSection } from "./SimulationSection";
 import { StakeSection } from "./StakeSection";
 import { useQueryParams } from "../helper/useQueryParams";
 import { useGameSocket } from "../helper/useGameSocket";
+import { useGameState } from "../helper/GameStateContext";
+import { extractRoundId } from "../helper/extractRoundId";
+import { useButtonNavigation } from "../../../../../hooks/useButtonNavigation";
 
 export const Game = () => {
-  const { gameType, roundId, error } = useQueryParams();
+  const { gameType, error } = useQueryParams();
+  const { totalCards, gameId, status, winner, startTime } = useGameState();
+  const [betItems, setBetItems] = useState();
 
-  const [betItems, setBetItems] = useState(null);
-  const [totalCards, setTotalCards] = useState([]);
-  const [gameId, setGameId] = useState(null);
-  const [status, setStatus] = useState(null);
-  const [winner, setWinner] = useState(null);
-  const [startTime, setStartTime] = useState(null);
+  useGameSocket(gameType);
+  const rountId = extractRoundId(gameId);
+  const addRoundIdToURL = useButtonNavigation();
 
-  // Use the custom hook for socket logic
-  useGameSocket(
-    gameType,
-    setTotalCards,
-    setGameId,
-    setStatus,
-    setWinner,
-    setStartTime
-  );
+  useEffect(() => {
+    addRoundIdToURL(`?gameName=${gameType}&roundId=${rountId}`);
+  }, [gameType, rountId]);
 
   if (error) {
     return (
@@ -47,7 +43,7 @@ export const Game = () => {
               <div className={styles.gameInterface}>
                 <GameInterface
                   game={gameType}
-                  roundId={roundId}
+                  roundId={rountId}
                   cards={totalCards}
                 />
               </div>

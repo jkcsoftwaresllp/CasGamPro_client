@@ -9,14 +9,11 @@ export const MainBet = ({ betItems = {}, setBetItems }) => {
   const [label, setLabel] = useState(null);
 
   useEffect(() => {
-    if (betItems && betItems.label && betItems.label.player) {
-      setPlayer(betItems.label.player);
-      setLabel(betItems.label.label.toUpperCase());
-    } else {
-      setPlayer(null);
-      setLabel(betItems.label.toUpperCase());
+    if (betItems?.label) {
+      setPlayer(betItems.label.player || null);
+      setLabel(betItems.label.label?.toUpperCase() || "");
     }
-  }, [betItems]);
+  }, [betItems?.label]);
 
   return (
     <div className={styles.mainBet}>

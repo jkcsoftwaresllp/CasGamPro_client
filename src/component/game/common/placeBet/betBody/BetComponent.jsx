@@ -1,27 +1,34 @@
+// BetComponent.jsx
 import React, { useState } from "react";
 import { CoinSection } from "./CoinsSection";
 import { BetStatus } from "./BetStatus";
 import { CustomButton } from "./CustomButton";
-import {
-  handleStakeChange,
-  handleReset,
-  handleSubmit,
-} from "./helper/betHelper";
+import { handleSubmit } from "./helper/betHelper";
 import styles from "./style/BetBody.module.css";
+import { useQueryParams } from "../../layout/helper/useQueryParams";
+import { useGameState } from "../../layout/helper/GameStateContext";
 
 export const BetComponent = ({ betFor, profit, setBetItems, player }) => {
-  const stake = 50;
-  const [stakeValue, setStakeValue] = useState(stake);
-  const [currentProfit, setCurrentProfit] = useState(profit);
+  const [stakeValue, setStakeValue] = useState(50);
+  const [currentProfit, setCurrentProfit] = useState(profit || 0);
 
-  const stakeChangeHandler = handleStakeChange(setStakeValue);
-  const resetHandler = handleReset(
-    setStakeValue,
-    setCurrentProfit,
-    stake,
-    profit
-  );
-  const submitHandler = handleSubmit(stakeValue, currentProfit, setBetItems);
+  const onStakeChange = (value) => setStakeValue((prev) => prev + value);
+  const onReset = () => {
+    setStakeValue(0);
+    setCurrentProfit(profit || 0);
+  };
+
+  const { gameType, gameId } = useGameState();
+
+  const onSubmit = () =>
+    handleSubmit({
+      stakeValue,
+      currentProfit,
+      player,
+      gameType,
+      gameId,
+      setBetItems,
+    });
 
   return (
     <div className={styles.component}>
@@ -32,19 +39,19 @@ export const BetComponent = ({ betFor, profit, setBetItems, player }) => {
         setStakeValue={setStakeValue}
         player={player}
       />
-      <CoinSection onCoinClick={stakeChangeHandler} />
+      <CoinSection onCoinClick={onStakeChange} />
       <div className={styles.buttonContainer}>
         <CustomButton
           label="Reset"
-          onClick={resetHandler}
+          onClick={onReset}
           backgroundColor="Red"
           textColor="White"
         />
         <CustomButton
           label="Submit"
-          onClick={submitHandler}
+          onClick={onSubmit}
           backgroundColor="Green"
-          textColor="white"
+          textColor="White"
         />
       </div>
     </div>
