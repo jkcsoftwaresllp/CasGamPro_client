@@ -6,13 +6,12 @@ import { roles } from "../../../utils/roles";
 import { ClientRoutes } from "../../routing/client/ClientRoutes";
 import { ErrorPage } from "../../../pages/jsx/Error";
 import { routesPathClient } from "../../routing/helper/routesPathClient";
-import { LedgerMain } from "../../../component/client/ledger/jsx/LedgerMain";
+
 export const Routing = () => {
   return (
     <Routes>
       <Route path="/login" element={<LoginPage />} />
       <Route path="/" element={<Home />} />
-      <Route path="/ledger" element={<LedgerMain />} />
 
       {/* Protected routes */}
       <Route
