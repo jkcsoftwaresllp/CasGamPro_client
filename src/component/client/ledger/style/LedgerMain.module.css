@@ -1,0 +1,6 @@
+/* Assuming this is in the same or appropriate CSS file */
+.ledgerMain {
+  width: 85%;
+  margin: 0 auto; /* Centers the component horizontally */
+  padding: 20px; /* Optional: Adds some space around */
+}

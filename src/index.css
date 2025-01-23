@@ -35,6 +35,7 @@
 
   /* Borders */
   --color-border-gold: #b8860b; /* Aged gold for borders and dividers */
+  --color-header: #add8e6;
 
   /* Text */
   --color-text-primary: #2b2b2b; /* Deep black for readability */
@@ -59,12 +60,13 @@
 
   /* Background */
   --color-bg-primary: #212121; /* Deep black for elegance */
-  --color-bg-secondary: #1a1a1a; /* Dark grey for sections */
-  --color-bg-tertiary: #2e2e2e; /* Medium grey for subtle contrast */
+  --color-bg-secondary: #1a1a1a82; /* Dark grey for sections */
+  --color-bg-tertiary: #10101062; /* Medium grey for subtle contrast */
   --color-bg-hover: #1a1a1a; /* Dark grey for hover effects */
 
   --color-text-placeholder: #333; /* Dark grey for placeholder text */
   --color-text-hover: #fff; /* White for hover effects */
+  --color-header: #3a61a2;
 
   /* Text */
   --color-text-primary: #ffffff; /* Bright white for readability */
