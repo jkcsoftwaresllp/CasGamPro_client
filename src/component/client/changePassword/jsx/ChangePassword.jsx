@@ -33,7 +33,7 @@ export const ChangePassword = () => {
 
   return (
     <div className={style.container}>
-      {loading ? ( // Step 2: Show loader conditionally
+      {loading ? (
         <div className={style.loaderContainer}>
           <Loader />
         </div>
