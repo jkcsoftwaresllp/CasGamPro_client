@@ -28,9 +28,9 @@
   --color-rotate-primary: rgb(28, 178, 224);
 
   /* Background */
-  --color-bg-primary: #fdfdfd; /* Warm cream background for elegance */
-  --color-bg-secondary: #fbfeff; /* Light tan for subtle contrast */
-  --color-bg-tertiary: #d8f4ff; /* Parchment-like tone for sections */
+  --color-bg-primary: #fbfeff; /* Warm cream background for elegance */
+  --color-bg-secondary: rgb(241, 238, 238); /* Light tan for subtle contrast */
+  --color-bg-tertiary: #fefefa; /* Parchment-like tone for sections */
   --color-bg-hover: #f5e6c6; /* Light tan for hover effects */
 
   /* Borders */
