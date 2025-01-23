@@ -6,11 +6,11 @@ import { Button } from "../../../common/Button";
 import { Loader } from "../../../common/Loader";
 
 export const ChangePassword = () => {
-  const [oldPassword, setOldPassword] = useState("");
+  const [currentPassword, setCurrentPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
-  const [loading, setLoading] = useState(false); // Step 1: Add loading state
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -18,17 +18,16 @@ export const ChangePassword = () => {
       setError("Passwords do not match");
     } else {
       setError("");
-      setLoading(true); // Start loading
+      setLoading(true);
 
-      await new Promise((resolve) => setTimeout(resolve, 2000));
+      await new Promise((resolve) => setTimeout(resolve));
 
-      // Handle the password reset logic here
       console.log("Password changed successfully:", {
-        oldPassword,
+        currentPassword,
         newPassword,
       });
 
-      setLoading(false); // Stop loading
+      setLoading(false);
     }
   };
 
@@ -41,7 +40,10 @@ export const ChangePassword = () => {
       ) : (
         <form className={style.form} onSubmit={handleSubmit}>
           <h2 className={style.title}>Change Password</h2>
-          <TextInput placeholder="Old Password" onChange={setOldPassword} />
+          <TextInput
+            placeholder="Current Password"
+            onChange={setCurrentPassword}
+          />
           <PasswordInput placeholder="New Password" onChange={setNewPassword} />
           <PasswordInput
             placeholder="Confirm New Password"

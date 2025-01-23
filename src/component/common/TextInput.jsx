@@ -6,6 +6,10 @@ export const TextInput = ({ placeholder, onChange }) => {
 
   const handleChange = (e) => {
     const inputValue = e.target.value;
+    setValue(inputValue); // Update the state with the new input value
+    if (onChange) {
+      onChange(inputValue); // Call the onChange prop if provided
+    }
   };
 
   return (

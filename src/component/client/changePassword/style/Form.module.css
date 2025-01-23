@@ -4,9 +4,9 @@
   gap: 1rem;
   max-width: 600px;
   margin: auto;
-  padding: 2rem;
-  background-color: var(--color-bg-teritary);
-  border-radius: 8px;
+  padding: 5rem;
+  background-color: var(--color-bg-secondary);
+  border-radius: var(--borderRadius);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 .loaderContainer {
@@ -19,10 +19,10 @@
   justify-content: center; /* Center horizontally */
   align-items: center; /* Center vertically */
   background-color: rgba(
-    255,
-    255,
-    255,
-    0.8
+    0,
+    0,
+    0,
+    0.1
   ); /* Optional: semi-transparent background */
   z-index: 1000; /* Ensure it appears above other content */
 }
@@ -53,8 +53,8 @@
   padding: 1;
   background-color: var(--color-bg-primary);
   color: var(--color-text-primary);
-  border: none;
-  border-radius: 5px;
+
+  border-radius: var(--borderRadius);
   cursor: pointer;
 }
 
