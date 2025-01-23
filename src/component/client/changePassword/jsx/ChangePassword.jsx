@@ -22,10 +22,7 @@ export const ChangePassword = () => {
 
       await new Promise((resolve) => setTimeout(resolve));
 
-      console.log("Password changed successfully:", {
-        currentPassword,
-        newPassword,
-      });
+      console.log("Password changed successfully");
 
       setLoading(false);
     }
