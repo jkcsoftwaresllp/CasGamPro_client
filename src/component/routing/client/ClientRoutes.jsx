@@ -12,7 +12,7 @@ export const ClientRoutes = () => {
     <Routes>
       <Route path={path.home} index element={<Home />} />
       <Route path={`${path.gameCatagory}/*`} element={<GameCatagoryRoutes />} />
-      <Route path={path.ledger} element={<GameCatagoryRoutes />} />
+      <Route path={path.ledger} element={<LedgerMain />} />
       <Route path={path.password} element={<TempComp label={"Password"} />} />
       <Route
         path={path.playHistory}

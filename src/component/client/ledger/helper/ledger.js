@@ -1,6 +1,6 @@
 export const fetchLedgerData = async () => {
   try {
-    const response = await fetch("");
+    const response = await fetch("/api/client/ledger");
     if (!response.ok) {
       throw new Error("Failed to fetch ledger data");
     }
