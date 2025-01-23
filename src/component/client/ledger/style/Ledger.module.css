@@ -23,7 +23,7 @@
 .list {
   background-color: var(--color-bg-secondary);
   display: flex;
-  padding: 7px;
+  padding: 10px;
   font-weight: var(--text);
   font-size: var(--text-md);
   border-radius: var(--borderRadius);
@@ -39,7 +39,6 @@
 .window {
   background-color: var(--color-bg-primary);
 
-  height: 620px;
   overflow: auto;
   margin: 0;
 }
