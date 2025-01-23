@@ -6,7 +6,7 @@ import { TempComp } from "../helper/TempComp";
 import { GameCatagoryRoutes } from "./GameCatagoryRoutes";
 import { Rules } from "../../client/rules/jsx/Rules";
 import { LedgerMain } from "../../client/ledger/jsx/LedgerMain";
-import { ChangePassword } from "../../client/settings/jsx/ChangePassword";
+import { ChangePassword } from "../../client/changePassword/jsx/ChangePassword";
 
 export const ClientRoutes = () => {
   return (
