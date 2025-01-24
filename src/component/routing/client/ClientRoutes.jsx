@@ -5,14 +5,16 @@ import { Home } from "../../client/jsx/Home";
 import { TempComp } from "../helper/TempComp";
 import { GameCatagoryRoutes } from "./GameCatagoryRoutes";
 import { Rules } from "../../client/rules/jsx/Rules";
+import { LedgerMain } from "../../client/ledger/jsx/LedgerMain";
+import { ChangePassword } from "../../client/changePassword/jsx/ChangePassword";
 
 export const ClientRoutes = () => {
   return (
     <Routes>
       <Route path={path.home} index element={<Home />} />
       <Route path={`${path.gameCatagory}/*`} element={<GameCatagoryRoutes />} />
-      <Route path={path.ledger} element={<TempComp label={"Ledger"} />} />
-      <Route path={path.password} element={<TempComp label={"Password"} />} />
+      <Route path={path.ledger} element={<LedgerMain />} />
+      <Route path={path.password} element={<ChangePassword />} />
       <Route
         path={path.playHistory}
         element={<TempComp label={"Play History"} />}

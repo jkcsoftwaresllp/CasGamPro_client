@@ -1,6 +1,6 @@
 /* .btn styles */
 .btn {
-  padding: 5px 35px;
+  padding: 10px 35px;
   cursor: pointer;
   background-color: var(--color-dark-primary);
   border-radius: var(--borderRadius);

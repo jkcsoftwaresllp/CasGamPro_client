@@ -1,0 +1,53 @@
+.label {
+  color: var(--color-text-primary);
+  font-size: var(--text-md);
+
+  display: flex;
+  flex: 1;
+  justify-content: center;
+}
+
+.headerCell {
+  background-color: var(--color-header);
+  color: var(--color-text-primary);
+  border: 1px solid var(--color-text-primary);
+  padding: 15px;
+  text-align: center;
+  font-size: var(--text-lg);
+  font-weight: var(--text-bold);
+
+  display: flex;
+  flex: 1;
+  justify-content: center;
+}
+.list {
+  background-color: var(--color-bg-secondary);
+  display: flex;
+  padding: 10px;
+  font-weight: var(--text);
+  font-size: var(--text-md);
+  border-radius: var(--borderRadius);
+}
+
+.list:nth-child(odd) {
+  background-color: var(--color-bg-secondary);
+}
+
+.list:nth-child(even) {
+  background-color: var(--color-bg-tertiary);
+}
+.window {
+  background-color: var(--color-bg-primary);
+
+  overflow: auto;
+  margin: 0;
+}
+
+.header {
+  background-color: var(--color-bg-primary);
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  font-size: var(--text-lg);
+  font-weight: var(--textBold);
+}
