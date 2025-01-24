@@ -1,6 +1,5 @@
 .ledgerMain {
-  width: 85%;
-  margin: 0 auto; /* Centers the component horizontally */
-  padding: 20px; /* Optional: Adds some space around */
+  width: 100%;
+  padding: 20px;
   height: calc(100vh - var(--header-height));
 }

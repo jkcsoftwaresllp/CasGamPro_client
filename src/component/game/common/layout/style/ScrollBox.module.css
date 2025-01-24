@@ -3,9 +3,7 @@
   overflow-x: auto;
   white-space: nowrap;
   scroll-behavior: smooth;
-  gap: 5px;
 }
-
 
 .scrollBox.horizontal {
   flex-direction: row;
@@ -17,5 +15,4 @@
 .scrollBox.vertical {
   flex-direction: column;
   overflow-y: auto;
-  padding-right: 5px;
 }

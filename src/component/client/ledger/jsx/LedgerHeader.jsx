@@ -1,4 +1,4 @@
-import { HeaderCell } from "./HeaderCell";
+import { Cell } from "./Cell";
 import style from "../style/Ledger.module.css";
 
 export const LedgerHeader = ({
@@ -10,11 +10,11 @@ export const LedgerHeader = ({
 }) => {
   return (
     <div className={style.header}>
-      <HeaderCell label={date} />
-      <HeaderCell label={entry} />
-      <HeaderCell label={debit} />
-      <HeaderCell label={credit} />
-      <HeaderCell label={balance} />
+      <Cell label={date} />
+      <Cell label={entry} />
+      <Cell label={debit} />
+      <Cell label={credit} />
+      <Cell label={balance} />
     </div>
   );
 };
