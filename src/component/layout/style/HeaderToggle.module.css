@@ -1,10 +1,10 @@
 /* Switch styles */
 .switch {
   display: block;
-  --width-of-switch: 1.5em;
-  --height-of-switch: 1em;
-  --size-of-icon: 0.7em;
-  --slider-offset: 0.1em;
+  --width-of-switch: 2em;
+  --height-of-switch: 0.81em;
+  --size-of-icon: 0.5em;
+  --slider-offset: 0.22em;
   position: relative;
   width: var(--width-of-switch);
   height: var(--height-of-switch);
