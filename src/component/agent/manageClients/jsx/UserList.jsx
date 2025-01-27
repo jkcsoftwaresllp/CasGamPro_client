@@ -56,7 +56,7 @@ export const UserList = () => {
 
   const columns = [
     { key: "id", label: "User Id" },
-    { key: "username", label: "User name" },
+    { key: "username", label: "User Name" },
     { key: "casinoCommission", label: "Casino Commission" },
     { key: "lotteryCommission", label: "Lottery Commission" },
     { key: "matchShare", label: "Match Share" },
