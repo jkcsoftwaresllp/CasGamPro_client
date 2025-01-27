@@ -1,13 +1,13 @@
 import { useState } from "react";
-import { apiCall } from "./helper/apiCall"; // Import the reusable API call function
-import { UserIdInput } from "../../../main/jsx/inputFeild/UserId";
-import { TextInput } from "../../../main/jsx/inputFeild/TextInput";
-import { NumberInput } from "../../../main/jsx/inputFeild/NumberInput";
-import { PasswordInput } from "../../../main/jsx/inputFeild/PasswordInput";
-import { Button } from "../../../../common/Button";
-import style from "./style/AgentNewUser.module.css";
+import { UserIdInput } from "../../main/jsx/inputFeild/UserId";
+import { TextInput } from "../../main/jsx/inputFeild/TextInput";
+import { NumberInput } from "../../main/jsx/inputFeild/NumberInput";
+import { PasswordInput } from "../../main/jsx/inputFeild/PasswordInput";
+import { Button } from "../../../common/Button";
+import style from "../style/RegisterNewUser.module.css";
+import { apiCall } from "../../../common/apiCall";
 
-export const AgentNewUser = () => {
+export const RegisterNewUser = () => {
   const [formData, setFormData] = useState({
     userId: "",
     firstName: "",
@@ -136,11 +136,10 @@ export const AgentNewUser = () => {
       {/* Display error */}
       {success && <div className={style.success}>{success}</div>}{" "}
       {/* Display success */}
-      <div>
+      <div className={style.buttons}>
         <Button label="Cancel" />
         <Button label="Save Changes" onClick={handleSubmit} />
       </div>
     </form>
   );
 };
-
