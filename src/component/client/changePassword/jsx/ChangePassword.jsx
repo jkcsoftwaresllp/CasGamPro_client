@@ -4,6 +4,7 @@ import { PasswordInput } from "../../../common/PasswordInput";
 import { TextInput } from "../../../common/TextInput";
 import { Button } from "../../../common/Button";
 import { Loader } from "../../../common/Loader";
+import { apiCall } from "../../../common/apiCall";
 
 export const ChangePassword = () => {
   const [currentPassword, setCurrentPassword] = useState("");
@@ -20,9 +21,22 @@ export const ChangePassword = () => {
       setError("");
       setLoading(true);
 
-      await new Promise((resolve) => setTimeout(resolve));
+      const response = await apiCall(
+        "/auth-api/client/change_password",
+        "POST",
+        {
+          currentPassword,
+          newPassword,
+        }
+      );
 
-      console.log("Password changed successfully");
+      const { uniqueCode } = response;
+
+      if (uniqueCode === "CGP0029") {
+        console.log("Password changed successfully");
+      } else {
+        console.log(response);
+      }
 
       setLoading(false);
     }

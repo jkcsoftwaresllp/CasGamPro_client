@@ -16,6 +16,7 @@ export const Game = () => {
   const { totalCards, gameId, status, winner, startTime } = useGameState();
   const [betItems, setBetItems] = useState();
 
+  console.log(totalCards, gameId, status, winner, startTime);
   useGameSocket(gameType);
   const rountId = extractRoundId(gameId);
   const addRoundIdToURL = useButtonNavigation();

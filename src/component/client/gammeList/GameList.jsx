@@ -37,6 +37,12 @@ export const GameList = () => {
           label="Andar Bahar 2"
           onClick={() => handleCardClick(getGamePath("andarBahar2"))}
         />
+        {/* 
+        <GameTile
+          imgSrc={andarBahar}
+          label="20-20 Dragon Tiger"
+          onClick={() => handleCardClick(getGamePath("dragonTiger"))}
+        /> */}
         <GameTile
           imgSrc="https://media.giphy.com/media/10SvWCbt1ytWCc/giphy.gif"
           label="Card Title 4"

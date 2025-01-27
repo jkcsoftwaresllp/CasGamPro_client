@@ -4,6 +4,7 @@ let socket = null;
 const URL = "http://localhost:4320/";
 export const connectSocket = (event) => {
   const url = URL + event;
+  console.log(url);
   if (!socket) {
     socket = io(url, { transports: ["websocket", "polling"] });
   }

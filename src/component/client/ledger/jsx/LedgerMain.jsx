@@ -3,6 +3,7 @@
 // import style from "../style/LedgerMain.module.css";
 import react, { useState } from "react";
 import { Table } from "../../../common/table/jsx/Table.jsx";
+import { getLedgerData } from "../helper/getPlayData.js";
 
 export const LedgerMain = () => {
   const [lists, setLists] = useState([
@@ -95,6 +96,7 @@ export const LedgerMain = () => {
     },
   ]);
 
+  getLedgerData();
   const columns = [
     { key: "date", label: "Date" },
     { key: "entry", label: "Entry" },

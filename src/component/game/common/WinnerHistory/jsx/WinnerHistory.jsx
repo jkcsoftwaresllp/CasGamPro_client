@@ -24,14 +24,10 @@ export const WinnerHistory = () => {
     { winner: "B", roundId: 5, gameId: 1 },
   ]; // Move the results array here
 
-  console.log("Man");
-
   const { gameType, error } = useQueryParams();
 
   useEffect(() => {
     const socket = connectSocket("game-history");
-
-    console.log(GAME_TYPES[gameType]);
 
     socket.on("connect", () => {
       emitEvent("joinGameHistory", GAME_TYPES[gameType]);
