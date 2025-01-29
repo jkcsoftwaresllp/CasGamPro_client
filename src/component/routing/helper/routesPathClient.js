@@ -16,8 +16,14 @@ export const routesPathClient = {
   // /client/gameCatagory
   catagory1: "/casino",
   catagory2: "/lottery",
-  catagory3: "/criket",
+  catagory3: "/cricket",
 
   // /client/gameCatagory/casino
   game: (gameName) => `/game?gameName=${gameName}`,
+
+  // /agent
+  agentHome: "/agent",
+  manageClients: "/manageClients",
+  managePassword: "/managePassword",
+  settings: "/settings",
 };

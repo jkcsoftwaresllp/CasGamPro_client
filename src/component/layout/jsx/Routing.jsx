@@ -4,6 +4,7 @@ import { ProtectedRoutes } from "../helper/ProtectedRoutes";
 import { LoginPage } from "../../../pages/jsx/LoginPage";
 import { roles } from "../../../utils/roles";
 import { ClientRoutes } from "../../routing/client/ClientRoutes";
+import { AgentRoutes } from "../../routing/agent/AgentRoutes";
 import { ErrorPage } from "../../../pages/jsx/Error";
 import { routesPathClient } from "../../routing/helper/routesPathClient";
 
@@ -20,6 +21,16 @@ export const Routing = () => {
           <ProtectedRoutes
             allowedRoles={[roles.CLIENT]}
             children={<ClientRoutes />}
+          />
+        }
+      />
+
+      <Route
+        path={`${routesPathClient.agent}/*`}
+        element={
+          <ProtectedRoutes
+            allowedRoles={[roles.AGENT]}
+            children={<AgentRoutes />}
           />
         }
       />

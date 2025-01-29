@@ -1,13 +1,12 @@
-// Window.js
-import React from "react";
-
 import style from "../styles/Tab.module.css";
 
-export const Tab = ({ icon, title, onClickValue }) => {
+export const Tab = ({ icon, onClick, title }) => {
   return (
-    <div className={style.tab} onClick={() => onClickValue}>
-      <img src={icon} className={style.icon} />
-      <div className={style.text}>{title}</div>
+    <div className={style.tab} onClick={onClick}>
+      <div>
+        {typeof icon === "string" ? <img src={icon} alt={title} /> : icon}
+      </div>
+      <span>{title}</span>
     </div>
   );
 };
