@@ -1,14 +1,13 @@
-import { BrowserRouter as Router } from "react-router-dom";
 import { AgentSidebar as Sidebar } from "../main/jsx/AgentSidebar";
 import style from "./styles/ContentPage.module.css";
-import { AgentDashRoutes } from "./helper/AgentDashRoutes";
+import { Outlet } from "react-router-dom";
 
 export const AgentDashboard = () => {
   return (
     <div className={style.pageContainer}>
       <Sidebar />
       <div className={style.content}>
-        <AgentDashRoutes />
+        <Outlet />
       </div>
     </div>
   );

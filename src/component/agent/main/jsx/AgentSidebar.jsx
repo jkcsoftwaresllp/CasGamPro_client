@@ -36,8 +36,10 @@ export const AgentSidebar = () => {
             <Tab
               icon={item.icon}
               onClick={() => {
-                if (item.subOptions) {
-                  handleExpand(item);
+                if (item.subOptions) handleExpand(item);
+                else {
+                  console.log(item.path); // TODO: Update this
+                  navigate(item.path);
                 }
               }}
               title={item.label}
@@ -49,7 +51,10 @@ export const AgentSidebar = () => {
                   <Tab
                     key={sub.id}
                     icon={sub.icon}
-                    onClick={() => navigate(sub.path)}
+                    onClick={() => {
+                      console.log(sub.path);
+                      navigate(sub.path);
+                    }}
                     title={sub.label}
                     className={style.subOption}
                   />

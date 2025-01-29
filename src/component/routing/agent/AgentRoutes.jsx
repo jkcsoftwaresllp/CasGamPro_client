@@ -5,18 +5,24 @@ import { AgentDashboard } from "../../agent/pages/AgentDashboard";
 import { ManageClients } from "../../agent/pages/dashboardContent/ManageClient";
 import { ManagePassword } from "../../agent/pages/dashboardContent/ManagePassword";
 import { Settings } from "../../agent/pages/dashboardContent/Setting";
+import { Dashboard } from "../../agent/pages/dashboardContent/Dashboard";
 
 export const AgentRoutes = () => {
   return (
     <Routes>
-      <Route path={`${path.home}/*`} index element={<AgentDashboard />} />
+      <Route path={path.home} element={<AgentDashboard />}>
+        <Route index element={<Dashboard />} />
+        <Route path={path.manageClients} element={<ManageClients />} />
+        <Route path={path.managePassword} element={<ManagePassword />} />
+        <Route path={path.settings} element={<Settings />} />
+      </Route>
 
       <Route
         path="*"
         element={
           <ErrorPage
             errorCode="ERR404"
-            errorMessage="The page you are looking for does not exist."
+            errorMessage="Agent The page you are looking for does not exist."
           />
         }
       />
