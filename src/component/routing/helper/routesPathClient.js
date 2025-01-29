@@ -26,4 +26,6 @@ export const routesPathClient = {
   manageClients: "/manageClients",
   managePassword: "/managePassword",
   settings: "/settings",
+  blockClients: "/blockClients",
+  commision: "/commision",
 };

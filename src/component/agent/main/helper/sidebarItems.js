@@ -1,13 +1,19 @@
-import DashboardIcon from "../images/dashboard.svg";
-import ManageClientsIcon from "../images/manage_accounts.svg";
-import ManagePasswordIcon from "../images/password.svg";
-import SettingsIcon from "../images/settings.svg";
+import { DashboardIcon } from "../../../../assets/assets";
+import { ManageClientsIcon } from "../../../../assets/assets";
+import { ManagePasswordIcon } from "../../../../assets/assets";
+import { SettingsIcon } from "../../../../assets/assets";
 import { myClient } from "../../../../assets/assets";
 import { blockClient } from "../../../../assets/assets";
 import { rupees } from "../../../../assets/assets";
 import { routesPathClient } from "../../../routing/helper/routesPathClient";
 export const sidebarItems = [
-  { id: 1, label: "Dashboard", value: "dashboard", icon: DashboardIcon },
+  {
+    id: 1,
+    label: "Dashboard",
+    value: "dashboard",
+    icon: DashboardIcon,
+    path: `${routesPathClient.agent}${routesPathClient.home}`,
+  },
   {
     id: 2,
     label: "Manage Clients",

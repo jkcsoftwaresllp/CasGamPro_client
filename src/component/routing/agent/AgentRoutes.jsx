@@ -15,6 +15,8 @@ export const AgentRoutes = () => {
         <Route path={path.manageClients} element={<ManageClients />} />
         <Route path={path.managePassword} element={<ManagePassword />} />
         <Route path={path.settings} element={<Settings />} />
+        <Route path={path.blockClients} element={<Settings />} />
+        <Route path={path.commision} element={<Settings />} />
       </Route>
 
       <Route
