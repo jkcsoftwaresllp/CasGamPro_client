@@ -17,7 +17,6 @@ export const Game = () => {
   const { gameId, status, winner, startTime, cards } = gameState;
   const [betItems, setBetItems] = useState();
 
-  console.log(gameState);
   useGameSocket(gameType);
 
   const rountId = extractRoundId(gameId);

@@ -5,7 +5,6 @@ export const login = async (setUser, credentials) => {
     const response = await apiCall("/api/login", "POST", credentials);
     // Save user data from the response
 
-    console.log(response);
     setUser({
       userId: response.data.userId,
       username: response.data.username,

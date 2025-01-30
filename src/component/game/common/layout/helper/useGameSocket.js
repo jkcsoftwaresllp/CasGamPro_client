@@ -22,9 +22,6 @@ export const useGameSocket = (gameType) => {
 
     subscribeToEvent("gameStateUpdate", (updatedState) => {
       if (updatedState) {
-        console.log("Game state updated:", updatedState);
-
-        // Dispatch an action to update the game state
         dispatch({
           type: "UPDATE_GAME_STATE",
           payload: updatedState,
