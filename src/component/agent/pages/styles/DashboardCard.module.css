@@ -1,0 +1,55 @@
+.card {
+  border-radius: var(--borderRadius);
+  text-align: center;
+  width: 350px;
+  border: 1px solid var(--color-text-primary);
+  height: 100px;
+}
+
+.label {
+  font-size: var(--text-lg);
+  color: var(--color-text-primary);
+  margin-bottom: 8px;
+  padding: 5px;
+  border-radius: var(--borderRadius);
+
+  background-color: var(--color-bg-secondary);
+}
+
+.value {
+  font-size: var(--text-md);
+  font-weight: bold;
+  color: var(--color-text-primary);
+}
+
+/* The container for the entire dashboard content */
+.dashcontent {
+  padding: 20px;
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  height: 100vh; /* Full viewport height */
+  overflow-y: auto; /* Allow scrolling if content exceeds height */
+  flex-direction: column;
+}
+
+.cardContainer {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2 cards per row */
+  gap: 20px; /* Space between the cards */
+  width: 100%;
+  max-width: 800px; /* Optional: limit the width of the container */
+}
+/* Centering the dashboard header */
+.header {
+  text-align: center; /* Centers the text horizontally */
+  font-size: var(
+    --text-lg,
+    32px
+  ); /* Use the custom text size or fallback to 32px */
+  font-weight: var(
+    --text-bold,
+    700
+  ); /* Use the custom bold weight or fallback to 700 (bold) */
+  margin-bottom: 20px; /* Optional: Add spacing below the header */
+}

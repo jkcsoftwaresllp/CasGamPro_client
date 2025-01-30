@@ -1,12 +1,13 @@
+// ManageClients.jsx
 import React, { useState } from "react";
-import { ClientTable } from "./table/ClientTable"; // Import the ClientTable component
+import { BlockTable } from "./table/BlockTable"; // Import the ClientTable component
 import { SearchBar } from "./jsx/SearchBar"; // Import SearchBar component
 import { DownloadButtons } from "./jsx/DownloadBtn"; // Import DownloadButtons component
 
 import style from "../styles/ManageClient.module.css"; // Import styles
 import { useNavigate } from "react-router-dom";
 
-export const ManageClients = () => {
+export const BlockedClient = () => {
   const [searchQuery, setSearchQuery] = useState(""); // State for search query
   const navigate = useNavigate();
   const [clients] = useState([
@@ -24,26 +25,7 @@ export const ManageClients = () => {
       sessionCommission: 1,
       share: 20,
     },
-    {
-      id: 85802,
-      username: "SP85802 (Priya)",
-      matchCommission: 1.5,
-      sessionCommission: 0.5,
-      share: 18,
-    },
-    {
-      id: 85803,
-      username: "SP85803 (Vikram)",
-      matchCommission: 0,
-      sessionCommission: 2,
-      share: 22,
-    },
   ]);
-
-  const handleCreateNewUser = () => {
-    //have to correct this
-    navigate("/agent/manageClients/addnewuser");
-  };
 
   const filteredClients = clients.filter((client) =>
     client.username.toLowerCase().includes(searchQuery.toLowerCase())
@@ -51,7 +33,6 @@ export const ManageClients = () => {
 
   return (
     <div className={style.manageClientsContainer}>
-      <h1 className={style.header}> My Clients</h1>
       {/* Row for Search Bar and Buttons */}
       <div className={style.actionRow}>
         <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
@@ -59,7 +40,7 @@ export const ManageClients = () => {
       </div>
 
       {/* Client Table */}
-      <ClientTable clients={filteredClients} />
+      <BlockTable clients={filteredClients} />
     </div>
   );
 };

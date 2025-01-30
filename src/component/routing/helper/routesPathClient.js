@@ -28,4 +28,11 @@ export const routesPathClient = {
   settings: "/settings",
   blockClients: "/blockClients",
   commision: "/commision",
+  addnewuser: "/addnewuser",
+  ledger: "/ledger",
+  liveCasino: "/casino",
+  collectionReport: "/collectionReport",
+  companyLenDen: "/companyLenDen",
+  profitAndLoss: "/profitAndLoss",
+  inOut: "/inOut",
 };

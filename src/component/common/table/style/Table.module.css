@@ -55,6 +55,11 @@
   text-wrap: wrap;
 }
 
+.actions {
+  display: flex;
+  gap: 10px;
+}
+
 /* 
 .row:nth-child(odd) {
   background-color: var(--color-bg-secondary);

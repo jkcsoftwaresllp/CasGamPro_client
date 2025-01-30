@@ -61,6 +61,7 @@ h2 {
 
 .note {
   margin-bottom: 10px; /* Existing margin */
+  color: var(--color-text-primary);
 
   float: left; /* Floats the element to the left */
 }
