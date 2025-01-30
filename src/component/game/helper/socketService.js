@@ -1,28 +1,34 @@
 import { io } from "socket.io-client";
 
-let socket = null;
 const URL = "http://localhost:4320/";
-export const connectSocket = (event) => {
-  const url = URL + event;
-  if (!socket || !socket.connected) {
-    socket = io(url);
+const sockets = {}; // Store multiple socket instances
+
+export const connectSocket = (namespace) => {
+  const url = URL + namespace;
+
+  // If the socket for this namespace does not exist or is disconnected, create a new one
+  if (!sockets[namespace] || !sockets[namespace].connected) {
+    sockets[namespace] = io(url);
   }
-  return socket;
+
+  return sockets[namespace];
 };
 
-export const disconnectSocket = () => {
-  if (socket) {
-    socket.disconnect();
-    socket = null;
+export const disconnectSocket = (namespace) => {
+  if (sockets[namespace]) {
+    sockets[namespace].disconnect();
+    delete sockets[namespace]; // Remove the reference
   }
 };
 
-export const subscribeToEvent = (eventName, callback) => {
-  if (!socket) throw new Error("Socket is not connected!");
-  socket.on(eventName, callback);
+export const subscribeToEvent = (namespace, eventName, callback) => {
+  if (!sockets[namespace])
+    throw new Error(`Socket for ${namespace} is not connected!`);
+  sockets[namespace].on(eventName, callback);
 };
 
-export const emitEvent = (eventName, payload) => {
-  if (!socket) throw new Error("Socket is not connected!");
-  socket.emit(eventName, payload);
+export const emitEvent = (namespace, eventName, payload) => {
+  if (!sockets[namespace])
+    throw new Error(`Socket for ${namespace} is not connected!`);
+  sockets[namespace].emit(eventName, payload);
 };
