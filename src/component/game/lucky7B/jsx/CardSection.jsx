@@ -1,15 +1,14 @@
-import React, { useState } from "react";
+import React from "react";
 import styles from "../style/CardSection.module.css";
 import { Card } from "../../common/cardSection/jsx/Card";
 import { interleaveCards } from "../helper/interleaveCards";
 
 export const CardSection = ({ cards = {} }) => {
-  if (!cards.length) return null;
   const cardsToSend = interleaveCards(cards);
 
   return (
     <div className={styles.cardSection}>
-      <Card code={cards[2]} onClick={() => {}} isShow />
+      {cardsToSend && <Card code={cardsToSend} onClick={() => {}} isShow />}
     </div>
   );
 };

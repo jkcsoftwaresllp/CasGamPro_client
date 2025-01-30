@@ -3,9 +3,5 @@ import styles from "../style/GameHistory.module.css";
 import { WinnerHistory } from "../../WinnerHistory/jsx/WinnerHistory";
 
 export const GameHistory = () => {
-  return (
-    <div className={styles.gameHistory}>
-      <WinnerHistory />
-    </div>
-  );
+  return <div className={styles.gameHistory}>{/* <WinnerHistory /> */}</div>;
 };
