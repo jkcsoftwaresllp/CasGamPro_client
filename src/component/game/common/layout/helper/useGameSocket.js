@@ -11,7 +11,6 @@ import { useGameDispatch } from "./GameStateContext";
 export const useGameSocket = (gameType) => {
   const dispatch = useGameDispatch();
 
-
   useEffect(() => {
     if (!gameType) return;
 
@@ -28,14 +27,7 @@ export const useGameSocket = (gameType) => {
         // Dispatch an action to update the game state
         dispatch({
           type: "UPDATE_GAME_STATE",
-          payload: {
-            gameType: updatedState.gameType,
-            gameId: updatedState.gameId,
-            status: updatedState.status,
-            cards: updatedState.cards,
-            winner: updatedState.winner,
-            startTime: updatedState.startTime,
-          },
+          payload: updatedState,
         });
       }
     });

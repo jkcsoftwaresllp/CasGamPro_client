@@ -1,4 +1,3 @@
-// GameStateContext.js
 import React, { createContext, useReducer, useContext } from "react";
 
 // Define initial state
@@ -6,7 +5,13 @@ const initialState = {
   gameType: null,
   gameId: null,
   status: null,
-  cards: {},
+  cards: {
+    jokerCard: null,
+    blindCard: null,
+    playerA: [],
+    playerB: [],
+    playerC: [],
+  },
   winner: null,
   startTime: null,
 };
@@ -19,10 +24,18 @@ const actionTypes = {
 
 // Reducer function to manage state updates
 const gameReducer = (state, action) => {
-  console.log("gameReducer");
+  console.log("gameReducer action:", action);
+
   switch (action.type) {
     case actionTypes.UPDATE_GAME_STATE:
-      return { ...state, ...action.payload };
+      return {
+        ...state,
+        ...action.payload,
+        cards: {
+          ...state.cards,
+          ...action.payload.cards, // Ensuring nested updates don't overwrite entire structure
+        },
+      };
     case actionTypes.RESET_GAME_STATE:
       return initialState;
     default:
@@ -48,5 +61,5 @@ export const GameStateProvider = ({ children }) => {
 };
 
 // Custom hooks for accessing state and dispatch
-export const useGameState = () => useContext(GameStateContext); // When values need to use
-export const useGameDispatch = () => useContext(GameDispatchContext); // When values need to set
+export const useGameState = () => useContext(GameStateContext); // When values need to be used
+export const useGameDispatch = () => useContext(GameDispatchContext); // When values need to be set
