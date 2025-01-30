@@ -5,7 +5,7 @@ import { WinnerHistory } from "../../WinnerHistory/jsx/WinnerHistory";
 export const GameHistory = () => {
   return (
     <div className={styles.gameHistory}>
-      {/* <WinnerHistory /> */}
+      <WinnerHistory />
     </div>
   );
 };
