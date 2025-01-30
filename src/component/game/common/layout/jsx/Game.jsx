@@ -10,6 +10,7 @@ import { useGameSocket } from "../helper/useGameSocket";
 import { useGameState } from "../helper/GameStateContext";
 import { extractRoundId } from "../helper/extractRoundId";
 import { useButtonNavigation } from "../../../../../hooks/useButtonNavigation";
+import { Winner } from "./Winner";
 
 export const Game = () => {
   const { gameType, error } = useQueryParams();
@@ -37,7 +38,7 @@ export const Game = () => {
   return (
     <div className={styles.game}>
       {winner ? (
-        <div className={styles.winner}>{winner}</div>
+        <Winner gameType={gameType} winner={winner} />
       ) : (
         <>
           <div className={styles.mainContent}>
