@@ -5,8 +5,8 @@ const URL = "http://localhost:4320/";
 export const connectSocket = (event) => {
   const url = URL + event;
   console.log(url);
-  if (!socket) {
-    socket = io(url, { transports: ["websocket", "polling"] });
+  if (!socket || !socket.connected) {
+    socket = io(url);
   }
   return socket;
 };
@@ -20,6 +20,7 @@ export const disconnectSocket = () => {
 
 export const subscribeToEvent = (eventName, callback) => {
   if (!socket) throw new Error("Socket is not connected!");
+  console.log(socket);
   socket.on(eventName, callback);
 };
 

@@ -6,32 +6,19 @@ import { GameInterface } from "./GameInterface";
 import { SimulationSection } from "./SimulationSection";
 import { StakeSection } from "./StakeSection";
 import { useQueryParams } from "../helper/useQueryParams";
-// import { useGameSocket } from "../helper/useGameSocket";
+import { useGameSocket } from "../helper/useGameSocket";
 import { useGameState } from "../helper/GameStateContext";
 import { extractRoundId } from "../helper/extractRoundId";
 import { useButtonNavigation } from "../../../../../hooks/useButtonNavigation";
-import { connectSocket } from "../../../helper/socketService";
-import { GAME_TYPES } from "../../../helper/gameTypes";
-import { io } from "socket.io-client";
 
 export const Game = () => {
   const { gameType, error } = useQueryParams();
-  const { totalCards, gameId, status, winner, startTime } = useGameState();
+  const gameState = useGameState();
+  const { gameId, status, winner, startTime, cards } = gameState;
   const [betItems, setBetItems] = useState();
 
-  console.log(totalCards, gameId, status, winner, startTime);
-  // useGameSocket(gameType);
-  const socket = io(`http://localhost:4320/game`);
-  console.log(socket);
-  socket.on("connect", () => {
-    socket.emit("joinGameType", GAME_TYPES[gameType]);
-  });
-
-  useEffect(() => {
-    socket.on("gameStateUpdate", (data) => {
-      console.log(data);
-    });
-  }, [socket]);
+  console.log(gameState);
+  useGameSocket(gameType);
 
   const rountId = extractRoundId(gameId);
   const addRoundIdToURL = useButtonNavigation();
@@ -60,7 +47,7 @@ export const Game = () => {
                 <GameInterface
                   game={gameType}
                   roundId={rountId}
-                  cards={totalCards}
+                  cards={cards}
                 />
               </div>
               <div className={styles.simulationSection}>
