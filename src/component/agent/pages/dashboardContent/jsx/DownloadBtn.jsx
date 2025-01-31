@@ -1,21 +1,44 @@
-// DownloadButtons.jsx
 import React from "react";
 import { jsPDF } from "jspdf";
+import "jspdf-autotable";
 import Papa from "papaparse";
 import style from "../../styles/ManageClient.module.css"; // Import styles
 
-// Function to generate PDF
+// Function to generate PDF with a table
 const generatePDF = (clients) => {
   const doc = new jsPDF();
-  doc.text("Clients Report", 20, 20);
-  let yOffset = 30; // Start y position for table
 
-  clients.forEach((client, index) => {
-    doc.text(
-      `${client.username} - ${client.matchCommission} - ${client.sessionCommission} - ${client.share}`,
-      20,
-      yOffset + index * 10
-    );
+  // Get today's date in a readable format (DD-MM-YYYY)
+  const today = new Date().toLocaleDateString("en-GB");
+
+  // Add title and date
+  doc.text("Clients Report", 20, 20);
+  doc.text(`Date: ${today}`, 150, 20); // Show date at the top-right corner
+
+  const tableColumn = [
+    "Username",
+    "Match Commission",
+    "Session Commission",
+    "Share",
+  ];
+  const tableRows = [];
+
+  // Converting client data into table format
+  clients.forEach((client) => {
+    const clientData = [
+      client.username,
+      client.matchCommission,
+      client.sessionCommission,
+      client.share,
+    ];
+    tableRows.push(clientData);
+  });
+
+  // Generate table
+  doc.autoTable({
+    head: [tableColumn], // Column headers
+    body: tableRows, // Data rows
+    startY: 30, // Position of the table
   });
 
   doc.save("clients-report.pdf");

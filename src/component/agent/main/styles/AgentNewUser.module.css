@@ -62,6 +62,7 @@ h2 {
 
 .note {
   margin-bottom: var(--borderRadius-md); /* Existing margin */
+  color: var(--color-text-secondary); /* Light/dark text color for small text */
 
   float: left; /* Floats the element to the left */
   margin-left: -50px; /* Adjusted margin to the left  , need to be changed later*/

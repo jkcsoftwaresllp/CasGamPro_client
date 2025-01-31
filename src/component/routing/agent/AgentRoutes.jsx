@@ -6,10 +6,11 @@ import { ManageClients } from "../../agent/pages/dashboardContent/ManageClient";
 import { ManagePassword } from "../../agent/pages/dashboardContent/ManagePassword";
 import { Settings } from "../../agent/pages/dashboardContent/Setting";
 import { Dashboard } from "../../agent/pages/dashboardContent/Dashboard";
-
+import { BlockMarket } from "../../agent/pages/dashboardContent/BlockMarket";
 import { BlockedClient } from "../../agent/pages/dashboardContent/BlockedClient";
 import { TempComp } from "../../routing/helper/TempComp";
 import { AgentNewUser } from "../../agent/pages/dashboardContent/manageClient/AgentNewUser";
+import { EditUser } from "../../agent/pages/dashboardContent/jsx/EditUser";
 
 export const AgentRoutes = () => {
   return (
@@ -18,17 +19,20 @@ export const AgentRoutes = () => {
         <Route index element={<Dashboard />} />
         <Route path={path.manageClients} element={<ManageClients />} />
         <Route path={path.addnewuser} element={<AgentNewUser />} />
+        <Route path={path.editUser} element={<EditUser />} />
 
         <Route path={path.managePassword} element={<ManagePassword />} />
         <Route path={path.settings} element={<Settings />} />
         <Route path={path.blockClients} element={<BlockedClient />} />
         <Route path={path.commision} element={<TempComp label="commision" />} />
         <Route path={path.ledger} element={<TempComp label="ledger" />} />
+        <Route path={path.blockMarket} element={<BlockMarket />} />
         <Route path={path.liveCasino} element={<TempComp label="casino" />} />
         <Route
           path={path.collectionReport}
           element={<TempComp label="collection report" />}
         />
+
         <Route
           path={path.companyLenDen}
           element={<TempComp label="company len den " />}

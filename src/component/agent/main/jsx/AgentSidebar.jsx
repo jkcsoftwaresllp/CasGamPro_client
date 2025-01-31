@@ -1,9 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import style from "../styles/AgentSidebar.module.css";
-import Collapse from "../images/collapse.svg";
-import Expand from "../images/expand.svg";
-
+import { ExpandIcon, CollapseIcon } from "../../../../assets/assets";
 import { Tab } from "./Tab";
 import { sidebarItems } from "../helper/sidebarItems";
 
@@ -16,19 +14,16 @@ export const AgentSidebar = () => {
 
   const handleExpand = (item) => {
     if (expandedItem === item.id) {
-      setExpandedItem(null); // Collapse if already expanded
+      setExpandedItem(null);
     } else {
-      setExpandedItem(item.id); // Expand the clicked item
+      setExpandedItem(item.id);
     }
   };
 
   return (
     <div className={`${style.sidebar} ${isMinimized ? style.minimized : ""}`}>
       <button className={style.toggleButton} onClick={toggleSidebar}>
-        <img
-          src={isMinimized ? Expand : Collapse}
-          alt={isMinimized ? "Expand" : "Collapse"}
-        />
+        {isMinimized ? ExpandIcon : CollapseIcon}
       </button>
       <div className={style.tabsContainer}>
         {sidebarItems.map((item) => (
@@ -36,9 +31,10 @@ export const AgentSidebar = () => {
             <Tab
               icon={item.icon}
               onClick={() => {
-                if (item.subOptions) handleExpand(item);
-                else {
-                  console.log(item.path); // TODO: Update this
+                if (item.subOptions) {
+                  handleExpand(item);
+                } else {
+                  console.log(item.path);
                   navigate(item.path);
                 }
               }}

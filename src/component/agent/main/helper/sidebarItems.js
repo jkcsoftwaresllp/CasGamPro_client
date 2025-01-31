@@ -9,6 +9,9 @@ import {
   CasinoIcon,
   LedgerIcon,
   AddUserIcon,
+  InOutIcon,
+  BookIcon,
+  BlockIcon,
 } from "../../../../assets/assets";
 
 import { routesPathClient } from "../../../routing/helper/routesPathClient";
@@ -66,6 +69,13 @@ export const sidebarItems = [
   },
   {
     id: 4,
+    label: "Block Market",
+    value: "blockMarket",
+    icon: BlockIcon,
+    path: `${routesPathClient.agent}${routesPathClient.blockMarket}`,
+  },
+  {
+    id: 5,
     label: "Manage Password",
     value: "managePassword",
     icon: ManagePasswordIcon,
@@ -74,34 +84,34 @@ export const sidebarItems = [
 
   {
     //ledger
-    id: 5,
+    id: 6,
     label: "Ledger",
     value: "ledger",
     icon: LedgerIcon,
     subOptions: [
       {
-        id: 51,
+        id: 61,
         label: "Collection Report",
         value: "collectionReport",
-        icon: myClient,
+        icon: BookIcon,
         path: `${routesPathClient.agent}${routesPathClient.collectionReport}`,
       },
       {
-        id: 52,
+        id: 62,
         label: "Company Len/Den",
         value: "companyLenDen",
-        icon: blockClient,
+        icon: BookIcon,
         path: `${routesPathClient.agent}${routesPathClient.companyLenDen}`,
       },
       {
-        id: 53,
+        id: 63,
         label: "In-Out",
         value: "inOut",
-        icon: rupees,
+        icon: InOutIcon,
         path: `${routesPathClient.agent}${routesPathClient.inOut}`,
       },
       {
-        id: 54,
+        id: 64,
         label: "P & L",
         value: "profitAndLoss",
         icon: rupees,

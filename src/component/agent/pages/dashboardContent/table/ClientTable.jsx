@@ -1,7 +1,11 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { Table } from "../../../../common/table/jsx/Table.jsx";
 import { EditIcon, SettingsIcon } from "../../../../../assets/assets.jsx";
+
 export const ClientTable = ({ clients }) => {
+  const navigate = useNavigate();
+
   const tableData = clients.map((client) => ({
     id: client.id,
     username: client.username,
@@ -25,12 +29,11 @@ export const ClientTable = ({ clients }) => {
     {
       label: "Edit",
       icon: EditIcon,
-      onClick: (row) => console.log(`Edit client ${row.id}`),
+      onClick: (row) => navigate(`/editUser/${row.id}`), // Navigating to edit page with client id
     },
     {
       label: "Settings",
       icon: SettingsIcon,
-
       onClick: (row) => console.log(`Settings for client ${row.id}`),
     },
   ];

@@ -9,7 +9,18 @@
 }
 
 .sidebar.minimized {
-  width: 55px; /* Minimized sidebar width */
+  width: 65px; /* Minimized sidebar width */
+}
+.sidebar.minimized .subOptionsContainer {
+  padding-left: 0px;
+  background-color: var(--color-bg-primary);
+}
+.subOptionsContainer {
+  padding-left: 20px; /* Adjust the padding for sub-options */
+  border-radius: var(--borderRadius);
+  background-color: var(
+    --color-bg-secondary
+  ); /* Customize the background color */
 }
 
 .sidebar ul {
@@ -57,8 +68,8 @@
   border: 2px solid var(--color-highlighter-dark-primary); /* Light/dark border color */
 
   color: var(--color-text-primary); /* Light/dark text color */
-  font-size: 18px;
-  font-weight: bold;
+  font-size: var(--text-md);
+  font-weight: var(--text-bold);
   transition: 0.35s;
 }
 
@@ -76,14 +87,6 @@
   text-decoration: none; /* Remove underline */
   color: inherit; /* Inherit color from the parent element */
 }
-.subOptionsContainer {
-  margin-left: 20px; /* Adjust the padding for sub-options */
-  border-radius: var(--borderRadius);
-  background-color: var(
-    --color-bg-secondary
-  ); /* Customize the background color */
-}
+
 .tab.active {
-  /* Add any styles for the active tab */
-  color: yourActiveColor; /* Customize the active tab color */
 }

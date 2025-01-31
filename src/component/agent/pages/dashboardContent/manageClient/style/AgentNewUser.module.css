@@ -59,9 +59,35 @@ h2 {
   color: var(--color-text-secondary); /* Light/dark text color for small text */
 }
 
+.switchArea {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
 .note {
   margin-bottom: 10px; /* Existing margin */
   color: var(--color-text-primary);
 
   float: left; /* Floats the element to the left */
+}
+
+.error {
+  color: var(--color-special-red);
+  font-size: var(--text-md);
+  font-weight: var(--text-bold);
+}
+.success {
+  color: var(--color-special-green);
+  font-size: var(--text-md);
+  font-weight: var(--text-bold);
+}
+.buttonArea {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  align-items: center;
+  margin-bottom: 10px;
 }

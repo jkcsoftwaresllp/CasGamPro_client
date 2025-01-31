@@ -35,4 +35,6 @@ export const routesPathClient = {
   companyLenDen: "/companyLenDen",
   profitAndLoss: "/profitAndLoss",
   inOut: "/inOut",
+  blockMarket: "/blockMarket",
+  editUser: "/editUser/:id",
 };
