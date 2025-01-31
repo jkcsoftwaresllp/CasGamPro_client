@@ -3,8 +3,7 @@ import styles from "../style/BetSection.module.css";
 import { PlayerLabel } from "../../common/BetSection/jsx/PlayerLabel";
 import { BetProfit } from "../../common/BetSection/jsx/BetProfit";
 
-export const BetSection = ({ onClick }) => {
-  let isLock = false;
+export const BetSection = ({ onClick, isLock }) => {
   const playerA = "Andar";
   const playerB = "Bahar";
 
