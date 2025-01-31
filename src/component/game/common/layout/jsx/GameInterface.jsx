@@ -3,21 +3,16 @@ import styles from "../style/GameInterface.module.css";
 import { CardSection as Lucky7BCardSection } from "../../../lucky7B/jsx/CardSection";
 import { CardSection as AndarBaharCardSection } from "../../../AndarBahar2/jsx/CardSection";
 import { CardSection as TeenPattiT20CardSection } from "../../../teenPattiT20/jsx/CardSection";
+import { CardSection as DragonTigerCardSection } from "../../../dragonTiger/jsx/CardSection";
+import { gameNameMap } from "../../../helper/gameTypes";
 
 export const GameInterface = ({ game, roundId = "A85745846", cards }) => {
-
   const betSectionMap = {
     lucky7B: Lucky7BCardSection,
     andarBahar1: AndarBaharCardSection,
     andarBahar2: AndarBaharCardSection,
     teenPattiT20: TeenPattiT20CardSection,
-  };
-
-  const gameNameMap = {
-    lucky7B: "Lucky 7B",
-    andarBahar1: "Andar Bahar 1",
-    andarBahar2: "Andar Bahar 2",
-    teenPattiT20: "Teen Patti T20",
+    dragonTiger: DragonTigerCardSection,
   };
 
   const SelectedBetSection = betSectionMap[game] || null;
