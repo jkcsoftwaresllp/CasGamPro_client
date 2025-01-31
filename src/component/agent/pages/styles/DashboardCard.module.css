@@ -42,6 +42,7 @@
 }
 /* Centering the dashboard header */
 .header {
+  color: var(--color-text-primary);
   text-align: center; /* Centers the text horizontally */
   font-size: var(
     --text-lg,

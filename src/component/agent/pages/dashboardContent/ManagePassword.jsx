@@ -1,51 +1,23 @@
-import React, { useState } from "react";
+import React from "react";
 import style from "../styles/ManagePassword.module.css";
 import { PasswordInput } from "../../../common/PasswordInput";
 import { TextInput } from "../../../common/TextInput";
 import { Button } from "../../../common/Button";
 import { Loader } from "../../../common/Loader";
-import { apiCall } from "../../../common/apiCall";
+import { useChangePassword } from "./helper/managePassword"; // Import the helper
 
 export const ManagePassword = () => {
-  const [currentPassword, setCurrentPassword] = useState("");
-  const [newPassword, setNewPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [error, setError] = useState("");
-  const [loading, setLoading] = useState(false);
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    if (newPassword !== confirmPassword) {
-      setError("Passwords do not match");
-    } else {
-      setError("");
-      setLoading(true); // Set loading state to true when submitting
-
-      try {
-        const response = await apiCall(
-          "/auth-api/client/change_password", // Update API path as needed
-          "POST",
-          {
-            currentPassword,
-            newPassword,
-          }
-        );
-
-        const { uniqueCode } = response;
-
-        if (uniqueCode === "CGP0029") {
-          console.log("Password changed successfully");
-        } else {
-          console.log(response);
-        }
-      } catch (err) {
-        console.error("Error occurred during password change:", err);
-        setError("An error occurred while changing password.");
-      }
-
-      setLoading(false); // Set loading state back to false after the request completes
-    }
-  };
+  const {
+    currentPassword,
+    setCurrentPassword,
+    newPassword,
+    setNewPassword,
+    confirmPassword,
+    setConfirmPassword,
+    error,
+    loading,
+    handleSubmit,
+  } = useChangePassword(); // Use the helper hook
 
   return (
     <div className={style.container}>
@@ -58,12 +30,18 @@ export const ManagePassword = () => {
           <h2 className={style.title}>Change Password</h2>
           <TextInput
             placeholder="Current Password"
-            onChange={setCurrentPassword}
+            value={currentPassword}
+            onChange={(e) => setCurrentPassword(e.target.value)}
           />
-          <PasswordInput placeholder="New Password" onChange={setNewPassword} />
+          <PasswordInput
+            placeholder="New Password"
+            value={newPassword}
+            onChange={(e) => setNewPassword(e.target.value)}
+          />
           <PasswordInput
             placeholder="Confirm New Password"
-            onChange={setConfirmPassword}
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
           />
           {error && <p className={style.error}>{error}</p>}
           <Button
