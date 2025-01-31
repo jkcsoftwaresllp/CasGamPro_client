@@ -24,6 +24,7 @@ const actionTypes = {
 
 // Reducer function to manage state updates
 const gameReducer = (state, action) => {
+
   switch (action.type) {
     case actionTypes.UPDATE_GAME_STATE:
       return {
