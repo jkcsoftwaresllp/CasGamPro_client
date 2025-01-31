@@ -1,8 +1,11 @@
 import React, { useEffect, useRef } from "react";
-import PropTypes from "prop-types";
 import styles from "../style/ScrollBox.module.css";
 
-export const ScrollBox = ({ children, direction = "vertical" }) => {
+export const ScrollBox = ({
+  children,
+  direction = "vertical",
+  gap = "5px",
+}) => {
   const scrollBoxRef = useRef(null);
 
   useEffect(() => {
@@ -38,19 +41,19 @@ export const ScrollBox = ({ children, direction = "vertical" }) => {
     };
   }, [direction]);
 
+  const cssVariable = {
+    "--gap": gap,
+  };
+
   return (
     <div
       className={`${styles.scrollBox} ${
         direction === "vertical" ? styles.vertical : styles.horizontal
       }`}
       ref={scrollBoxRef}
+      style={cssVariable}
     >
       {children}
     </div>
   );
-};
-
-ScrollBox.propTypes = {
-  children: PropTypes.node.isRequired,
-  direction: PropTypes.oneOf(["horizontal", "vertical"]),
 };

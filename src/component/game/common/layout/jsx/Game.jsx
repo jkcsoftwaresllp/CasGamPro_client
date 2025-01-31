@@ -10,13 +10,16 @@ import { useGameSocket } from "../helper/useGameSocket";
 import { useGameState } from "../helper/GameStateContext";
 import { extractRoundId } from "../helper/extractRoundId";
 import { useButtonNavigation } from "../../../../../hooks/useButtonNavigation";
+import { Winner } from "./Winner";
 
 export const Game = () => {
   const { gameType, error } = useQueryParams();
-  const { totalCards, gameId, status, winner, startTime } = useGameState();
+  const gameState = useGameState();
+  const { gameId, status, winner, startTime, cards } = gameState;
   const [betItems, setBetItems] = useState();
 
   useGameSocket(gameType);
+
   const rountId = extractRoundId(gameId);
   const addRoundIdToURL = useButtonNavigation();
 
@@ -35,7 +38,7 @@ export const Game = () => {
   return (
     <div className={styles.game}>
       {winner ? (
-        <div className={styles.winner}>{winner}</div>
+        <Winner gameType={gameType} winner={winner} />
       ) : (
         <>
           <div className={styles.mainContent}>
@@ -44,7 +47,7 @@ export const Game = () => {
                 <GameInterface
                   game={gameType}
                   roundId={rountId}
-                  cards={totalCards}
+                  cards={cards}
                 />
               </div>
               <div className={styles.simulationSection}>

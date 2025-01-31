@@ -1,20 +1,21 @@
 // Helper function to interleave cards alternately between playerA and playerB
 export const interleaveCards = (cards) => {
-  const playerACards = [...(cards.playerA || [])];
-  const playerBCards = [...(cards.playerB || [])];
-  const interleavedCardSet = [];
+  const { playerA, playerB } = cards;
+
+  const cardsToPresnt = [];
 
   // Interleave cards from playerA and playerB
-  while (playerACards.length || playerBCards.length) {
-    if (playerACards.length) {
-      interleavedCardSet.push(playerACards.shift()); // Add card for Player A
+  while (playerA.length || playerB.length) {
+    if (playerA.length) {
+      cardsToPresnt.push(playerA.shift()); // Add card for Player A
     }
-    if (playerBCards.length) {
-      interleavedCardSet.push(playerBCards.shift()); // Add card for Player B
+    if (playerB.length) {
+      cardsToPresnt.push(playerB.shift()); // Add card for Player B
     }
   }
 
-  return interleavedCardSet;
+  console.log(cardsToPresnt);
+  return cardsToPresnt;
 };
 
 /*

@@ -1,5 +1,5 @@
 .WinnerHistory {
-  background: var(--color-bg-tertiary);
+  background: var(--color-bg-primary);
   padding: 20px 5px;
   color: var(--color-text-primary);
   width: 100%;
@@ -16,7 +16,7 @@
   overflow-x: auto;
   scroll-behavior: smooth;
   white-space: nowrap;
-  background-color: var(--color-bg-tertiary);
+  background: var(--color-bg-primary);
   gap: 5px;
   padding-bottom: 6px;
 }

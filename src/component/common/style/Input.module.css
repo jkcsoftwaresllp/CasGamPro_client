@@ -3,13 +3,13 @@
 }
 
 .input {
-  width: 300px;
+  width: 350px;
   min-height: 45px;
   font-size: 18px;
-  padding: 0 7px;
+  padding: 10px;
   background-color: var(--color-bg-secondary);
   border-radius: var(--borderRadius);
-  border: 2px solid var(--color-bg-secondary);
+  border: 1px solid var(--color-bg-secondary);
   color: var(--color-text-primary);
   outline: none;
   transition: 0.35s;
@@ -30,7 +30,6 @@
 
 input[type="password"] {
   letter-spacing: 2px;
- 
 }
 
 .visibilityIcon svg path {

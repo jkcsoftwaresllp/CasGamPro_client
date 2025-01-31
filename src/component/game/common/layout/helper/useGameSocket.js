@@ -10,31 +10,22 @@ import { useGameDispatch } from "./GameStateContext";
 
 export const useGameSocket = (gameType) => {
   const dispatch = useGameDispatch();
+  const namespace = "game";
 
   useEffect(() => {
     if (!gameType) return;
 
-    const socket = connectSocket("game");
+    const socket = connectSocket(namespace);
 
     socket.on("connect", () => {
-      emitEvent("joinGameType", GAME_TYPES[gameType]);
+      emitEvent(namespace, "joinGameType", GAME_TYPES[gameType]);
     });
 
-    subscribeToEvent("gameStateUpdate", (updatedState) => {
+    subscribeToEvent(namespace, "gameStateUpdate", (updatedState) => {
       if (updatedState) {
-        console.log("Game state updated:", updatedState);
-
-        // Dispatch an action to update the game state
         dispatch({
           type: "UPDATE_GAME_STATE",
-          payload: {
-            gameType: updatedState.gameType,
-            gameId: updatedState.gameId,
-            status: updatedState.status,
-            cards: updatedState.cards,
-            winner: updatedState.winner,
-            startTime: updatedState.startTime,
-          },
+          payload: updatedState,
         });
       }
     });
