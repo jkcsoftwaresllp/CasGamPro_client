@@ -29,6 +29,19 @@
   font-size: calc(2 * var(--text-sm));
 }
 
+.betOnTop {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.rectangeCircle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
 @media (max-width: 1000px) {
   .lowHighEvenOdd {
     flex-direction: column;
