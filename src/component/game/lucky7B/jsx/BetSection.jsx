@@ -16,7 +16,7 @@ export const BetSection = ({ onClick, isLock }) => {
             betProfit={"1.96"}
             betAmount={"0.0"}
             isLock={isLock}
-            onClick={(label, value) => onClick({ label, player: "Low" }, value)}
+            onClick={(label, value) => onClick({ label }, value)}
           />
 
           <BetOnCard
@@ -24,7 +24,7 @@ export const BetSection = ({ onClick, isLock }) => {
             betProfit={"1.96"}
             betAmount={"0.0"}
             isLock={isLock}
-            onClick={(label, value) => onClick({ label, player: "7" }, value)}
+            onClick={(label, value) => onClick({ label }, value)}
           />
 
           <BetWithText
@@ -32,9 +32,7 @@ export const BetSection = ({ onClick, isLock }) => {
             betProfit={"1.96"}
             betAmount={"0.0"}
             isLock={isLock}
-            onClick={(label, value) =>
-              onClick({ label, player: "High" }, value)
-            }
+            onClick={(label, value) => onClick({ label }, value)}
           />
         </div>
         <BetOnEvOdReBl

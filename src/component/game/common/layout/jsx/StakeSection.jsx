@@ -6,7 +6,8 @@ import { UserBetMain } from "../../userBet/jsx/UserBetMain";
 export const StakeSection = ({ betItems, setBetItems, status }) => {
   let canOpen;
   if (status === "betting") canOpen = true;
-  else canOpen = false;
+  // else canOpen = false;
+  else canOpen = true;
 
   return (
     <div className={styles.stakeSection}>
