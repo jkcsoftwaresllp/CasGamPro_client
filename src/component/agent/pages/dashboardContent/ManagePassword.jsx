@@ -19,27 +19,31 @@ export const ManagePassword = () => {
       setError("Passwords do not match");
     } else {
       setError("");
-      setLoading(true);
+      setLoading(true); // Set loading state to true when submitting
 
-      const response = await apiCall(
-        "/auth-api/client/change_password", //put new api here
+      try {
+        const response = await apiCall(
+          "/auth-api/client/change_password", // Update API path as needed
+          "POST",
+          {
+            currentPassword,
+            newPassword,
+          }
+        );
 
-        "POST",
-        {
-          currentPassword,
-          newPassword,
+        const { uniqueCode } = response;
+
+        if (uniqueCode === "CGP0029") {
+          console.log("Password changed successfully");
+        } else {
+          console.log(response);
         }
-      );
-
-      const { uniqueCode } = response;
-
-      if (uniqueCode === "CGP0029") {
-        console.log("Password changed successfully");
-      } else {
-        console.log(response);
+      } catch (err) {
+        console.error("Error occurred during password change:", err);
+        setError("An error occurred while changing password.");
       }
 
-      setLoading(false);
+      setLoading(false); // Set loading state back to false after the request completes
     }
   };
 
@@ -47,7 +51,7 @@ export const ManagePassword = () => {
     <div className={style.container}>
       {loading ? (
         <div className={style.loaderContainer}>
-          <Loader />
+          <Loader /> {/* Display the Loader while loading */}
         </div>
       ) : (
         <form className={style.form} onSubmit={handleSubmit}>
