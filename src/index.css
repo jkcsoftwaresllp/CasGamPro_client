@@ -105,3 +105,36 @@ body {
 ::-webkit-scrollbar-track {
   background-color: var(--color-bg-tertiary);
 }
+
+.custom-swal-popup {
+  background-color: var(--color-bg-primary) !important;
+  color: var(--color-text-primary) !important;
+  border-radius: 10px;
+}
+
+.custom-swal-title {
+  color: var(--color-text-primary) !important;
+}
+
+.custom-swal-confirm {
+  background-color: var(--color-bg-primary) !important;
+  color: var(--color-text-primary) !important;
+  border: 1px solid var(--color-text-primary) !important;
+}
+
+.custom-swal-cancel {
+  background-color: transparent !important;
+  color: var(--color-text-primary) !important;
+  border: 1px solid var(--color-text-primary) !important;
+}
+.custom-swal-confirm {
+  background-color: var(
+    --color-special-green
+  ) !important; /* Green for Unblock */
+  color: white !important;
+}
+
+.custom-swal-cancel {
+  background-color: var(--color-special-red) !important; /* Red for Cancel */
+  color: white !important;
+}

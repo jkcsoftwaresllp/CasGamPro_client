@@ -42,7 +42,7 @@ export const EditUser = () => {
       ) : (
         <form className={style.form}>
           <h2 className={style.para}>Edit User : {id}</h2>
-          <UserIdInput value={formData.userId} disabled />
+
           <TextInput
             label="First Name"
             name="firstName"

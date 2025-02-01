@@ -24,7 +24,7 @@ export const routesPathClient = {
   // /agent
   agentHome: "/agent",
   manageClients: "/manageClients",
-  managePassword: "/managePassword",
+  managePassword: "/managePassword/:id",
   settings: "/settings",
   blockClients: "/blockClients",
   commision: "/commision",

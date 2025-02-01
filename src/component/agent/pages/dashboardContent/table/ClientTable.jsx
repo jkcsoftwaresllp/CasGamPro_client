@@ -34,7 +34,7 @@ export const ClientTable = ({ clients }) => {
     {
       label: "Settings",
       icon: SettingsIcon,
-      onClick: (row) => console.log(`Settings for client ${row.id}`),
+      onClick: (row) => navigate(`/agent/managePassword/${row.id}`),
     },
   ];
 

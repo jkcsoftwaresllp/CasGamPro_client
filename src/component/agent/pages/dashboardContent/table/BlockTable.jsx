@@ -1,6 +1,8 @@
 import React from "react";
 import { Table } from "../../../../common/table/jsx/Table.jsx";
-import { EditIcon, PasswordIcon } from "../../../../../assets/assets.jsx";
+import { UnBlockIcon } from "../../../../../assets/assets.jsx";
+import { showUnblockUserSwal } from "../helper/swalHelpers.js"; // Import Swal function
+
 export const BlockTable = ({ clients }) => {
   const tableData = clients.map((client) => ({
     id: client.id,
@@ -21,17 +23,21 @@ export const BlockTable = ({ clients }) => {
 
   const columnWidths = { username: 2, actions: 2 };
 
+  // Function to handle Edit click
+  const handleEditClick = async (row) => {
+    const { isConfirmed, value } = await showUnblockUserSwal(row.username);
+
+    if (isConfirmed) {
+      console.log(`User input: ${value}`);
+      console.log(`User ${row.id} (${row.username}) unblocked!`);
+    }
+  };
+
   const actionButtons = [
     {
       label: "Edit",
-      icon: EditIcon,
-      onClick: (row) => console.log(`Edit client ${row.id}`),
-    },
-    {
-      label: "Change Password",
-      icon: PasswordIcon,
-
-      onClick: (row) => console.log(`Change Password for client ${row.id}`),
+      icon: UnBlockIcon,
+      onClick: handleEditClick, // Use helper function
     },
   ];
 
@@ -40,8 +46,8 @@ export const BlockTable = ({ clients }) => {
       data={tableData}
       columns={columns}
       columnWidths={columnWidths}
-      isAction={true} // Indicating that action buttons should be shown
-      btns={actionButtons} // Passing action buttons here
+      isAction={true}
+      btns={actionButtons}
     />
   );
 };

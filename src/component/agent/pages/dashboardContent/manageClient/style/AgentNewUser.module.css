@@ -3,6 +3,9 @@
   flex-direction: column;
   justify-content: center; /* Center items vertically */
   align-items: center; /* Center items horizontally */
+  gap: 20px;
+  max-width: 700px; /* Ensures a reasonable width */
+  margin: auto;
   background-color: var(
     --color-bg-primary
   ); /* Light/dark background based on theme */
@@ -14,7 +17,15 @@ h2 {
   margin-bottom: 10px; /* Reduced space below heading */
   text-align: left; /* Align heading with form content */
 }
+.row {
+  display: flex;
+  gap: 20px; /* Ensures uniform horizontal spacing */
+  justify-content: space-between; /* Distributes space evenly */
+}
 
+.row > div {
+  flex: 1;
+}
 /* .input styles */
 .input {
   width: 100%;
@@ -90,4 +101,18 @@ h2 {
   gap: 20px;
   align-items: center;
   margin-bottom: 10px;
+}
+
+.para {
+  color: var(--color-text-primary);
+  font-size: var(--text-md);
+  font-weight: var(--text-bold);
+  margin-bottom: 10px;
+}
+
+@media (max-width: 600px) {
+  .row {
+    flex-direction: column; /* Stacks elements on smaller screens */
+    gap: 15px;
+  }
 }
