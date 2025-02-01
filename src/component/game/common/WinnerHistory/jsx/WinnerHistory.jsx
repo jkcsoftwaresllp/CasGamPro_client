@@ -1,22 +1,11 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { WinnerRectangle } from "./WinnerRectangle";
 import style from "../style/WinnerHistory.module.css";
 import { useGameState } from "../../layout/helper/GameStateContext";
 import { apiCall } from "../../../../common/apiCall";
 
 export const WinnerHistory = () => {
-  let results = [
-    { winner: "A", roundId: 1, gameId: 1 },
-    { winner: "B", roundId: 2, gameId: 1 },
-    { winner: "A", roundId: 3, gameId: 1 },
-    { winner: "A", roundId: 4, gameId: 1 },
-    { winner: "B", roundId: 5, gameId: 1 },
-    { winner: "A", roundId: 1, gameId: 1 },
-    { winner: "B", roundId: 2, gameId: 1 },
-    { winner: "A", roundId: 3, gameId: 1 },
-    { winner: "A", roundId: 4, gameId: 1 },
-    { winner: "B", roundId: 5, gameId: 1 },
-  ]; // Move the results array here
+  let [results, setResult] = useState([]);
 
   const gameState = useGameState();
   const { gameType } = gameState;
@@ -28,8 +17,7 @@ export const WinnerHistory = () => {
           `/auth-api/client/games/history?gameType=${gameType}`,
           "GET"
         );
-        console.log({ gameType });
-        console.log(response);
+        setResult(response.data);
       } catch (error) {
         console.error(error);
       }
