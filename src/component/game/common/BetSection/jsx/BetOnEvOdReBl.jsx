@@ -31,28 +31,28 @@ export const BetOnEvOdReBl = ({
         label="Even"
         betProfit={profit.even}
         betAmount={amount.even}
-        onClick={onClick}
+        onClick={(label, value) => onClick({ label }, value)}
         isLock={isLock}
       />
       <BetWithText
         label="Odd"
         betProfit={profit.odd}
         betAmount={amount.odd}
-        onClick={onClick}
+        onClick={(label, value) => onClick({ label }, value)}
         isLock={isLock}
       />
       <BetWithColor
         color="red"
         betProfit={profit.red}
         betAmount={amount.red}
-        onClick={onClick}
+        onClick={(label, value) => onClick({ label }, value)}
         isLock={isLock}
       />
       <BetWithColor
         color="black"
         betProfit={profit.black}
         betAmount={amount.black}
-        onClick={onClick}
+        onClick={(label, value) => onClick({ label }, value)}
         isLock={isLock}
       />
     </div>

@@ -6,6 +6,8 @@ import { roles } from "../../../utils/roles";
 import { ClientRoutes } from "../../routing/client/ClientRoutes";
 import { ErrorPage } from "../../../pages/jsx/Error";
 import { routesPathClient } from "../../routing/helper/routesPathClient";
+import { RegisterNewUser } from "../../agent/manageClients/jsx/RegisterNewUser";
+import { UserList } from "../../agent/manageClients/jsx/UserList";
 
 export const Routing = () => {
   return (
@@ -24,6 +26,8 @@ export const Routing = () => {
         }
       />
 
+      <Route path="/agent" element={<RegisterNewUser />} />
+      <Route path="/agent2" element={<UserList />} />
       <Route
         path="*"
         element={

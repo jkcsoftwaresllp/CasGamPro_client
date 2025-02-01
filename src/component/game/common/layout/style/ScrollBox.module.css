@@ -10,7 +10,6 @@
   flex-direction: row;
   overflow-x: auto;
   white-space: nowrap;
-  padding-bottom: 5px;
 }
 
 .scrollBox.vertical {

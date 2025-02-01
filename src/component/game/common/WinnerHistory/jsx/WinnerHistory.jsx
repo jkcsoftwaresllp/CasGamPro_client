@@ -1,14 +1,8 @@
 import React, { useEffect } from "react";
 import { WinnerRectangle } from "./WinnerRectangle";
 import style from "../style/WinnerHistory.module.css";
-import {
-  connectSocket,
-  disconnectSocket,
-  subscribeToEvent,
-  emitEvent,
-} from "../../../helper/socketService";
-import { GAME_TYPES } from "../../../helper/gameTypes";
-import { useQueryParams } from "../../layout/helper/useQueryParams";
+import { useGameState } from "../../layout/helper/GameStateContext";
+import { apiCall } from "../../../../common/apiCall";
 
 export const WinnerHistory = () => {
   let results = [
@@ -23,12 +17,24 @@ export const WinnerHistory = () => {
     { winner: "A", roundId: 4, gameId: 1 },
     { winner: "B", roundId: 5, gameId: 1 },
   ]; // Move the results array here
-  const namespace = "game-history";
 
-  const { gameType, error } = useQueryParams();
+  const gameState = useGameState();
+  const { gameType } = gameState;
 
   useEffect(() => {
-   
+    const upadatHistory = async () => {
+      try {
+        const response = await apiCall(
+          `/auth-api/client/games/history?gameType=${gameType}`,
+          "GET"
+        );
+        console.log({ gameType });
+        console.log(response);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    upadatHistory();
   }, [gameType]);
 
   return (

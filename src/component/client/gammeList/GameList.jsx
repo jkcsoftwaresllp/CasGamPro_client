@@ -6,6 +6,7 @@ import style from "./style/GameList.module.css";
 import teenPatti from "./img/teenPatti/image.png";
 import luckyB from "./img/luckSevenB/luckyB.jpg";
 import andarBahar from "./img/andarBahar/andarBahar.png";
+import dragonTiger from "./img/dragonTiger/dragonTiger.png";
 import { useButtonNavigation } from "../../../hooks/useButtonNavigation";
 import { routesPathClient as path } from "../../routing/helper/routesPathClient";
 
@@ -37,12 +38,12 @@ export const GameList = () => {
           label="Andar Bahar 2"
           onClick={() => handleCardClick(getGamePath("andarBahar2"))}
         />
-        {/* 
+
         <GameTile
-          imgSrc={andarBahar}
+          imgSrc={dragonTiger}
           label="20-20 Dragon Tiger"
           onClick={() => handleCardClick(getGamePath("dragonTiger"))}
-        /> */}
+        />
         <GameTile
           imgSrc="https://media.giphy.com/media/10SvWCbt1ytWCc/giphy.gif"
           label="Card Title 4"
