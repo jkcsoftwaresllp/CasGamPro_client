@@ -4,7 +4,7 @@ import { BetSection as Lucky7BBetSection } from "../../../lucky7B/jsx/BetSection
 import { BetSection as AndarBahar2BetSection } from "../../../AndarBahar2/jsx/BetSection";
 import { BetSection as AndarBahar1BetSection } from "../../../AndarBahar1/jsx/BetSection";
 import { BetSection as TeenPattiT20BetSection } from "../../../teenPattiT20/jsx/BetSection";
-import { BetSection as DragonTigerBetSection } from "../../../gameDragonTiger/jsx/BetSection";
+import { BetSection as DragonTigerBetSection } from "../../../dragonTiger/jsx/BetSection";
 
 export const BetSection = ({ game, onClick, status }) => {
   const betSectionMap = {

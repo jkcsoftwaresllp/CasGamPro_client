@@ -66,7 +66,11 @@ export const Game = () => {
 
           <div className={styles.detailsSection}>
             <GameHistory />
-            <StakeSection betItems={betItems} setBetItems={setBetItems} />
+            <StakeSection
+              betItems={betItems}
+              setBetItems={setBetItems}
+              status={status}
+            />
           </div>
         </>
       )}

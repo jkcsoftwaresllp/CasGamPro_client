@@ -1,0 +1,11 @@
+.betSection {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 10px;
+}
+
+.dragonTiger {
+  display: flex;
+  gap: 20px;
+}

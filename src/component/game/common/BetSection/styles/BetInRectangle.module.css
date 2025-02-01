@@ -14,10 +14,13 @@
   padding-left: var(--paddingLeft);
   padding-right: var(--paddingRight);
 }
+
 .betInPair {
   display: flex;
   height: 55px;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
   padding-left: var(--paddingLeft);
   padding-right: var(--paddingRight);
   border: 1px solid #ccc;
@@ -28,11 +31,13 @@
   cursor: pointer;
   position: relative;
 }
+
 .rowContainer {
   display: flex;
   flex-direction: row; /* Place label and column in a row */
   align-items: center; /* Align the label and column container vertically */
   justify-content: space-between; /* Adjust space between label and column */
+  gap: 30px;
 }
 
 .betInRectangle .betProfit {
@@ -55,8 +60,8 @@
 }
 
 .betInCircle {
-  width: 70px;
-  height: 70px;
+  width: 80px;
+  height: 80px;
   color: var(--color-text-primary);
   background-color: var(--color-bg-tertiary);
   border-radius: 50%;
@@ -64,7 +69,6 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 100px;
 }
 
 .betInCircle p:nth-child(1) {
