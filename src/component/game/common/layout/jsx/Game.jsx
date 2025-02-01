@@ -38,39 +38,43 @@ export const Game = () => {
 
   return (
     <div className={styles.game}>
-      {/* {winner ? (
+      {winner ? (
         <Winner gameType={gameType} winner={winner} />
       ) : (
-        <> */}
-      <div className={styles.mainContent}>
-        <div className={styles.gameControls}>
-          <div className={styles.gameInterface}>
-            <GameInterface game={gameType} roundId={rountId} cards={cards} />
-          </div>
-          <div className={styles.simulationSection}>
-            <SimulationSection />
-          </div>
-        </div>
+        <>
+          <div className={styles.mainContent}>
+            <div className={styles.gameControls}>
+              <div className={styles.gameInterface}>
+                <GameInterface
+                  game={gameType}
+                  roundId={rountId}
+                  cards={cards}
+                />
+              </div>
+              <div className={styles.simulationSection}>
+                <SimulationSection />
+              </div>
+            </div>
 
-        <BetSection
-          status={status}
-          game={gameType}
-          onClick={(label, value) => {
-            setBetItems({ label, value }); // Example: {label: "Low", value: "0.0"}
-          }}
-        />
-      </div>
+            <BetSection
+              status={status}
+              game={gameType}
+              onClick={(label, value) => {
+                setBetItems({ label, value }); // Example: {label: "Low", value: "0.0"}
+              }}
+            />
+          </div>
 
-      <div className={styles.detailsSection}>
-        <GameHistory />
-        <StakeSection
-          betItems={betItems}
-          setBetItems={setBetItems}
-          status={status}
-        />
-      </div>
-      {/* </>
-      )} */}
+          <div className={styles.detailsSection}>
+            <GameHistory />
+            <StakeSection
+              betItems={betItems}
+              setBetItems={setBetItems}
+              status={status}
+            />
+          </div>
+        </>
+      )}
     </div>
   );
 };
