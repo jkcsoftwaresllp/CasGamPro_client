@@ -17,8 +17,7 @@ export const BetSection = ({ game, onClick, status }) => {
 
   let isLock;
   if (status === "betting") isLock = false;
-  // else isLock = true;
-  else isLock = false;
+  else isLock = true;
 
   const SelectedBetSection = betSectionMap[game] || null;
 

@@ -37,8 +37,7 @@ export const Game = () => {
 
   return (
     <div className={styles.game}>
-      {/* {winner ? ( */}
-      {false ? (
+      {winner ? (
         <Winner gameType={gameType} winner={winner} />
       ) : (
         <>
