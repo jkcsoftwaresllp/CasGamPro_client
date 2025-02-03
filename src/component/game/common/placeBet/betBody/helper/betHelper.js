@@ -10,19 +10,13 @@ export const handleSubmit = async ({
   setBetItems,
 }) => {
   try {
-    const response = await apiCall(
-      "/auth-api/client/games/bet",
-      "POST",
-      {
-        gameId: roundId,
-        side: player,
-        roundId,
-        amount: stakeValue,
-      }
-    );
-
+    const response = await apiCall("/auth-api/client/games/place-bet", "POST", {
+      gameId: roundId,
+      side: player,
+      roundId,
+      amount: stakeValue,
+    });
     console.log(response);
-
     // if (uniqueCode === "CGP00G05") {
     //   console.log("Stake submitted successfully");
     // } else {

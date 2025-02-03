@@ -12,7 +12,6 @@ export const useGameSocket = (gameType) => {
   const dispatch = useGameDispatch();
   const namespace = "game";
 
-
   useEffect(() => {
     if (!gameType) return;
 

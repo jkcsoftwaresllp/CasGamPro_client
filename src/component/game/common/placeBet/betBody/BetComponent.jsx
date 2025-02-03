@@ -19,6 +19,7 @@ export const BetComponent = ({ betFor, profit, setBetItems, player }) => {
   };
 
   const { gameType, gameId } = useGameState();
+  console.log({ gameType, gameId });
 
   const onSubmit = () =>
     handleSubmit({
@@ -26,7 +27,7 @@ export const BetComponent = ({ betFor, profit, setBetItems, player }) => {
       currentProfit,
       player,
       gameType,
-      gameId,
+      roundId: gameId,
       setBetItems,
     });
 

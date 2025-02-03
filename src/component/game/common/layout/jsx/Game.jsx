@@ -19,6 +19,7 @@ export const Game = () => {
   const [betItems, setBetItems] = useState();
 
   useGameSocket(gameType);
+  console.log(gameState);
 
   const rountId = extractRoundId(gameId);
   const addRoundIdToURL = useButtonNavigation();
@@ -48,6 +49,7 @@ export const Game = () => {
                   game={gameType}
                   roundId={rountId}
                   cards={cards}
+                  status={status}
                 />
               </div>
               <div className={styles.simulationSection}>
