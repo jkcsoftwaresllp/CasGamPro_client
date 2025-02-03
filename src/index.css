@@ -27,6 +27,7 @@
   --color-highlighter-primary: #333; /* Antique bronze for highlights */
   --color-highlighter-secondary: #cd7f32; /* Classic copper for accents */
   --color-rotate-primary: rgb(28, 178, 224);
+  --color-link: #2298e7;
 
   /* Background */
   --color-bg-primary: #fbfeff; /* Warm cream background for elegance */

@@ -10,13 +10,11 @@ export const TableCell = ({
 }) => {
   return (
     <div
-      className={`${style.cell} ${isHeader ? style.headerCell : ""} ${
-        isClickable ? style.clickableCell : ""
-      }`}
+      className={`${style.cell} ${isHeader ? style.headerCell : ""}`}
       style={cellStyle}
       onClick={isClickable ? onClick : undefined}
     >
-      {label}
+      <p className={`${isClickable ? style.clickableCell : ""}`}>{label}</p>
     </div>
   );
 };
