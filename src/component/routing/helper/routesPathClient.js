@@ -40,4 +40,9 @@ export const routesPathClient = {
   userInfo: "/info/:id",
   recieveCash: "/recieveCash/:id",
   payCash: "/payCash/:id",
+  ledger: "/ledger/:id",
+  cashledger: "/cashLedger/:id",
+  matchledger: "/matchLedger/:id",
+  coinhistory: "/coinHistory/:id",
+  statement: "/statements/:id",
 };

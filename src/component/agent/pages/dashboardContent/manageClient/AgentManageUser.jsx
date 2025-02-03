@@ -45,11 +45,61 @@ export const AgentManageUser = () => {
                 )
               }
             />
-            <Button label="Ledger" onClick={() => {}} />
-            <Button label="Cash Ledger" onClick={() => {}} />
-            <Button label="Match Ledger" onClick={() => {}} />
-            <Button label="Coin History" onClick={() => {}} />
-            <Button label="Statements" onClick={() => {}} />
+            <Button
+              label="Ledger"
+              onClick={() =>
+                navigate(
+                  `${path.agent}${path.manageClients}${path.ledger.replace(
+                    ":id",
+                    id
+                  )}`
+                )
+              }
+            />
+            <Button
+              label="Cash Ledger"
+              onClick={() =>
+                navigate(
+                  `${path.agent}${path.manageClients}${path.cashledger.replace(
+                    ":id",
+                    id
+                  )}`
+                )
+              }
+            />
+            <Button
+              label="Match Ledger"
+              onClick={() =>
+                navigate(
+                  `${path.agent}${path.manageClients}${path.matchledger.replace(
+                    ":id",
+                    id
+                  )}`
+                )
+              }
+            />
+            <Button
+              label="Coin History"
+              onClick={() =>
+                navigate(
+                  `${path.agent}${path.manageClients}${path.coinhistory.replace(
+                    ":id",
+                    id
+                  )}`
+                )
+              }
+            />
+            <Button
+              label="Statements"
+              onClick={() =>
+                navigate(
+                  `${path.agent}${path.manageClients}${path.statement.replace(
+                    ":id",
+                    id
+                  )}`
+                )
+              }
+            />
           </div>
           <div className={style.cardGrid}>
             <DashboardCard label="Coins" value="-35000" />
