@@ -1,0 +1,41 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 500px;
+  margin: auto;
+  gap: 10px; /* Adds 10px spacing between elements */
+  top: 50%;
+  left: 50%;
+  transform: translate(-10%, 40%);
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.heading {
+  font-size: var(--text-xl);
+  font-weight: bold;
+  color: var(--color-text-primary);
+  padding: 20px;
+  left: auto;
+}
+
+.label {
+  font-weight: bold;
+  text-align: left;
+  width: 40%;
+  color: var(--color-text-primary);
+  font-size: var(--text-md);
+}
+
+.input {
+  width: 55%;
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 10px;
+}
