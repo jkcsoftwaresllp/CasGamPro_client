@@ -3,28 +3,27 @@ import { TableCell } from "./TableCell";
 import style from "../style/Table.module.css";
 import { IconBtn } from "../../../common/IconBtn.jsx"; // Assuming you have IconBtn component
 
-export const TableRow = ({
-  row,
-  columns,
-  columnWidths,
-  isAction,
-  actionButtons,
-}) => {
+export const TableRow = ({ row, columns, columnWidths, actionButtons }) => {
   return (
     <div className={style.row}>
-      {columns.map((col) => (
-        <TableCell
-          key={col.key}
-          label={col.render ? col.render(row[col.key], row) : row[col.key]}
-          style={{ flex: columnWidths[col.key] || 1 }}
-        />
-      ))}
+      {/* Loop through columns and render TableCell for each */}
+      {columns
+        .filter((col) => col.key !== "actions") // Avoid duplicate rendering
+        .map((col) => (
+          <TableCell
+            key={col.key}
+            label={col.render ? col.render(row[col.key], row) : row[col.key]}
+            style={{ flex: columnWidths[col.key] || 1 }}
+          />
+        ))}
 
-      {isAction && (
+      {/* Conditionally render action buttons only if actionButtons exist */}
+      {actionButtons?.length > 0 && (
         <TableCell
+          key="action"
           label={
             <div className={style.actions}>
-              {actionButtons?.map((btn, index) => (
+              {actionButtons.map((btn, index) => (
                 <IconBtn
                   key={index}
                   title={btn.label} // Show label as title (tooltip)
@@ -35,7 +34,7 @@ export const TableRow = ({
               ))}
             </div>
           }
-          style={{ flex: columnWidths["actions"] || 1 }} // Set the width for the actions column
+          style={{ flex: columnWidths["actions"] || 1 }} // Set width for actions column
         />
       )}
     </div>
