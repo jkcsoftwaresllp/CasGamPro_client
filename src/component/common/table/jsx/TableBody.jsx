@@ -8,8 +8,6 @@ export const TableBody = ({
   columnWidths,
   isAction,
   actionButtons,
-  clickableColumns,
-  onCellClick,
 }) => {
   return (
     <div className={style.body}>
@@ -21,8 +19,6 @@ export const TableBody = ({
           columnWidths={columnWidths}
           isAction={isAction}
           actionButtons={actionButtons}
-          clickableColumns={clickableColumns}
-          onCellClick={onCellClick}
         />
       ))}
     </div>
