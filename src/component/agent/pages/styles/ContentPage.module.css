@@ -1,8 +1,11 @@
-/* Add padding to the container */
-.content {
+.pageContainer {
+  display: flex;
+  height: calc(100vh - var (--header-height));
 }
 
-.header {
-  text-align: center;
-  color: var(--color-text-primary);
+.content {
+  padding: 20px;
+  flex-grow: 1;
+  height: 100vh;
+  overflow-y: auto;
 }

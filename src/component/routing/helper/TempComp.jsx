@@ -5,7 +5,7 @@ export const TempComp = ({ label }) => {
     <div
       style={{
         width: "100%",
-        height: "100%",
+        height: `calc(100vh - var(--header-height))`,
         display: "flex",
         justifyContent: "center",
         alignItems: "center",

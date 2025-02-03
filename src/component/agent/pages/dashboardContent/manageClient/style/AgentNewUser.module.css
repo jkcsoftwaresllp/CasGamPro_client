@@ -3,10 +3,12 @@
   flex-direction: column;
   justify-content: center; /* Center items vertically */
   align-items: center; /* Center items horizontally */
+  gap: 20px;
+  max-width: 700px; /* Ensures a reasonable width */
+  margin: auto;
   background-color: var(
     --color-bg-primary
   ); /* Light/dark background based on theme */
-  padding: 1;
 }
 
 /* h2 styles */
@@ -15,7 +17,15 @@ h2 {
   margin-bottom: 10px; /* Reduced space below heading */
   text-align: left; /* Align heading with form content */
 }
+.row {
+  display: flex;
+  gap: 20px; /* Ensures uniform horizontal spacing */
+  justify-content: space-between; /* Distributes space evenly */
+}
 
+.row > div {
+  flex: 1;
+}
 /* .input styles */
 .input {
   width: 100%;
@@ -30,7 +40,7 @@ h2 {
 
 .input label {
   font-weight: bold;
-  font-size: var(--text-md);
+  font-size: 18px;
   flex-shrink: 0; /* Prevent label from shrinking */
   width: 120px; /* Set a fixed width for the label */
 }
@@ -38,11 +48,11 @@ h2 {
 .input input {
   width: 100%;
   min-height: 40px;
-  font-size: var(--text-lg);
+  font-size: 20px;
   color: var(--color-text-primary); /* Light/dark text color */
   padding: 0 10px;
   border: 1px solid var(--color-highlighter-dark-secondary); /* Light/dark border color */
-  border-radius: var(--borderRadius);
+  border-radius: 6px;
   outline: none;
   background-color: var(
     --color-bg-secondary
@@ -56,14 +66,53 @@ h2 {
 }
 
 .input small {
-  font-size: var(--text-sm);
+  font-size: 10px;
   color: var(--color-text-secondary); /* Light/dark text color for small text */
 }
 
+.switchArea {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
 .note {
-  margin-bottom: var(--borderRadius-md); /* Existing margin */
-  color: var(--color-text-secondary); /* Light/dark text color for small text */
+  margin-bottom: 10px; /* Existing margin */
+  color: var(--color-text-primary);
 
   float: left; /* Floats the element to the left */
-  margin-left: -50px; /* Adjusted margin to the left  , need to be changed later*/
+}
+
+.error {
+  color: var(--color-special-red);
+  font-size: var(--text-md);
+  font-weight: var(--text-bold);
+}
+.success {
+  color: var(--color-special-green);
+  font-size: var(--text-md);
+  font-weight: var(--text-bold);
+}
+.buttonArea {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.para {
+  color: var(--color-text-primary);
+  font-size: var(--text-md);
+  font-weight: var(--text-bold);
+  margin-bottom: 10px;
+}
+
+@media (max-width: 600px) {
+  .row {
+    flex-direction: column; /* Stacks elements on smaller screens */
+    gap: 15px;
+  }
 }

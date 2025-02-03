@@ -3,12 +3,13 @@
   flex-direction: row;
   align-items: center;
   padding: 7px;
+
   cursor: pointer;
-  /* border: 2px solid var(--color-text-primary); */
+  justify-content: center;
+  /* \border: 2px solid var(--color-text-primary); */
   border-radius: var(--borderRadius);
   background: var(--color-bg-tertiary);
   user-select: none;
-  width: 125px;
 
   justify-content: center; /* Ensure the content (icon + label) is centered */
 
@@ -22,7 +23,7 @@
 }
 
 .icon {
-  margin-right: 4px;
+  padding-top: 3px;
 }
 
 .label {

@@ -15,21 +15,7 @@ export const AgentWindow = () => {
   return (
     <div className={style.container}>
       <Sidebar />
-      <div className={style.window}>
-        <Routes>
-          <Route path="dashboard" element={<Dashboard />} />
-          <Route path="" element={<Dashboard />} />
-          <Route path="manageClients" element={<ManageClients />} />
-          <Route path="manageClient/adduser" element={<AgentNewUser />} />{" "}
-          <Route path="managePassword" element={<ManagePassword />} />
-          <Route path="settings" element={<Settings />} />
-          {/* Default route */}
-          <Route
-            path="*"
-            element={<div>Select an option from the sidebar</div>}
-          />
-        </Routes>
-      </div>
+      <div className={style.window}></div>
     </div>
   );
 };
