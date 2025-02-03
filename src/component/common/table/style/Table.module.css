@@ -62,6 +62,16 @@
   gap: 10px;
 }
 
+.clickableCell {
+  color: var(--color-link);
+  cursor: pointer;
+  font-size: var(--text-md);
+}
+
+.clickableCell:hover {
+  text-decoration: underline;
+}
+
 /* 
 .row:nth-child(odd) {
   background-color: var(--color-bg-secondary);
