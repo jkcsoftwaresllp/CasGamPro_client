@@ -17,9 +17,11 @@
 .heading {
   font-size: var(--text-xl);
   font-weight: bold;
-  color: var(--color-text-primary);
+  color: white; /* Ensure contrast on blue background */
   padding: 20px;
-  left: auto;
+  width: 100%;
+  text-align: center;
+  background-color: rgb(29, 29, 138); /* Optional: Different shade for title */
 }
 
 .label {

@@ -7,7 +7,7 @@ import { DashboardCard } from "../jsx/DashboardCard";
 import { routesPathClient as path } from "../../../../routing/helper/routesPathClient";
 
 export const AgentManageUser = () => {
-  const { id } = useParams();
+  const { id } = useParams(); // Extract the user ID from the URL
   const navigate = useNavigate();
   const [loading, setLoading] = React.useState(true);
 
@@ -27,14 +27,22 @@ export const AgentManageUser = () => {
               label="Receive Cash"
               onClick={() =>
                 navigate(
-                  `${path.agent}${path.manageClients}${path.recieveCash}`
+                  `${path.agent}${path.manageClients}${path.recieveCash.replace(
+                    ":id",
+                    id
+                  )}`
                 )
               }
             />
             <Button
               label="Pay Cash"
               onClick={() =>
-                navigate(`${path.agent}${path.manageClients}${path.payCash}`)
+                navigate(
+                  `${path.agent}${path.manageClients}${path.payCash.replace(
+                    ":id",
+                    id
+                  )}`
+                )
               }
             />
             <Button label="Ledger" onClick={() => {}} />

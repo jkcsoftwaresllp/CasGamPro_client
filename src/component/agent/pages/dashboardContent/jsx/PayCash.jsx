@@ -6,10 +6,10 @@ import { Button } from "../../../../common/Button";
 import style from "../../styles/RecieveCash.module.css";
 
 export const PayCash = () => {
-  const { id } = useParams(); // Fetch the user ID from the URL
+  const { id } = useParams();
   const [userValue, setuserValue] = useState("");
-  const [input1, setInput1] = useState("");
-  const [input2, setInput2] = useState("");
+  const [ledger, setledger] = useState("");
+  const [note, setnote] = useState("");
 
   useEffect(() => {
     fetch(``)
@@ -34,18 +34,14 @@ export const PayCash = () => {
         <label className={style.label}>Update Ledger:</label>
         <TextInput
           placeholder="Enter value"
-          value={input1}
-          onChange={setInput1}
+          value={ledger}
+          onChange={setledger}
         />
       </div>
 
       <div className={style.row}>
         <label className={style.label}>Note:</label>
-        <TextInput
-          placeholder="Enter note"
-          value={input2}
-          onChange={setInput2}
-        />
+        <TextInput placeholder="Enter note" value={note} onChange={setnote} />
       </div>
 
       <div className={style.buttonContainer}>
