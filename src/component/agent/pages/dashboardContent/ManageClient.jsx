@@ -14,7 +14,7 @@ export const ManageClients = () => {
 
   const handleCreateNewUser = () => {
     // Navigate to create new user page
-    navigate("/agent/manageClients/addnewuser");
+    navigate("/agent/manageClients/addnewuser"); // TODO: Update this with use variable from path
   };
 
   return (

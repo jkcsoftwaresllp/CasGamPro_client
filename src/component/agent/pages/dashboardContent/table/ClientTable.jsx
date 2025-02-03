@@ -2,6 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { Table } from "../../../../common/table/jsx/Table.jsx";
 import { EditIcon, SettingsIcon } from "../../../../../assets/assets.jsx";
+import { routesPathClient as path } from "../../../../routing/helper/routesPathClient.js";
 
 export const ClientTable = ({ clients }) => {
   const navigate = useNavigate();
@@ -29,7 +30,8 @@ export const ClientTable = ({ clients }) => {
     {
       label: "Edit",
       icon: EditIcon,
-      onClick: (row) => navigate(`/editUser/${row.id}`), // Navigating to edit page with client id
+      onClick: (row) =>
+        navigate(`${path.agent}${path.manageClients}${path.editUser}`), // Navigating to edit page with client id
     },
     {
       label: "Settings",

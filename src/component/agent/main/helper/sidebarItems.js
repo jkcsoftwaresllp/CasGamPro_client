@@ -14,21 +14,21 @@ import {
   BlockIcon,
 } from "../../../../assets/assets";
 
-import { routesPathClient } from "../../../routing/helper/routesPathClient";
+import { routesPathClient as path } from "../../../routing/helper/routesPathClient";
 export const sidebarItems = [
   {
     id: 1,
     label: "Dashboard",
     value: "dashboard",
     icon: DashboardIcon,
-    path: `${routesPathClient.agent}${routesPathClient.home}`,
+    path: `${path.agent}${path.home}`,
   },
   {
     id: 2,
     label: "Live Casino",
     value: "liveCasino",
     icon: CasinoIcon,
-    path: `${routesPathClient.agent}${routesPathClient.liveCasino}`,
+    path: `${path.agent}${path.liveCasino}`,
   },
   {
     id: 3,
@@ -42,28 +42,28 @@ export const sidebarItems = [
         label: " Add New User",
         value: "addnewuser",
         icon: AddUserIcon,
-        path: `${routesPathClient.agent}${routesPathClient.addnewuser}`,
+        path: `${path.agent}${path.manageClients}${path.addnewuser}`,
       },
       {
         id: 32,
         label: "My Clients",
         value: "myClients",
         icon: myClient,
-        path: `${routesPathClient.agent}${routesPathClient.manageClients}`,
+        path: `${path.agent}${path.manageClients}`,
       },
       {
         id: 33,
         label: "Blocked Client",
         value: "blockClient",
         icon: blockClient,
-        path: `${routesPathClient.agent}${routesPathClient.blockClients}`,
+        path: `${path.agent}${path.blockClients}`,
       },
       {
         id: 34,
         label: "Commision and Limits",
         value: "commision",
         icon: rupees,
-        path: `${routesPathClient.agent}${routesPathClient.commision}`,
+        path: `${path.agent}${path.commision}`,
       },
     ],
   },
@@ -72,14 +72,14 @@ export const sidebarItems = [
     label: "Block Market",
     value: "blockMarket",
     icon: BlockIcon,
-    path: `${routesPathClient.agent}${routesPathClient.blockMarket}`,
+    path: `${path.agent}${path.blockMarket}`,
   },
   {
     id: 5,
     label: "Manage Password",
     value: "managePassword",
     icon: ManagePasswordIcon,
-    path: `${routesPathClient.agent}${routesPathClient.managePassword}`,
+    path: `${path.agent}${path.managePassword}`,
   },
 
   {
@@ -94,28 +94,28 @@ export const sidebarItems = [
         label: "Collection Report",
         value: "collectionReport",
         icon: BookIcon,
-        path: `${routesPathClient.agent}${routesPathClient.collectionReport}`,
+        path: `${path.agent}${path.collectionReport}`,
       },
       {
         id: 62,
         label: "Company Len/Den",
         value: "companyLenDen",
         icon: BookIcon,
-        path: `${routesPathClient.agent}${routesPathClient.companyLenDen}`,
+        path: `${path.agent}${path.companyLenDen}`,
       },
       {
         id: 63,
         label: "In-Out",
         value: "inOut",
         icon: InOutIcon,
-        path: `${routesPathClient.agent}${routesPathClient.inOut}`,
+        path: `${path.agent}${path.inOut}`,
       },
       {
         id: 64,
         label: "P & L",
         value: "profitAndLoss",
         icon: rupees,
-        path: `${routesPathClient.agent}${routesPathClient.profitAndLoss}`,
+        path: `${path.agent}${path.profitAndLoss}`,
       },
     ],
   },

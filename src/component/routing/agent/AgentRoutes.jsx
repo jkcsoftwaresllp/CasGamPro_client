@@ -2,24 +2,25 @@ import { Routes, Route } from "react-router-dom";
 import { routesPathClient as path } from "../helper/routesPathClient";
 import { ErrorPage } from "../../../pages/jsx/Error";
 import { AgentDashboard } from "../../agent/pages/AgentDashboard";
-import { ManageClients } from "../../agent/pages/dashboardContent/ManageClient";
 import { ManagePassword } from "../../agent/pages/dashboardContent/ManagePassword";
 import { Settings } from "../../agent/pages/dashboardContent/Setting";
 import { Dashboard } from "../../agent/pages/dashboardContent/Dashboard";
 import { BlockMarket } from "../../agent/pages/dashboardContent/BlockMarket";
 import { BlockedClient } from "../../agent/pages/dashboardContent/BlockedClient";
 import { TempComp } from "../../routing/helper/TempComp";
-import { AgentNewUser } from "../../agent/pages/dashboardContent/manageClient/AgentNewUser";
-import { EditUser } from "../../agent/pages/dashboardContent/jsx/EditUser";
+import { ManageClientsRoutes } from "./ManageClientsRoutes"; // Import the separate route handling component
 
 export const AgentRoutes = () => {
   return (
     <Routes>
       <Route path={path.home} element={<AgentDashboard />}>
         <Route index element={<Dashboard />} />
-        <Route path={path.manageClients} element={<ManageClients />} />
-        <Route path={path.addnewuser} element={<AgentNewUser />} />
-        <Route path={path.editUser} element={<EditUser />} />
+
+        {/* Nested ManageClients route */}
+        <Route
+          path={`${path.manageClients}/*`}
+          element={<ManageClientsRoutes />}
+        />
 
         <Route path={path.managePassword} element={<ManagePassword />} />
         <Route path={path.settings} element={<Settings />} />
@@ -44,6 +45,7 @@ export const AgentRoutes = () => {
         <Route path={path.inOut} element={<TempComp label="in out" />} />
       </Route>
 
+      {/* Catch-all route for 404 errors */}
       <Route
         path="*"
         element={
