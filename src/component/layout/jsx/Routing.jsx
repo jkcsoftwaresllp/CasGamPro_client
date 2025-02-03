@@ -7,12 +7,14 @@ import { ClientRoutes } from "../../routing/client/ClientRoutes";
 import { AgentRoutes } from "../../routing/agent/AgentRoutes";
 import { ErrorPage } from "../../../pages/jsx/Error";
 import { routesPathClient } from "../../routing/helper/routesPathClient";
+import { Test } from "../helper/Test";
 
 export const Routing = () => {
   return (
     <Routes>
       <Route path="/login" element={<LoginPage />} />
       <Route path="/" element={<Home />} />
+      <Route path="/test" element={<Test />} />
 
       {/* Protected routes */}
       <Route
