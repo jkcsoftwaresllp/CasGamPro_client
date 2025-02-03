@@ -12,7 +12,7 @@ export const GameCatagoryRoutes = () => {
       <Route path={`${path.catagory1}/*`} element={<GameRoutes />} />
       <Route
         path={path.catagory2}
-        element={<TempComp label={"Lattery games"} />}
+        element={<TempComp label={"Lottery games"} />}
       />
       <Route
         path={path.catagory3}

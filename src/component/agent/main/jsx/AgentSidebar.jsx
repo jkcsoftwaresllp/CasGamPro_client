@@ -1,40 +1,65 @@
 import { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import style from "../styles/AgentSidebar.module.css";
-import Collapse from "../images/collapse.svg";
-import Expand from "../images/expand.svg";
-
+import { ExpandIcon, CollapseIcon } from "../../../../assets/assets";
 import { Tab } from "./Tab";
 import { sidebarItems } from "../helper/sidebarItems";
 
-export const Sidebar = () => {
+export const AgentSidebar = () => {
   const [isMinimized, setIsMinimized] = useState(false);
-  const location = useLocation();
+  const [expandedItem, setExpandedItem] = useState(null);
+  const navigate = useNavigate();
 
   const toggleSidebar = () => setIsMinimized(!isMinimized);
+
+  const handleExpand = (item) => {
+    if (expandedItem === item.id) {
+      setExpandedItem(null);
+    } else {
+      setExpandedItem(item.id);
+    }
+  };
 
   return (
     <div className={`${style.sidebar} ${isMinimized ? style.minimized : ""}`}>
       <button className={style.toggleButton} onClick={toggleSidebar}>
-        <img
-          src={isMinimized ? Expand : Collapse}
-          alt={isMinimized ? "Expand" : "Collapse"}
-        />
+        {isMinimized ? ExpandIcon : CollapseIcon}
       </button>
-      <div>
+      <div className={style.tabsContainer}>
         {sidebarItems.map((item) => (
-          <Link
-            key={item.value}
-            to={`/agent/${item.value}`}
-            className={`${style.tab} ${
-              location.pathname.includes(item.value) ? style.active : ""
-            }`}
-          >
-            <Tab icon={item.icon} title={item.label} />
-          </Link>
+          <div key={item.id}>
+            <Tab
+              icon={item.icon}
+              onClick={() => {
+                if (item.subOptions) {
+                  handleExpand(item);
+                } else {
+                  console.log(item.path);
+                  navigate(item.path);
+                }
+              }}
+              title={item.label}
+            />
+
+            {expandedItem === item.id && item.subOptions && (
+              <div className={style.subOptionsContainer}>
+                {item.subOptions.map((sub) => (
+                  <Tab
+                    key={sub.id}
+                    icon={sub.icon}
+                    onClick={() => {
+                      console.log(sub.path);
+                      navigate(sub.path);
+                    }}
+                    title={sub.label}
+                    className={style.subOption}
+                  />
+                ))}
+              </div>
+            )}
+          </div>
         ))}
       </div>
     </div>
   );
 };
-
