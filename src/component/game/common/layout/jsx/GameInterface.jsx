@@ -6,7 +6,12 @@ import { CardSection as TeenPattiT20CardSection } from "../../../teenPattiT20/js
 import { CardSection as DragonTigerCardSection } from "../../../dragonTiger/jsx/CardSection";
 import { gameNameMap } from "../../../helper/gameTypes";
 
-export const GameInterface = ({ game, roundId = "A85745846", cards }) => {
+export const GameInterface = ({
+  game,
+  roundId = "A85745846",
+  cards,
+  status,
+}) => {
   const betSectionMap = {
     lucky7B: Lucky7BCardSection,
     andarBahar1: AndarBaharCardSection,
@@ -25,10 +30,10 @@ export const GameInterface = ({ game, roundId = "A85745846", cards }) => {
         <div className={styles.gameRoundId}>{roundId}</div>
       </div>
       <div className={styles.content}>
-        {SelectedBetSection ? (
+        {status !== "betting" && SelectedBetSection ? (
           <SelectedBetSection cards={cards} />
         ) : (
-          <div>Game not found</div>
+          <></>
         )}
       </div>
     </div>

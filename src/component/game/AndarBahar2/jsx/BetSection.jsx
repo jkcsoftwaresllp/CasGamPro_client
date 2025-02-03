@@ -4,8 +4,8 @@ import { PlayerLabel } from "../../common/BetSection/jsx/PlayerLabel";
 import { BetProfit } from "../../common/BetSection/jsx/BetProfit";
 
 export const BetSection = ({ onClick, isLock }) => {
-  const playerA = "Andar";
-  const playerB = "Bahar";
+  const playerA = "andar";
+  const playerB = "bahar";
 
   return (
     <div className={styles.betSection}>
