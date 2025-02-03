@@ -1,0 +1,54 @@
+import React from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import style from "./style/AgentManageUser.module.css";
+import { Loader } from "../../../../common/Loader";
+import { Button } from "../../../../common/Button";
+import { DashboardCard } from "../jsx/DashboardCard";
+import { routesPathClient as path } from "../../../../routing/helper/routesPathClient";
+
+export const AgentManageUser = () => {
+  const { id } = useParams();
+  const navigate = useNavigate();
+  const [loading, setLoading] = React.useState(true);
+
+  React.useEffect(() => {
+    setTimeout(() => setLoading(false), 100); // Simulating data fetch
+  }, []);
+
+  return (
+    <div className={style.container}>
+      {loading ? (
+        <Loader />
+      ) : (
+        <>
+          <h2 className={style.heading}>Manage User: {id}</h2>
+          <div className={style.buttonGrid}>
+            <Button
+              label="Receive Cash"
+              onClick={() =>
+                navigate(
+                  `${path.agent}${path.manageClients}${path.recieveCash}`
+                )
+              }
+            />
+            <Button
+              label="Pay Cash"
+              onClick={() =>
+                navigate(`${path.agent}${path.manageClients}${path.payCash}`)
+              }
+            />
+            <Button label="Ledger" onClick={() => {}} />
+            <Button label="Cash Ledger" onClick={() => {}} />
+            <Button label="Match Ledger" onClick={() => {}} />
+            <Button label="Coin History" onClick={() => {}} />
+            <Button label="Statements" onClick={() => {}} />
+          </div>
+          <div className={style.cardGrid}>
+            <DashboardCard label="Coins" value="-35000" />
+            <DashboardCard label="Rs Exposure" value="5000" />
+          </div>
+        </>
+      )}
+    </div>
+  );
+};
