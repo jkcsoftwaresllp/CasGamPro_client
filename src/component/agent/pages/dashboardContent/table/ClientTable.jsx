@@ -40,6 +40,15 @@ export const ClientTable = ({ clients }) => {
     },
   ];
 
+  const handleCellClick = (value, row) => {
+    navigate(
+      `${path.agent}${path.manageClients}${path.userInfo.replace(
+        ":id",
+        row.id
+      )}`
+    );
+  };
+
   return (
     <Table
       data={tableData}
@@ -47,6 +56,8 @@ export const ClientTable = ({ clients }) => {
       columnWidths={columnWidths}
       isAction={true} // Indicating that action buttons should be shown
       btns={actionButtons} // Passing action buttons here
+      clickableColumns={["username"]} // Make "entry" column clickable
+      onCellClick={handleCellClick}
     />
   );
 };

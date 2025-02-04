@@ -4,7 +4,9 @@ import { ManageClients } from "../../agent/pages/dashboardContent/ManageClient";
 import { AgentNewUser } from "../../agent/pages/dashboardContent/manageClient/AgentNewUser";
 import { EditUser } from "../../agent/pages/dashboardContent/jsx/EditUser";
 import { ClientOutlet } from "../../agent/pages/dashboardContent/ClientOutlet"; // Outlet component for nested routing
-
+import { AgentManageUser } from "../../agent/pages/dashboardContent/manageClient/AgentManageUser";
+import { ReceiveCash } from "../../agent/pages/dashboardContent/jsx/RecieveCash";
+import { PayCash } from "../../agent/pages/dashboardContent/jsx/PayCash";
 export const ManageClientsRoutes = () => {
   return (
     <Routes>
@@ -13,6 +15,9 @@ export const ManageClientsRoutes = () => {
         <Route index element={<ManageClients />} />
         <Route path={path.addnewuser} element={<AgentNewUser />} />
         <Route path={path.editUser} element={<EditUser />} />
+        <Route path={path.userInfo} element={<AgentManageUser />} />
+        <Route path={path.recieveCash} element={<ReceiveCash />} />
+        <Route path={path.payCash} element={<PayCash />} />
       </Route>
     </Routes>
   );

@@ -9,19 +9,21 @@ import { BlockMarket } from "../../agent/pages/dashboardContent/BlockMarket";
 import { BlockedClient } from "../../agent/pages/dashboardContent/BlockedClient";
 import { TempComp } from "../../routing/helper/TempComp";
 import { ManageClientsRoutes } from "./ManageClientsRoutes"; // Import the separate route handling component
+import { AgentManageUser } from "../../agent/pages/dashboardContent/manageClient/AgentManageUser";
 
 export const AgentRoutes = () => {
   return (
     <Routes>
       <Route path={path.home} element={<AgentDashboard />}>
         <Route index element={<Dashboard />} />
-
         {/* Nested ManageClients route */}
         <Route
           path={`${path.manageClients}/*`}
           element={<ManageClientsRoutes />}
         />
-
+        <Route path={path.userInfo} element={<AgentManageUser />} />
+        <Route path={path.recieveCash} />
+        <Route path={path.payCash} />
         <Route path={path.managePassword} element={<ManagePassword />} />
         <Route path={path.settings} element={<Settings />} />
         <Route path={path.blockClients} element={<BlockedClient />} />
@@ -33,7 +35,6 @@ export const AgentRoutes = () => {
           path={path.collectionReport}
           element={<TempComp label="collection report" />}
         />
-
         <Route
           path={path.companyLenDen}
           element={<TempComp label="company len den " />}
