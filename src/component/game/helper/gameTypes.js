@@ -5,6 +5,7 @@ export const GAME_TYPES = {
   lucky7B: "LUCKY7B",
   teenPattiT20: "TEEN_PATTI",
   dragonTiger: "DRAGON_TIGER",
+  dragonTigerLion: "DRAGON_TIGER_LION",
 };
 
 export const gameNameMap = {
@@ -13,4 +14,5 @@ export const gameNameMap = {
   andarBahar2: "Andar Bahar 2",
   teenPattiT20: "Teen Patti T20",
   dragonTiger: "20-20 Dragon Tiger",
+  dragonTigerLion: "20-20 DTL",
 };
