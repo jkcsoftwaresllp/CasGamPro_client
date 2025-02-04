@@ -64,9 +64,6 @@ export const DialogBox = ({ isOpen, onClose, header, clientId }) => {
         ) : (
           <p className={styles.noData}>No data found.</p>
         )}
-
-        {/* Close Button at Bottom */}
-        <Button label="Close" onClick={onClose} />
       </div>
     </div>
   );
