@@ -1,18 +1,27 @@
+// Valid game names (example)
+export const validGames = [
+  "andarBahar1",
+  "andarBahar2",
+  "lucky7B",
+  "teenPattiT20",
+  "dragonTiger",
+  "dragonTigerLion",
+];
+
 export const GAME_TYPES = {
-  andarBahar1: "ANDAR_BAHAR",
-  andarBahar2: "ANDAR_BAHAR_TWO",
-  dragonTiger: "DRAGON_TIGER",
-  lucky7B: "LUCKY7B",
-  teenPattiT20: "TEEN_PATTI",
-  dragonTiger: "DRAGON_TIGER",
-  dragonTigerLion: "DRAGON_TIGER_LION",
+  [validGames[0]]: "ANDAR_BAHAR",
+  [validGames[1]]: "ANDAR_BAHAR_TWO",
+  [validGames[2]]: "LUCKY7B",
+  [validGames[3]]: "TEEN_PATTI",
+  [validGames[4]]: "DRAGON_TIGER",
+  [validGames[5]]: "DRAGON_TIGER_LION",
 };
 
 export const gameNameMap = {
-  lucky7B: "Lucky 7B",
-  andarBahar1: "Andar Bahar 1",
-  andarBahar2: "Andar Bahar 2",
-  teenPattiT20: "Teen Patti T20",
-  dragonTiger: "20-20 Dragon Tiger",
-  dragonTigerLion: "20-20 DTL",
+  [validGames[0]]: "Andar Bahar 1",
+  [validGames[1]]: "Andar Bahar 2",
+  [validGames[2]]: "Lucky 7B",
+  [validGames[3]]: "Teen Patti T20",
+  [validGames[4]]: "20-20 Dragon Tiger",
+  [validGames[5]]: "20-20 DTL",
 };
