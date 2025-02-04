@@ -13,6 +13,7 @@
   color: var(--color-text-primary);
   outline: none;
   transition: 0.35s;
+  resize: vertical;
 }
 
 .input::placeholder {

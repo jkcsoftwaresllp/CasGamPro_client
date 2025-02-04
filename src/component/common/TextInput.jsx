@@ -1,14 +1,16 @@
 import { useState } from "react";
 import style from "./style/Input.module.css";
 
-export const TextInput = ({ placeholder, onChange }) => {
+export const TextInput = ({ placeholder, onChange, readOnly = false }) => {
   const [value, setValue] = useState("");
 
   const handleChange = (e) => {
-    const inputValue = e.target.value;
-    setValue(inputValue); // Update the state with the new input value
-    if (onChange) {
-      onChange(inputValue); // Call the onChange prop if provided
+    if (!readOnly) {
+      const inputValue = e.target.value;
+      setValue(inputValue);
+      if (onChange) {
+        onChange(inputValue);
+      }
     }
   };
 
@@ -19,6 +21,7 @@ export const TextInput = ({ placeholder, onChange }) => {
       placeholder={placeholder}
       value={value}
       onChange={handleChange}
+      readOnly={readOnly} // Makes input readonly if true
     />
   );
 };
