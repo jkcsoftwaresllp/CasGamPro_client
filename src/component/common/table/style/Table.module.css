@@ -53,12 +53,23 @@
   display: flex;
   flex: 1;
   justify-content: center;
+  align-items: center;
   text-wrap: wrap;
 }
 
 .actions {
   display: flex;
   gap: 10px;
+}
+
+.clickableCell {
+  color: var(--color-link);
+  cursor: pointer;
+  font-size: var(--text-md);
+}
+
+.clickableCell:hover {
+  text-decoration: underline;
 }
 
 /* 
