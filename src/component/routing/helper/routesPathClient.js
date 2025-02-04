@@ -36,7 +36,7 @@ export const routesPathClient = {
   profitAndLoss: "/profitAndLoss",
   inOut: "/inOut",
   blockMarket: "/blockMarket",
-  editUser: "/editUser",
+  editUser: "/editUser/:id",
   userInfo: "/info/:id",
   recieveCash: "/recieveCash/:id",
   payCash: "/payCash/:id",

@@ -26,6 +26,7 @@ h2 {
   gap: 20px; /* Adjusted spacing between label and input */
   align-items: center; /* Vertically center label and input */
   color: var(--color-text-primary); /* Light/dark text color */
+  text-align: center;
 }
 
 .input label {
