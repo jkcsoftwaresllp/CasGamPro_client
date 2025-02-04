@@ -62,8 +62,8 @@
 
   /* Background */
   --color-bg-primary: #212121; /* Deep black for elegance */
-  --color-bg-secondary: #1a1a1a82; /* Dark grey for sections */
-  --color-bg-tertiary: #10101062; /* Medium grey for subtle contrast */
+  --color-bg-secondary: #1a1a1a; /* Dark grey for sections */
+  --color-bg-tertiary: #101010; /* Medium grey for subtle contrast */
   --color-bg-hover: #1a1a1a; /* Dark grey for hover effects */
 
   --color-text-placeholder: #333; /* Dark grey for placeholder text */
