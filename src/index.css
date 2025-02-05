@@ -52,9 +52,11 @@
   --color-special-gold: #b8860b; /* Deepened gold */
   --color-special-green: #228b22; /* Vibrant casino green */
   --color-special-red: #b22222; /* Classic bright red */
+
   --color-special-black: #1b1b1b; /* Dark black for text */
   --color-special-white: #dcdcdc; /* Soft white for text */
   --color-special-hover: #fbfeff; /* White for hover effects */
+  --color-red-hover: #8b0000;
 
   /* Highlighters */
   --color-highlighter-primary: #8b4513; /* Saddle brown for highlights */
@@ -140,4 +142,9 @@ body {
 .custom-swal-cancel {
   background-color: var(--color-special-red) !important; /* Red for Cancel */
   color: white !important;
+}
+.custom-swal {
+  background-color: var(--color-bg-primary) !important;
+  color: var(--color-text-primary) !important; /* Ensure text is readable */
+  border-radius: 10px;
 }

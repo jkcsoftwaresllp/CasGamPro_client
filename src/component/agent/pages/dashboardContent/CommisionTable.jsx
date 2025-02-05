@@ -1,23 +1,16 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Table } from "../../../common/table/jsx/Table.jsx";
-import { SettingsIcon, EditIcon } from "../../../../assets/assets.jsx";
+import { SettingsIcon } from "../../../../assets/assets.jsx";
 import { routesPathClient as path } from "../../../routing/helper/routesPathClient.js";
-import { Button } from "../../../common/Button.jsx";
+import { CustomBtn } from "../../../common/CustomBtn.jsx";
 import { DialogBox } from "./jsx/DialogBox.jsx";
+import { handleTransaction } from "./helper/transactionHelper.js"; // Import the helper
+
 export const CommissionTable = ({ clients }) => {
   const navigate = useNavigate();
-  const [currentLimits, setCurrentLimits] = useState(
-    Object.fromEntries(
-      clients.map(({ id, currentLimit }) => [id, currentLimit])
-    )
-  );
   const [showDialog, setShowDialog] = useState(false);
   const [selectedClientId, setSelectedClientId] = useState(null);
-
-  const handleLimitChange = (id, value) => {
-    setCurrentLimits((prev) => ({ ...prev, [id]: value }));
-  };
 
   const openDialog = (clientId) => {
     setSelectedClientId(clientId);
@@ -35,9 +28,7 @@ export const CommissionTable = ({ clients }) => {
     matchCommission: client.matchCommission,
     sessionCommission: client.sessionCommission,
     currentLimit: client.currentLimit,
-    showExpo: (
-      <Button label="Show Expo" onClick={() => openDialog(client.id)} />
-    ),
+    showExpo: <CustomBtn label="Expo" onClick={() => openDialog(client.id)} />,
   }));
 
   const columns = [
@@ -50,11 +41,19 @@ export const CommissionTable = ({ clients }) => {
     { key: "actions", label: "Action" },
   ];
 
-  const columnWidths = { name: 2, actions: 3 };
+  const columnWidths = { name: 2, actions: 1 };
 
   const actionButtons = [
-    { label: "Deposit", icon: EditIcon, onClick: (row) => {} },
-    { label: "Withdrawal", icon: EditIcon, onClick: (row) => {} },
+    {
+      label: "Deposit",
+      icon: "D",
+      onClick: (row) => handleTransaction("Deposit", row),
+    },
+    {
+      label: "Withdrawal",
+      icon: "W",
+      onClick: (row) => handleTransaction("Withdrawal", row),
+    },
     { label: "Settings", icon: SettingsIcon, onClick: (row) => {} },
   ];
 
@@ -78,8 +77,6 @@ export const CommissionTable = ({ clients }) => {
         clickableColumns={["name"]}
         onCellClick={handleCellClick}
       />
-
-      {/* Dialog Box Component */}
       <DialogBox
         isOpen={showDialog}
         onClose={closeDialog}
