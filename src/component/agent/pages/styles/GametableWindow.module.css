@@ -1,0 +1,28 @@
+.gameTableWindowWrapper {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--color-bg-primary-a);
+  position: relative;
+  border: 1px solid red;
+}
+
+.close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.close svg path {
+  fill: var(--color-special-red);
+}
+
+.gameTableWindow {
+  width: 80%;
+  height: 90%;
+}

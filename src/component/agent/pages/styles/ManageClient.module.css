@@ -38,16 +38,24 @@
   border-radius: 5px;
   cursor: pointer;
 }
+
 /* ManageClient.module.css */
 .manageClientsContainer {
-  padding: 20px;
+  height: 100%;
+  position: relative;
 }
 
 .actionRow {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
+  padding-bottom: 30px;
+  height: 7%;
+}
+
+.tableContainer {
+  position: relative;
+  height: 93%;
 }
 
 .searchBar {

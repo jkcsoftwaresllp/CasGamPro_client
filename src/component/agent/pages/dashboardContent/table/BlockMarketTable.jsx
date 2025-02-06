@@ -1,7 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { Table } from "../../../../common/table/jsx/Table.jsx";
-import { EditIcon, SettingsIcon } from "../../../../../assets/assets.jsx";
+import { EditIcon } from "../../../../../assets/assets.jsx";
+import { GameTableWindow } from "../GameTableWindow.jsx";
+
 export const BlockMarketTable = ({ games }) => {
+  const [isGameView, setIsGameView] = useState(false);
+  const [gameName, setGameName] = useState(false);
+
   const tableData = games.map((games) => ({
     id: games.id,
     betfairid: games.betfairid,
@@ -28,25 +33,24 @@ export const BlockMarketTable = ({ games }) => {
   ];
 
   const handleCellClick = (value, row) => {
-    // navigate(
-    //   `${path.agent}${path.manageClients}${path.userInfo.replace(
-    //     ":id",
-    //     row.id
-    //   )}`
-    // );
-
-    console.log("Cell clicked", value, row);
+    setGameName(value);
+    setIsGameView(true);
   };
 
   return (
-    <Table
-      data={tableData}
-      columns={columns}
-      columnWidths={columnWidths}
-      isAction={true} // Indicating that action buttons should be shown
-      btns={actionButtons} // Passing action buttons here
-      clickableColumns={["name"]}
-      onCellClick={handleCellClick}
-    />
+    <>
+      {isGameView && (
+        <GameTableWindow setIsGameView={setIsGameView} gameName={gameName} />
+      )}
+      <Table
+        data={tableData}
+        columns={columns}
+        columnWidths={columnWidths}
+        isAction={true} // Indicating that action buttons should be shown
+        btns={actionButtons} // Passing action buttons here
+        clickableColumns={["name"]}
+        onCellClick={handleCellClick}
+      />
+    </>
   );
 };
