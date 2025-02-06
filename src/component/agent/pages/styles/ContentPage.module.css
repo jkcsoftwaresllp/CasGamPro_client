@@ -1,11 +1,11 @@
 .pageContainer {
   display: flex;
-  height: calc(100vh - var (--header-height));
+  height: 100%;
 }
 
 .content {
   padding: 20px;
   flex-grow: 1;
-  height: 100vh;
+  height: 100%;
   overflow-y: auto;
 }
