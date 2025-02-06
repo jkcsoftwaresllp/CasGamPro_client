@@ -10,30 +10,32 @@ import { routesPathClient as path } from "../../../../routing/helper/routesPathC
 export const PaymentClear = () => {
   const navigate = useNavigate();
 
+  // Sample clients data
   const [clients, setClients] = useState([
     { id: 85800, name: "Ankur", balance: 1500 },
-    { id: 85801, name: "Rahul", balance: 2300 },
-    { id: 85802, name: "Priya", balance: 1200 },
-    { id: 85803, name: "Shivam", balance: 3169 },
+    { id: 12345, name: "John", balance: 2000 },
+    { id: 67890, name: "Doe", balance: 2500 },
   ]);
 
+  // Table columns
   const columns = [
     { key: "client", label: "Client" },
     { key: "balance", label: "Balance" },
   ];
 
-  // Simplified client data with formatted client entry
   const formattedClients = clients.map(({ id, name, balance }) => ({
     id,
     name,
     balance,
-    client: `SP${id} (${name})`,
+    client: `CGP${id} (${name})`,
   }));
 
+  // Calculate total balance
   const totalBalance = useMemo(() => {
     return clients.reduce((sum, item) => sum + item.balance, 0);
   }, [clients]);
 
+  // Handle table cell click (navigates to client details)
   const handleCellClick = (value, row) => {
     navigate(
       `${path.agent}${path.manageClients}${path.userInfo.replace(
@@ -47,7 +49,12 @@ export const PaymentClear = () => {
     <div className={style.container}>
       <div className={style.header}>
         <h2 className={style.heading}>Payment Clear (Clear Hai)</h2>
-        <IconBtn icon={DownloadIcon} onClick={() => downloadPDF(clients)} />
+        <IconBtn
+          icon={DownloadIcon}
+          onClick={() =>
+            downloadPDF(formattedClients, "Payment Clear (Clear Hai)")
+          }
+        />
       </div>
       <div className={style.tableContainer}>
         <Table

@@ -22,14 +22,13 @@ export const PaymentPaid = () => {
     { key: "balance", label: "Balance" },
   ];
 
-  // Simplified client data with formatted client entry
   const formattedClients = clients.map(({ id, name, balance }) => ({
     id,
-    name,
+    client: `CGP${id} (${name})`,
     balance,
-    client: `SP${id} (${name})`,
   }));
 
+  // Calculate total balance
   const totalBalance = useMemo(() => {
     return clients.reduce((sum, item) => sum + item.balance, 0);
   }, [clients]);
@@ -46,8 +45,13 @@ export const PaymentPaid = () => {
   return (
     <div className={style.container}>
       <div className={style.header}>
-        <h2 className={style.heading}>Payment Paid To ( Dena Hai )</h2>
-        <IconBtn icon={DownloadIcon} onClick={() => downloadPDF(clients)} />
+        <h2 className={style.heading}>Payment Paid To (Dena Hai)</h2>
+        <IconBtn
+          icon={DownloadIcon}
+          onClick={() =>
+            downloadPDF(formattedClients, "Payment Paid To (Dena Hai)")
+          }
+        />
       </div>
       <div className={style.tableContainer}>
         <Table

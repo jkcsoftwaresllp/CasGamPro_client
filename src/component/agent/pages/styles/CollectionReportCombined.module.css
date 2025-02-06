@@ -25,6 +25,6 @@
 }
 
 .tableContainer {
-  max-height: 300px; /* Adjust as per your design */
+  max-height: 315px; /* Adjust as per your design */
   overflow-y: auto; /* Enable vertical scroll */
 }

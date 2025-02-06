@@ -1,12 +1,19 @@
 import jsPDF from "jspdf";
 import "jspdf-autotable";
 
-export const downloadPDF = (clients) => {
+export const downloadPDF = (clients, title) => {
   const doc = new jsPDF();
-  const currentDate = new Date().toLocaleDateString();
+
+  // Format the date as "6 Feb 2025"
+  const formatDate = (date) => {
+    const options = { day: "numeric", month: "short", year: "numeric" };
+    return new Date(date).toLocaleDateString("en-GB", options); // "6 Feb 2025"
+  };
+
+  const currentDate = formatDate(new Date());
 
   doc.setFontSize(12);
-  doc.text("Payment Receiving From", 20, 20);
+  doc.text(title, 20, 20);
   doc.text(currentDate, 160, 20, { align: "right" });
 
   const tableColumn = ["Client", "Balance"];
@@ -29,5 +36,5 @@ export const downloadPDF = (clients) => {
     { align: "right" }
   );
 
-  doc.save("Payment_Receiving_Report.pdf");
+  doc.save(`${title.replace(/\s+/g, "_")}.pdf`);
 };

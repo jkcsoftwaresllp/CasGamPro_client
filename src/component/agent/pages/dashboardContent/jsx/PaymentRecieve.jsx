@@ -15,14 +15,7 @@ export const PaymentRecieve = () => {
     { id: 85801, name: "Rahul", balance: 2300 },
     { id: 85802, name: "Priya", balance: 1200 },
     { id: 85803, name: "Shivam", balance: 3169 },
-    { id: 85800, name: "Ankur", balance: 1500 },
-    { id: 85801, name: "Rahul", balance: 2300 },
-    { id: 85802, name: "Priya", balance: 1200 },
-    { id: 85803, name: "Shivam", balance: 3169 },
-    { id: 85800, name: "Ankur", balance: 1500 },
-    { id: 85801, name: "Rahul", balance: 2300 },
-    { id: 85802, name: "Priya", balance: 1200 },
-    { id: 85803, name: "Shivam", balance: 3169 },
+    { id: 85804, name: "Neha", balance: 1800 },
   ]);
 
   const columns = [
@@ -30,18 +23,19 @@ export const PaymentRecieve = () => {
     { key: "balance", label: "Balance" },
   ];
 
-  // Simplified client data with formatted client entry
+  // Format client data with proper client representation
   const formattedClients = clients.map(({ id, name, balance }) => ({
     id,
-    name,
+    client: `CGP${id} (${name})`,
     balance,
-    client: `SP${id} (${name})`,
   }));
 
+  // Calculate total balance
   const totalBalance = useMemo(() => {
     return clients.reduce((sum, item) => sum + item.balance, 0);
   }, [clients]);
 
+  // Handle table cell click (navigates to client details)
   const handleCellClick = (value, row) => {
     navigate(
       `${path.agent}${path.manageClients}${path.userInfo.replace(
@@ -55,7 +49,12 @@ export const PaymentRecieve = () => {
     <div className={style.container}>
       <div className={style.header}>
         <h2 className={style.heading}>Payment Receiving From (Lena Hai)</h2>
-        <IconBtn icon={DownloadIcon} onClick={() => downloadPDF(clients)} />
+        <IconBtn
+          icon={DownloadIcon}
+          onClick={() =>
+            downloadPDF(formattedClients, "Payment Receiving From (Lena Hai)")
+          }
+        />
       </div>
       <div className={style.tableContainer}>
         <Table
