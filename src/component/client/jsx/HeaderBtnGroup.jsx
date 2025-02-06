@@ -1,23 +1,23 @@
 import style from "../style/HeaderBtnGroup.module.css";
-import { routesPathClient } from "../../routing/helper/routesPathClient";
+import { routesPathClient as path } from "../../routing/helper/routesPathClient";
 import { useNavigate } from "react-router-dom";
 
 export const HeaderBtnGroup = () => {
   const navigate = useNavigate();
 
   const tabs = [
-    { label: "Home", path: routesPathClient.client },
+    { label: "Home", path: path.client },
     {
       label: "Rules",
-      path: `${routesPathClient.client}${routesPathClient.rules}`,
+      path: `${path.client}${path.rules}`,
     },
     {
       label: "Games",
-      path: `${routesPathClient.client}${routesPathClient.gameCatagory}`,
+      path: `${path.client}${path.gameCatagory}`,
     },
     {
       label: "Casino",
-      path: `${routesPathClient.client}${routesPathClient.gameCatagory}${routesPathClient.catagory1}`,
+      path: `${path.client}${path.gameCatagory}${path.catagory1}`,
     },
   ];
 

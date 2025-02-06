@@ -10,6 +10,7 @@ import { BlockedClient } from "../../agent/pages/dashboardContent/BlockedClient"
 import { TempComp } from "../../routing/helper/TempComp";
 import { ManageClientsRoutes } from "./ManageClientsRoutes"; // Import the separate route handling component
 import { AgentManageUser } from "../../agent/pages/dashboardContent/manageClient/AgentManageUser";
+import { ManageCommissions } from "../../agent/pages/dashboardContent/ManageCommision";
 
 export const AgentRoutes = () => {
   return (
@@ -27,7 +28,7 @@ export const AgentRoutes = () => {
         <Route path={path.managePassword} element={<ManagePassword />} />
         <Route path={path.settings} element={<Settings />} />
         <Route path={path.blockClients} element={<BlockedClient />} />
-        <Route path={path.commision} element={<TempComp label="commision" />} />
+        <Route path={path.commision} element={<ManageCommissions />} />
         <Route path={path.ledger} element={<TempComp label="ledger" />} />
         <Route path={path.blockMarket} element={<BlockMarket />} />
         <Route path={path.liveCasino} element={<TempComp label="casino" />} />

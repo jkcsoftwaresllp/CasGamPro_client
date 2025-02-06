@@ -1,17 +1,14 @@
+/* AgentHeader.module.css */
 .mainContainer {
-  display: flex;
-  justify-content: flex-start; /* Align items to the left */
-  align-items: center; /* Vertically center the items */
-  height: 100%;
   width: 100%;
+  padding: 10px;
 }
 
 .flexContainer {
   display: flex;
-  justify-content: flex-start; /* Align all items in a row */
-  align-items: center; /* Vertically center the items */
-  gap: 10px; /* Add space between the components */
-  width: 100%; /* Makes sure it stretches across the available space */
+  justify-content: flex-start; /* Align items to the left */
+  align-items: center; /* Center items vertically */
+  gap: 15px; /* Space between items */
 }
 
 .buttonContainer {

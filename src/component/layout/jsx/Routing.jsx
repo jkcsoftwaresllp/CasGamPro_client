@@ -14,7 +14,6 @@ export const Routing = () => {
     <Routes>
       <Route path="/login" element={<LoginPage />} />
       <Route path="/" element={<Home />} />
-      <Route path="/test" element={<Test />} />
 
       {/* Protected routes */}
       <Route
