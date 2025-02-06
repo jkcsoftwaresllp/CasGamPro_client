@@ -12,6 +12,7 @@ import { ManageClientsRoutes } from "./ManageClientsRoutes"; // Import the separ
 import { AgentManageUser } from "../../agent/pages/dashboardContent/manageClient/AgentManageUser";
 import { ManageCommissions } from "../../agent/pages/dashboardContent/ManageCommision";
 import { LiveCasino } from "../../agent/pages/dashboardContent/LiveCasino";
+import { Ledger } from "../../agent/pages/dashboardContent/Ledger";
 
 export const AgentRoutes = () => {
   return (
@@ -37,10 +38,7 @@ export const AgentRoutes = () => {
           path={path.collectionReport}
           element={<TempComp label="collection report" />}
         />
-        <Route
-          path={path.companyLenDen}
-          element={<TempComp label="company len den " />}
-        />
+        <Route path={path.companyLenDen} element={<Ledger />} />
         <Route
           path={path.profitAndLoss}
           element={<TempComp label="profit loss" />}
