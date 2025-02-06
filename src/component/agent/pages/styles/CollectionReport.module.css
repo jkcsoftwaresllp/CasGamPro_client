@@ -1,0 +1,27 @@
+.collectionReport {
+}
+
+.row {
+  display: flex;
+  gap: 5px;
+}
+
+.element {
+  flex: 1;
+}
+
+.row:first-child .element {
+}
+
+.row:last-child .element {
+}
+@media (max-width: 768px) {
+  .row {
+    flex-direction: column; /* Stack the elements vertically in a column on smaller screens */
+  }
+  .element {
+    flex: none; /* Remove flex-grow */
+    width: 100%; /* Make each element take full width in the column */
+    margin-bottom: 20px; /* Optional: Add spacing between elements */
+  }
+}

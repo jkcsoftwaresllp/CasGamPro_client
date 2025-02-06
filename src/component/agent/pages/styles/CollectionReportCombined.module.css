@@ -1,0 +1,30 @@
+.container {
+  padding: 5px;
+  background-color: var(--color-bg-primary);
+  border-radius: var(--borderRadius-md);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.heading {
+  font-size: var(--text-lg);
+  font-weight: bold;
+  margin-bottom: 15px;
+  color: var(--color-text-primary);
+}
+.totalBalance {
+  margin-top: 10px;
+  font-weight: bold;
+  font-size: var(--text-lg);
+  color: #007bff;
+  text-align: right;
+  padding-right: 20px;
+}
+
+.tableContainer {
+  max-height: 300px; /* Adjust as per your design */
+  overflow-y: auto; /* Enable vertical scroll */
+}
