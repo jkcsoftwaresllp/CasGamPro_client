@@ -22,12 +22,26 @@ export const ProfitLossTable = ({ data }) => {
 
   const columnWidths = { date: 0.5, roundTitle: 2 };
 
+  
+  const handleCellClick = (value, row) => {
+    // navigate(
+    //   `${path.agent}${path.manageClients}${path.userInfo.replace(
+    //     ":id",
+    //     row.id
+    //   )}`
+    // );
+
+    console.log("Cell clicked", value, row);
+  };
+
   return (
     <Table
       data={tableData}
       columns={columns}
       columnWidths={columnWidths}
       isAction={false} // No action buttons required
+      clickableColumns={["roundId"]}
+      onCellClick={handleCellClick}
     />
   );
 };
