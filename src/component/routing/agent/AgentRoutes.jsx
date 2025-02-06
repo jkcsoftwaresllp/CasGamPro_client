@@ -13,6 +13,8 @@ import { AgentManageUser } from "../../agent/pages/dashboardContent/manageClient
 import { ManageCommissions } from "../../agent/pages/dashboardContent/ManageCommision";
 import { LiveCasino } from "../../agent/pages/dashboardContent/LiveCasino";
 import { Ledger } from "../../agent/pages/dashboardContent/Ledger";
+import { InOut } from "../../agent/pages/dashboardContent/InOut";
+import { ProfitLoss } from "../../agent/pages/dashboardContent/ProfitLoss";
 
 export const AgentRoutes = () => {
   return (
@@ -39,11 +41,8 @@ export const AgentRoutes = () => {
           element={<TempComp label="collection report" />}
         />
         <Route path={path.companyLenDen} element={<Ledger />} />
-        <Route
-          path={path.profitAndLoss}
-          element={<TempComp label="profit loss" />}
-        />
-        <Route path={path.inOut} element={<TempComp label="in out" />} />
+        <Route path={path.profitAndLoss} element={<ProfitLoss />} />
+        <Route path={path.inOut} element={<InOut />} />
       </Route>
 
       {/* Catch-all route for 404 errors */}
