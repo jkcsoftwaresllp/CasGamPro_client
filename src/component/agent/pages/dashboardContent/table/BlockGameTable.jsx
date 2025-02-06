@@ -1,7 +1,8 @@
 import React from "react";
 import { Table } from "../../../../common/table/jsx/Table.jsx";
-import { EditIcon, SettingsIcon } from "../../../../../assets/assets.jsx";
-export const BlockMarketTable = ({ games }) => {
+import { EditIcon } from "../../../../../assets/assets.jsx";
+
+export const BlockGameTable = ({ games }) => {
   const tableData = games.map((games) => ({
     id: games.id,
     betfairid: games.betfairid,
@@ -14,6 +15,7 @@ export const BlockMarketTable = ({ games }) => {
     { key: "betfairid", label: "BetfairId" },
     { key: "name", label: "Name" },
     { key: "status", label: "Status" },
+
     { key: "actions", label: "Unblock" },
   ];
 
@@ -27,17 +29,6 @@ export const BlockMarketTable = ({ games }) => {
     },
   ];
 
-  const handleCellClick = (value, row) => {
-    // navigate(
-    //   `${path.agent}${path.manageClients}${path.userInfo.replace(
-    //     ":id",
-    //     row.id
-    //   )}`
-    // );
-
-    console.log("Cell clicked", value, row);
-  };
-
   return (
     <Table
       data={tableData}
@@ -45,8 +36,6 @@ export const BlockMarketTable = ({ games }) => {
       columnWidths={columnWidths}
       isAction={true} // Indicating that action buttons should be shown
       btns={actionButtons} // Passing action buttons here
-      clickableColumns={["name"]}
-      onCellClick={handleCellClick}
     />
   );
 };
