@@ -11,6 +11,7 @@ import { TempComp } from "../../routing/helper/TempComp";
 import { ManageClientsRoutes } from "./ManageClientsRoutes"; // Import the separate route handling component
 import { AgentManageUser } from "../../agent/pages/dashboardContent/manageClient/AgentManageUser";
 import { ManageCommissions } from "../../agent/pages/dashboardContent/ManageCommision";
+import { LiveCasino } from "../../agent/pages/dashboardContent/LiveCasino";
 
 export const AgentRoutes = () => {
   return (
@@ -31,7 +32,7 @@ export const AgentRoutes = () => {
         <Route path={path.commision} element={<ManageCommissions />} />
         <Route path={path.ledger} element={<TempComp label="ledger" />} />
         <Route path={path.blockMarket} element={<BlockMarket />} />
-        <Route path={path.liveCasino} element={<TempComp label="casino" />} />
+        <Route path={path.liveCasino} element={<LiveCasino />} />
         <Route
           path={path.collectionReport}
           element={<TempComp label="collection report" />}
