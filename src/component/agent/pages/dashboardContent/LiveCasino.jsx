@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import style from "../styles/ManageClient.module.css"; 
+import style from "../styles/ManageClient.module.css";
 import { LiveCasinoTable } from "./table/LiveCasinoTable";
 
 export const LiveCasino = () => {
@@ -41,11 +41,13 @@ export const LiveCasino = () => {
     <div className={style.manageClientsContainer}>
       {/* Row for Search Bar and Buttons */}
       <div className={style.actionRow}>
-        <h1 className={style.header}>Block Market</h1>
+        <h1 className={style.header}>Live Casino</h1>
       </div>
 
       {/* Client Table */}
-      <LiveCasinoTable games={games} />
+      <div className={style.tableContainer}>
+        <LiveCasinoTable games={games} />
+      </div>
     </div>
   );
 };
