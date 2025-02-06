@@ -1,17 +1,17 @@
 import React from "react";
 import styles from "../style/BetSection.module.css";
-
-import { BetOnBottom } from "./BetOnBottom";
-import { BetOnTop } from "./BetOnTop";
+import { BetRow } from "./BetRow";
+import { BetHeading } from "./BetHeading";
 
 export const BetSection = ({ onClick, isLock }) => {
   return (
     <div className={styles.betSection}>
-      <BetOnTop onClick={onClick} isLock={isLock} />
-      <div className={styles.dragonTiger}>
-        <BetOnBottom onClick={onClick} isLock={isLock} side={"D"} />
-        <BetOnBottom onClick={onClick} isLock={isLock} side={"T"} />
-      </div>
+      <BetHeading />
+      <BetRow isLock={isLock} onClick={onClick} label={"Winner"} />
+      <BetRow isLock={isLock} onClick={onClick} label={"Red"} />
+      <BetRow isLock={isLock} onClick={onClick} label={"Black"} />
+      <BetRow isLock={isLock} onClick={onClick} label={"Even"} />
+      <BetRow isLock={isLock} onClick={onClick} label={"Odd"} />
     </div>
   );
 };

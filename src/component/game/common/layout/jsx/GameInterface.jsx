@@ -19,7 +19,7 @@ export const GameInterface = ({
     andarBahar2: AndarBaharCardSection,
     teenPattiT20: TeenPattiT20CardSection,
     dragonTiger: DragonTigerCardSection,
-    dragonTigerLion: DragonTigerCardSection,
+    dragonTigerLion: DragonTigerLionCardSection,
   };
 
   const SelectedBetSection = betSectionMap[game] || null;
