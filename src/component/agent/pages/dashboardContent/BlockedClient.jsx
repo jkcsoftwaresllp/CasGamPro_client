@@ -13,19 +13,17 @@ export const BlockedClient = () => {
   return (
     <div className={style.manageClientsContainer}>
       <h1 className={style.header}>Blocked Clients</h1>
-      {/* Row for Search Bar and Buttons */}
+
       <div className={style.actionRow}>
         <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
         <DownloadButtons clients={filteredClients} />
       </div>
 
-      {/* Show loader while loading */}
       {loading ? (
         <div className={style.loaderContainer}>
-          <Loader /> {/* Loader component while data is being fetched */}
+          <Loader />
         </div>
       ) : (
-        // Client Table after data is fetched
         <BlockTable clients={filteredClients} />
       )}
     </div>

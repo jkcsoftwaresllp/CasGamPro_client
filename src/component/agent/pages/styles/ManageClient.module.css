@@ -4,10 +4,6 @@
 }
 /* Loader centering styles */
 .loaderContainer {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   z-index: 9999; /* Ensur it stays on top of other elements */
   display: flex;
   justify-content: center;
@@ -28,6 +24,11 @@
   color: var(--color-text-primary);
   font-size: var(--text-lg);
   padding: 10px;
+  margin-bottom: 10px;
+}
+
+.manageCommissionsContainer {
+  height: 80%;
 }
 
 .changePassword {
@@ -39,10 +40,8 @@
   cursor: pointer;
 }
 
-/* ManageClient.module.css */
 .manageClientsContainer {
-  height: 100%;
-  position: relative;
+  height: 80%;
 }
 
 .actionRow {

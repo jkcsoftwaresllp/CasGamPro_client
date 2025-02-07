@@ -1,7 +1,7 @@
 /* src/Page.css */
 .pageContainer {
   display: flex; /* Use Flexbox to arrange items horizontally */
-  height: 100vh; /* Make sure the page takes full height of the viewport */
+  height: 100%; /* Make sure the page takes full height of the viewport */
 }
 
 .sidebar {

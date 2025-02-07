@@ -43,6 +43,38 @@ export const manageCommissionData = (searchQuery) => {
             currentLimit: 25000,
             showExpo: "View",
           },
+          {
+            id: 85804,
+            username: "SP85804 (Amit)",
+            matchCommission: 1,
+            sessionCommission: 1,
+            currentLimit: 30000,
+            showExpo: "View",
+          },
+          {
+            id: 85805,
+            username: "SP85805 (Neha)",
+            matchCommission: 2.5,
+            sessionCommission: 1.5,
+            currentLimit: 35000,
+            showExpo: "View",
+          },
+          {
+            id: 85806,
+            username: "SP85806 (Rohit)",
+            matchCommission: 0.5,
+            sessionCommission: 0.5,
+            currentLimit: 40000,
+            showExpo: "View",
+          },
+          {
+            id: 85807,
+            username: "SP85807 (Sneha)",
+            matchCommission: 3,
+            sessionCommission: 2,
+            currentLimit: 45000,
+            showExpo: "View",
+          },
         ];
         setCommissions(mockCommissions);
         setLoading(false);

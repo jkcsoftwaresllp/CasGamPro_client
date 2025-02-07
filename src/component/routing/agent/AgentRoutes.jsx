@@ -15,6 +15,7 @@ import { LiveCasino } from "../../agent/pages/dashboardContent/LiveCasino";
 import { Ledger } from "../../agent/pages/dashboardContent/Ledger";
 import { InOut } from "../../agent/pages/dashboardContent/InOut";
 import { ProfitLoss } from "../../agent/pages/dashboardContent/ProfitLoss";
+import { CollectionReport } from "../../agent/pages/dashboardContent/CollectionReport";
 
 export const AgentRoutes = () => {
   return (
@@ -36,10 +37,7 @@ export const AgentRoutes = () => {
         <Route path={path.ledger} element={<TempComp label="ledger" />} />
         <Route path={path.blockMarket} element={<BlockMarket />} />
         <Route path={path.liveCasino} element={<LiveCasino />} />
-        <Route
-          path={path.collectionReport}
-          element={<TempComp label="collection report" />}
-        />
+        <Route path={path.collectionReport} element={<CollectionReport />} />
         <Route path={path.companyLenDen} element={<Ledger />} />
         <Route path={path.profitAndLoss} element={<ProfitLoss />} />
         <Route path={path.inOut} element={<InOut />} />
