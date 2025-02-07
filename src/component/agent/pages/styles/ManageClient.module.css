@@ -6,9 +6,9 @@
 .loaderContainer {
   position: fixed;
   top: 50%;
-  left: 55%;
+  left: 50%;
   transform: translate(-50%, -50%);
-  z-index: 9999; /* Ensure it stays on top of other elements */
+  z-index: 9999; /* Ensur it stays on top of other elements */
   display: flex;
   justify-content: center;
   align-items: center;

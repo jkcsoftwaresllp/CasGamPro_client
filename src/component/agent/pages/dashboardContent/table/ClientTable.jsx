@@ -31,7 +31,12 @@ export const ClientTable = ({ clients }) => {
       label: "Edit",
       icon: EditIcon,
       onClick: (row) =>
-        navigate(`${path.agent}${path.manageClients}${path.editUser}`), // Navigating to edit page with client id
+        navigate(
+          `${path.agent}${path.manageClients}${path.editUser.replace(
+            ":id",
+            row.id
+          )}`
+        ), // Navigating to edit page with client id
     },
     {
       label: "Settings",
@@ -42,10 +47,7 @@ export const ClientTable = ({ clients }) => {
 
   const handleCellClick = (value, row) => {
     navigate(
-      `${path.agent}${path.manageClients}${path.userInfo.replace(
-        ":id",
-        row.id
-      )}`
+      `${path.agent}${path.manageClients}${path.userInfo.replace("id", row.id)}`
     );
   };
 
