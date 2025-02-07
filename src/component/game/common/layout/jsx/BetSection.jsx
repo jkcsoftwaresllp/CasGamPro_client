@@ -5,6 +5,7 @@ import { BetSection as AndarBahar2BetSection } from "../../../AndarBahar2/jsx/Be
 import { BetSection as AndarBahar1BetSection } from "../../../AndarBahar1/jsx/BetSection";
 import { BetSection as TeenPattiT20BetSection } from "../../../teenPattiT20/jsx/BetSection";
 import { BetSection as DragonTigerBetSection } from "../../../dragonTiger/jsx/BetSection";
+import { BetSection as DragonTigerLionBetSection } from "../../../dragonTigerLion/jsx/BetSection";
 
 export const BetSection = ({ game, onClick, status }) => {
   const betSectionMap = {
@@ -13,6 +14,7 @@ export const BetSection = ({ game, onClick, status }) => {
     andarBahar1: AndarBahar1BetSection,
     teenPattiT20: TeenPattiT20BetSection,
     dragonTiger: DragonTigerBetSection,
+    dragonTigerLion: DragonTigerLionBetSection,
   };
 
   let isLock;

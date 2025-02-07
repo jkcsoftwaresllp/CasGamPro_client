@@ -36,7 +36,9 @@ export const BlockMarket = () => {
       </div>
 
       {/* Client Table */}
-      <BlockMarketTable games={games} />
+      <div className={style.tableContainer}>
+        <BlockMarketTable games={games} />
+      </div>
     </div>
   );
 };
