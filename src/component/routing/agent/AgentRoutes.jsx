@@ -22,6 +22,7 @@ import { BlockMarketTable } from "../../agent/pages/dashboardContent/table/Block
 import { LedgerTable } from "../../agent/pages/dashboardContent/table/LedgerTable";
 import { InOutTable } from "../../agent/pages/dashboardContent/table/InOutTable";
 import { ProfitLossTable } from "../../agent/pages/dashboardContent/table/ProfitLossTable";
+import { LiveCasinoTable } from "../../agent/pages/dashboardContent/table/LiveCasinoTable";
 
 export const AgentRoutes = () => {
   return (
@@ -38,11 +39,11 @@ export const AgentRoutes = () => {
         <Route path={path.payCash} />
         <Route path={path.managePassword} element={<ManagePassword />} />
         <Route path={path.settings} element={<Settings />} />
-        <Route path={path.blockClients} element={<BlockMarketTable />} />
+        <Route path={path.blockClients} element={<BlockTable />} />
         <Route path={path.commision} element={<CommissionTable />} />
         <Route path={path.ledger} element={<TempComp label="ledger" />} />
-        <Route path={path.blockMarket} element={<BlockMarket />} />
-        <Route path={path.liveCasino} element={<LiveCasino />} />
+        <Route path={path.blockMarket} element={<BlockMarketTable />} />
+        <Route path={path.liveCasino} element={<LiveCasinoTable />} />
         <Route path={path.collectionReport} element={<CollectionReport />} />
         <Route path={path.companyLenDen} element={<LedgerTable />} />
         <Route path={path.profitAndLoss} element={<ProfitLossTable />} />

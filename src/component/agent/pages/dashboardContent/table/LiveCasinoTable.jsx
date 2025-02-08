@@ -1,8 +1,12 @@
 import React from "react";
 import { Table } from "../../../../common/table/jsx/Table.jsx";
+import { Loader } from "../../../../common/Loader.jsx";
+import { manageLiveCasinoData } from "../helper/manageLiveCasinoData";
+import style from "../../styles/ManageClient.module.css";
 
-export const LiveCasinoTable = ({ games }) => {
-  const tableData = games.map((games) => ({
+export const LiveCasinoTable = ({}) => {
+  const { loading, data } = manageLiveCasinoData();
+  const tableData = data.map((games) => ({
     title: games.title,
     date: games.date,
     declare: games.declare,
@@ -30,13 +34,23 @@ export const LiveCasinoTable = ({ games }) => {
   };
 
   return (
-    <Table
-      data={tableData}
-      columns={columns}
-      columnWidths={columnWidths}
-      isAction={false}
-      clickableColumns={["title"]}
-      onCellClick={handleCellClick}
-    />
+    <div>
+      {loading ? (
+        <div className={style.loaderContainer}>
+          <Loader />
+        </div>
+      ) : (
+        <div className={style.manageCommissionsContainer}>
+          <Table
+            data={tableData}
+            columns={columns}
+            columnWidths={columnWidths}
+            isAction={false}
+            clickableColumns={["title"]}
+            onCellClick={handleCellClick}
+          />
+        </div>
+      )}
+    </div>
   );
 };
