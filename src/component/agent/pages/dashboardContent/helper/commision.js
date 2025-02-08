@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 
-// Custom hook for fetching and filtering commission data
-export const manageCommissionData = (searchQuery) => {
+export const manageCommissionData = (searchQuery = "") => {
   const [commissions, setCommissions] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -84,9 +83,9 @@ export const manageCommissionData = (searchQuery) => {
     fetchCommissions();
   }, []);
 
-  const filteredCommissions = commissions.filter((commission) =>
+  const data = commissions.filter((commission) =>
     commission.username.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
-  return { loading, filteredCommissions };
+  return { loading, data };
 };

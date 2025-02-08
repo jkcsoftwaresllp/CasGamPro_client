@@ -9,3 +9,38 @@
   height: 100%;
   overflow-y: auto;
 }
+.headerContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 10px; /* Space between sections */
+  padding: 16px;
+}
+
+.headerTop {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Align title & breadcrumbs to the left */
+}
+
+.headerTitle {
+  font-size: var(--text-lg);
+  font-weight: var(--text-bold);
+  margin: 0;
+  color: var(--color-text-primary);
+}
+
+.headerActions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-top: 10px;
+}
+
+@media (max-width: 768px) {
+  .headerActions {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+}

@@ -13,14 +13,6 @@ export const ManageCommissions = () => {
   const { loading, filteredCommissions } = manageCommissionData(searchQuery);
   return (
     <div className={style.manageCommissionsContainer}>
-      <h1 className={style.header}>Manage Commissions</h1>
-
-      {/* Search Bar */}
-      <div className={style.actionRow}>
-        <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
-      </div>
-
-      {/* Loader */}
       {loading ? (
         <div className={style.loaderContainer}>
           <Loader />

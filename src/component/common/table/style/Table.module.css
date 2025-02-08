@@ -72,11 +72,10 @@
   text-decoration: underline;
 }
 
-/* 
 .row:nth-child(odd) {
   background-color: var(--color-bg-secondary);
 }
 
 .row:nth-child(even) {
-  background-color: var(--color-bg-tertiary);
-} */
+  background-color: var(--color-bg-primary);
+}

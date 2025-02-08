@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 
 // Custom hook for fetching and filtering client data
-export const blockedClientsData = (searchQuery) => {
+export const blockedClientsData = (searchQuery = "") => {
   const [clients, setClients] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -90,9 +90,9 @@ export const blockedClientsData = (searchQuery) => {
     fetchClients();
   }, []);
 
-  const filteredClients = clients.filter((client) =>
+  const data = clients.filter((client) =>
     client.username.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
-  return { loading, filteredClients };
+  return { loading, data };
 };

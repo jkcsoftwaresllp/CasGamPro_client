@@ -2,16 +2,21 @@ import React, { useState } from "react";
 import { Table } from "../../../../common/table/jsx/Table.jsx";
 import { EditIcon } from "../../../../../assets/assets.jsx";
 import { GameTableWindow } from "../GameTableWindow.jsx";
+import { Loader } from "../../../../common/Loader.jsx";
+import style from "../../styles/ManageClient.module.css";
+import { games } from "../helper/games.js";
 
-export const BlockMarketTable = ({ games }) => {
+export const BlockMarketTable = () => {
+  const { loading, data } = games(); // Fixed "Loading" to "loading" for consistency
   const [isGameView, setIsGameView] = useState(false);
-  const [gameName, setGameName] = useState(false);
+  const [gameName, setGameName] = useState(""); // Changed initial state to an empty string
 
-  const tableData = games.map((games) => ({
-    id: games.id,
-    betfairid: games.betfairid,
-    name: games.name,
-    status: games.status,
+  const tableData = data.map((game) => ({
+    // Fixed "games" to "game" for clarity
+    id: game.id,
+    betfairid: game.betfairid,
+    name: game.name,
+    status: game.status,
   }));
 
   const columns = [
@@ -32,25 +37,36 @@ export const BlockMarketTable = ({ games }) => {
     },
   ];
 
-  const handleCellClick = (value, row) => {
+  const handleCellClick = (value) => {
     setGameName(value);
     setIsGameView(true);
   };
 
   return (
     <>
-      {isGameView && (
-        <GameTableWindow setIsGameView={setIsGameView} gameName={gameName} />
+      {loading ? (
+        <div className={style.loaderContainer}>
+          <Loader />
+        </div>
+      ) : (
+        <div className={style.manageCommissionsContainer}>
+          {isGameView && (
+            <GameTableWindow
+              setIsGameView={setIsGameView}
+              gameName={gameName}
+            />
+          )}
+          <Table
+            data={tableData}
+            columns={columns}
+            columnWidths={columnWidths}
+            isAction={true} // Indicating that action buttons should be shown
+            btns={actionButtons} // Passing action buttons here
+            clickableColumns={["name"]}
+            onCellClick={handleCellClick}
+          />
+        </div>
       )}
-      <Table
-        data={tableData}
-        columns={columns}
-        columnWidths={columnWidths}
-        isAction={true} // Indicating that action buttons should be shown
-        btns={actionButtons} // Passing action buttons here
-        clickableColumns={["name"]}
-        onCellClick={handleCellClick}
-      />
     </>
   );
 };

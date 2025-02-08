@@ -16,6 +16,12 @@ import { Ledger } from "../../agent/pages/dashboardContent/Ledger";
 import { InOut } from "../../agent/pages/dashboardContent/InOut";
 import { ProfitLoss } from "../../agent/pages/dashboardContent/ProfitLoss";
 import { CollectionReport } from "../../agent/pages/dashboardContent/CollectionReport";
+import { BlockTable } from "../../agent/pages/dashboardContent/table/BlockTable";
+import { CommissionTable } from "../../agent/pages/dashboardContent/CommisionTable";
+import { BlockMarketTable } from "../../agent/pages/dashboardContent/table/BlockMarketTable";
+import { LedgerTable } from "../../agent/pages/dashboardContent/table/LedgerTable";
+import { InOutTable } from "../../agent/pages/dashboardContent/table/InOutTable";
+import { ProfitLossTable } from "../../agent/pages/dashboardContent/table/ProfitLossTable";
 
 export const AgentRoutes = () => {
   return (
@@ -32,15 +38,15 @@ export const AgentRoutes = () => {
         <Route path={path.payCash} />
         <Route path={path.managePassword} element={<ManagePassword />} />
         <Route path={path.settings} element={<Settings />} />
-        <Route path={path.blockClients} element={<BlockedClient />} />
-        <Route path={path.commision} element={<ManageCommissions />} />
+        <Route path={path.blockClients} element={<BlockMarketTable />} />
+        <Route path={path.commision} element={<CommissionTable />} />
         <Route path={path.ledger} element={<TempComp label="ledger" />} />
         <Route path={path.blockMarket} element={<BlockMarket />} />
         <Route path={path.liveCasino} element={<LiveCasino />} />
         <Route path={path.collectionReport} element={<CollectionReport />} />
-        <Route path={path.companyLenDen} element={<Ledger />} />
-        <Route path={path.profitAndLoss} element={<ProfitLoss />} />
-        <Route path={path.inOut} element={<InOut />} />
+        <Route path={path.companyLenDen} element={<LedgerTable />} />
+        <Route path={path.profitAndLoss} element={<ProfitLossTable />} />
+        <Route path={path.inOut} element={<InOutTable />} />
       </Route>
 
       {/* Catch-all route for 404 errors */}

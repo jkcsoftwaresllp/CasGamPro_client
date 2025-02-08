@@ -9,9 +9,6 @@ export const Dashboard = () => {
 
   return (
     <div className={style.dashcontent}>
-      <h1 className={style.header}>Dashboard</h1>
-
-      {/* Show the loader when loading is true */}
       {loading ? (
         <div className={style.loaderContainer}>
           <Loader /> {/* Loader component */}
