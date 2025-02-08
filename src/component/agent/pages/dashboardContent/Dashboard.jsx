@@ -15,7 +15,6 @@ export const Dashboard = () => {
         </div>
       ) : (
         <div className={style.cardContainer}>
-          {/* Render dashboard cards once data is loaded */}
           {data.map((item, index) => (
             <DashboardCard key={index} label={item.label} value={item.value} />
           ))}
