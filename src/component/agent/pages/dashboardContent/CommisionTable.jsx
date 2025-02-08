@@ -41,7 +41,7 @@ export const CommissionTable = ({ clients }) => {
     { key: "actions", label: "Action" },
   ];
 
-  const columnWidths = { name: 2, actions: 1 };
+  const columnWidths = { name: 2, actions: 3 };
 
   const actionButtons = [
     {

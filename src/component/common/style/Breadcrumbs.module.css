@@ -1,0 +1,30 @@
+.breadcrumbs {
+  display: flex;
+  align-items: center;
+  font-size: var(--text-md);
+  color: var(--color-text-primary);
+}
+
+.breadcrumbItem {
+  display: flex;
+  align-items: center;
+}
+
+.breadcrumbLink {
+  text-decoration: none;
+  color: #007bff;
+  cursor: pointer;
+}
+
+.breadcrumbLink:hover {
+  text-decoration: underline;
+}
+
+.separator {
+  margin: 0 2px;
+  color: var(--color-text-primary);
+}
+
+.currentBreadcrumb {
+  color: var(--color-text-tertiary);
+}
