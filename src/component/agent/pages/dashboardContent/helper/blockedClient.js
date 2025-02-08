@@ -25,6 +25,62 @@ export const blockedClientsData = (searchQuery) => {
             sessionCommission: 1,
             share: 20,
           },
+          {
+            id: 85800,
+            username: "SP85800 (Ankur)",
+            matchCommission: 0,
+            sessionCommission: 0,
+            share: 15,
+          },
+          {
+            id: 85801,
+            username: "SP85801 (Rahul)",
+            matchCommission: 2,
+            sessionCommission: 1,
+            share: 20,
+          },
+          {
+            id: 85802,
+            username: "SP85802 (Priya)",
+            matchCommission: 1.5,
+            sessionCommission: 0.5,
+            share: 18,
+          },
+          {
+            id: 85803,
+            username: "SP85803 (Vikram)",
+            matchCommission: 0,
+            sessionCommission: 2,
+            share: 22,
+          },
+          {
+            id: 85800,
+            username: "SP85800 (Ankur)",
+            matchCommission: 0,
+            sessionCommission: 0,
+            share: 15,
+          },
+          {
+            id: 85801,
+            username: "SP85801 (Rahul)",
+            matchCommission: 2,
+            sessionCommission: 1,
+            share: 20,
+          },
+          {
+            id: 85802,
+            username: "SP85802 (Priya)",
+            matchCommission: 1.5,
+            sessionCommission: 0.5,
+            share: 18,
+          },
+          {
+            id: 85803,
+            username: "SP85803 (Vikram)",
+            matchCommission: 0,
+            sessionCommission: 2,
+            share: 22,
+          },
         ];
         setClients(mockClients);
         setLoading(false);

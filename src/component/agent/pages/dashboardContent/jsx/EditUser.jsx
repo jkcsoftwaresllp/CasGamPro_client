@@ -38,7 +38,9 @@ export const EditUser = () => {
   return (
     <>
       {loading ? (
-        <Loader />
+        <div className={style.loaderContainer}>
+          <Loader />
+        </div>
       ) : (
         <form className={style.form}>
           <h2 className={style.para}>Edit User : {id}</h2>

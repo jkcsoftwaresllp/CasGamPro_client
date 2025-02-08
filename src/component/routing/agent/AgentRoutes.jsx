@@ -11,10 +11,7 @@ import { TempComp } from "../../routing/helper/TempComp";
 import { ManageClientsRoutes } from "./ManageClientsRoutes"; // Import the separate route handling component
 import { AgentManageUser } from "../../agent/pages/dashboardContent/manageClient/AgentManageUser";
 import { ManageCommissions } from "../../agent/pages/dashboardContent/ManageCommision";
-import { LiveCasino } from "../../agent/pages/dashboardContent/LiveCasino";
-import { Ledger } from "../../agent/pages/dashboardContent/Ledger";
-import { InOut } from "../../agent/pages/dashboardContent/InOut";
-import { ProfitLoss } from "../../agent/pages/dashboardContent/ProfitLoss";
+import { CollectionReport } from "../../agent/pages/dashboardContent/CollectionReport";
 
 export const AgentRoutes = () => {
   return (
@@ -35,14 +32,17 @@ export const AgentRoutes = () => {
         <Route path={path.commision} element={<ManageCommissions />} />
         <Route path={path.ledger} element={<TempComp label="ledger" />} />
         <Route path={path.blockMarket} element={<BlockMarket />} />
-        <Route path={path.liveCasino} element={<LiveCasino />} />
+        <Route path={path.liveCasino} element={<TempComp label="casino" />} />
+        <Route path={path.collectionReport} element={<CollectionReport />} />
         <Route
-          path={path.collectionReport}
-          element={<TempComp label="collection report" />}
+          path={path.companyLenDen}
+          element={<TempComp label="company len den " />}
         />
-        <Route path={path.companyLenDen} element={<Ledger />} />
-        <Route path={path.profitAndLoss} element={<ProfitLoss />} />
-        <Route path={path.inOut} element={<InOut />} />
+        <Route
+          path={path.profitAndLoss}
+          element={<TempComp label="profit loss" />}
+        />
+        <Route path={path.inOut} element={<TempComp label="in out" />} />
       </Route>
 
       {/* Catch-all route for 404 errors */}
