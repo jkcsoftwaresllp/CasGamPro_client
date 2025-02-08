@@ -8,9 +8,7 @@ export const Breadcrumbs = () => {
 
   return (
     <div className={style.breadcrumbs}>
-      <Link to="/" className={style.breadcrumbLink}>
-        Home
-      </Link>
+      <Link to="/" className={style.breadcrumbLink}></Link>
       {pathnames.map((value, index) => {
         const to = `/${pathnames.slice(0, index + 1).join("/")}`;
         const isLast = index === pathnames.length - 1;

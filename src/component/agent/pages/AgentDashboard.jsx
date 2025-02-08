@@ -1,13 +1,70 @@
+import { useState, useEffect } from "react";
 import { AgentSidebar as Sidebar } from "../main/jsx/AgentSidebar";
 import style from "./styles/ContentPage.module.css";
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
+import { Breadcrumbs } from "../../common/Breadcrumbs";
+import { SearchBar } from "./dashboardContent/jsx/SearchBar";
+import { DownloadButtons } from "./dashboardContent/jsx/DownloadBtn";
+import { routesPathClient as path } from "../../routing/helper/routesPathClient";
 
 export const AgentDashboard = () => {
+  const [headerTitle, setHeaderTitle] = useState("Dashboard");
+  const [headerConfig, setHeaderConfig] = useState({
+    showBreadcrumbs: false,
+    breadcrumbsData: [],
+    showSearchBar: false,
+    showDownloadButtons: false,
+  });
+
+  const location = useLocation();
+
+  useEffect(() => {
+    const currentPath = location.pathname;
+
+    // Define full paths using the imported routesPathClient object
+    const pagesWithSearchBar = [
+      `${path.agent}${path.manageClients}`,
+      `${path.agent}${path.blockClients}`,
+      `${path.agent}${path.commision}`,
+      `${path.agent}/limit`, // Assuming 'limit' is not in routesPathClient
+    ];
+
+    const pagesWithDownloadButtons = [
+      `${path.agent}${path.manageClients}`,
+      `${path.agent}${path.blockClients}`,
+      `${path.agent}${path.commision}`,
+      `${path.agent}/limit`,
+    ];
+
+    setHeaderConfig({
+      showBreadcrumbs: currentPath.split("/").filter(Boolean).length >= 2, // Show breadcrumbs for depth >= 3
+      breadcrumbsData: currentPath.split("/").filter(Boolean), // Format breadcrumbs
+      showSearchBar: pagesWithSearchBar.includes(currentPath),
+      showDownloadButtons: pagesWithDownloadButtons.includes(currentPath),
+    });
+  }, [location.pathname]);
+
   return (
     <div className={style.pageContainer}>
-      <Sidebar />
+      <Sidebar setHeaderTitle={setHeaderTitle} />
       <div className={style.content}>
-        <Outlet />
+        <header className={style.headerContainer}>
+          <div className={style.headerTop}>
+            <h1 className={style.headerTitle}>{headerTitle}</h1>
+            {headerConfig.showBreadcrumbs && (
+              <Breadcrumbs data={headerConfig.breadcrumbsData} />
+            )}
+          </div>
+
+          {(headerConfig.showSearchBar || headerConfig.showDownloadButtons) && (
+            <div className={style.headerActions}>
+              {headerConfig.showSearchBar && <SearchBar />}
+              {headerConfig.showDownloadButtons && <DownloadButtons />}
+            </div>
+          )}
+        </header>
+
+        <Outlet context={{ setHeaderConfig }} />
       </div>
     </div>
   );

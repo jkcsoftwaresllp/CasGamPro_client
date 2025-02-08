@@ -1,7 +1,7 @@
 .card {
   border-radius: var(--borderRadius);
   text-align: center;
-  width: 350px;
+  max-width: 100%; /* Allow cards to be responsive */
   border: 1px solid var(--color-text-primary);
   height: 90px;
 }
@@ -12,7 +12,6 @@
   margin-bottom: 8px;
   padding: 5px;
   border-radius: var(--borderRadius);
-
   background-color: var(--color-bg-secondary);
 }
 
@@ -26,29 +25,52 @@
 .dashcontent {
   display: flex;
   justify-content: center; /* Center horizontally */
-  align-items: center; /* Center vertically */
-
   flex-direction: column;
+  align-items: center; /* Ensure content remains centered */
+  width: 100%;
+  padding: 20px;
 }
 
 .cardContainer {
   display: grid;
-  grid-template-columns: repeat(2, 1fr); /* 2 cards per row */
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(300px, 1fr)
+  ); /* Adjusts dynamically */
   gap: 20px; /* Space between the cards */
   width: 100%;
-  max-width: 800px; /* Optional: limit the width of the container */
+  max-width: 1200px; /* Larger max-width for bigger screens */
+  padding: 10px;
 }
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  .cardContainer {
+    max-width: 90%; /* Adjust width for medium screens */
+  }
+}
+
+@media (max-width: 768px) {
+  .cardContainer {
+    grid-template-columns: repeat(
+      auto-fit,
+      minmax(150px, 1fr)
+    ); /* Smaller card size */
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .cardContainer {
+    grid-template-columns: 1fr; /* Single column for very small screens */
+  }
+}
+
 /* Centering the dashboard header */
 .header {
   color: var(--color-text-primary);
-  text-align: center; /* Centers the text horizontally */
-  font-size: var(
-    --text-lg,
-    32px
-  ); /* Use the custom text size or fallback to 32px */
-  font-weight: var(
-    --text-bold,
-    700
-  ); /* Use the custom bold weight or fallback to 700 (bold) */
-  margin-bottom: 20px; /* Optional: Add spacing below the header */
+  text-align: center;
+  font-size: var(--text-lg, 32px);
+  font-weight: var(--text-bold, 700);
+  margin-bottom: 20px;
 }

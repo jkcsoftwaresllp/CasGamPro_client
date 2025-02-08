@@ -18,13 +18,6 @@ export const ManageClients = () => {
 
   return (
     <div className={style.manageClientsContainer}>
-      <h1 className={style.header}>My Clients</h1>
-
-      <div className={style.actionRow}>
-        <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
-        <DownloadButtons clients={filteredClients} />
-      </div>
-
       {loading ? (
         <div className={style.loaderContainer}>
           <Loader />

@@ -64,11 +64,6 @@ export const Ledger = () => {
 
   return (
     <div className={style.manageClientsContainer}>
-      {/* Row for Search Bar and Buttons */}
-      <div className={style.actionRow}>
-        <h1 className={style.header}>Ledger</h1>
-      </div>
-
       {/* Client Table */}
       <div className={style.tableContainer}>
         <LedgerTable data={data} />

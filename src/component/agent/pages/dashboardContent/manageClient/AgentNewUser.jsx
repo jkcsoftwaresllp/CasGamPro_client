@@ -66,7 +66,6 @@ export const AgentNewUser = () => {
 
   return (
     <form className={style.form}>
-      <h2>New User</h2>
       <UserIdInput value={formData.userId} onChange={handleChange} />
       <TextInput
         label="First Name"

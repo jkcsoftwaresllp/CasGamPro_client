@@ -30,11 +30,6 @@ export const BlockMarket = () => {
 
   return (
     <div className={style.manageClientsContainer}>
-      {/* Row for Search Bar and Buttons */}
-      <div className={style.actionRow}>
-        <h1 className={style.header}>Block Market</h1>
-      </div>
-
       {/* Client Table */}
       <div className={style.tableContainer}>
         <BlockMarketTable games={games} />

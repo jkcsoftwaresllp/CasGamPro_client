@@ -3,11 +3,16 @@ import { useNavigate } from "react-router-dom";
 import { Table } from "../../../../common/table/jsx/Table.jsx";
 import { EditIcon, SettingsIcon } from "../../../../../assets/assets.jsx";
 import { routesPathClient as path } from "../../../../routing/helper/routesPathClient.js";
+import style from "../../styles/ManageClient.module.css";
+import { Loader } from "../../../../common/Loader.jsx";
+import { manageClientsData } from "../helper/manageClient.js";
 
-export const ClientTable = ({ clients }) => {
+export const ClientTable = ({}) => {
   const navigate = useNavigate();
 
-  const tableData = clients.map((client) => ({
+  const { loading, data } = manageClientsData();
+
+  const tableData = data.map((client) => ({
     id: client.id,
     username: client.username,
     matchCommission: client.matchCommission,
@@ -52,14 +57,24 @@ export const ClientTable = ({ clients }) => {
   };
 
   return (
-    <Table
-      data={tableData}
-      columns={columns}
-      columnWidths={columnWidths}
-      isAction={true} // Indicating that action buttons should be shown
-      btns={actionButtons} // Passing action buttons here
-      clickableColumns={["username"]} // Make "entry" column clickable
-      onCellClick={handleCellClick}
-    />
+    <div>
+      {loading ? (
+        <div className={style.loaderContainer}>
+          <Loader />
+        </div>
+      ) : (
+        <div className={style.manageCommissionsContainer}>
+          <Table
+            data={data}
+            columns={columns}
+            columnWidths={columnWidths}
+            isAction={true} // Indicating that action buttons should be shown
+            btns={actionButtons} // Passing action buttons here
+            clickableColumns={["username"]} // Make "entry" column clickable
+            onCellClick={handleCellClick}
+          />
+        </div>
+      )}
+    </div>
   );
 };

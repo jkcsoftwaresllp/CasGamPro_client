@@ -1,7 +1,11 @@
 import React from "react";
 import { Table } from "../../../../common/table/jsx/Table.jsx";
+import { manageLenDen } from "../helper/manageLenDen.js";
+import { Loader } from "../../../../common/Loader.jsx";
+import style from "../../styles/ManageClient.module.css";
 
-export const LedgerTable = ({ data }) => {
+export const LedgerTable = ({}) => {
+  const { data, loading } = manageLenDen();
   const tableData = data.map((entry) => ({
     agentId: entry.agentId,
     entry: entry.entry, // Last 3 digits of roundId
@@ -31,11 +35,21 @@ export const LedgerTable = ({ data }) => {
   const columnWidths = { entry: 2, note: 2 };
 
   return (
-    <Table
-      data={tableData}
-      columns={columns}
-      columnWidths={columnWidths}
-      isAction={false} // Indicating that action buttons should be shown
-    />
+    <>
+      {loading ? (
+        <div className={style.loaderContainer}>
+          <Loader />
+        </div>
+      ) : (
+        <div className={style.manageCommissionsContainer}>
+          <Table
+            data={tableData}
+            columns={columns}
+            columnWidths={columnWidths}
+            isAction={false} // Indicating that action buttons should be shown
+          />
+        </div>
+      )}
+    </>
   );
 };

@@ -9,16 +9,12 @@ export const Dashboard = () => {
 
   return (
     <div className={style.dashcontent}>
-      <h1 className={style.header}>Dashboard</h1>
-
-      {/* Show the loader when loading is true */}
       {loading ? (
         <div className={style.loaderContainer}>
           <Loader /> {/* Loader component */}
         </div>
       ) : (
         <div className={style.cardContainer}>
-          {/* Render dashboard cards once data is loaded */}
           {data.map((item, index) => (
             <DashboardCard key={index} label={item.label} value={item.value} />
           ))}

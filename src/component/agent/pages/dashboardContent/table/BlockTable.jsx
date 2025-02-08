@@ -2,9 +2,12 @@ import React from "react";
 import { Table } from "../../../../common/table/jsx/Table.jsx";
 import { UnBlockIcon } from "../../../../../assets/assets.jsx";
 import { showUnblockUserSwal } from "../helper/swalHelpers.js"; // Import Swal function
-
-export const BlockTable = ({ clients }) => {
-  const tableData = clients.map((client) => ({
+import { blockedClientsData } from "../helper/blockedClient";
+import { Loader } from "../../../../common/Loader.jsx";
+import style from "../../styles/ManageClient.module.css";
+export const BlockTable = ({}) => {
+  const { loading, data } = blockedClientsData();
+  const tableData = data.map((client) => ({
     id: client.id,
     username: client.username,
     matchCommission: client.matchCommission,
@@ -42,12 +45,22 @@ export const BlockTable = ({ clients }) => {
   ];
 
   return (
-    <Table
-      data={tableData}
-      columns={columns}
-      columnWidths={columnWidths}
-      isAction={true}
-      btns={actionButtons}
-    />
+    <div>
+      {loading ? (
+        <div className={style.loaderContainer}>
+          <Loader />
+        </div>
+      ) : (
+        <div className={style.manageCommissionsContainer}>
+          <Table
+            data={tableData}
+            columns={columns}
+            columnWidths={columnWidths}
+            isAction={true}
+            btns={actionButtons}
+          />
+        </div>
+      )}
+    </div>
   );
 };

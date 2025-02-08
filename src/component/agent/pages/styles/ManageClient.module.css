@@ -28,7 +28,7 @@
 }
 
 .manageCommissionsContainer {
-  height: 80%;
+  height: calc(100vh - 35vh);
 }
 
 .changePassword {
@@ -41,7 +41,7 @@
 }
 
 .manageClientsContainer {
-  height: 80%;
+  height: 80px;
 }
 
 .actionRow {
