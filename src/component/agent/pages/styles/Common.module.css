@@ -22,6 +22,7 @@
   justify-content: right;
   align-items: right;
   gap: 10px;
+  padding-right: 10px;
 }
 .pageIndicator {
   color: var(--color-text-primary);

@@ -30,18 +30,10 @@ export const AgentDashboard = () => {
       `${path.agent}/limit`, // Assuming 'limit' is not in routesPathClient
     ];
 
-    const pagesWithDownloadButtons = [
-      `${path.agent}${path.manageClients}`,
-      `${path.agent}${path.blockClients}`,
-      `${path.agent}${path.commision}`,
-      `${path.agent}/limit`,
-    ];
-
     setHeaderConfig({
       showBreadcrumbs: currentPath.split("/").filter(Boolean).length >= 2, // Show breadcrumbs for depth >= 3
       breadcrumbsData: currentPath.split("/").filter(Boolean), // Format breadcrumbs
       showSearchBar: pagesWithSearchBar.includes(currentPath),
-      showDownloadButtons: pagesWithDownloadButtons.includes(currentPath),
     });
   }, [location.pathname]);
 
@@ -65,7 +57,6 @@ export const AgentDashboard = () => {
                   setSearchQuery={setSearchQuery}
                 />
               )}
-              {headerConfig.showDownloadButtons && <DownloadButtons />}
             </div>
           )}
         </header>

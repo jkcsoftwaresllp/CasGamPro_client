@@ -1,15 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import { Table } from "../../../../common/table/jsx/Table.jsx";
 import { UnBlockIcon } from "../../../../../assets/assets.jsx";
 import { showUnblockUserSwal } from "../helper/swalHelpers.js";
 import { blockedClientsData } from "../helper/blockedClient";
 import { Loader } from "../../../../common/Loader.jsx";
-import style from "../../styles/ManageClient.module.css";
-import { useOutletContext } from "react-router-dom"; // Import to get context
+import style from "../../styles/Common.module.css";
+import { useOutletContext } from "react-router-dom";
+import { DownloadButtons } from "../jsx/DownloadBtn.jsx";
+import { Button } from "../../../../common/Button.jsx";
 
 export const BlockTable = () => {
   const { searchQuery } = useOutletContext();
   const { loading, data } = blockedClientsData();
+
+  // Pagination state
+  const [currentPage, setCurrentPage] = useState(1);
+  const rowsPerPage = 20;
 
   // Convert data for the table
   const tableData = data.map((client) => ({
@@ -21,9 +27,20 @@ export const BlockTable = () => {
   }));
 
   // Filter data based on search query
-  const filteredData = tableData.filter(
-    (client) => client.username.includes(searchQuery.toLowerCase()) // Case-insensitive search
+  const filteredData = tableData.filter((client) =>
+    client.username.includes(searchQuery.toLowerCase())
   );
+
+  // Paginate filtered data
+  const indexOfLastRow = currentPage * rowsPerPage;
+  const indexOfFirstRow = indexOfLastRow - rowsPerPage;
+  const currentData = filteredData.slice(indexOfFirstRow, indexOfLastRow);
+
+  // Handle pagination
+  const totalPages = Math.ceil(filteredData.length / rowsPerPage);
+  const nextPage = () =>
+    setCurrentPage((prev) => Math.min(prev + 1, totalPages));
+  const prevPage = () => setCurrentPage((prev) => Math.max(prev - 1, 1));
 
   const columns = [
     { key: "id", label: "ID" },
@@ -61,8 +78,24 @@ export const BlockTable = () => {
         </div>
       ) : (
         <div className={style.manageCommissionsContainer}>
+          <div className={style.paginationContainer}>
+            <Button
+              label="Previous"
+              onClick={prevPage}
+              disabled={currentPage === 1}
+            />
+            <span className={style.pageIndicator}>
+              Page {currentPage} of {totalPages}
+            </span>
+            <Button
+              label="Next"
+              onClick={nextPage}
+              disabled={currentPage === totalPages}
+            />
+            <DownloadButtons clients={filteredData} />
+          </div>
           <Table
-            data={filteredData} // Use filtered data
+            data={currentData}
             columns={columns}
             columnWidths={columnWidths}
             isAction={true}
