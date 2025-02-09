@@ -59,7 +59,11 @@ export const AgentNewUser = () => {
 
     try {
       // Send form data to the backend
-      const response = await apiCall("/api/register", "POST", formData);
+      const response = await apiCall(
+        "/agent/register-client",
+        "POST",
+        formData
+      );
       setSuccess("User registered successfully!");
       console.log("Form submitted successfully:", response);
     } catch (err) {
