@@ -57,7 +57,10 @@ export const ClientTable = ({}) => {
 
   const handleCellClick = (value, row) => {
     navigate(
-      `${path.agent}${path.manageClients}${path.userInfo.replace("id", row.id)}`
+      `${path.agent}${path.manageClients}${path.userInfo.replace(
+        ":id",
+        row.id
+      )}`
     );
   };
 

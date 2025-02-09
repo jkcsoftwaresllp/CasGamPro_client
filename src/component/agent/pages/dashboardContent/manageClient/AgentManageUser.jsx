@@ -21,7 +21,7 @@ export const AgentManageUser = () => {
         <Loader />
       ) : (
         <div className={style.infoBody}>
-          <h2 className={style.heading}>Manage User: {id}</h2>
+          <h2 className={style.heading}>Manage User {id}</h2>
           <div className={style.buttonGrid}>
             <Button
               label="Receive Cash"
