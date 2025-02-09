@@ -1,19 +1,29 @@
 import React from "react";
 import { Table } from "../../../../common/table/jsx/Table.jsx";
 import { UnBlockIcon } from "../../../../../assets/assets.jsx";
-import { showUnblockUserSwal } from "../helper/swalHelpers.js"; // Import Swal function
+import { showUnblockUserSwal } from "../helper/swalHelpers.js";
 import { blockedClientsData } from "../helper/blockedClient";
 import { Loader } from "../../../../common/Loader.jsx";
 import style from "../../styles/ManageClient.module.css";
-export const BlockTable = ({}) => {
+import { useOutletContext } from "react-router-dom"; // Import to get context
+
+export const BlockTable = () => {
+  const { searchQuery } = useOutletContext();
   const { loading, data } = blockedClientsData();
+
+  // Convert data for the table
   const tableData = data.map((client) => ({
     id: client.id,
-    username: client.username,
+    username: client.username.toLowerCase(),
     matchCommission: client.matchCommission,
     sessionCommission: client.sessionCommission,
     share: client.share,
   }));
+
+  // Filter data based on search query
+  const filteredData = tableData.filter(
+    (client) => client.username.includes(searchQuery.toLowerCase()) // Case-insensitive search
+  );
 
   const columns = [
     { key: "id", label: "ID" },
@@ -26,7 +36,6 @@ export const BlockTable = ({}) => {
 
   const columnWidths = { username: 2, actions: 2 };
 
-  // Function to handle Edit click
   const handleEditClick = async (row) => {
     const { isConfirmed, value } = await showUnblockUserSwal(row.username);
 
@@ -40,7 +49,7 @@ export const BlockTable = ({}) => {
     {
       label: "Edit",
       icon: UnBlockIcon,
-      onClick: handleEditClick, // Use helper function
+      onClick: handleEditClick,
     },
   ];
 
@@ -53,7 +62,7 @@ export const BlockTable = ({}) => {
       ) : (
         <div className={style.manageCommissionsContainer}>
           <Table
-            data={tableData}
+            data={filteredData} // Use filtered data
             columns={columns}
             columnWidths={columnWidths}
             isAction={true}

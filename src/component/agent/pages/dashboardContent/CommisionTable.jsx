@@ -1,17 +1,21 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useOutletContext } from "react-router-dom"; // 🔥 Import useOutletContext
 import { Table } from "../../../common/table/jsx/Table.jsx";
 import { SettingsIcon } from "../../../../assets/assets.jsx";
 import { routesPathClient as path } from "../../../routing/helper/routesPathClient.js";
 import { CustomBtn } from "../../../common/CustomBtn.jsx";
 import { DialogBox } from "./jsx/DialogBox.jsx";
-import { handleTransaction } from "./helper/transactionHelper.js"; // Import the helper
+import { handleTransaction } from "./helper/transactionHelper.js";
 import { Loader } from "../../../common/Loader.jsx";
 import { manageCommissionData } from "./helper/commision.js";
 import style from "../styles/ManageClient.module.css";
-export const CommissionTable = ({}) => {
+
+export const CommissionTable = () => {
   const { loading, data } = manageCommissionData();
   const navigate = useNavigate();
+
+  const { searchQuery } = useOutletContext(); // 🔥 Get searchQuery from layout
+
   const [showDialog, setShowDialog] = useState(false);
   const [selectedClientId, setSelectedClientId] = useState(null);
 
@@ -25,7 +29,12 @@ export const CommissionTable = ({}) => {
     setSelectedClientId(null);
   };
 
-  const tableData = data.map((client) => ({
+  // 🔍 Filter table data based on searchQuery
+  const filteredData = data.filter((client) =>
+    client.username.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
+  const tableData = filteredData.map((client) => ({
     id: client.id,
     name: client.username,
     matchCommission: client.matchCommission,
@@ -71,7 +80,6 @@ export const CommissionTable = ({}) => {
 
   return (
     <>
-      {" "}
       {loading ? (
         <div className={style.loaderContainer}>
           <Loader />
@@ -87,6 +95,7 @@ export const CommissionTable = ({}) => {
             clickableColumns={["name"]}
             onCellClick={handleCellClick}
           />
+
           <DialogBox
             isOpen={showDialog}
             onClose={closeDialog}

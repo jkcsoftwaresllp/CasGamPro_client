@@ -6,8 +6,10 @@ import { routesPathClient as path } from "../../../../routing/helper/routesPathC
 import style from "../../styles/ManageClient.module.css";
 import { Loader } from "../../../../common/Loader.jsx";
 import { manageClientsData } from "../helper/manageClient.js";
+import { useOutletContext } from "react-router-dom";
 
 export const ClientTable = ({}) => {
+  const { searchQuery = "" } = useOutletContext() || {};
   const navigate = useNavigate();
 
   const { loading, data } = manageClientsData();
@@ -19,6 +21,9 @@ export const ClientTable = ({}) => {
     sessionCommission: client.sessionCommission,
     share: client.share,
   }));
+  const filteredData = tableData.filter(
+    (client) => client.username.includes(searchQuery.toLowerCase()) // Case-insensitive search
+  );
 
   const columns = [
     { key: "id", label: "ID" },

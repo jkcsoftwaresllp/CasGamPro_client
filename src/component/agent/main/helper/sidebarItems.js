@@ -34,6 +34,7 @@ export const sidebarItems = [
     id: 3,
     label: "Manage Clients",
     value: "manageClients",
+    path: `${path.agent}${path.manageClients}`,
 
     icon: ManageClientsIcon,
     subOptions: [

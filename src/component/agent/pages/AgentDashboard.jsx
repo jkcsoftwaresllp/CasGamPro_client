@@ -9,6 +9,7 @@ import { routesPathClient as path } from "../../routing/helper/routesPathClient"
 
 export const AgentDashboard = () => {
   const [headerTitle, setHeaderTitle] = useState("Dashboard");
+  const [searchQuery, setSearchQuery] = useState("");
   const [headerConfig, setHeaderConfig] = useState({
     showBreadcrumbs: false,
     breadcrumbsData: [],
@@ -58,13 +59,17 @@ export const AgentDashboard = () => {
 
           {(headerConfig.showSearchBar || headerConfig.showDownloadButtons) && (
             <div className={style.headerActions}>
-              {headerConfig.showSearchBar && <SearchBar />}
+              {headerConfig.showSearchBar && (
+                <SearchBar
+                  searchQuery={searchQuery}
+                  setSearchQuery={setSearchQuery}
+                />
+              )}
               {headerConfig.showDownloadButtons && <DownloadButtons />}
             </div>
           )}
         </header>
-
-        <Outlet context={{ setHeaderConfig }} />
+        <Outlet context={{ setHeaderConfig, searchQuery: searchQuery || "" }} />
       </div>
     </div>
   );
