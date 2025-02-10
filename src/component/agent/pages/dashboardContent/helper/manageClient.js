@@ -8,7 +8,7 @@ export const manageClientsData = (searchQuery = "") => {
   useEffect(() => {
     const fetchClients = async () => {
       setLoading(true);
-      // Simulating an API call with setTimeout
+
       setTimeout(() => {
         const mockClients = [
           {

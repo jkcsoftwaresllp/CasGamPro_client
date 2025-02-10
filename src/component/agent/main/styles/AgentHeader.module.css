@@ -11,6 +11,12 @@
   gap: 15px; /* Space between items */
 }
 
+.userId {
+  font-weight: var(--text-bold);
+  font-size: var(--text-md);
+  color: var(--color-text-primary); /* Adjust color as needed */
+}
+
 .buttonContainer {
   display: flex;
   justify-content: flex-end;
