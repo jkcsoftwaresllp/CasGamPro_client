@@ -3,7 +3,7 @@ import { HeaderBtnGroup } from "./HeaderBtnGroup";
 import style from "../style/ClientHeader.module.css";
 import { Heart } from "./heart";
 import { Wallet } from "./Wallet";
-import { useAuth } from "../../../../context/jsx/AuthContext";
+import { useAuth } from "../../../context/jsx/AuthContext";
 
 export const ClientHeader = () => {
   const { user } = useAuth(); // Get user from AuthContext
