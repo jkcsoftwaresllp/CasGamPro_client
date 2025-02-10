@@ -8,6 +8,7 @@ import { Loader } from "../../../../common/Loader.jsx";
 import { manageClientsData } from "../helper/manageClient.js";
 import { DownloadButtons } from "../jsx/DownloadBtn.jsx";
 import { Button } from "../../../../common/Button.jsx"; // Import Button component
+
 import { useOutletContext } from "react-router-dom";
 
 export const ClientTable = () => {
@@ -15,7 +16,7 @@ export const ClientTable = () => {
   const outletContext = useOutletContext() || {}; // Ensure it's an object
   const { searchQuery = "" } = outletContext; // Default to empty string if undefined
 
-  const { loading, data } = manageClientsData();
+
 
   // Pagination state
   const [currentPage, setCurrentPage] = useState(1);
@@ -109,7 +110,11 @@ export const ClientTable = () => {
             <DownloadButtons clients={data} />
           </div>
           <Table
+
             data={filteredData}
+
+   
+
             columns={columns}
             columnWidths={columnWidths}
             isAction={true}
