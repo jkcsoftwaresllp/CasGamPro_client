@@ -9,6 +9,10 @@
   height: 100%;
   overflow-y: auto;
 }
+.outlet {
+  height: 100%;
+}
+
 .headerContainer {
   display: flex;
   flex-direction: column;

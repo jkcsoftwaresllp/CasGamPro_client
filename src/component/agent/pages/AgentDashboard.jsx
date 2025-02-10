@@ -64,7 +64,11 @@ export const AgentDashboard = () => {
             </div>
           )}
         </header>
-        <Outlet context={{ setHeaderConfig, searchQuery: searchQuery || "" }} />
+        <div className={style.outlet}>
+          <Outlet
+            context={{ setHeaderConfig, searchQuery: searchQuery || "" }}
+          />
+        </div>
       </div>
     </div>
   );
