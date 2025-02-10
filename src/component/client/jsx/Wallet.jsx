@@ -38,10 +38,9 @@ export const Wallet = () => {
   // }, []);
 
   const namespace = "wallet";
+  const socket = connectSocket(namespace);
 
   useEffect(() => {
-    const socket = connectSocket(namespace);
-
     socket.on("connect", () => {
       emitEvent(namespace, "joinWallet", userId);
     });
@@ -68,7 +67,7 @@ export const Wallet = () => {
     return () => {
       disconnectSocket();
     };
-  }, [userId]);
+  }, [userId, socket]);
 
   return (
     <div className={style.wallet}>
