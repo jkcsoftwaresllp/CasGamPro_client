@@ -22,7 +22,7 @@ export const useFetchUserData = (id) => {
     const fetchUserData = async () => {
       try {
         setLoading(true);
-        const response = await apiCall(`/api/users/${id}`, "GET");
+        const response = await apiCall(`/agent/players/${id}`, "GET");
         setFormData(response.data);
         setLoading(false);
       } catch (err) {
@@ -65,7 +65,7 @@ export const useFetchUserData = (id) => {
         return;
       }
 
-      await apiCall(`/api/users/${id}`, "PUT", formData);
+      await apiCall(`/agent/players/${id}`, "PUT", formData);
       return { success: "User updated successfully!" };
     } catch (err) {
       console.error("Update error:", err);

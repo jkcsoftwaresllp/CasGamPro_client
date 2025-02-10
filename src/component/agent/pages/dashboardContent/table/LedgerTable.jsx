@@ -1,12 +1,28 @@
-import React from "react";
+import React, { useState } from "react";
 import { Table } from "../../../../common/table/jsx/Table.jsx";
 import { manageLenDen } from "../helper/manageLenDen.js";
 import { Loader } from "../../../../common/Loader.jsx";
-import style from "../../styles/ManageClient.module.css";
+import style from "../../styles/Common.module.css";
+import { Button } from "../../../../common/Button.jsx";
 
-export const LedgerTable = ({}) => {
+export const LedgerTable = () => {
   const { data, loading } = manageLenDen();
-  const tableData = data.map((entry) => ({
+
+  // Pagination States
+  const [currentPage, setCurrentPage] = useState(1);
+  const rowsPerPage = 10;
+
+  // Pagination Calculations
+  const indexOfLastRow = currentPage * rowsPerPage;
+  const indexOfFirstRow = indexOfLastRow - rowsPerPage;
+  const currentData = data.slice(indexOfFirstRow, indexOfLastRow);
+
+  const totalPages = Math.ceil(data.length / rowsPerPage);
+  const nextPage = () =>
+    setCurrentPage((prev) => Math.min(prev + 1, totalPages));
+  const prevPage = () => setCurrentPage((prev) => Math.max(prev - 1, 1));
+
+  const tableData = currentData.map((entry) => ({
     agentId: entry.agentId,
     entry: entry.entry, // Last 3 digits of roundId
     betsAmount: entry.betsAmount,
@@ -42,11 +58,27 @@ export const LedgerTable = ({}) => {
         </div>
       ) : (
         <div className={style.manageCommissionsContainer}>
+          <div className={style.paginationContainer}>
+            <Button
+              label="Previous"
+              onClick={prevPage}
+              disabled={currentPage === 1}
+            />
+            <span className={style.pageIndicator}>
+              Page {currentPage} of {totalPages}
+            </span>
+            <Button
+              label="Next"
+              onClick={nextPage}
+              disabled={currentPage === totalPages}
+            />
+          </div>
+
           <Table
             data={tableData}
             columns={columns}
             columnWidths={columnWidths}
-            isAction={false} // Indicating that action buttons should be shown
+            isAction={false} // Indicating no action buttons are shown
           />
         </div>
       )}

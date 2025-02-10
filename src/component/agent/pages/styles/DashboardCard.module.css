@@ -4,6 +4,7 @@
   max-width: 100%; /* Allow cards to be responsive */
   border: 1px solid var(--color-text-primary);
   height: 90px;
+  min-width: 150px;
 }
 
 .label {

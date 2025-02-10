@@ -1,17 +1,25 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useOutletContext } from "react-router-dom";
 import { Table } from "../../../common/table/jsx/Table.jsx";
 import { SettingsIcon } from "../../../../assets/assets.jsx";
 import { routesPathClient as path } from "../../../routing/helper/routesPathClient.js";
 import { CustomBtn } from "../../../common/CustomBtn.jsx";
 import { DialogBox } from "./jsx/DialogBox.jsx";
-import { handleTransaction } from "./helper/transactionHelper.js"; // Import the helper
+import { handleTransaction } from "./helper/transactionHelper.js";
 import { Loader } from "../../../common/Loader.jsx";
 import { manageCommissionData } from "./helper/commision.js";
-import style from "../styles/ManageClient.module.css";
-export const CommissionTable = ({}) => {
+import style from "../styles/Common.module.css";
+import { DownloadButtons } from "./jsx/DownloadBtn.jsx";
+import { Button } from "../../../common/Button.jsx";
+
+export const CommissionTable = () => {
   const { loading, data } = manageCommissionData();
   const navigate = useNavigate();
+  const { searchQuery } = useOutletContext();
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const rowsPerPage = 20;
+
   const [showDialog, setShowDialog] = useState(false);
   const [selectedClientId, setSelectedClientId] = useState(null);
 
@@ -25,7 +33,20 @@ export const CommissionTable = ({}) => {
     setSelectedClientId(null);
   };
 
-  const tableData = data.map((client) => ({
+  const filteredData = data.filter((client) =>
+    client.username.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
+  const indexOfLastRow = currentPage * rowsPerPage;
+  const indexOfFirstRow = indexOfLastRow - rowsPerPage;
+  const currentData = filteredData.slice(indexOfFirstRow, indexOfLastRow);
+
+  const totalPages = Math.ceil(filteredData.length / rowsPerPage);
+  const nextPage = () =>
+    setCurrentPage((prev) => Math.min(prev + 1, totalPages));
+  const prevPage = () => setCurrentPage((prev) => Math.max(prev - 1, 1));
+
+  const tableData = currentData.map((client) => ({
     id: client.id,
     name: client.username,
     matchCommission: client.matchCommission,
@@ -71,13 +92,28 @@ export const CommissionTable = ({}) => {
 
   return (
     <>
-      {" "}
       {loading ? (
         <div className={style.loaderContainer}>
           <Loader />
         </div>
       ) : (
         <div className={style.manageCommissionsContainer}>
+          <div className={style.paginationContainer}>
+            <Button
+              label="Previous"
+              onClick={prevPage}
+              disabled={currentPage === 1}
+            />
+            <span className={style.pageIndicator}>
+              Page {currentPage} of {totalPages}
+            </span>
+            <Button
+              label="Next"
+              onClick={nextPage}
+              disabled={currentPage === totalPages}
+            />
+            <DownloadButtons clients={filteredData} />
+          </div>
           <Table
             data={tableData}
             columns={columns}

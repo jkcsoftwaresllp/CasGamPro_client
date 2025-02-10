@@ -5,16 +5,11 @@ import { AgentDashboard } from "../../agent/pages/AgentDashboard";
 import { ManagePassword } from "../../agent/pages/dashboardContent/ManagePassword";
 import { Settings } from "../../agent/pages/dashboardContent/Setting";
 import { Dashboard } from "../../agent/pages/dashboardContent/Dashboard";
-import { BlockMarket } from "../../agent/pages/dashboardContent/BlockMarket";
-import { BlockedClient } from "../../agent/pages/dashboardContent/BlockedClient";
+
 import { TempComp } from "../../routing/helper/TempComp";
 import { ManageClientsRoutes } from "./ManageClientsRoutes"; // Import the separate route handling component
 import { AgentManageUser } from "../../agent/pages/dashboardContent/manageClient/AgentManageUser";
-import { ManageCommissions } from "../../agent/pages/dashboardContent/ManageCommision";
-import { LiveCasino } from "../../agent/pages/dashboardContent/LiveCasino";
-import { Ledger } from "../../agent/pages/dashboardContent/Ledger";
-import { InOut } from "../../agent/pages/dashboardContent/InOut";
-import { ProfitLoss } from "../../agent/pages/dashboardContent/ProfitLoss";
+
 import { CollectionReport } from "../../agent/pages/dashboardContent/CollectionReport";
 import { BlockTable } from "../../agent/pages/dashboardContent/table/BlockTable";
 import { CommissionTable } from "../../agent/pages/dashboardContent/CommisionTable";

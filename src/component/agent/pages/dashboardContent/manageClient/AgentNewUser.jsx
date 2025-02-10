@@ -6,8 +6,14 @@ import { NumberInput } from "../../../main/jsx/inputFeild/NumberInput";
 import { PasswordInput } from "../../../main/jsx/inputFeild/PasswordInput";
 import { Button } from "../../../../common/Button";
 import style from "./style/AgentNewUser.module.css";
+import { useNavigate } from "react-router-dom";
 
 export const AgentNewUser = () => {
+  const navigate = useNavigate();
+
+  const goBack = () => {
+    navigate(-1);
+  };
   const [formData, setFormData] = useState({
     userId: "",
     firstName: "",
@@ -53,7 +59,11 @@ export const AgentNewUser = () => {
 
     try {
       // Send form data to the backend
-      const response = await apiCall("/api/register", "POST", formData);
+      const response = await apiCall(
+        "/agent/register-client",
+        "POST",
+        formData
+      );
       setSuccess("User registered successfully!");
       console.log("Form submitted successfully:", response);
     } catch (err) {
@@ -135,8 +145,8 @@ export const AgentNewUser = () => {
       {/* Display error */}
       {success && <div className={style.success}>{success}</div>}{" "}
       {/* Display success */}
-      <div>
-        <Button label="Cancel" />
+      <div className={style.btnGroup}>
+        <Button label="Cancel" onClick={goBack} />
         <Button label="Save Changes" onClick={handleSubmit} />
       </div>
     </form>
