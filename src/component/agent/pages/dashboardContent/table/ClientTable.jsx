@@ -8,9 +8,13 @@ import { Loader } from "../../../../common/Loader.jsx";
 import { manageClientsData } from "../helper/manageClient.js";
 import { DownloadButtons } from "../jsx/DownloadBtn.jsx";
 import { Button } from "../../../../common/Button.jsx"; // Import Button component
+import { useOutletContext } from "react-router-dom";
 
 export const ClientTable = () => {
   const navigate = useNavigate();
+  const outletContext = useOutletContext() || {}; // Ensure it's an object
+  const { searchQuery = "" } = outletContext; // Default to empty string if undefined
+
   const { loading, data } = manageClientsData();
 
   // Pagination state
@@ -29,6 +33,10 @@ export const ClientTable = () => {
     sessionCommission: client.sessionCommission,
     share: client.share,
   }));
+
+  const filteredData = tableData.filter((client) =>
+    client.username.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   const columns = [
     { key: "id", label: "ID" },
@@ -101,7 +109,7 @@ export const ClientTable = () => {
             <DownloadButtons clients={data} />
           </div>
           <Table
-            data={tableData}
+            data={filteredData}
             columns={columns}
             columnWidths={columnWidths}
             isAction={true}

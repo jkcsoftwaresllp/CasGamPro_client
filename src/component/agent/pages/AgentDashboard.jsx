@@ -37,6 +37,10 @@ export const AgentDashboard = () => {
     });
   }, [location.pathname]);
 
+  const handleSearch = (query) => {
+    setSearchQuery(query);
+  };
+
   return (
     <div className={style.pageContainer}>
       <Sidebar setHeaderTitle={setHeaderTitle} />

@@ -8,7 +8,7 @@ export const blockedClientsData = (searchQuery = "") => {
   useEffect(() => {
     const fetchClients = async () => {
       setLoading(true);
-      // Simulating an API call with a setTimeout
+
       setTimeout(() => {
         const mockClients = [
           {

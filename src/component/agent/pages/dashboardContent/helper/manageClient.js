@@ -13,7 +13,7 @@ export const manageClientsData = (searchQuery = "") => {
         const mockClients = [
           {
             id: 85800,
-            username: "SP85800 (Ankur)",
+            username: "Ankur",
             matchCommission: 0,
             sessionCommission: 0,
             share: 15,
