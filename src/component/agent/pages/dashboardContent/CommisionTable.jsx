@@ -6,8 +6,11 @@ import { routesPathClient as path } from "../../../routing/helper/routesPathClie
 import { CustomBtn } from "../../../common/CustomBtn.jsx";
 import { DialogBox } from "./jsx/DialogBox.jsx";
 import { handleTransaction } from "./helper/transactionHelper.js"; // Import the helper
-
-export const CommissionTable = ({ clients }) => {
+import { Loader } from "../../../common/Loader.jsx";
+import { manageCommissionData } from "./helper/commision.js";
+import style from "../styles/ManageClient.module.css";
+export const CommissionTable = ({}) => {
+  const { loading, data } = manageCommissionData();
   const navigate = useNavigate();
   const [showDialog, setShowDialog] = useState(false);
   const [selectedClientId, setSelectedClientId] = useState(null);
@@ -22,7 +25,7 @@ export const CommissionTable = ({ clients }) => {
     setSelectedClientId(null);
   };
 
-  const tableData = clients.map((client) => ({
+  const tableData = data.map((client) => ({
     id: client.id,
     name: client.username,
     matchCommission: client.matchCommission,
@@ -68,21 +71,30 @@ export const CommissionTable = ({ clients }) => {
 
   return (
     <>
-      <Table
-        data={tableData}
-        columns={columns}
-        columnWidths={columnWidths}
-        isAction={true}
-        btns={actionButtons}
-        clickableColumns={["name"]}
-        onCellClick={handleCellClick}
-      />
-      <DialogBox
-        isOpen={showDialog}
-        onClose={closeDialog}
-        header="Client Exposure Details"
-        clientId={selectedClientId}
-      />
+      {" "}
+      {loading ? (
+        <div className={style.loaderContainer}>
+          <Loader />
+        </div>
+      ) : (
+        <div className={style.manageCommissionsContainer}>
+          <Table
+            data={tableData}
+            columns={columns}
+            columnWidths={columnWidths}
+            isAction={true}
+            btns={actionButtons}
+            clickableColumns={["name"]}
+            onCellClick={handleCellClick}
+          />
+          <DialogBox
+            isOpen={showDialog}
+            onClose={closeDialog}
+            header="Client Exposure Details"
+            clientId={selectedClientId}
+          />
+        </div>
+      )}
     </>
   );
 };

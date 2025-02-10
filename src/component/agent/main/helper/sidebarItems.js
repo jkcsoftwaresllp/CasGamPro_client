@@ -112,7 +112,7 @@ export const sidebarItems = [
       },
       {
         id: 64,
-        label: "P & L",
+        label: "Profit & Loss",
         value: "profitAndLoss",
         icon: rupees,
         path: `${path.agent}${path.profitAndLoss}`,

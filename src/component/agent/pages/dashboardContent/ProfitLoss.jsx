@@ -56,11 +56,6 @@ export const ProfitLoss = () => {
 
   return (
     <div className={style.manageClientsContainer}>
-      {/* Row for Search Bar and Buttons */}
-      <div className={style.actionRow}>
-        <h1 className={style.header}>Profit Loss </h1>
-      </div>
-
       {/* Client Table */}
       <div className={style.tableContainer}>
         <ProfitLossTable data={data} />

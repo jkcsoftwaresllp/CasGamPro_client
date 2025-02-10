@@ -1,7 +1,10 @@
 import React from "react";
 import { Table } from "../../../../common/table/jsx/Table.jsx";
-
-export const InOutTable = ({ data }) => {
+import style from "../../styles/ManageClient.module.css";
+import { Loader } from "../../../../common/Loader.jsx";
+import { manageInOut } from "../helper/manageInOut.js";
+export const InOutTable = ({}) => {
+  const { data, loading } = manageInOut();
   const tableData = data.map((entry) => ({
     date: entry.date,
     description: entry.description,
@@ -25,11 +28,21 @@ export const InOutTable = ({ data }) => {
   const columnWidths = { date: 0.5, description: 4 };
 
   return (
-    <Table
-      data={tableData}
-      columns={columns}
-      columnWidths={columnWidths}
-      isAction={false} // No action buttons required
-    />
+    <>
+      {loading ? (
+        <div className={style.loaderContainer}>
+          <Loader />
+        </div>
+      ) : (
+        <div className={style.manageCommissionsContainer}>
+          <Table
+            data={tableData}
+            columns={columns}
+            columnWidths={columnWidths}
+            isAction={false} // No action buttons required
+          />
+        </div>
+      )}
+    </>
   );
 };

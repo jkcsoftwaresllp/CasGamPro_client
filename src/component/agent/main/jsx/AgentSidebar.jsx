@@ -5,7 +5,7 @@ import { ExpandIcon, CollapseIcon } from "../../../../assets/assets";
 import { Tab } from "./Tab";
 import { sidebarItems } from "../helper/sidebarItems";
 
-export const AgentSidebar = () => {
+export const AgentSidebar = ({ setHeaderTitle }) => {
   const [isMinimized, setIsMinimized] = useState(false);
   const [expandedItem, setExpandedItem] = useState(null);
   const navigate = useNavigate();
@@ -13,11 +13,7 @@ export const AgentSidebar = () => {
   const toggleSidebar = () => setIsMinimized(!isMinimized);
 
   const handleExpand = (item) => {
-    if (expandedItem === item.id) {
-      setExpandedItem(null);
-    } else {
-      setExpandedItem(item.id);
-    }
+    setExpandedItem(expandedItem === item.id ? null : item.id);
   };
 
   return (
@@ -31,10 +27,11 @@ export const AgentSidebar = () => {
             <Tab
               icon={item.icon}
               onClick={() => {
+                // Update the header text
+                setHeaderTitle(item.label);
                 if (item.subOptions) {
                   handleExpand(item);
                 } else {
-                  console.log(item.path);
                   navigate(item.path);
                 }
               }}
@@ -48,7 +45,8 @@ export const AgentSidebar = () => {
                     key={sub.id}
                     icon={sub.icon}
                     onClick={() => {
-                      console.log(sub.path);
+                      // Update the header for sub-options too
+                      setHeaderTitle(sub.label);
                       navigate(sub.path);
                     }}
                     title={sub.label}

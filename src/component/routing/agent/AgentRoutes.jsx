@@ -12,6 +12,13 @@ import { ManageClientsRoutes } from "./ManageClientsRoutes"; // Import the separ
 import { AgentManageUser } from "../../agent/pages/dashboardContent/manageClient/AgentManageUser";
 import { ManageCommissions } from "../../agent/pages/dashboardContent/ManageCommision";
 import { CollectionReport } from "../../agent/pages/dashboardContent/CollectionReport";
+import { BlockTable } from "../../agent/pages/dashboardContent/table/BlockTable";
+import { CommissionTable } from "../../agent/pages/dashboardContent/CommisionTable";
+import { BlockMarketTable } from "../../agent/pages/dashboardContent/table/BlockMarketTable";
+import { LedgerTable } from "../../agent/pages/dashboardContent/table/LedgerTable";
+import { InOutTable } from "../../agent/pages/dashboardContent/table/InOutTable";
+import { ProfitLossTable } from "../../agent/pages/dashboardContent/table/ProfitLossTable";
+import { LiveCasinoTable } from "../../agent/pages/dashboardContent/table/LiveCasinoTable";
 
 export const AgentRoutes = () => {
   return (
@@ -28,21 +35,15 @@ export const AgentRoutes = () => {
         <Route path={path.payCash} />
         <Route path={path.managePassword} element={<ManagePassword />} />
         <Route path={path.settings} element={<Settings />} />
-        <Route path={path.blockClients} element={<BlockedClient />} />
-        <Route path={path.commision} element={<ManageCommissions />} />
+        <Route path={path.blockClients} element={<BlockTable />} />
+        <Route path={path.commision} element={<CommissionTable />} />
         <Route path={path.ledger} element={<TempComp label="ledger" />} />
-        <Route path={path.blockMarket} element={<BlockMarket />} />
-        <Route path={path.liveCasino} element={<TempComp label="casino" />} />
+        <Route path={path.blockMarket} element={<BlockMarketTable />} />
+        <Route path={path.liveCasino} element={<LiveCasinoTable />} />
         <Route path={path.collectionReport} element={<CollectionReport />} />
-        <Route
-          path={path.companyLenDen}
-          element={<TempComp label="company len den " />}
-        />
-        <Route
-          path={path.profitAndLoss}
-          element={<TempComp label="profit loss" />}
-        />
-        <Route path={path.inOut} element={<TempComp label="in out" />} />
+        <Route path={path.companyLenDen} element={<LedgerTable />} />
+        <Route path={path.profitAndLoss} element={<ProfitLossTable />} />
+        <Route path={path.inOut} element={<InOutTable />} />
       </Route>
 
       {/* Catch-all route for 404 errors */}
