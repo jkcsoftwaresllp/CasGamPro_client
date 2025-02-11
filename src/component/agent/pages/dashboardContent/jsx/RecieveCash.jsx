@@ -4,19 +4,24 @@ import { UserIdInput } from "../../../main/jsx/inputFeild/UserId";
 import { TextInput } from "../../../../common/TextInput";
 import { Button } from "../../../../common/Button";
 import style from "../../styles/RecieveCash.module.css";
+import { apiCall } from "../../../../common/apiCall";
 
 export const ReceiveCash = () => {
   const { id } = useParams(); // Fetch the user ID from the URL
-  const [userValue, setuserValue] = useState("");
-  const [input1, setInput1] = useState("");
-  const [input2, setInput2] = useState("");
+  const [userValue, setUserValue] = useState("");
+  const [amount, setAmount] = useState("");
+  const [note, setNote] = useState("");
 
-  useEffect(() => {
-    fetch(``)
-      .then((response) => response.json())
-      .then((data) => setuserValue(data.value))
-      .catch((error) => console.error("Error fetching data:", error));
-  }, [id]);
+  const fetchData = async () => {
+    const response = await apiCall(
+      "/auth-api/agent/walletTransaction",
+      "POST",
+      { userId: id, type: "deposit", amount, note }
+    );
+    if (response && response.uniqueCode === "CGP0062") {
+      console.log("API Response: ", response);
+    } else console.error("API Error:", response.data);
+  };
 
   return (
     <div className={style.container}>
@@ -34,25 +39,18 @@ export const ReceiveCash = () => {
         <label className={style.label}>Update Ledger:</label>
         <TextInput
           placeholder="Enter value"
-          value={input1}
-          onChange={setInput1}
+          value={amount}
+          onChange={setAmount}
         />
       </div>
 
       <div className={style.row}>
         <label className={style.label}>Note:</label>
-        <TextInput
-          placeholder="Enter note"
-          value={input2}
-          onChange={setInput2}
-        />
+        <TextInput placeholder="Enter note" value={note} onChange={setNote} />
       </div>
 
       <div className={style.buttonContainer}>
-        <Button
-          label="Save Changes"
-          onClick={() => console.log("Changes saved")}
-        />
+        <Button label="Save Changes" onClick={fetchData} />
       </div>
     </div>
   );
