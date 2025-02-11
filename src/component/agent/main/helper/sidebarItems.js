@@ -33,7 +33,10 @@ export const sidebarItems = [
   {
     id: 3,
     label: "Manage Clients",
-    value: "manageClients",
+    value: "addnewuser",
+
+    path: `${path.agent}${path.manageClients}${path.addnewuser}`,
+
     path: `${path.agent}${path.manageClients}`,
 
     icon: ManageClientsIcon,
@@ -89,6 +92,7 @@ export const sidebarItems = [
     label: "Ledger",
     value: "ledger",
     icon: LedgerIcon,
+    path: `${path.agent}${path.collectionReport}`,
     subOptions: [
       {
         id: 61,

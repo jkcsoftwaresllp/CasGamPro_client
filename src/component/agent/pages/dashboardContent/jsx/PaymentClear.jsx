@@ -6,7 +6,7 @@ import { DownloadIcon } from "../../../../../assets/assets";
 import { downloadPDF } from "../helper/paymentRecieve";
 import { IconBtn } from "../../../../common/IconBtn";
 import { routesPathClient as path } from "../../../../routing/helper/routesPathClient";
-
+import { IconBtncustom } from "../../../../common/IconBtncustom";
 export const PaymentClear = () => {
   const navigate = useNavigate();
 
@@ -49,7 +49,7 @@ export const PaymentClear = () => {
     <div className={style.container}>
       <div className={style.header}>
         <h2 className={style.heading}>Payment Clear (Clear Hai)</h2>
-        <IconBtn
+        <IconBtncustom
           icon={DownloadIcon}
           onClick={() =>
             downloadPDF(formattedClients, "Payment Clear (Clear Hai)")

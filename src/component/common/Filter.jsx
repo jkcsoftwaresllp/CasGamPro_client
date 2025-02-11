@@ -20,6 +20,8 @@ export const Filter = ({ onFilter }) => {
     setFilters({ ...filters, [e.target.name]: e.target.value });
   };
 
+  const closeOverlay = () => setShowOptions(false);
+
   return (
     <div className={style.card}>
       <div className={style.cardContent}>
@@ -27,109 +29,119 @@ export const Filter = ({ onFilter }) => {
           <IconBtn icon={FilterIcon} onClick={() => setShowOptions(true)} />
         ) : (
           <>
-            <div className={style.filterOptions}>
-              {["Date", "User ID", "Client Name", "Limit/Offset"].map(
-                (option) => (
-                  <Button
-                    key={option}
-                    onClick={() => setSelectedFilter(option)}
-                    label={option}
-                  />
-                )
+            {/* Overlay Backdrop */}
+            <div className={style.overlay} onClick={closeOverlay}></div>
+
+            {/* Filter Options Modal */}
+            <div className={style.filterOptionsModal}>
+              <div className={style.filterOptions}>
+                {["Date", "User ID", "Client Name", "Limit/Offset"].map(
+                  (option) => (
+                    <Button
+                      key={option}
+                      onClick={() => setSelectedFilter(option)}
+                      label={option}
+                    />
+                  )
+                )}
+              </div>
+
+              {selectedFilter === "Date" && (
+                <>
+                  <div className={style.formGroup}>
+                    <label>Start Date</label>
+                    <input
+                      type="date"
+                      name="startDate"
+                      value={filters.startDate}
+                      onChange={handleChange}
+                      className={style.input}
+                    />
+                  </div>
+                  <div className={style.formGroup}>
+                    <label>End Date</label>
+                    <input
+                      type="date"
+                      name="endDate"
+                      value={filters.endDate}
+                      onChange={handleChange}
+                      className={style.input}
+                    />
+                  </div>
+                </>
               )}
-            </div>
 
-            {selectedFilter === "Date" && (
-              <>
+              {selectedFilter === "User ID" && (
                 <div className={style.formGroup}>
-                  <label>Start Date</label>
+                  <label>User ID</label>
                   <input
-                    type="date"
-                    name="startDate"
-                    value={filters.startDate}
+                    type="text"
+                    name="userId"
+                    value={filters.userId}
                     onChange={handleChange}
                     className={style.input}
+                    placeholder="Enter User ID"
                   />
                 </div>
+              )}
+
+              {selectedFilter === "Client Name" && (
                 <div className={style.formGroup}>
-                  <label>End Date</label>
+                  <label>Client Name</label>
                   <input
-                    type="date"
-                    name="endDate"
-                    value={filters.endDate}
+                    type="text"
+                    name="clientName"
+                    value={filters.clientName}
                     onChange={handleChange}
                     className={style.input}
+                    placeholder="Enter Client Name"
                   />
                 </div>
-              </>
-            )}
+              )}
 
-            {selectedFilter === "User ID" && (
-              <div className={style.formGroup}>
-                <label>User ID</label>
-                <input
-                  type="text"
-                  name="userId"
-                  value={filters.userId}
-                  onChange={handleChange}
-                  className={style.input}
-                  placeholder="Enter User ID"
-                />
-              </div>
-            )}
+              {selectedFilter === "Limit/Offset" && (
+                <>
+                  <div className={style.formGroup}>
+                    <label>Limit</label>
+                    <select
+                      name="limit"
+                      value={filters.limit}
+                      onChange={handleChange}
+                      className={style.select}
+                    >
+                      {[10, 20, 30, 50, 100].map((num) => (
+                        <option key={num} value={num}>
+                          {num}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                  <div className={style.formGroup}>
+                    <label>Offset</label>
+                    <input
+                      type="number"
+                      name="offset"
+                      value={filters.offset}
+                      onChange={handleChange}
+                      className={style.input}
+                    />
+                  </div>
+                </>
+              )}
 
-            {selectedFilter === "Client Name" && (
-              <div className={style.formGroup}>
-                <label>Client Name</label>
-                <input
-                  type="text"
-                  name="clientName"
-                  value={filters.clientName}
-                  onChange={handleChange}
-                  className={style.input}
-                  placeholder="Enter Client Name"
-                />
-              </div>
-            )}
+              {selectedFilter && (
+                <button
+                  className={style.button}
+                  onClick={() => onFilter(filters)}
+                >
+                  Apply Filters
+                </button>
+              )}
 
-            {selectedFilter === "Limit/Offset" && (
-              <>
-                <div className={style.formGroup}>
-                  <label>Limit</label>
-                  <select
-                    name="limit"
-                    value={filters.limit}
-                    onChange={handleChange}
-                    className={style.select}
-                  >
-                    {[10, 20, 30, 50, 100].map((num) => (
-                      <option key={num} value={num}>
-                        {num}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-                <div className={style.formGroup}>
-                  <label>Offset</label>
-                  <input
-                    type="number"
-                    name="offset"
-                    value={filters.offset}
-                    onChange={handleChange}
-                    className={style.input}
-                  />
-                </div>
-              </>
-            )}
-
-            {selectedFilter && (
-              <button
-                className={style.button}
-                onClick={() => onFilter(filters)}
-              >
-                Apply Filters
+              <button className={style.closeBtn} onClick={closeOverlay}>
+                Close
               </button>
-            )}
+            </div>
           </>
         )}
       </div>

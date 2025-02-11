@@ -1,10 +1,8 @@
 import { useState, useEffect } from "react";
 import { AgentSidebar as Sidebar } from "../main/jsx/AgentSidebar";
+import { AgentHeaderLayout } from "./AgentHeaderLayout"; // Import the layout component
 import style from "./styles/ContentPage.module.css";
 import { Outlet, useLocation } from "react-router-dom";
-import { Breadcrumbs } from "../../common/Breadcrumbs";
-import { SearchBar } from "./dashboardContent/jsx/SearchBar";
-import { DownloadButtons } from "./dashboardContent/jsx/DownloadBtn";
 import { routesPathClient as path } from "../../routing/helper/routesPathClient";
 
 export const AgentDashboard = () => {
@@ -22,11 +20,28 @@ export const AgentDashboard = () => {
   useEffect(() => {
     const currentPath = location.pathname;
 
-    // Define full paths using the imported routesPathClient object
     const pagesWithSearchBar = [
       `${path.agent}${path.manageClients}`,
       `${path.agent}${path.blockClients}`,
       `${path.agent}${path.commision}`,
+      `${path.agent}/limit`, // Assuming 'limit' is not in routesPathClient
+    ];
+    const pagesWithDownloadBtn = [
+      `${path.agent}${path.manageClients}`,
+      `${path.agent}${path.blockClients}`,
+      `${path.agent}${path.commision}`,
+      `${path.agent}${path.companyLenDen}`,
+      `${path.agent}${path.profitAndLoss}`,
+      `${path.agent}${path.inOut}`,
+      `${path.agent}/limit`, // Assuming 'limit' is not in routesPathClient
+    ];
+    const pagesWithshowPagination = [
+      `${path.agent}${path.manageClients}`,
+      `${path.agent}${path.blockClients}`,
+      `${path.agent}${path.commision}`,
+      `${path.agent}${path.companyLenDen}`,
+      `${path.agent}${path.profitAndLoss}`,
+      `${path.agent}${path.inOut}`,
       `${path.agent}/limit`, // Assuming 'limit' is not in routesPathClient
     ];
 
@@ -34,6 +49,8 @@ export const AgentDashboard = () => {
       showBreadcrumbs: currentPath.split("/").filter(Boolean).length >= 2, // Show breadcrumbs for depth >= 3
       breadcrumbsData: currentPath.split("/").filter(Boolean), // Format breadcrumbs
       showSearchBar: pagesWithSearchBar.includes(currentPath),
+      showDownloadButtons: pagesWithDownloadBtn.includes(currentPath),
+      showPagination: pagesWithshowPagination.includes(currentPath),
     });
   }, [location.pathname]);
 
@@ -45,31 +62,20 @@ export const AgentDashboard = () => {
     <div className={style.pageContainer}>
       <Sidebar setHeaderTitle={setHeaderTitle} />
       <div className={style.content}>
-        <header className={style.headerContainer}>
-          <div className={style.headerTop}>
-            <h1 className={style.headerTitle}>{headerTitle}</h1>
-            {headerConfig.showBreadcrumbs && (
-              <Breadcrumbs data={headerConfig.breadcrumbsData} />
-            )}
-          </div>
+        {/* Use AgentHeaderLayout component for the header */}
+        <AgentHeaderLayout
+          headerTitle={headerTitle}
+          headerConfig={headerConfig}
+          searchQuery={searchQuery}
+          setSearchQuery={setSearchQuery}
+        />
 
-          {(headerConfig.showSearchBar || headerConfig.showDownloadButtons) && (
-            <div className={style.headerActions}>
-              {headerConfig.showSearchBar && (
-                <SearchBar
-                  searchQuery={searchQuery}
-                  setSearchQuery={setSearchQuery}
-                />
-              )}
-            </div>
-          )}
-        </header>
-<div className={style.outlet}>
+        {/* Content Section */}
+        <div className={style.outlet}>
           <Outlet
             context={{ setHeaderConfig, searchQuery: searchQuery || "" }}
           />
         </div>
-
       </div>
     </div>
   );
