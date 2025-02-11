@@ -7,7 +7,7 @@ export const manageLiveCasinoData = (searchQuery = "") => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchLiveCasinoData = async () => {
+    const fetchData = async () => {
       setLoading(true);
       const response = await apiCall(
         "/auth-api/agent/liveCasinoReports",
@@ -19,7 +19,7 @@ export const manageLiveCasinoData = (searchQuery = "") => {
       } else console.error("API Error:", response.data);
     };
 
-    fetchLiveCasinoData();
+    fetchData();
   }, []);
 
   const data =

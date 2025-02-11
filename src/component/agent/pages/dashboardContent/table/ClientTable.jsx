@@ -3,9 +3,9 @@ import { useNavigate } from "react-router-dom";
 import { Table } from "../../../../common/table/jsx/Table.jsx";
 import { EditIcon, SettingsIcon } from "../../../../../assets/assets.jsx";
 import { routesPathClient as path } from "../../../../routing/helper/routesPathClient.js";
-import style from "../../styles/ManageClient.module.css";
 import { Loader } from "../../../../common/Loader.jsx";
 import { manageClientsData } from "../helper/manageClient.js";
+import style from "./Table.module.css";
 
 export const ClientTable = ({}) => {
   const navigate = useNavigate();
@@ -14,9 +14,9 @@ export const ClientTable = ({}) => {
 
   const tableData = data.map((client) => ({
     id: client.id,
-    username: client.username,
-    matchCommission: client.matchCommission,
-    sessionCommission: client.sessionCommission,
+    username: `${client.firstName} ${client.lastName}`,
+    matchCommission: client.matchShare,
+    lotteryCommission: client.lotteryCommission,
     share: client.share,
   }));
 
@@ -24,7 +24,7 @@ export const ClientTable = ({}) => {
     { key: "id", label: "ID" },
     { key: "username", label: "UserName" },
     { key: "matchCommission", label: "Match Commission" },
-    { key: "sessionCommission", label: "Session Commission" },
+    { key: "lotteryCommission", label: "Lottery Commission" },
     { key: "share", label: "Share" },
     { key: "actions", label: "Actions" },
   ];
@@ -57,15 +57,15 @@ export const ClientTable = ({}) => {
   };
 
   return (
-    <div>
+    <div className={style.tableContainer}>
       {loading ? (
         <div className={style.loaderContainer}>
           <Loader />
         </div>
       ) : (
-        <div className={style.manageCommissionsContainer}>
+        <div className={style.tableContent}>
           <Table
-            data={data}
+            data={tableData}
             columns={columns}
             columnWidths={columnWidths}
             isAction={true} // Indicating that action buttons should be shown
