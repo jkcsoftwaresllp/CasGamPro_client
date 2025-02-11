@@ -12,6 +12,7 @@ import { useFetchUserData } from "../helper/editUser"; // Import the helper func
 
 export const EditUser = () => {
   const { id } = useParams();
+  console.log("Edit user id:", id);
   const navigate = useNavigate();
   const {
     formData,
@@ -82,9 +83,9 @@ export const EditUser = () => {
             max={3}
           />
           <NumberInput
-            label="User Session Commission"
-            name="userSessionCommission"
-            value={formData.userSessionCommission}
+            label="User Lottery Commission"
+            name="userLotteryCommission"
+            value={formData.userLotteryCommission}
             onChange={handleChange}
             min={0}
             max={3}

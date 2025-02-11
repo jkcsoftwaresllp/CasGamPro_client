@@ -9,7 +9,7 @@ export const useFetchUserData = (id) => {
     fixLimit: 0,
     myMatchShare: 0,
     userMatchCommission: 0,
-    userSessionCommission: 0,
+    userLotteryCommission: 0,
     password: "",
     confirmPassword: "",
     agentBlocked: false,
@@ -22,8 +22,22 @@ export const useFetchUserData = (id) => {
     const fetchUserData = async () => {
       try {
         setLoading(true);
-        const response = await apiCall(`/api/users/${id}`, "GET");
-        setFormData(response.data);
+        const response = await apiCall(`/auth-api/agent/players/${id}`, "GET");
+        console.log("User data fetched successfully:", response.data.client);
+        setFormData((prev) => {
+          return {
+            ...prev,
+            userId: response.data.client.id,
+            firstName: response.data.client.firstName,
+            lastName: response.data.client.lastName,
+            fixLimit: response.data.client.fixLimit,
+            myMatchShare: response.data.client.matchShare,
+            userMatchCommission: response.data.client.userMatchCommission,
+            userLotteryCommission: response.data.client.lotteryCommission,
+            agentBlocked: response.data.client.agentBlocked,
+            betsBlocked: response.data.client.betsBlocked,
+          };
+        });
         setLoading(false);
       } catch (err) {
         console.error("Error fetching user data:", err);
