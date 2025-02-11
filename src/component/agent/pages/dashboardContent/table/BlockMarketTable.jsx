@@ -3,7 +3,7 @@ import { Table } from "../../../../common/table/jsx/Table.jsx";
 import { EditIcon } from "../../../../../assets/assets.jsx";
 import { GameTableWindow } from "../GameTableWindow.jsx";
 import { Loader } from "../../../../common/Loader.jsx";
-import style from "../../styles/ManageClient.module.css";
+import style from "./Table.module.css";
 import { games } from "../helper/games.js";
 
 export const BlockMarketTable = () => {
@@ -43,30 +43,36 @@ export const BlockMarketTable = () => {
   };
 
   return (
-    <>
+    <div className={style.tableContainer}>
       {loading ? (
         <div className={style.loaderContainer}>
           <Loader />
         </div>
       ) : (
-        <div className={style.manageCommissionsContainer}>
+        <div className={style.tableContent}>
           {isGameView && (
             <GameTableWindow
               setIsGameView={setIsGameView}
               gameName={gameName}
             />
           )}
-          <Table
-            data={tableData}
-            columns={columns}
-            columnWidths={columnWidths}
-            isAction={true} // Indicating that action buttons should be shown
-            btns={actionButtons} // Passing action buttons here
-            clickableColumns={["name"]}
-            onCellClick={handleCellClick}
-          />
+          <div className={style.tableContent}>
+            {tableData.length === 0 ? (
+              <div className={style.noDataContainer}> No Record Found </div>
+            ) : (
+              <Table
+                data={tableData}
+                columns={columns}
+                columnWidths={columnWidths}
+                isAction={true} // Indicating that action buttons should be shown
+                btns={actionButtons} // Passing action buttons here
+                clickableColumns={["name"]}
+                onCellClick={handleCellClick}
+              />
+            )}
+          </div>
         </div>
       )}
-    </>
+    </div>
   );
 };
