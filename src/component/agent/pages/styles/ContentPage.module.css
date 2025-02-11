@@ -4,16 +4,18 @@
 }
 
 .content {
-  padding: 20px;
   flex-grow: 1;
   height: 100%;
   overflow-y: auto;
 }
+
 .headerContainer {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   gap: 10px; /* Space between sections */
-  padding: 16px;
+  height: 7%;
+  padding: 0 20px;
 }
 
 .headerTop {
@@ -35,6 +37,11 @@
   align-items: center;
   width: 100%;
   margin-top: 10px;
+}
+
+.contentContainer {
+  height: 93%;
+  width: 100%;
 }
 
 @media (max-width: 768px) {

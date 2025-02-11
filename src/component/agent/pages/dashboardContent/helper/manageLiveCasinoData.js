@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { apiCall } from "../../../../common/apiCall";
 
 // Custom hook for managing live casino data
 export const manageLiveCasinoData = (searchQuery = "") => {
@@ -8,111 +9,25 @@ export const manageLiveCasinoData = (searchQuery = "") => {
   useEffect(() => {
     const fetchLiveCasinoData = async () => {
       setLoading(true);
-      // Simulating an API call with setTimeout
-      setTimeout(() => {
-        const mockData = [
-          {
-            title: "Teen Patti Round_1524856",
-            date: "11-12-2024",
-            declare: "Yes",
-            profitLoss: "+5920",
-          },
-          {
-            title: "Teen Patti Round_1524856",
-            date: "11-12-2024",
-            declare: "Yes",
-            profitLoss: "+5920",
-          },
-          {
-            title: "Teen Patti Round_1524856",
-            date: "11-12-2024",
-            declare: "Yes",
-            profitLoss: "+5920",
-          },
-          {
-            title: "Teen Patti Round_1524856",
-            date: "11-12-2024",
-            declare: "Yes",
-            profitLoss: "+5920",
-          },
-          {
-            title: "Teen Patti Round_1524856",
-            date: "11-12-2024",
-            declare: "Yes",
-            profitLoss: "+5920",
-          },
-          {
-            title: "Teen Patti Round_1524856",
-            date: "11-12-2024",
-            declare: "Yes",
-            profitLoss: "+5920",
-          },
-          {
-            title: "Teen Patti Round_1524856",
-            date: "11-12-2024",
-            declare: "Yes",
-            profitLoss: "+5920",
-          },
-          {
-            title: "Teen Patti Round_1524856",
-            date: "11-12-2024",
-            declare: "Yes",
-            profitLoss: "+5920",
-          },
-          {
-            title: "Teen Patti Round_1524856",
-            date: "11-12-2024",
-            declare: "Yes",
-            profitLoss: "+5920",
-          },
-          {
-            title: "Teen Patti Round_1524856",
-            date: "11-12-2024",
-            declare: "Yes",
-            profitLoss: "+5920",
-          },
-          {
-            title: "Teen Patti Round_1524856",
-            date: "11-12-2024",
-            declare: "Yes",
-            profitLoss: "+5920",
-          },
-          {
-            title: "Teen Patti Round_1524856",
-            date: "11-12-2024",
-            declare: "Yes",
-            profitLoss: "+5920",
-          },
-          {
-            title: "Teen Patti Round_1524856",
-            date: "11-12-2024",
-            declare: "Yes",
-            profitLoss: "+5920",
-          },
-          {
-            title: "Teen Patti Round_1524856",
-            date: "11-12-2024",
-            declare: "Yes",
-            profitLoss: "+5920",
-          },
-          {
-            title: "Teen Patti Round_1524856",
-            date: "11-12-2024",
-            declare: "Yes",
-            profitLoss: "+5920",
-          },
-        ];
-        setLiveGames(mockData);
+      const response = await apiCall(
+        "/auth-api/agent/liveCasinoReports",
+        "GET"
+      );
+      if (response && response.uniqueCode === "CGP0081") {
+        setLiveGames(response.data.data);
         setLoading(false);
-      }); // Simulate a delay
+      } else console.error("API Error:", response.data);
     };
 
     fetchLiveCasinoData();
   }, []);
 
-  const data = liveGames.filter((game) =>
-    game.title.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+  const data =
+    liveGames.length === 0
+      ? []
+      : liveGames.filter((game) =>
+          game.title.toLowerCase().includes(searchQuery.toLowerCase())
+        );
 
   return { loading, data };
 };

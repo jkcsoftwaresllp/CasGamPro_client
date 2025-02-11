@@ -63,8 +63,9 @@ export const AgentDashboard = () => {
             </div>
           )}
         </header>
-
-        <Outlet context={{ setHeaderConfig }} />
+        <div className={style.contentContainer}>
+          <Outlet context={{ setHeaderConfig }} />
+        </div>
       </div>
     </div>
   );
