@@ -64,11 +64,12 @@ export const AgentDashboard = () => {
             </div>
           )}
         </header>
-        <div className={style.outlet}>
+<div className={style.outlet}>
           <Outlet
             context={{ setHeaderConfig, searchQuery: searchQuery || "" }}
           />
         </div>
+
       </div>
     </div>
   );
