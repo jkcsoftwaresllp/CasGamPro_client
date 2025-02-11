@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import { Table } from "../../../../common/table/jsx/Table.jsx";
 import { EditIcon, SettingsIcon } from "../../../../../assets/assets.jsx";
@@ -7,9 +7,6 @@ import { Loader } from "../../../../common/Loader.jsx";
 import { manageClientsData } from "../helper/manageClient.js";
 import style from "./Table.module.css";
 // import style from "../../styles/Common.module.css";
-import { Loader } from "../../../../common/Loader.jsx";
-import { manageClientsData } from "../helper/manageClient.js";
-
 
 import { useOutletContext } from "react-router-dom";
 
@@ -81,7 +78,7 @@ export const ClientTable = () => {
       ) : (
         <div className={style.tableContent}>
           <Table
-            data={tableData}
+            data={filteredData}
             columns={columns}
             columnWidths={columnWidths}
             isAction={true}

@@ -4,6 +4,7 @@
 }
 
 .content {
+  --header-height: 60px;
   flex-grow: 1;
   height: 100%;
   overflow-y: auto;
@@ -13,15 +14,15 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 10px; /* Space between sections */
-  height: 7%;
+  height: var(--header-height);
   padding: 0 20px;
   width: 100%;
   background-color: var(--color-bg-primary);
 }
 
 .outlet {
-  height: 100%;
+  height: calc(100% - var(--header-height));
+  width: 100%;
 }
 
 .headerTop {
@@ -43,11 +44,6 @@
   gap: 16px; /* Adds space between Download Buttons and Pagination */
 }
 
-.breadcrumbsContainer {
-  margin-top: 8px; /* Adds space between title and breadcrumbs */
-  margin-bottom: 16px; /* Adds space between breadcrumbs and search bar */
-}
-
 .headerActionsRow {
   display: flex;
   align-items: center;
@@ -56,11 +52,6 @@
 
 .searchBarWrapper {
   flex-grow: 1; /* Takes up available space for search bar */
-}
-
-.contentContainer {
-  height: 93%;
-  width: 100%;
 }
 
 @media (max-width: 768px) {
