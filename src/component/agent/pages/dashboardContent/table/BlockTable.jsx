@@ -4,10 +4,9 @@ import { UnBlockIcon } from "../../../../../assets/assets.jsx";
 import { showUnblockUserSwal } from "../helper/swalHelpers.js";
 import { blockedClientsData } from "../helper/blockedClient";
 import { Loader } from "../../../../common/Loader.jsx";
-import style from "../../styles/Common.module.css";
+import style from "./Table.module.css";
 import { useOutletContext } from "react-router-dom";
-import { DownloadButtons } from "../jsx/DownloadBtn.jsx";
-import { Button } from "../../../../common/Button.jsx";
+
 
 export const BlockTable = () => {
   const { searchQuery } = useOutletContext();
@@ -71,13 +70,13 @@ export const BlockTable = () => {
   ];
 
   return (
-    <div>
+    <div className={style.tableContainer}>
       {loading ? (
         <div className={style.loaderContainer}>
           <Loader />
         </div>
       ) : (
-        <div className={style.manageCommissionsContainer}>
+       <div className={style.tableContent}>
           <Table
             data={currentData}
             columns={columns}

@@ -41,12 +41,12 @@
   gap: 5px;
   border-radius: var(--borderRadius);
   font-weight: var(--text);
+  padding: 10px;
 }
 
 .cell {
   flex: 1;
   text-align: center;
-  padding: 10px;
   overflow: hidden;
   color: var(--color-text-primary);
   font-size: var(--text-md);
@@ -72,10 +72,10 @@
   text-decoration: underline;
 }
 
-.row:nth-child(odd) {
+/* .row:nth-child(odd) {
   background-color: var(--color-bg-secondary);
 }
 
 .row:nth-child(even) {
   background-color: var(--color-bg-primary);
-}
+} */
