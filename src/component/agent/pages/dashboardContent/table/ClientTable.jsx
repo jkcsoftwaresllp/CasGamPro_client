@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Table } from "../../../../common/table/jsx/Table.jsx";
 import { EditIcon, SettingsIcon } from "../../../../../assets/assets.jsx";
@@ -6,11 +6,18 @@ import { routesPathClient as path } from "../../../../routing/helper/routesPathC
 import { Loader } from "../../../../common/Loader.jsx";
 import { manageClientsData } from "../helper/manageClient.js";
 import style from "./Table.module.css";
+// import style from "../../styles/Common.module.css";
+import { Loader } from "../../../../common/Loader.jsx";
+import { manageClientsData } from "../helper/manageClient.js";
 
-export const ClientTable = ({}) => {
+
+import { useOutletContext } from "react-router-dom";
+
+export const ClientTable = () => {
   const navigate = useNavigate();
-
   const { loading, data } = manageClientsData();
+  const outletContext = useOutletContext() || {};
+  const { searchQuery = "" } = outletContext;
 
   const tableData = data.map((client) => ({
     id: client.id,
@@ -19,6 +26,10 @@ export const ClientTable = ({}) => {
     lotteryCommission: client.lotteryCommission,
     share: client.share,
   }));
+
+  const filteredData = tableData.filter((client) =>
+    client.username.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   const columns = [
     { key: "id", label: "ID" },
@@ -41,7 +52,7 @@ export const ClientTable = ({}) => {
             ":id",
             row.id
           )}`
-        ), // Navigating to edit page with client id
+        ),
     },
     {
       label: "Settings",
@@ -52,9 +63,14 @@ export const ClientTable = ({}) => {
 
   const handleCellClick = (value, row) => {
     navigate(
-      `${path.agent}${path.manageClients}${path.userInfo.replace("id", row.id)}`
+      `${path.agent}${path.manageClients}${path.userInfo.replace(
+        ":id",
+        row.id
+      )}`
     );
   };
+
+  // Handle pagination
 
   return (
     <div className={style.tableContainer}>
@@ -68,11 +84,12 @@ export const ClientTable = ({}) => {
             data={tableData}
             columns={columns}
             columnWidths={columnWidths}
-            isAction={true} // Indicating that action buttons should be shown
-            btns={actionButtons} // Passing action buttons here
-            clickableColumns={["username"]} // Make "entry" column clickable
+            isAction={true}
+            btns={actionButtons}
+            clickableColumns={["username"]}
             onCellClick={handleCellClick}
           />
+          {/* Pagination Controls */}
         </div>
       )}
     </div>

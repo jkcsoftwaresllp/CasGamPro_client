@@ -13,6 +13,8 @@
   justify-content: center; /* Ensure the content (icon + label) is centered */
   transition: background-color 0.3s ease;
 }
+.divButtonCustom {
+}
 
 .divButton:hover {
   background-color: var(
@@ -24,7 +26,8 @@
   padding-top: 3px;
   color: var(--color-text-primary);
 }
-
+.iconCustom {
+}
 .label {
   font-size: var(--text-md);
   color: var(--color-text-primary);

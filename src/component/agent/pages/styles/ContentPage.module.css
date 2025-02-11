@@ -16,27 +16,46 @@
   gap: 10px; /* Space between sections */
   height: 7%;
   padding: 0 20px;
+  width: 100%;
+  background-color: var(--color-bg-primary);
+}
+
+.outlet {
+  height: 100%;
 }
 
 .headerTop {
   display: flex;
-  flex-direction: column;
-  align-items: flex-start; /* Align title & breadcrumbs to the left */
+  justify-content: space-between; /* Ensures the left (title) and right (actions) are separated */
+  align-items: center; /* Vertically center the items */
+  width: 100%;
 }
 
 .headerTitle {
-  font-size: var(--text-lg);
+  font-size: var(--text-lg); /* Adjust accordingly */
   font-weight: var(--text-bold);
-  margin: 0;
   color: var(--color-text-primary);
 }
 
-.headerActions {
+.rightSideActions {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  width: 100%;
-  margin-top: 10px;
+  gap: 16px; /* Adds space between Download Buttons and Pagination */
+}
+
+.breadcrumbsContainer {
+  margin-top: 8px; /* Adds space between title and breadcrumbs */
+  margin-bottom: 16px; /* Adds space between breadcrumbs and search bar */
+}
+
+.headerActionsRow {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.searchBarWrapper {
+  flex-grow: 1; /* Takes up available space for search bar */
 }
 
 .contentContainer {
@@ -48,6 +67,5 @@
   .headerActions {
     flex-direction: column;
     align-items: flex-start;
-    gap: 10px;
   }
 }

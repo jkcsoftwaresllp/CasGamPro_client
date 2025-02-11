@@ -20,8 +20,8 @@ export const AgentManageUser = () => {
       {loading ? (
         <Loader />
       ) : (
-        <>
-          <h2 className={style.heading}>Manage User: {id}</h2>
+        <div className={style.infoBody}>
+          <h2 className={style.heading}>Manage User {id}</h2>
           <div className={style.buttonGrid}>
             <Button
               label="Receive Cash"
@@ -105,7 +105,7 @@ export const AgentManageUser = () => {
             <DashboardCard label="Coins" value="-35000" />
             <DashboardCard label="Rs Exposure" value="5000" />
           </div>
-        </>
+        </div>
       )}
     </div>
   );

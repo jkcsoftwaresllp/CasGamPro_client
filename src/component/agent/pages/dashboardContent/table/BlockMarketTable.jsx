@@ -4,15 +4,30 @@ import { EditIcon } from "../../../../../assets/assets.jsx";
 import { GameTableWindow } from "../GameTableWindow.jsx";
 import { Loader } from "../../../../common/Loader.jsx";
 import style from "./Table.module.css";
+// import style from "../../styles//Common.module.css";
+import { Button } from "../../../../common/Button.jsx";
 import { games } from "../helper/games.js";
 
 export const BlockMarketTable = () => {
-  const { loading, data } = games(); // Fixed "Loading" to "loading" for consistency
+  const { loading, data } = games();
   const [isGameView, setIsGameView] = useState(false);
-  const [gameName, setGameName] = useState(""); // Changed initial state to an empty string
+  const [gameName, setGameName] = useState("");
 
-  const tableData = data.map((game) => ({
-    // Fixed "games" to "game" for clarity
+  // Pagination States
+  const [currentPage, setCurrentPage] = useState(1);
+  const rowsPerPage = 20;
+
+  // Pagination Calculations
+  const indexOfLastRow = currentPage * rowsPerPage;
+  const indexOfFirstRow = indexOfLastRow - rowsPerPage;
+  const currentData = data.slice(indexOfFirstRow, indexOfLastRow);
+
+  const totalPages = Math.ceil(data.length / rowsPerPage);
+  const nextPage = () =>
+    setCurrentPage((prev) => Math.min(prev + 1, totalPages));
+  const prevPage = () => setCurrentPage((prev) => Math.max(prev - 1, 1));
+
+  const tableData = currentData.map((game) => ({
     id: game.id,
     betfairid: game.betfairid,
     name: game.name,
@@ -49,7 +64,22 @@ export const BlockMarketTable = () => {
           <Loader />
         </div>
       ) : (
-        <div className={style.tableContent}>
+        <div className={style.manageCommissionsContainer}>
+          <div className={style.paginationContainer}>
+            <Button
+              label="Previous"
+              onClick={prevPage}
+              disabled={currentPage === 1}
+            />
+            <span className={style.pageIndicator}>
+              Page {currentPage} of {totalPages}
+            </span>
+            <Button
+              label="Next"
+              onClick={nextPage}
+              disabled={currentPage === totalPages}
+            />
+          </div>
           {isGameView && (
             <GameTableWindow
               setIsGameView={setIsGameView}
