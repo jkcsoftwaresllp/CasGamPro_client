@@ -8,7 +8,7 @@ export const manageCommissionData = (searchQuery = "") => {
     const fetchCommissions = async () => {
       setLoading(true);
       try {
-        const response = await fetch("/agent/commissionLimits");
+        const response = await fetch("/auth-api/agent/commissionLimits", "GET");
         if (!response.ok) {
           throw new Error("Failed to fetch commission data");
         }
