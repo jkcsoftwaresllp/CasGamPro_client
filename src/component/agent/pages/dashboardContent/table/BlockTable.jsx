@@ -78,22 +78,6 @@ export const BlockTable = () => {
         </div>
       ) : (
         <div className={style.manageCommissionsContainer}>
-          <div className={style.paginationContainer}>
-            <Button
-              label="Previous"
-              onClick={prevPage}
-              disabled={currentPage === 1}
-            />
-            <span className={style.pageIndicator}>
-              Page {currentPage} of {totalPages}
-            </span>
-            <Button
-              label="Next"
-              onClick={nextPage}
-              disabled={currentPage === totalPages}
-            />
-            <DownloadButtons clients={filteredData} />
-          </div>
           <Table
             data={currentData}
             columns={columns}

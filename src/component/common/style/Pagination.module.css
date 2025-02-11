@@ -1,0 +1,25 @@
+.paginationControls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+}
+.paginationContainer {
+  display: flex;
+  justify-content: right;
+  align-items: right;
+  gap: 10px;
+  padding-right: 10px;
+}
+.pageIndicator {
+  color: var(--color-text-primary);
+  font-size: --text-md;
+  margin-top: 7px;
+}
+
+.pageNumber {
+  margin: 0 10px;
+  font-size: 14px;
+  font-weight: bold;
+  color: var(--color-text-primary);
+}

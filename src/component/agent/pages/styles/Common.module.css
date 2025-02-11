@@ -53,7 +53,7 @@
 }
 
 .manageCommissionsContainer {
-  height: calc(100vh - 35vh);
+height:100%;
 }
 
 .changePassword {

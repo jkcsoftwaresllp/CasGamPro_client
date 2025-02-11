@@ -9,30 +9,48 @@
   height: 100%;
   overflow-y: auto;
 }
+.outlet {
+  height: 100%;
+}
+
 .headerContainer {
-  display: flex;
-  flex-direction: column;
+  width: 100%;
+  padding: 16px;
+  background-color: var(--color-bg-primary); /* Adjust accordingly */
 }
 
 .headerTop {
   display: flex;
-  flex-direction: column;
-  align-items: flex-start; /* Align title & breadcrumbs to the left */
+  justify-content: space-between; /* Ensures the left (title) and right (actions) are separated */
+  align-items: center; /* Vertically center the items */
+  width: 100%;
 }
 
 .headerTitle {
-  font-size: var(--text-lg);
+  font-size: var(--text-lg); /* Adjust accordingly */
   font-weight: var(--text-bold);
-  margin: 0;
   color: var(--color-text-primary);
 }
 
-.headerActions {
+.rightSideActions {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  gap: 16px; /* Adds space between Download Buttons and Pagination */
+}
 
-  margin-top: 10px;
+.breadcrumbsContainer {
+  margin-top: 8px; /* Adds space between title and breadcrumbs */
+  margin-bottom: 16px; /* Adds space between breadcrumbs and search bar */
+}
+
+.headerActionsRow {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.searchBarWrapper {
+  flex-grow: 1; /* Takes up available space for search bar */
 }
 
 @media (max-width: 768px) {

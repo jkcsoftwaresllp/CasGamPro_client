@@ -7,28 +7,27 @@ import style from "../../styles/Common.module.css";
 import { Loader } from "../../../../common/Loader.jsx";
 import { manageClientsData } from "../helper/manageClient.js";
 import { DownloadButtons } from "../jsx/DownloadBtn.jsx";
-import { Button } from "../../../../common/Button.jsx"; // Import Button component
+import { Button } from "../../../../common/Button.jsx";
+
+import { useOutletContext } from "react-router-dom";
 
 export const ClientTable = () => {
   const navigate = useNavigate();
   const { loading, data } = manageClientsData();
+  const outletContext = useOutletContext() || {};
+  const { searchQuery = "" } = outletContext;
 
-  // Pagination state
-  const [currentPage, setCurrentPage] = useState(1);
-  const rowsPerPage = 20; // Number of rows per page
-
-  // Paginate data
-  const indexOfLastRow = currentPage * rowsPerPage;
-  const indexOfFirstRow = indexOfLastRow - rowsPerPage;
-  const currentData = data.slice(indexOfFirstRow, indexOfLastRow);
-
-  const tableData = currentData.map((client) => ({
+  const tableData = data.map((client) => ({
     id: client.id,
     username: client.username,
     matchCommission: client.matchCommission,
     sessionCommission: client.sessionCommission,
     share: client.share,
   }));
+
+  const filteredData = tableData.filter((client) =>
+    client.username.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   const columns = [
     { key: "id", label: "ID" },
@@ -70,10 +69,6 @@ export const ClientTable = () => {
   };
 
   // Handle pagination
-  const totalPages = Math.ceil(data.length / rowsPerPage);
-  const nextPage = () =>
-    setCurrentPage((prev) => Math.min(prev + 1, totalPages));
-  const prevPage = () => setCurrentPage((prev) => Math.max(prev - 1, 1));
 
   return (
     <div>
@@ -83,25 +78,8 @@ export const ClientTable = () => {
         </div>
       ) : (
         <div className={style.manageCommissionsContainer}>
-          <div className={style.paginationContainer}>
-            <Button
-              label="Previous"
-              onClick={prevPage}
-              disabled={currentPage === 1}
-            />
-            <span className={style.pageIndicator}>
-              Page {currentPage} of {totalPages}
-            </span>
-            <Button
-              label="Next"
-              onClick={nextPage}
-              disabled={currentPage === totalPages}
-            />
-
-            <DownloadButtons clients={data} />
-          </div>
           <Table
-            data={tableData}
+            data={filteredData}
             columns={columns}
             columnWidths={columnWidths}
             isAction={true}
