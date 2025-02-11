@@ -14,7 +14,7 @@ export const AgentHeader = () => {
       {user && <p className={style.userId}>User ID: {user.id}</p>}
 
       <div className={style.flexContainer}>
-        <HeaderBtnAgent />
+        {/* <HeaderBtnAgent /> */}
         <Notification />
         <DropdownMenu />
       </div>
