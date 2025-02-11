@@ -24,33 +24,35 @@ export const PayCash = () => {
   };
 
   return (
-    <div className={style.container}>
-      <h1 className={style.heading}>Pay Cash to user</h1>
-      <div className={style.row}>
-        <UserIdInput value={id} />
-      </div>
+    <div className={style.containerWrapper}>
+      <div className={style.container}>
+        <h1 className={style.heading}>Pay Cash to user</h1>
+        <div className={style.row}>
+          <UserIdInput value={id} />
+        </div>
 
-      <div className={style.row}>
-        <label className={style.label}>Rs. Exposure:</label>
-        <TextInput value={userValue} readOnly={true} />
-      </div>
+        <div className={style.row}>
+          <label className={style.label}>Rs. Exposure:</label>
+          <TextInput value={userValue} readOnly={true} />
+        </div>
 
-      <div className={style.row}>
-        <label className={style.label}>Update Ledger:</label>
-        <TextInput
-          placeholder="Enter value"
-          value={amount}
-          onChange={setAmount}
-        />
-      </div>
+        <div className={style.row}>
+          <label className={style.label}>Update Ledger:</label>
+          <TextInput
+            placeholder="Enter value"
+            value={amount}
+            onChange={setAmount}
+          />
+        </div>
 
-      <div className={style.row}>
-        <label className={style.label}>Note:</label>
-        <TextInput placeholder="Enter note" value={note} onChange={setnote} />
-      </div>
+        <div className={style.row}>
+          <label className={style.label}>Note:</label>
+          <TextInput placeholder="Enter note" value={note} onChange={setnote} />
+        </div>
 
-      <div className={style.buttonContainer}>
-        <Button label="Save Changes" onClick={fetchData} />
+        <div className={style.buttonContainer}>
+          <Button label="Save Changes" onClick={fetchData} />
+        </div>
       </div>
     </div>
   );
