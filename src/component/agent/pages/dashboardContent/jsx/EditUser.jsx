@@ -68,24 +68,24 @@ export const EditUser = () => {
           />
           <NumberInput
             label="My Match Share"
-            name="myMatchShare"
-            value={formData.myMatchShare}
+            name="matchShare"
+            value={formData.matchShare}
             onChange={handleChange}
             min={0}
             max={15}
           />
           <NumberInput
-            label="User Match Commission"
-            name="userMatchCommission"
-            value={formData.userMatchCommission}
+            label="Match Commission"
+            name="matchCommission"
+            value={formData.matchCommission}
             onChange={handleChange}
             min={0}
             max={3}
           />
           <NumberInput
-            label="User Lottery Commission"
-            name="userLotteryCommission"
-            value={formData.userLotteryCommission}
+            label="Lottery Commission"
+            name="lotteryCommission"
+            value={formData.lotteryCommission}
             onChange={handleChange}
             min={0}
             max={3}
