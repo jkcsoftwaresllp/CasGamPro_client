@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Table } from "../../../../common/table/jsx/Table.jsx";
-import style from "../../styles/Common.module.css";
+import style from "./Table.module.css";
 import { Loader } from "../../../../common/Loader.jsx";
 import { manageInOut } from "../helper/manageInOut.js";
 import { Button } from "../../../../common/Button.jsx";
@@ -43,13 +43,13 @@ export const InOutTable = ({}) => {
   const columnWidths = { date: 0.5, description: 4 };
 
   return (
-    <>
+    <div className={style.tableContainer}>
       {loading ? (
         <div className={style.loaderContainer}>
           <Loader />
         </div>
       ) : (
-        <div className={style.manageCommissionsContainer}>
+        <div className={style.tableContent}>
           <Table
             data={tableData}
             columns={columns}
@@ -58,6 +58,6 @@ export const InOutTable = ({}) => {
           />
         </div>
       )}
-    </>
+    </div>
   );
 };

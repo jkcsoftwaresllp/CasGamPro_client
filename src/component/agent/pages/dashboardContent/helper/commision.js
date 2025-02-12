@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { apiCall } from "../../../../common/apiCall";
 
 export const manageCommissionData = (searchQuery = "") => {
   const [commissions, setCommissions] = useState([]);
@@ -8,14 +9,17 @@ export const manageCommissionData = (searchQuery = "") => {
     const fetchCommissions = async () => {
       setLoading(true);
       try {
-        const response = await fetch("/agent/commissionLimits");
-        if (!response.ok) {
-          throw new Error("Failed to fetch commission data");
+        const response = await apiCall(
+          "/auth-api/agent/commissionLimits",
+          "GET"
+        );
+        console.log("API Response: ", response);
+        if (response && response.uniqueCode === "CGP0051") {
+          setCommissions(response.data.results);
         }
-        const data = await response.json();
-        setCommissions(data);
       } catch (error) {
         console.error("Error fetching data:", error);
+        throw new Error("Failed to fetch commission data");
       } finally {
         setLoading(false);
       }
@@ -24,9 +28,13 @@ export const manageCommissionData = (searchQuery = "") => {
     fetchCommissions();
   }, []);
 
-  const data = commissions.filter((commission) =>
-    commission.username.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+  const data = commissions;
+  // .filter((commission) => {
+  //   console.log("Commission: ", commission);
+  //   return `${commission.clientName}`
+  //     .toLowerCase()
+  //     .includes(searchQuery.toLowerCase());
+  // });
 
   return { loading, data };
 };

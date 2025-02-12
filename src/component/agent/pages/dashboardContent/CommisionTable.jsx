@@ -8,7 +8,7 @@ import { DialogBox } from "./jsx/DialogBox.jsx";
 import { handleTransaction } from "./helper/transactionHelper.js";
 import { Loader } from "../../../common/Loader.jsx";
 import { manageCommissionData } from "./helper/commision.js";
-import style from "../styles/Common.module.css";
+import style from "./table/Table.module.css";
 import { DownloadButtons } from "./jsx/DownloadBtn.jsx";
 import { Button } from "../../../common/Button.jsx";
 
@@ -33,15 +33,11 @@ export const CommissionTable = () => {
     setSelectedClientId(null);
   };
 
-  const filteredData = data.filter((client) =>
-    client.username.toLowerCase().includes(searchQuery.toLowerCase())
-  );
-
   const indexOfLastRow = currentPage * rowsPerPage;
   const indexOfFirstRow = indexOfLastRow - rowsPerPage;
-  const currentData = filteredData.slice(indexOfFirstRow, indexOfLastRow);
+  const currentData = data.slice(indexOfFirstRow, indexOfLastRow);
 
-  const totalPages = Math.ceil(filteredData.length / rowsPerPage);
+  const totalPages = Math.ceil(data.length / rowsPerPage);
   const nextPage = () =>
     setCurrentPage((prev) => Math.min(prev + 1, totalPages));
   const prevPage = () => setCurrentPage((prev) => Math.max(prev - 1, 1));
@@ -91,13 +87,13 @@ export const CommissionTable = () => {
   };
 
   return (
-    <>
+    <div className={style.tableContainer}>
       {loading ? (
         <div className={style.loaderContainer}>
           <Loader />
         </div>
       ) : (
-        <div className={style.manageCommissionsContainer}>
+        <div className={style.tableContent}>
           <Table
             data={tableData}
             columns={columns}
@@ -115,6 +111,6 @@ export const CommissionTable = () => {
           />
         </div>
       )}
-    </>
+    </div>
   );
 };

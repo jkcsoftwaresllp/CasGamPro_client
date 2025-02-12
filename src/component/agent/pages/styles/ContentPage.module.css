@@ -4,19 +4,26 @@
 }
 
 .content {
-  padding: 20px;
+  --header-height: 60px;
   flex-grow: 1;
   height: 100%;
   overflow-y: auto;
 }
-.outlet {
-  height: 100%;
-}
 
 .headerContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: var(--header-height);
+  padding: 0 20px;
   width: 100%;
-  padding: 16px;
-  background-color: var(--color-bg-primary); /* Adjust accordingly */
+  background-color: var(--color-bg-primary);
+}
+
+.outlet {
+  height: calc(100% - var(--header-height));
+  width: 100%;
+  overflow: auto;
 }
 
 .headerTop {
@@ -36,11 +43,6 @@
   display: flex;
   align-items: center;
   gap: 16px; /* Adds space between Download Buttons and Pagination */
-}
-
-.breadcrumbsContainer {
-  margin-top: 8px; /* Adds space between title and breadcrumbs */
-  margin-bottom: 16px; /* Adds space between breadcrumbs and search bar */
 }
 
 .headerActionsRow {

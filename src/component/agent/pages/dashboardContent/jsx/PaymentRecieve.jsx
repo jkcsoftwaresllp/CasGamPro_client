@@ -1,23 +1,22 @@
-import React, { useState, useMemo } from "react";
+import React, { useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { Table } from "../../../../common/table/jsx/Table";
 import style from "../../styles/CollectionReportCombined.module.css";
 import { DownloadIcon } from "../../../../../assets/assets";
 import { downloadPDF } from "../helper/paymentRecieve";
-import { IconBtn } from "../../../../common/IconBtn";
 import { routesPathClient as path } from "../../../../routing/helper/routesPathClient";
 import { IconBtncustom } from "../../../../common/IconBtncustom";
 
-export const PaymentRecieve = () => {
+export const PaymentRecieve = ({ data }) => {
   const navigate = useNavigate();
 
-  const [clients, setClients] = useState([
-    { id: 85800, name: "Ankur", balance: 1500 },
-    { id: 85801, name: "Rahul", balance: 2300 },
-    { id: 85802, name: "Priya", balance: 1200 },
-    { id: 85803, name: "Shivam", balance: 3169 },
-    { id: 85804, name: "Neha", balance: 1800 },
-  ]);
+  // const [data, setClients] = useState([
+  //   { id: 85800, name: "Ankur", balance: 1500 },
+  //   { id: 85801, name: "Rahul", balance: 2300 },
+  //   { id: 85802, name: "Priya", balance: 1200 },
+  //   { id: 85803, name: "Shivam", balance: 3169 },
+  //   { id: 85804, name: "Neha", balance: 1800 },
+  // ]);
 
   const columns = [
     { key: "client", label: "Client" },
@@ -25,7 +24,7 @@ export const PaymentRecieve = () => {
   ];
 
   // Format client data with proper client representation
-  const formattedClients = clients.map(({ id, name, balance }) => ({
+  const formattedClients = data.map(({ id, name, balance }) => ({
     id,
     client: `CGP${id} (${name})`,
     balance,
@@ -33,8 +32,8 @@ export const PaymentRecieve = () => {
 
   // Calculate total balance
   const totalBalance = useMemo(() => {
-    return clients.reduce((sum, item) => sum + item.balance, 0);
-  }, [clients]);
+    return data.reduce((sum, item) => sum + item.balance, 0);
+  }, [data]);
 
   // Handle table cell click (navigates to client details)
   const handleCellClick = (value, row) => {

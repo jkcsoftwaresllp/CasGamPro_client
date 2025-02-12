@@ -1,58 +1,56 @@
-// AgentHeaderLayout.js
 import { Breadcrumbs } from "../../common/Breadcrumbs";
 import { SearchBar } from "./dashboardContent/jsx/SearchBar";
 import { DownloadButtons } from "./dashboardContent/jsx/DownloadBtn";
 import { Pagination } from "../../common/Pagination";
-import style from "./styles/ContentPage.module.css";
 import { Filter } from "../../common/Filter";
+import style from "./styles/ContentPage.module.css";
 
 export const AgentHeaderLayout = ({
   headerTitle,
-  headerConfig,
+  headerConfig = {},
   searchQuery,
   setSearchQuery,
   clients,
   paginationData,
 }) => {
+  const {
+    showBreadcrumbs,
+    breadcrumbsData,
+    showSearchBar,
+    showDownloadButtons,
+    showPagination,
+  } = headerConfig;
+
   return (
     <header className={style.headerContainer}>
       <div className={style.headerTop}>
-        <h1 className={style.headerTitle}>{headerTitle}</h1>
+        {/* Left Side: Title & Breadcrumbs */}
+        <div className={style.leftSideTitle}>
+          <h1 className={style.headerTitle}>{headerTitle}</h1>
+          {showBreadcrumbs && <Breadcrumbs data={breadcrumbsData} />}
+        </div>
+
+        {/* Right Side: Actions */}
         <div className={style.rightSideActions}>
-          {headerConfig.showDownloadButtons && <Filter />}
-          {headerConfig.showDownloadButtons && (
-            <DownloadButtons clients={clients} />
+          {showSearchBar && (
+            <SearchBar
+              searchQuery={searchQuery}
+              setSearchQuery={setSearchQuery}
+            />
           )}
-          {headerConfig.showPagination && (
+          {showDownloadButtons && (
+            <>
+              <Filter />
+              <DownloadButtons clients={clients} />
+            </>
+          )}
+          {showPagination && (
             <Pagination data={paginationData} rowsPerPage={30}>
               {() => null}
             </Pagination>
           )}
         </div>
       </div>
-
-      {/* Show Breadcrumbs below the title */}
-      {headerConfig.showBreadcrumbs && (
-        <div className={style.breadcrumbsContainer}>
-          <Breadcrumbs data={headerConfig.breadcrumbsData} />
-        </div>
-      )}
-
-      {/* Show SearchBar if needed */}
-      {(headerConfig.showSearchBar ||
-        headerConfig.showDownloadButtons ||
-        headerConfig.showPagination) && (
-        <div className={style.headerActionsRow}>
-          {headerConfig.showSearchBar && (
-            <div className={style.searchBarWrapper}>
-              <SearchBar
-                searchQuery={searchQuery}
-                setSearchQuery={setSearchQuery}
-              />
-            </div>
-          )}
-        </div>
-      )}
     </header>
   );
 };

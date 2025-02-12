@@ -7,8 +7,6 @@ export const HeaderBtnAgent = () => {
   const navigate = useNavigate();
 
   const agentTabs = [
-    { label: "Dashboard", path: path.agentHome },
-    { label: "Ledger", path: `${path.agentHome}${path.ledger}` },
     { label: "Reports", path: `${path.agentHome}${path.collectionReport}` },
   ];
 

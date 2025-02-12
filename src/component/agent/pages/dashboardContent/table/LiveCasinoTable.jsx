@@ -2,7 +2,7 @@ import React from "react";
 import { Table } from "../../../../common/table/jsx/Table.jsx";
 import { Loader } from "../../../../common/Loader.jsx";
 import { manageLiveCasinoData } from "../helper/manageLiveCasinoData";
-import style from "../../styles/ManageClient.module.css";
+import style from "./Table.module.css";
 
 export const LiveCasinoTable = ({}) => {
   const { loading, data } = manageLiveCasinoData();
@@ -34,21 +34,25 @@ export const LiveCasinoTable = ({}) => {
   };
 
   return (
-    <div>
+    <div className={style.tableContainer}>
       {loading ? (
         <div className={style.loaderContainer}>
           <Loader />
         </div>
       ) : (
-        <div className={style.manageCommissionsContainer}>
-          <Table
-            data={tableData}
-            columns={columns}
-            columnWidths={columnWidths}
-            isAction={false}
-            clickableColumns={["title"]}
-            onCellClick={handleCellClick}
-          />
+        <div className={style.tableContent}>
+          {tableData.length === 0 ? (
+            <div className={style.noDataContainer}> No Record Found </div>
+          ) : (
+            <Table
+              data={tableData}
+              columns={columns}
+              columnWidths={columnWidths}
+              isAction={false}
+              clickableColumns={["title"]}
+              onCellClick={handleCellClick}
+            />
+          )}
         </div>
       )}
     </div>

@@ -1,24 +1,22 @@
-.paginationControls {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 10px;
-}
 .paginationContainer {
   display: flex;
-  justify-content: right;
-  align-items: right;
+  align-items: center;
+  justify-content: center;
   gap: 10px;
-  padding-right: 10px;
 }
+
+.paginationContainer svg path {
+  fill: var(--color-text-primary);
+}
+
 .pageIndicator {
   color: var(--color-text-primary);
-  font-size: --text-md;
-  margin-top: 7px;
+  font-size: var(--text-md);
+  text-wrap: nowrap;
+  padding-bottom: 3px;
 }
 
 .pageNumber {
-  margin: 0 10px;
   font-size: 14px;
   font-weight: bold;
   color: var(--color-text-primary);
