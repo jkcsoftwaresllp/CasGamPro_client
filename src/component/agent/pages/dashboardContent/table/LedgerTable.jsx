@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Table } from "../../../../common/table/jsx/Table.jsx";
 import { manageLenDen } from "../helper/manageLenDen.js";
 import { Loader } from "../../../../common/Loader.jsx";
-import style from "../../styles/Common.module.css";
+import style from "./Table.module.css";
 import { Button } from "../../../../common/Button.jsx";
 
 export const LedgerTable = () => {
@@ -51,13 +51,13 @@ export const LedgerTable = () => {
   const columnWidths = { entry: 2, note: 2 };
 
   return (
-    <>
+    <div className={style.tableContainer}>
       {loading ? (
         <div className={style.loaderContainer}>
           <Loader />
         </div>
       ) : (
-        <div className={style.manageCommissionsContainer}>
+        <div className={style.tableContent}>
           <Table
             data={tableData}
             columns={columns}
@@ -66,6 +66,6 @@ export const LedgerTable = () => {
           />
         </div>
       )}
-    </>
+    </div>
   );
 };
