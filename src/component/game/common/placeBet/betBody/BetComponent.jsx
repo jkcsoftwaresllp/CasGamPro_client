@@ -18,7 +18,7 @@ export const BetComponent = ({ betFor, profit, setBetItems, player }) => {
     setCurrentProfit(profit || 0);
   };
 
-  const { gameType, gameId } = useGameState();
+  const { gameType, roundId: gameId } = useGameState();
   console.log({ gameType, gameId });
 
   const onSubmit = () =>

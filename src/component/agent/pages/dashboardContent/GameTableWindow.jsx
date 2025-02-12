@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import style from "../styles/GameTableWindow.module.css";
+import style from "../styles/GametableWindow.module.css";
 import { BlockGameTable } from "./table/BlockGameTable";
 import { IconBtn } from "../../../common/IconBtn";
 import { closeIcon } from "../../../../assets/assets";
