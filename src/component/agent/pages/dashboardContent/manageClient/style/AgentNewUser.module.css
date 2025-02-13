@@ -3,7 +3,7 @@
   flex-direction: column;
   justify-content: center; /* Center items vertically */
   align-items: center; /* Center items horizontally */
-  gap: 20px;
+  gap: 5px;
   max-width: 700px; /* Ensures a reasonable width */
   margin: auto;
   background-color: var(
@@ -22,7 +22,6 @@
 /* h2 styles */
 h2 {
   color: var(--color-text-primary); /* Light/dark text color */
-  margin-bottom: 10px; /* Reduced space below heading */
   text-align: left; /* Align heading with form content */
 }
 .row {
@@ -51,6 +50,12 @@ h2 {
   font-size: 18px;
   flex-shrink: 0; /* Prevent label from shrinking */
   width: 120px; /* Set a fixed width for the label */
+}
+.btnGroup {
+  display: flex;
+  gap: 20px; /* Adjust the value to your desired gap between buttons */
+  justify-content: flex-start; /* Optional: Align buttons to the left */
+  padding-left: 20px;
 }
 
 .input input {

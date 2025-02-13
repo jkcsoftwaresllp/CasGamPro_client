@@ -3,13 +3,13 @@ import { apiCall } from "../../../../common/apiCall";
 
 export const useFetchUserData = (id) => {
   const [formData, setFormData] = useState({
-    userId: "",
+    id: "",
     firstName: "",
     lastName: "",
     fixLimit: 0,
-    myMatchShare: 0,
-    userMatchCommission: 0,
-    userSessionCommission: 0,
+    matchShare: 0,
+    matchCommission: 0,
+    lotteryCommission: 0,
     password: "",
     confirmPassword: "",
     agentBlocked: false,
@@ -22,8 +22,9 @@ export const useFetchUserData = (id) => {
     const fetchUserData = async () => {
       try {
         setLoading(true);
-        const response = await apiCall(`/api/users/${id}`, "GET");
-        setFormData(response.data);
+        const response = await apiCall(`/auth-api/agent/players/${id}`, "GET");
+        console.log("User data fetched successfully:", response.data.client);
+        setFormData(response.data.client);
         setLoading(false);
       } catch (err) {
         console.error("Error fetching user data:", err);
@@ -38,9 +39,9 @@ export const useFetchUserData = (id) => {
     const { name, value } = e.target;
     const parsedValue = [
       "fixLimit",
-      "myMatchShare",
-      "userMatchCommission",
-      "userSessionCommission",
+      "matchShare",
+      "matchCommission",
+      "lotteryCommission",
     ].includes(name)
       ? parseFloat(value)
       : value;
@@ -65,7 +66,7 @@ export const useFetchUserData = (id) => {
         return;
       }
 
-      await apiCall(`/api/users/${id}`, "PUT", formData);
+      await apiCall(`/auth-api/agent/players/${id}`, "PUT", formData);
       return { success: "User updated successfully!" };
     } catch (err) {
       console.error("Update error:", err);

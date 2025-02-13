@@ -1,28 +1,28 @@
-import React, { useState, useMemo } from "react";
+import React, { useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { Table } from "../../../../common/table/jsx/Table";
 import style from "../../styles/CollectionReportCombined.module.css";
 import { DownloadIcon } from "../../../../../assets/assets";
 import { downloadPDF } from "../helper/paymentRecieve";
-import { IconBtn } from "../../../../common/IconBtn";
 import { routesPathClient as path } from "../../../../routing/helper/routesPathClient";
+import { IconBtncustom } from "../../../../common/IconBtncustom";
 
-export const PaymentPaid = () => {
+export const PaymentPaid = ({ data }) => {
   const navigate = useNavigate();
 
-  const [clients, setClients] = useState([
-    { id: 85800, name: "Ankur", balance: 1500 },
-    { id: 85801, name: "Rahul", balance: 2300 },
-    { id: 85802, name: "Priya", balance: 1200 },
-    { id: 85803, name: "Shivam", balance: 3169 },
-  ]);
+  // const [data, setClients] = useState([
+  //   { id: 85800, name: "Ankur", balance: 1500 },
+  //   { id: 85801, name: "Rahul", balance: 2300 },
+  //   { id: 85802, name: "Priya", balance: 1200 },
+  //   { id: 85803, name: "Shivam", balance: 3169 },
+  // ]);
 
   const columns = [
     { key: "client", label: "Client" },
     { key: "balance", label: "Balance" },
   ];
 
-  const formattedClients = clients.map(({ id, name, balance }) => ({
+  const formattedClients = data.map(({ id, name, balance }) => ({
     id,
     client: `CGP${id} (${name})`,
     balance,
@@ -30,8 +30,8 @@ export const PaymentPaid = () => {
 
   // Calculate total balance
   const totalBalance = useMemo(() => {
-    return clients.reduce((sum, item) => sum + item.balance, 0);
-  }, [clients]);
+    return data.reduce((sum, item) => sum + item.balance, 0);
+  }, [data]);
 
   const handleCellClick = (value, row) => {
     navigate(
@@ -46,7 +46,7 @@ export const PaymentPaid = () => {
     <div className={style.container}>
       <div className={style.header}>
         <h2 className={style.heading}>Payment Paid To (Dena Hai)</h2>
-        <IconBtn
+        <IconBtncustom
           icon={DownloadIcon}
           onClick={() =>
             downloadPDF(formattedClients, "Payment Paid To (Dena Hai)")

@@ -12,6 +12,7 @@ import { useFetchUserData } from "../helper/editUser"; // Import the helper func
 
 export const EditUser = () => {
   const { id } = useParams();
+  console.log("Edit user id:", id);
   const navigate = useNavigate();
   const {
     formData,
@@ -67,24 +68,24 @@ export const EditUser = () => {
           />
           <NumberInput
             label="My Match Share"
-            name="myMatchShare"
-            value={formData.myMatchShare}
+            name="matchShare"
+            value={formData.matchShare}
             onChange={handleChange}
             min={0}
             max={15}
           />
           <NumberInput
-            label="User Match Commission"
-            name="userMatchCommission"
-            value={formData.userMatchCommission}
+            label="Match Commission"
+            name="matchCommission"
+            value={formData.matchCommission}
             onChange={handleChange}
             min={0}
             max={3}
           />
           <NumberInput
-            label="User Session Commission"
-            name="userSessionCommission"
-            value={formData.userSessionCommission}
+            label="Lottery Commission"
+            name="lotteryCommission"
+            value={formData.lotteryCommission}
             onChange={handleChange}
             min={0}
             max={3}
