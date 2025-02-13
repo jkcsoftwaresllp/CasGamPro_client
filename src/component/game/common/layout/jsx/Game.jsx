@@ -15,7 +15,7 @@ import { Winner } from "./Winner";
 export const Game = () => {
   const { gameType, error } = useQueryParams();
   const gameState = useGameState();
-  const { gameId, status, winner, startTime, cards } = gameState;
+  const { roundId: gameId, status, winner, startTime, cards } = gameState;
   const [betItems, setBetItems] = useState();
 
   useGameSocket(gameType);

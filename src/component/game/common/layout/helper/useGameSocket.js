@@ -18,7 +18,7 @@ export const useGameSocket = (gameType) => {
     const socket = connectSocket(namespace);
 
     socket.on("connect", () => {
-      emitEvent(namespace, "joinGameType", GAME_TYPES[gameType]);
+      emitEvent(namespace, "joinGame", {userId: 3, gameType: GAME_TYPES[gameType]});
     });
 
     subscribeToEvent(namespace, "gameStateUpdate", (updatedState) => {
