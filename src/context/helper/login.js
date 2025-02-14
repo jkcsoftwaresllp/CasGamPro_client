@@ -11,6 +11,7 @@ export const login = async (setUser, credentials) => {
       username: response.data.username,
       profilePic: response.data.profilePic,
       userRole: response.data.userRole,
+      clientName: response.data.clientName,
     });
   } catch (error) {
     console.error("Login failed:", error.response?.data || error.message);

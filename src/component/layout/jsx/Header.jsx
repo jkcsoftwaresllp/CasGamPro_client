@@ -9,7 +9,7 @@ export const Header = () => {
   const navigate = useNavigate();
   const { user } = useAuth();
 
-  const { username, userId } = user || {};
+  const { username, clientName } = user || {};
 
   // Navigation handlers
   const handleHomeClick = () => navigate("/");
@@ -25,9 +25,9 @@ export const Header = () => {
         </div>
 
         <div className={style.rightSection}>
-          {userId && (
+          {username && (
             <p className={style.userId}>
-              {username?.toUpperCase()} : {userId}
+              {username?.toUpperCase()} : {clientName}
             </p>
           )}
           <HeaderAuth />

@@ -9,6 +9,7 @@ export const checkSession = async (setUser, setLoading) => {
       username: response.data.username,
       profilePic: response.data.profilePic,
       userRole: response.data.userRole,
+      clientName: response.data.clientName,
     });
   } catch {
     setUser(null);
