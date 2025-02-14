@@ -2,6 +2,7 @@ import React from "react";
 import styles from "../styles/BetSection.module.css";
 import { BetOnCard } from "./BetOnCard";
 import { cardCodes } from "../helper/BetCardSection";
+import { PLAYER_SIDES } from "../../../../../utils/gamePlayerSides";
 
 export const BetCardSection = ({
   onClick,
@@ -25,9 +26,7 @@ export const BetCardSection = ({
             betAmount={betAmount[code] || "0.0"}
             betProfit={profit}
             isLock={isLock}
-            onClick={(label, value) =>
-              onClick({ label, player: code[1] }, value)
-            }
+            onClick={(label, value) => onClick({ label, player: "A" }, value)}
           />
         ))}
       </div>
