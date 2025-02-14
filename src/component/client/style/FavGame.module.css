@@ -1,50 +1,16 @@
 .cardContainer {
   width: 90%;
-  height: 300px;
-  margin: 10px;
-  border-radius: var(--borderRadius-md);
-  overflow: hidden;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-}
-
-.cardImage {
-  width: 100%; /* Ensure the card takes full width */
-  height: 100%; /* Ensure the card takes full height */
-  background-size: cover; /* Ensure the background image covers the entire card */
-  background-position: center; /* Keep the background centered */
-  position: relative;
-}
-
-.playedFor {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  background-color: rgba(0, 0, 0, 0.5);
-  color: white;
-  padding: 5px;
   border-radius: var(--borderRadius);
-  font-size: var(--text-sm);
+  padding: 10px 5px;
+  background-color: var(--color-bg-primary);
+  cursor: pointer;
 }
 
 .label {
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
   color: white;
   font-size: var(--text-md);
-  background-color: black;
   width: 100%;
   padding: 5px;
   font-weight: bold;
   text-align: center;
-}
-
-.cardsContainer {
-  display: flex;
-  flex-direction: column; /* Arrange cards vertically */
-  align-items: center; /* Optional: Center the cards horizontally */
-  justify-content: flex-start; /* Ensure the cards are stacked from the top */
-  flex-wrap: wrap; /* Allow cards to wrap if the container overflows */
-  gap: 10px; /* Optional: space between cards */
 }

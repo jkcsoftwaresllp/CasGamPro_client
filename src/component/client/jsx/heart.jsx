@@ -1,28 +1,26 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { FavGameTile } from "./FavGameTile";
 import { favIcon, closeIcon } from "../../../assets/assets";
 import styles from "../style/Heart.module.css";
+import { apiCall } from "../../common/apiCall";
 
 export const Heart = () => {
   const [isModalOpen, setIsModalOpen] = useState(false); // Modal visibility state
   const [favGames, setFavGames] = useState([]); // State for favorite games
+  // const [favGames, setFavGames] = useState([]); // State for favorite games
 
-  const toggleModal = () => {
-    setIsModalOpen(!isModalOpen); // Toggle the modal visibility state
+  const fetchFavouriteGames = async () => {
+    const response = await apiCall("/auth-api/client/favorite-games", "GET");
+    console.log(response);
+    if (response.uniqueCode === "CGP0002") {
+      setFavGames(response.data);
+    }
   };
 
-  useEffect(() => {
-    const fetchWalletPoints = async () => {
-      try {
-        // const response = await apiCall(
-        //   "/auth-api/client/favorite-games",
-        //   "GET"
-        // );
-      } catch (err) {}
-    };
-
-    fetchWalletPoints();
-  }, []);
+  const toggleModal = () => {
+    fetchFavouriteGames();
+    setIsModalOpen(!isModalOpen); // Toggle the modal visibility state
+  };
 
   const closeModal = () => {
     setIsModalOpen(false); // Close the modal
@@ -51,8 +49,8 @@ export const Heart = () => {
                 <FavGameTile
                   key={index}
                   label={game.name}
-                  imgSrc={game.gameImg}
-                  playedFor={game.totalPlayTime}
+                  gameType={game.gameType}
+                  closeModal={closeModal}
                 />
               ))
             )}
