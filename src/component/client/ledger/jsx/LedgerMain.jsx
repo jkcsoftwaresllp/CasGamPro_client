@@ -3,7 +3,6 @@
 // import style from "../style/LedgerMain.module.css";
 import React, { useEffect, useState } from "react";
 import { Table } from "../../../common/table/jsx/Table.jsx";
-import { getLedgerData } from "../helper/getPlayData.js";
 import style from "../../../agent/pages/dashboardContent/table/Table.module.css";
 import { Loader } from "../../../common/Loader.jsx";
 import { apiCall } from "../../../common/apiCall.js";
@@ -29,7 +28,6 @@ export const LedgerMain = () => {
   // const list = [];
   console.log("List", ledger);
 
-  getLedgerData();
   const columns = [
     { key: "date", label: "Date" },
     { key: "entry", label: "Entry" },
