@@ -45,7 +45,6 @@ export const Wallet = () => {
       emitEvent(namespace, "joinWallet", userId);
     });
 
-    console.log(userId);
     subscribeToEvent(namespace, "walletUpdate", (walletUpdate) => {
       if (walletUpdate) {
         setWalletPoints(walletUpdate.balance);

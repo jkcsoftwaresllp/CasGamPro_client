@@ -36,3 +36,11 @@
 .fullSection {
   flex: 1;
 }
+
+.userId {
+  text-wrap: nowrap;
+  font-weight: var(--text-bold);
+  font-size: var(--text-md);
+  color: var(--color-text-primary);
+  padding-left: 10px;
+}

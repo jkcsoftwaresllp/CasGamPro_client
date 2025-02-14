@@ -13,11 +13,7 @@
   gap: 10px; /* Add space between the components */
   width: 100%; /* Makes sure it stretches across the available space */
 }
-.userId {
-  font-weight: var(--text-bold);
-  font-size: var(--text-md);
-  color: var(--color-text-primary); /* Adjust color as needed */
-}
+
 
 .buttonContainer {
   display: flex;

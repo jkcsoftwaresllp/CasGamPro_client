@@ -56,11 +56,11 @@ export const AgentNewUser = () => {
       setError("Passwords do not match.");
       return;
     }
-
+    console.log("Form data:", formData);
     try {
       // Send form data to the backend
       const response = await apiCall(
-        "/agent/register-client",
+        "/auth-api/agent/register-client",
         "POST",
         formData
       );

@@ -43,9 +43,9 @@ export const CommissionTable = () => {
   const prevPage = () => setCurrentPage((prev) => Math.max(prev - 1, 1));
 
   const tableData = currentData.map((client) => ({
-    id: client.id,
-    name: client.username,
-    matchCommission: client.matchCommission,
+    id: client.userId,
+    name: client.clientName,
+    matchCommission: client.share,
     sessionCommission: client.sessionCommission,
     currentLimit: client.currentLimit,
     showExpo: <CustomBtn label="Expo" onClick={() => openDialog(client.id)} />,
