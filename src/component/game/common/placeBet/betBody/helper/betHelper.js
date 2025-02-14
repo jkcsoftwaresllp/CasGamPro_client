@@ -9,6 +9,7 @@ export const handleSubmit = async ({
   roundId,
   setBetItems,
 }) => {
+  console.log(player);
   try {
     const response = await apiCall("/auth-api/client/games/place-bet", "POST", {
       gameId: roundId,

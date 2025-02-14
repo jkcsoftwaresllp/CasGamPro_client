@@ -6,7 +6,12 @@ import { BetCardSection } from "../../common/BetSection/jsx/BetCardSection";
 import { BetWithText } from "../../common/BetSection/jsx/BetWithText";
 import { BetOnCard } from "../../common/BetSection/jsx/BetOnCard";
 
+import { PLAYER_SIDES } from "../../../../utils/gamePlayerSides";
+
+
 export const BetSection = ({ onClick, isLock }) => {
+  const { lucky7B: SIDE } = PLAYER_SIDES;
+
   return (
     <div className={styles.betSection}>
       <div className={styles.lowHighEvenOdd}>
@@ -16,7 +21,10 @@ export const BetSection = ({ onClick, isLock }) => {
             betProfit={"1.96"}
             betAmount={"0.0"}
             isLock={isLock}
-            onClick={(label, value) => onClick({ label }, value)}
+            onClick={(label, value) =>
+              onClick({ label, player: SIDE.low }, value)
+            }
+            // onClick={(label, value) => onClick({ label: "Player A", player: SIDE.playerA }, value)}
           />
 
           <BetOnCard
@@ -24,7 +32,9 @@ export const BetSection = ({ onClick, isLock }) => {
             betProfit={"1.96"}
             betAmount={"0.0"}
             isLock={isLock}
-            onClick={(label, value) => onClick({ label }, value)}
+            onClick={(label, value) =>
+              onClick({ label, player: SIDE.mid }, value)
+            }
           />
 
           <BetWithText
@@ -32,7 +42,9 @@ export const BetSection = ({ onClick, isLock }) => {
             betProfit={"1.96"}
             betAmount={"0.0"}
             isLock={isLock}
-            onClick={(label, value) => onClick({ label }, value)}
+            onClick={(label, value) =>
+              onClick({ label, player: SIDE.high }, value)
+            }
           />
         </div>
         <BetOnEvOdReBl
