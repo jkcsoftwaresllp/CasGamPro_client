@@ -14,15 +14,15 @@ export const BetOnBottom = ({ onClick, isLock, side }) => {
           onClick={onClick}
           isLock={isLock}
           betAmount={{ even: "0.0", odd: "0.0", red: "0.0", black: "0.0" }}
-          betProfit={{ even: "1.96", odd: "1.96", red: "1.96", black: "1.96" }}
+          betProfit={{ even: 2.1, odd: 1.79, red: 1.95, black: 1.95 }}
           player={side}
         />
       </div>
       <BetCardSection
         onClick={onClick}
         isLock={isLock}
-        betAmount={{ 2: "200" }}
-        betProfit={"1.96"}
+        betAmount={{ 2: "0.0" }}
+        betProfit={12}
         player={side}
       />
     </div>

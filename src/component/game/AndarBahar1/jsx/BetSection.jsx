@@ -12,7 +12,7 @@ export const BetSection = ({ onClick, isLock }) => {
           onClick={onClick}
           isLock={isLock}
           betAmount={{ 2: "200" }}
-          betProfit={"1.96"}
+          betProfit={1.96}
           player="A"
         />
       </div>
@@ -22,7 +22,7 @@ export const BetSection = ({ onClick, isLock }) => {
           onClick={onClick}
           isLock={isLock}
           betAmount={{ 2: "200" }}
-          betProfit={"1.96"}
+          betProfit={1.96}
           player="B"
         />
       </div>

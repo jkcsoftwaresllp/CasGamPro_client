@@ -14,7 +14,7 @@ export const BetOnTop = ({ onClick, isLock }) => {
         <BetInRectangle
           label={"Dragon"}
           betAmount={"0.0"}
-          betProfit={"1.96"}
+          betProfit={1.96}
           isLock={isLock}
           onClick={(value) =>
             onClick({ label: "Dragon", player: SIDE.dragon }, value)
@@ -23,7 +23,7 @@ export const BetOnTop = ({ onClick, isLock }) => {
         <BetInCircle
           label={"Tie"}
           betAmount={"0.0"}
-          betProfit={"1.96"}
+          betProfit={8}
           isLock={isLock}
           onClick={(value) =>
             onClick({ label: "Tie", player: SIDE.tie }, value)
@@ -32,7 +32,7 @@ export const BetOnTop = ({ onClick, isLock }) => {
         <BetInRectangle
           label={"Tiger"}
           betAmount={"0.0"}
-          betProfit={"1.96"}
+          betProfit={1.96}
           isLock={isLock}
           onClick={(value) =>
             onClick({ label: "Tiger", player: SIDE.tiger }, value)
@@ -43,7 +43,7 @@ export const BetOnTop = ({ onClick, isLock }) => {
       <BetInPair
         label={"Pair"}
         betAmount={"0.0"}
-        betProfit={"6"}
+        betProfit={6}
         isLock={isLock}
         onClick={(value) =>
           onClick({ label: "Pair", player: SIDE.pair }, value)

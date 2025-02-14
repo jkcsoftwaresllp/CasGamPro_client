@@ -2,15 +2,19 @@ import React from "react";
 import styles from "../style/BetSection.module.css";
 import { BetProfit } from "../../common/BetSection/jsx/BetProfit";
 
-export const BetRow = ({ onClick, isLock, label = "", player = {} }) => {
-  const sendLabel = label;
-
+export const BetRow = ({
+  onClick,
+  isLock,
+  label = "",
+  player = {},
+  profit = {},
+}) => {
   return (
     <div className={styles.betRow}>
       <div className={`${styles.label} ${styles.box}`}>{label}</div>
       <div className={styles.box}>
         <BetProfit
-          betProfit={1.96}
+          betProfit={profit.d}
           isLock={isLock}
           onClick={(value) => {
             onClick({ player: player.d, label: "D" }, value);
@@ -19,7 +23,7 @@ export const BetRow = ({ onClick, isLock, label = "", player = {} }) => {
       </div>
       <div className={styles.box}>
         <BetProfit
-          betProfit={2}
+          betProfit={profit.t}
           isLock={isLock}
           onClick={(value) => {
             onClick({ player: player.t, label: "T" }, value);
@@ -29,7 +33,7 @@ export const BetRow = ({ onClick, isLock, label = "", player = {} }) => {
 
       <div className={styles.box}>
         <BetProfit
-          betProfit={1.96}
+          betProfit={profit.l}
           isLock={isLock}
           onClick={(value) => {
             onClick({ player: player.l, label: "L" }, value);
