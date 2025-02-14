@@ -12,7 +12,7 @@ export const FavBtn = ({ className, gameId }) => {
 
   const handleClick = async (e) => {
     e.stopPropagation();
-    const response = await apiCall("/auth-api/client/addGameFavorite", "POST", {
+    const response = await apiCall("/auth-api/client/toggleFavoriteGame", "POST", {
       gameId,
     });
     setIsFavorite(!isFavorite);

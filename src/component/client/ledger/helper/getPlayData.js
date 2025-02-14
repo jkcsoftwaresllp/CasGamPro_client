@@ -6,10 +6,13 @@ export const getLedgerData = async () => {
   if (response) {
     const { uniqueCode } = response;
 
-    if (uniqueCode === "CGP0034") {
+    if (uniqueCode === "CGP0085") {
       console.log(response.data);
+      return response.data;
     }
   } else {
-    console.log(response);
+    return [];
   }
+
+  
 };

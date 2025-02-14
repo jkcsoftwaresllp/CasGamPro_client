@@ -79,7 +79,7 @@ export const PlayHistory = () => {
     { key: "result", label: "Result" },
   ];
 
-  getPlayData();
+  // getPlayData();
 
   return <Table data={lists} columns={columns} />;
 };
