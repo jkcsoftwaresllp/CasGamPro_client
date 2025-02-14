@@ -6,6 +6,7 @@ export const login = async (setUser, credentials) => {
     // Save user data from the response
 
     setUser({
+      status: response.data.status,
       userId: response.data.userId,
       username: response.data.username,
       profilePic: response.data.profilePic,
