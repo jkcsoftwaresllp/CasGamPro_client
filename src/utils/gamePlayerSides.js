@@ -47,6 +47,8 @@ export const PLAYER_SIDES = {
   dragonTiger: {
     dragon: "dragon",
     tiger: "tiger",
+    tie: "tie",
+    pair: "pair",
     D2: "D2",
     D3: "D3",
     DA: "DA",
@@ -73,6 +75,14 @@ export const PLAYER_SIDES = {
     TJ: "TJ",
     TQ: "TQ",
     TK: "TK",
+    tred: "tred",
+    teven: "tred",
+    todd: "tred",
+    tblack: "tred",
+    dred: "dred",
+    deven: "dred",
+    dodd: "dred",
+    dblack: "dred",
   },
   dragonTigerLion: {
     dragon: "dragon",

@@ -2,13 +2,13 @@ import React from "react";
 import styles from "../styles/BetSection.module.css";
 import { BetOnCard } from "./BetOnCard";
 import { cardCodes } from "../helper/BetCardSection";
-import { PLAYER_SIDES } from "../../../../../utils/gamePlayerSides";
 
 export const BetCardSection = ({
   onClick,
   isLock,
   betProfit = null,
   betAmount = {},
+  player = "",
 }) => {
   let profit = betProfit;
   if (profit === null) {
@@ -26,7 +26,9 @@ export const BetCardSection = ({
             betAmount={betAmount[code] || "0.0"}
             betProfit={profit}
             isLock={isLock}
-            onClick={(label, value) => onClick({ label, player: "A" }, value)}
+            onClick={(label, value) =>
+              onClick({ label, player: `${player}${code}` }, value)
+            }
           />
         ))}
       </div>

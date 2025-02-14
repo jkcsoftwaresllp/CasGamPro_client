@@ -3,8 +3,11 @@ import styles from "../style/BetOnBottom.module.css";
 import { BetInCircle } from "../../common/BetSection/jsx/BetInCircle";
 import { BetInPair } from "../../common/BetSection/jsx/BetInPair";
 import { BetInRectangle } from "../../common/BetSection/jsx/BetInRectangle";
+import { PLAYER_SIDES } from "../../../../utils/gamePlayerSides";
 
 export const BetOnTop = ({ onClick, isLock }) => {
+  const { dragonTiger: SIDE } = PLAYER_SIDES;
+
   return (
     <div className={styles.betOnTop}>
       <div className={styles.rectangeCircle}>
@@ -13,21 +16,27 @@ export const BetOnTop = ({ onClick, isLock }) => {
           betAmount={"0.0"}
           betProfit={"1.96"}
           isLock={isLock}
-          onClick={(value) => onClick({ label: "Dragon" }, value)}
+          onClick={(value) =>
+            onClick({ label: "Dragon", player: SIDE.dragon }, value)
+          }
         />
         <BetInCircle
           label={"Tie"}
           betAmount={"0.0"}
           betProfit={"1.96"}
           isLock={isLock}
-          onClick={(value) => onClick({ label: "Tie" }, value)}
+          onClick={(value) =>
+            onClick({ label: "Tie", player: SIDE.tie }, value)
+          }
         />
         <BetInRectangle
           label={"Tiger"}
           betAmount={"0.0"}
           betProfit={"1.96"}
           isLock={isLock}
-          onClick={(value) => onClick({ label: "Tiger" }, value)}
+          onClick={(value) =>
+            onClick({ label: "Tiger", player: SIDE.tiger }, value)
+          }
         />
       </div>
 
@@ -36,7 +45,9 @@ export const BetOnTop = ({ onClick, isLock }) => {
         betAmount={"0.0"}
         betProfit={"6"}
         isLock={isLock}
-        onClick={(value) => onClick({ label: "Pair" }, value)}
+        onClick={(value) =>
+          onClick({ label: "Pair", player: SIDE.pair }, value)
+        }
       />
     </div>
   );

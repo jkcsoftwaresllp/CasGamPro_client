@@ -9,8 +9,10 @@ export const BetOnEvOdReBl = ({
   isLock,
   betAmount = {},
   betProfit = null,
+  player = "",
 }) => {
   const { lucky7B: SIDE } = PLAYER_SIDES;
+  const playerLower = player.toLowerCase();
 
   let profit = betProfit;
   if (profit === null) {
@@ -34,21 +36,27 @@ export const BetOnEvOdReBl = ({
         label="Even"
         betProfit={profit.even}
         betAmount={amount.even}
-        onClick={(label, value) => onClick({ label, player: SIDE.even }, value)}
+        onClick={(label, value) =>
+          onClick({ label, player: `${playerLower}${SIDE.even}` }, value)
+        }
         isLock={isLock}
       />
       <BetWithText
         label="Odd"
         betProfit={profit.odd}
         betAmount={amount.odd}
-        onClick={(label, value) => onClick({ label, player: SIDE.odd }, value)}
+        onClick={(label, value) =>
+          onClick({ label, player: `${playerLower}${SIDE.odd}` }, value)
+        }
         isLock={isLock}
       />
       <BetWithColor
         color="red"
         betProfit={profit.red}
         betAmount={amount.red}
-        onClick={(label, value) => onClick({ label, player: SIDE.red }, value)}
+        onClick={(label, value) =>
+          onClick({ label, player: `${playerLower}${SIDE.red}` }, value)
+        }
         isLock={isLock}
       />
       <BetWithColor
@@ -56,7 +64,7 @@ export const BetOnEvOdReBl = ({
         betProfit={profit.black}
         betAmount={amount.black}
         onClick={(label, value) =>
-          onClick({ label, player: SIDE.black }, value)
+          onClick({ label, player: `${playerLower}${SIDE.black}` }, value)
         }
         isLock={isLock}
       />

@@ -8,7 +8,6 @@ import { BetOnCard } from "../../common/BetSection/jsx/BetOnCard";
 
 import { PLAYER_SIDES } from "../../../../utils/gamePlayerSides";
 
-
 export const BetSection = ({ onClick, isLock }) => {
   const { lucky7B: SIDE } = PLAYER_SIDES;
 
@@ -59,6 +58,7 @@ export const BetSection = ({ onClick, isLock }) => {
         isLock={isLock}
         betAmount={{ 2: "200" }}
         betProfit={"1.96"}
+        player=""
       />
     </div>
   );
