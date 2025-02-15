@@ -10,6 +10,8 @@ import style from "../manageClient/style/AgentNewUser.module.css";
 import { Loader } from "../../../../common/Loader";
 import { useFetchUserData } from "../helper/editUser"; // Import the helper function
 
+// TODO: Currently Blocking is not implmented neither at client side not return in API
+
 export const EditUser = () => {
   const { id } = useParams();
   console.log("Edit user id:", id);
@@ -101,7 +103,7 @@ export const EditUser = () => {
 
           <div className={style.switchArea}>
             <BlockSwitch
-              label="Agent Blocked"
+              label="Client Blocked"
               id="agentBlockedSwitch"
               isChecked={formData.agentBlocked}
               setIsChecked={(value) =>
