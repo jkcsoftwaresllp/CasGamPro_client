@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { UserIdInput } from "../../../main/jsx/inputFeild/UserId";
 import { TextInput } from "../../../../common/TextInput";
 import { Button } from "../../../../common/Button";
@@ -11,6 +11,7 @@ export const PayCash = () => {
   const [userValue, setuserValue] = useState("");
   const [amount, setAmount] = useState("");
   const [note, setnote] = useState("");
+  const navigate = useNavigate();
 
   const fetchData = async () => {
     const response = await apiCall(
@@ -19,6 +20,7 @@ export const PayCash = () => {
       { userId: id, type: "withdrawal", amount, note }
     );
     if (response && response.uniqueCode === "CGP0062") {
+      navigate(-1);
       console.log("API Response: ", response);
     } else console.error("API Error:", response.data);
   };

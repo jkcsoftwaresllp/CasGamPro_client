@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { UserIdInput } from "../../../main/jsx/inputFeild/UserId";
 import { TextInput } from "../../../../common/TextInput";
 import { Button } from "../../../../common/Button";
@@ -11,8 +11,9 @@ export const ReceiveCash = () => {
   const [userValue, setUserValue] = useState("");
   const [amount, setAmount] = useState("");
   const [note, setNote] = useState("");
+  const navigate = useNavigate();
 
-  const fetchData = async () => {
+  const saveChanges = async () => {
     const response = await apiCall(
       "/auth-api/agent/walletTransaction",
       "POST",
@@ -20,6 +21,7 @@ export const ReceiveCash = () => {
     );
     if (response && response.uniqueCode === "CGP0062") {
       console.log("API Response: ", response);
+      navigate(-1);
     } else console.error("API Error:", response.data);
   };
 
@@ -51,7 +53,7 @@ export const ReceiveCash = () => {
         </div>
 
         <div className={style.buttonContainer}>
-          <Button label="Save Changes" onClick={fetchData} />
+          <Button label="Save Changes" onClick={saveChanges} />
         </div>
       </div>
     </div>
