@@ -7,22 +7,23 @@ import { Button } from "../../../../common/Button.jsx";
 
 export const LedgerTable = () => {
   const { data, loading } = manageLenDen();
+  console.log(data);
 
-  // Pagination States
-  const [currentPage, setCurrentPage] = useState(1);
-  const rowsPerPage = 10;
+  // // Pagination States
+  // const [currentPage, setCurrentPage] = useState(1);
+  // const rowsPerPage = 10;
 
-  // Pagination Calculations
-  const indexOfLastRow = currentPage * rowsPerPage;
-  const indexOfFirstRow = indexOfLastRow - rowsPerPage;
-  const currentData = data.slice(indexOfFirstRow, indexOfLastRow);
+  // // Pagination Calculations
+  // const indexOfLastRow = currentPage * rowsPerPage;
+  // const indexOfFirstRow = indexOfLastRow - rowsPerPage;
+  // const currentData = data.slice(indexOfFirstRow, indexOfLastRow);
 
-  const totalPages = Math.ceil(data.length / rowsPerPage);
-  const nextPage = () =>
-    setCurrentPage((prev) => Math.min(prev + 1, totalPages));
-  const prevPage = () => setCurrentPage((prev) => Math.max(prev - 1, 1));
+  // const totalPages = Math.ceil(data.length / rowsPerPage);
+  // const nextPage = () =>
+  //   setCurrentPage((prev) => Math.min(prev + 1, totalPages));
+  // const prevPage = () => setCurrentPage((prev) => Math.max(prev - 1, 1));
 
-  const tableData = currentData.map((entry) => ({
+  const tableData = data.map((entry) => ({
     agentId: entry.agentId,
     entry: entry.entry, // Last 3 digits of roundId
     betsAmount: entry.betsAmount,
