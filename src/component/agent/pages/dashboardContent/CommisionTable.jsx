@@ -13,15 +13,16 @@ import { DownloadButtons } from "./jsx/DownloadBtn.jsx";
 import { Button } from "../../../common/Button.jsx";
 
 export const CommissionTable = () => {
-  const { loading, data } = manageCommissionData();
-  const navigate = useNavigate();
-  const { searchQuery } = useOutletContext();
-
   const [currentPage, setCurrentPage] = useState(1);
-  const rowsPerPage = 20;
-
   const [showDialog, setShowDialog] = useState(false);
   const [selectedClientId, setSelectedClientId] = useState(null);
+  const navigate = useNavigate();
+
+  const { loading, data } = manageCommissionData();
+  const { searchQuery } = useOutletContext();
+
+  const rowsPerPage = 20;
+  const basePath = `${path.agent}${path.manageClients}`;
 
   const openDialog = (clientId) => {
     setSelectedClientId(clientId);
@@ -69,23 +70,22 @@ export const CommissionTable = () => {
     {
       label: "Deposit",
       icon: "D",
-      onClick: (row) => handleTransaction("Deposit", row),
+      // onClick: (row) => handleTransaction("Deposit", row),
+      onClick: (row) =>
+        navigate(`${basePath}${path.recieveCash.replace(":id", row.id)}`),
     },
     {
       label: "Withdrawal",
       icon: "W",
-      onClick: (row) => handleTransaction("Withdrawal", row),
+      // onClick: (row) => handleTransaction("Withdrawal", row),
+      onClick: (row) =>
+        navigate(`${basePath}${path.payCash.replace(":id", row.id)}`),
     },
     { label: "Settings", icon: SettingsIcon, onClick: (row) => {} },
   ];
 
   const handleCellClick = (value, row) => {
-    navigate(
-      `${path.agent}${path.manageClients}${path.userInfo.replace(
-        ":id",
-        row.id
-      )}`
-    );
+    navigate(`${basePath}${path.userInfo.replace(":id", row.id)}`);
   };
 
   return (
