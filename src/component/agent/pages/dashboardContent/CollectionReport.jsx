@@ -19,7 +19,10 @@ export const CollectionReport = () => {
         "GET"
       );
       console.log("Collection Report Data:", response);
-      if (response && response.uniqueCode === "CGP0075") {
+      if (
+        response &&
+        (response.uniqueCode === "CGP0075" || response.uniqueCode === "CGP0074")
+      ) {
         setPaymentReceivingFrom(response.data.paymentReceivingFrom);
         setPaymentPaidTo(response.data.paymentPaidTo);
         setPaymentCleared(response.data.paymentCleared);
