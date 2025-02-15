@@ -69,7 +69,7 @@ export const BlockTable = () => {
   ];
 
   return (
-    <div className={style.tableContainer} style={{ border: "1px solid red" }}>
+    <div className={style.tableContainer}>
       {loading ? (
         <div className={style.loaderContainer}>
           <Loader />
