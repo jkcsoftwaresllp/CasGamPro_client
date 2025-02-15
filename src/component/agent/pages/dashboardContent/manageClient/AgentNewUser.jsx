@@ -12,7 +12,7 @@ export const AgentNewUser = () => {
   const navigate = useNavigate();
   const [info, initalInfo] = useState([]);
   const [error, setError] = useState("");
-  const [success, setSuccess] = useState("");
+  const [success, setSuccess] = useState(null);
   const [formData, setFormData] = useState({
     userId: "",
     firstName: "",
@@ -25,25 +25,25 @@ export const AgentNewUser = () => {
     confirmPassword: "",
   });
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await apiCall(
-          "/auth-api/agent/generateUserIdCommissionLimit",
-          "GET"
-        );
-        console.log("API Response: ", response);
-        if (response && response.uniqueCode === "CGP0107") {
-          initalInfo(response.data);
-        } else {
-          console.error("API Error:", response.data);
-        }
-      } catch (error) {
-        console.error("Fetch Error:", error);
-      } finally {
+  const fetchData = async () => {
+    try {
+      const response = await apiCall(
+        "/auth-api/agent/generateUserIdCommissionLimit",
+        "GET"
+      );
+      console.log("API Response: ", response);
+      if (response && response.uniqueCode === "CGP0107") {
+        initalInfo(response.data);
+      } else {
+        console.error("API Error:", response.data);
       }
-    };
+    } catch (error) {
+      console.error("Fetch Error:", error);
+    } finally {
+    }
+  };
 
+  useEffect(() => {
     fetchData();
   }, []);
 
@@ -66,6 +66,7 @@ export const AgentNewUser = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+    setError("");
 
     const parsedValue =
       name === "fixLimit" ||
@@ -91,7 +92,7 @@ export const AgentNewUser = () => {
       setError("Passwords do not match.");
       return;
     }
-    console.log("Form data:", formData);
+
     try {
       // Send form data to the backend
       const response = await apiCall(
@@ -101,14 +102,22 @@ export const AgentNewUser = () => {
       );
 
       console.log("Form submitted successfully:", response);
-      if (response.uniqueCode === "CGP01R02")
+
+      if (response.uniqueCode === "CGP01R02") {
         setSuccess("User registered successfully!");
-      else setError(response?.message || "Register Message");
+
+        const timer = setTimeout(() => {
+          fetchData();
+          setError("");
+          setSuccess(null);
+        }, 3000);
+
+        return () => clearTimeout(timer);
+      } else {
+        setError(response?.message || "Registration failed.");
+      }
     } catch (err) {
-      console.error("Registration error:", err);
-      setError(
-        err.response?.data?.message || "An error occurred during registration."
-      );
+      setError(err?.message || "An error occurred during registration.");
     }
   };
 
@@ -178,10 +187,12 @@ export const AgentNewUser = () => {
       {/* Display error */}
       {success && <div className={style.success}>{success}</div>}{" "}
       {/* Display success */}
-      <div className={style.btnGroup}>
-        <Button label="Cancel" onClick={goBack} />
-        <Button label="Save Changes" onClick={handleSubmit} />
-      </div>
+      {!success && (
+        <div className={style.btnGroup}>
+          <Button label="Cancel" onClick={goBack} />
+          <Button label="Save Changes" onClick={handleSubmit} />
+        </div>
+      )}
     </form>
   );
 };
