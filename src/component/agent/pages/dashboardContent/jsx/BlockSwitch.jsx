@@ -1,7 +1,12 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styles from "../../styles/BlockSwitch.module.css";
 
-export const BlockSwitch = ({ label, isChecked, setIsChecked, id }) => {
+export const BlockSwitch = ({ label, onChange, id, level }) => {
+  const [isChecked, setIsChecked] = useState();
+  useEffect(() => {
+    setIsChecked(level === "LEVEL_1");
+  }, [level]);
+
   return (
     <div className={styles.checkboxWrapper}>
       <p className={styles.para}>{label}</p>
@@ -12,7 +17,7 @@ export const BlockSwitch = ({ label, isChecked, setIsChecked, id }) => {
           id={id}
           className={styles.switch}
           checked={isChecked}
-          onChange={(e) => setIsChecked(e.target.checked)}
+          onChange={(e) => onChange(isChecked ? "NONE" : "LEVEL_1")}
         />
         <label htmlFor={id}>
           <span className={styles.switchText}>Status </span>

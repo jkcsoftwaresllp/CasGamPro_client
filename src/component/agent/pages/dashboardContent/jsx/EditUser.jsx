@@ -49,7 +49,6 @@ export const EditUser = () => {
         <form className={style.form}>
           <h2 className={style.para}>Edit User : {id}</h2>
           <UserIdInput value={formData.username} />
-
           <TextInput
             label="First Name"
             name="firstName"
@@ -100,30 +99,26 @@ export const EditUser = () => {
             onChange={handleChange}
             placeholder="Confirm Password"
           />
-
-          <div className={style.switchArea}>
+          {/* <div className={style.switchArea}>
             <BlockSwitch
               label="Client Blocked"
               id="agentBlockedSwitch"
-              isChecked={formData.agentBlocked}
-              setIsChecked={(value) =>
-                handleSwitchChange("agentBlocked", value)
-              }
+              level={formData.blockingLevels}
+              onChange={(value) => handleSwitchChange("blockingLevels", value)}
             />
-          </div>
+          </div> */}
 
-          <div className={style.switchArea}>
+          {/* TODO: Implement Bets Blocking in the System, daatbase is configured for this we need implement in the APIs */}
+          {/* <div className={style.switchArea}>
             <BlockSwitch
               label="Bets Blocked"
               id="betsBlockedSwitch"
               isChecked={formData.betsBlocked}
               setIsChecked={(value) => handleSwitchChange("betsBlocked", value)}
             />
-          </div>
-
+          </div> */}
           {error && <div className={style.error}>{error}</div>}
           {success && <div className={style.success}>{success}</div>}
-
           <div className={style.buttonArea}>
             <Button label="Cancel" onClick={() => navigate(-1)} />
             <Button label="Save Changes" onClick={handleFormSubmit} />

@@ -12,8 +12,7 @@ export const useFetchUserData = (id) => {
     lotteryCommission: 0,
     password: "",
     confirmPassword: "",
-    agentBlocked: false,
-    betsBlocked: false,
+    blockingLevels: "NONE",
   });
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(true);
