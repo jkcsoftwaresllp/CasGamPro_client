@@ -3,7 +3,7 @@
   flex-direction: column;
   justify-content: center; /* Center items vertically */
   align-items: center; /* Center items horizontally */
-  gap: 5px;
+  gap: 20px;
   max-width: 700px; /* Ensures a reasonable width */
   margin: auto;
   background-color: var(

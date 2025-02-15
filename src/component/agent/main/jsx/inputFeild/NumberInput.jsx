@@ -3,28 +3,24 @@ import style from "../../styles/AgentNewUser.module.css";
 export const NumberInput = ({
   label,
   name,
-  value,
+  value = "",
   onChange,
   placeholder,
-  min,
-  max,
+  disable = false,
 }) => (
   <>
     <div className={style.input}>
       <label>{label}</label>
+
       <input
+        className={`${style.field} ${disable ? style.disable : ""}`}
         type="number"
         name={name}
-        value={value}
+        value={value === "" ? 0 : value}
         onChange={onChange}
         placeholder={placeholder}
-        min={min}
-        max={max}
+        disabled={disable}
       />
-    </div>
-
-    <div className={style.note}>
-      Fix Limit can be set from {min} to {max}
     </div>
   </>
 );

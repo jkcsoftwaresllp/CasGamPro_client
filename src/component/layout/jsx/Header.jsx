@@ -4,6 +4,7 @@ import { HeaderHelper } from "../helper/HeaderHelper";
 import { HeaderToggle } from "../helper/HeaderToggle";
 import { HeaderAuth } from "../helper/HeaderAuth";
 import { useAuth } from "../../../context/jsx/AuthContext";
+import { Wallet } from "../../client/jsx/Wallet";
 
 export const Header = () => {
   const navigate = useNavigate();
@@ -26,9 +27,12 @@ export const Header = () => {
 
         <div className={style.rightSection}>
           {username && (
-            <p className={style.userId}>
-              {username?.toUpperCase()} : {clientName}
-            </p>
+            <>
+              <p className={style.userId}>
+                {username?.toUpperCase()} : {clientName}
+              </p>
+              {/* <Wallet /> */}
+            </>
           )}
           <HeaderAuth />
           <HeaderToggle />

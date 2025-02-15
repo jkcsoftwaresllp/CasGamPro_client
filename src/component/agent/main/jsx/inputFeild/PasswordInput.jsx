@@ -15,6 +15,7 @@ export const PasswordInput = ({
       value={value}
       onChange={onChange}
       placeholder={placeholder}
+      className={`${style.field}`}
     />
   </div>
 );

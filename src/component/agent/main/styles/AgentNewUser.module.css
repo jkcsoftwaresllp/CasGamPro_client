@@ -21,11 +21,9 @@ h2 {
   width: 100%;
   max-width: 545px;
   display: flex;
-
-  flex-direction: row; /* Align label and input on the same line */
-  gap: 3px; /* Adjusted spacing between label and input */
-  align-items: center; /* Vertically center label and input */
-  color: var(--color-text-primary); /* Light/dark text color */
+  gap: 30px;
+  align-items: center;
+  color: var(--color-text-primary);
   text-align: center;
 }
 
@@ -33,10 +31,10 @@ h2 {
   font-weight: bold;
   font-size: var(--text-md);
   flex-shrink: 0; /* Prevent label from shrinking */
-  width: 120px; /* Set a fixed width for the label */
+  text-wrap: nowrap;
 }
 
-.input input {
+.field {
   width: 100%;
   min-height: 40px;
   font-size: var(--text-lg);
@@ -67,4 +65,10 @@ h2 {
 
   float: left; /* Floats the element to the left */
   margin-left: -50px; /* Adjusted margin to the left  , need to be changed later*/
+}
+
+.disable {
+  border: 1px solid var(--color-special-gold);
+  color: var(--color-special-white);
+  font-weight: var(--text-bold);
 }
