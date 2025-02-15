@@ -3,7 +3,7 @@ import style from "./style/Input.module.css";
 import { hideIcon, showIcon } from "../../assets/assets";
 import { SetIcon } from "./jsx/SetIcon";
 
-export const PasswordInput = ({ placeholder = "Password", onChange }) => {
+export const PasswordInput = ({ placeholder = "Password", onChange, name }) => {
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [password, setPassword] = useState("");
 
@@ -12,7 +12,8 @@ export const PasswordInput = ({ placeholder = "Password", onChange }) => {
   const handleChange = (e) => {
     const inputValue = e.target.value;
     setPassword(inputValue);
-    onChange && onChange(inputValue);
+    name && onChange({ name: name, value: inputValue });
+    !name && onChange && onChange(inputValue);
   };
 
   return (

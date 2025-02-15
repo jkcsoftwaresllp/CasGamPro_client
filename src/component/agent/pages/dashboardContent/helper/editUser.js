@@ -3,12 +3,12 @@ import { apiCall } from "../../../../common/apiCall";
 
 export const useFetchUserData = (id) => {
   const [formData, setFormData] = useState({
-    id: "",
+    username: "",
     firstName: "",
     lastName: "",
     fixLimit: 0,
-    matchShare: 0,
-    matchCommission: 0,
+    share: 0,
+    casinoCommission: 0,
     lotteryCommission: 0,
     password: "",
     confirmPassword: "",
@@ -22,9 +22,11 @@ export const useFetchUserData = (id) => {
     const fetchUserData = async () => {
       try {
         setLoading(true);
-        const response = await apiCall(`/auth-api/agent/players/${id}`, "GET");
-        console.log("User data fetched successfully:", response.data.client);
-        setFormData(response.data.client);
+        const response = await apiCall(`/auth-api/agent/user/${id}`, "GET");
+        console.log("User data fetched successfully:", response);
+
+        if (response.uniqueCode === "CGP0113") setFormData(response.data);
+
         setLoading(false);
       } catch (err) {
         console.error("Error fetching user data:", err);
@@ -36,6 +38,17 @@ export const useFetchUserData = (id) => {
   }, [id]);
 
   const handleChange = (e) => {
+    setError("");
+    if (!e.target) {
+      //  Special Case for Paswords
+      const { name, value } = e;
+      setFormData((prev) => ({
+        ...prev,
+        [name]: value,
+      }));
+      return;
+    }
+
     const { name, value } = e.target;
     const parsedValue = [
       "fixLimit",
@@ -66,7 +79,14 @@ export const useFetchUserData = (id) => {
         return;
       }
 
-      await apiCall(`/auth-api/agent/players/${id}`, "PUT", formData);
+      const response = await apiCall(
+        `/auth-api/agent/players/${id}`,
+        "PUT",
+        formData
+      );
+
+      console.log("API Response: ", response);
+
       return { success: "User updated successfully!" };
     } catch (err) {
       console.error("Update error:", err);

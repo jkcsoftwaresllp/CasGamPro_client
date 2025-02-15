@@ -28,11 +28,12 @@ export const EditUser = () => {
   const handleFormSubmit = async (e) => {
     e.preventDefault();
     const result = await handleSubmit(id, formData);
-    if (result.success) {
+
+    if (result?.success) {
       setSuccess(result.success);
       setTimeout(() => navigate(-1)); // Redirect after success
     } else {
-      setError(result.error);
+      setError(result?.error || "Handling Form Error");
     }
   };
 
@@ -45,6 +46,7 @@ export const EditUser = () => {
       ) : (
         <form className={style.form}>
           <h2 className={style.para}>Edit User : {id}</h2>
+          <UserIdInput value={formData.username} />
 
           <TextInput
             label="First Name"
@@ -62,33 +64,39 @@ export const EditUser = () => {
             label="Fix Limit"
             name="fixLimit"
             value={formData.fixLimit}
-            onChange={handleChange}
-            min={0}
-            max={18}
+            disable={true}
           />
           <NumberInput
-            label="My Match Share"
-            name="matchShare"
-            value={formData.matchShare}
-            onChange={handleChange}
-            min={0}
-            max={15}
+            label="My Share"
+            name="share"
+            value={formData.share}
+            disable={true}
           />
           <NumberInput
-            label="Match Commission"
-            name="matchCommission"
-            value={formData.matchCommission}
-            onChange={handleChange}
-            min={0}
-            max={3}
+            label="Casino Commission"
+            name="casinoCommission"
+            value={formData.casinoCommission}
+            disable={true}
           />
           <NumberInput
             label="Lottery Commission"
             name="lotteryCommission"
             value={formData.lotteryCommission}
+            disable={true}
+          />
+          <PasswordInput
+            label="Password"
+            name="password"
+            value={formData.password}
             onChange={handleChange}
-            min={0}
-            max={3}
+            placeholder="Enter Password"
+          />
+          <PasswordInput
+            label="Confirm Password"
+            name="confirmPassword"
+            value={formData.confirmPassword}
+            onChange={handleChange}
+            placeholder="Confirm Password"
           />
 
           <div className={style.switchArea}>

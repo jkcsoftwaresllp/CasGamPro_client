@@ -65,6 +65,16 @@ export const AgentNewUser = () => {
   }, [info]);
 
   const handleChange = (e) => {
+
+    if (!e.target) { //  Special Case for Paswords
+      const { name, value } = e;
+      setFormData((prev) => ({
+        ...prev,
+        [name]: value,
+      }));
+      return;
+    }
+
     const { name, value } = e.target;
     setError("");
 

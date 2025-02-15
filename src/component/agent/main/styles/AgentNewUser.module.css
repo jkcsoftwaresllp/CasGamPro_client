@@ -23,6 +23,7 @@ h2 {
   display: flex;
   gap: 30px;
   align-items: center;
+  justify-content: space-between;
   color: var(--color-text-primary);
   text-align: center;
 }

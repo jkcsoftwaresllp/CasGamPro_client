@@ -4,7 +4,7 @@ export const NumberInput = ({
   label,
   name,
   value = "",
-  onChange,
+  onChange = () => {},
   placeholder,
   disable = false,
 }) => (
