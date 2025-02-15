@@ -21,6 +21,15 @@ export const ManagePassword = () => {
   } = useChangePassword(); // Use the helper hook
   const { id } = useParams();
 
+  console.log(id);
+
+  if(id === ":id") {
+    // TODO : Password Change Request for Loged in Agent
+  }else {
+    // TODO : Password Change Request for some client based on ClientId via Agent
+
+  }
+
   return (
     <div className={style.container}>
       {loading ? (
