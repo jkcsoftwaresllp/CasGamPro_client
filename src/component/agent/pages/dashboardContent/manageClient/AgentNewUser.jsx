@@ -73,7 +73,9 @@ export const AgentNewUser = () => {
       name === "maxShare" ||
       name === "userCasinoCommission" ||
       name === "userLotteryCommission"
-        ? parseFloat(value === "" ? 0 : value)
+        ? value === ""
+          ? ""
+          : parseFloat(value)
         : value;
 
     setFormData((prev) => ({

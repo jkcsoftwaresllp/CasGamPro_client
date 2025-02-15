@@ -16,7 +16,7 @@ export const NumberInput = ({
         className={`${style.field} ${disable ? style.disable : ""}`}
         type="number"
         name={name}
-        value={value === "" ? 0 : value}
+        value={value === "" ? "" : value}
         onChange={onChange}
         placeholder={placeholder}
         disabled={disable}
