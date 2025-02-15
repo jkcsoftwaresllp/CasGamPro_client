@@ -43,10 +43,11 @@ export const CommissionTable = () => {
   const prevPage = () => setCurrentPage((prev) => Math.max(prev - 1, 1));
 
   const tableData = currentData.map((client) => ({
-    id: client.userId,
-    name: client.clientName,
-    matchCommission: client.share,
-    sessionCommission: client.sessionCommission,
+    id: client.id,
+    name: `${client.firstName} ${client.lastName} (${client.username})`,
+    share: client.share,
+    casinoCommission: client.casinoCommission,
+    lotteryCommission: client.lotteryCommission,
     currentLimit: client.currentLimit,
     showExpo: <CustomBtn label="Expo" onClick={() => openDialog(client.id)} />,
   }));
@@ -54,8 +55,9 @@ export const CommissionTable = () => {
   const columns = [
     { key: "id", label: "Client" },
     { key: "name", label: "Name" },
-    { key: "matchCommission", label: "Match Comm." },
-    { key: "sessionCommission", label: "Ssn Comm." },
+    { key: "share", label: "Share" },
+    { key: "casinoCommission", label: "Casino Comm." },
+    { key: "lotteryCommission", label: "Lottery Comm." },
     { key: "currentLimit", label: "Current Limit" },
     { key: "showExpo", label: "Show Expo" },
     { key: "actions", label: "Action" },
