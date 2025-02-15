@@ -14,8 +14,8 @@ export const GameTableWindow = ({ gameName, setIsGameView }) => {
         `/auth-api/agent/games/${gameName}`,
         "GET"
       );
-      if (response && response.uniqueCode === "CGP0079") {
-        console.log("API Response:", response.data);
+      console.log("API Response:", response);
+      if (response && response.uniqueCode === "CGP0080") {
         setGames(response.data);
       } else console.error("API Error:", response.data);
     };
