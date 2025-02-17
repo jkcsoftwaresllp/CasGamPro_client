@@ -64,9 +64,9 @@ export const Wallet = () => {
 
     // Cleanup on component unmount
     return () => {
-      disconnectSocket();
+      disconnectSocket(namespace);
     };
-  }, [userId, socket]);
+  }, [userId]);
 
   return (
     <div className={style.wallet}>

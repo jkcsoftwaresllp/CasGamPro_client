@@ -3,6 +3,7 @@ import { io } from "socket.io-client";
 const URL = "http://localhost:4320/";
 const sockets = {}; // Store multiple socket instances
 
+// Connect to a socket for the given namespace
 export const connectSocket = (namespace) => {
   const url = URL + namespace;
 
@@ -14,19 +15,25 @@ export const connectSocket = (namespace) => {
   return sockets[namespace];
 };
 
+// Disconnect the socket and clean up the reference
 export const disconnectSocket = (namespace) => {
+  console.log("Disconnected from namespace:", namespace);
+
   if (sockets[namespace]) {
+    // Remove event listeners before disconnecting if necessary
     sockets[namespace].disconnect();
-    delete sockets[namespace]; // Remove the reference
+    delete sockets[namespace]; // Remove the reference to the socket
   }
 };
 
+// Subscribe to an event for a specific namespace
 export const subscribeToEvent = (namespace, eventName, callback) => {
   if (!sockets[namespace])
     throw new Error(`Socket for ${namespace} is not connected!`);
   sockets[namespace].on(eventName, callback);
 };
 
+// Emit an event to a specific namespace
 export const emitEvent = (namespace, eventName, payload) => {
   if (!sockets[namespace])
     throw new Error(`Socket for ${namespace} is not connected!`);
