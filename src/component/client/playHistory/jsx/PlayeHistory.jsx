@@ -11,7 +11,7 @@ export const PlayHistory = () => {
       // setLoading(true);
       const response = await apiCall("/auth-api/client/playHistory", "GET");
       console.log("Play History Data:", response);
-      if (response && response.uniqueCode === "CGP0085") {
+      if (response && response.uniqueCode === "CGP0115") {
         setLists(response.data);
         // setLoading(false);
       } else console.error("API Error:", response);
