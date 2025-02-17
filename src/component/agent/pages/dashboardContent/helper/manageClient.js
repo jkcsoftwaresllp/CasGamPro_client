@@ -12,8 +12,8 @@ export const manageClientsData = (searchQuery = "") => {
       try {
         const response = await apiCall("/auth-api/agent/players", "GET");
         if (response && response.uniqueCode === "CGP0038") {
-          setClients(response.data.clients);
-          console.log("API Response: ", response.data.clients);
+          setClients(response.data);
+          console.log("API Response: ", response.data);
         } else {
           console.error("API Error:", response.data);
         }
