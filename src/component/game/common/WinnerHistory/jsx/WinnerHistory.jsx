@@ -22,7 +22,8 @@ export const WinnerHistory = () => {
         console.error(error);
       }
     };
-    upadatHistory();
+
+    if (gameType) upadatHistory();
   }, [gameType]);
 
   return (
