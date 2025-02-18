@@ -10,12 +10,21 @@ export const SimulationSection = ({ gameType }) => {
   const socketRef = useRef(null);
   const [error, setError] = useState(null);
   const [isConnected, setIsConnected] = useState(false);
+  
+  // Refs for handling frame transitions
+  const lastFrameTimeRef = useRef(null);
+  const frameQueueRef = useRef([]);
+  const animationFrameRef = useRef(null);
 
   useEffect(() => {
     let mounted = true;
 
     const initializeSocket = () => {
       try {
+        if (socketRef.current) {
+          socketRef.current.disconnect();
+        }
+
         socketRef.current = io("http://localhost:4320/video", {
           reconnection: true,
           reconnectionAttempts: 5,
@@ -26,35 +35,23 @@ export const SimulationSection = ({ gameType }) => {
           console.log("Connected to video stream");
           setIsConnected(true);
           setError(null);
-
-          // Join specific game type video stream
-          console.info(`Joining ${roundId}`);
           socketRef.current.emit("joinVideoStream", roundId);
+        });
+
+        socketRef.current.on("videoFrame", (data) => {
+          if (mounted) {
+            // Add frame to queue instead of rendering immediately
+            frameQueueRef.current.push(data);
+            if (!animationFrameRef.current) {
+              processNextFrame();
+            }
+          }
         });
 
         socketRef.current.on("connect_error", (err) => {
           console.error("Connection error:", err);
           setError("Failed to connect to video stream");
           setIsConnected(false);
-        });
-
-        // Handle both non-dealing and dealing frames
-        socketRef.current.on("videoFrame", (data) => {
-          if (mounted) {
-            handleVideoFrame(data, "non-dealing");
-          } else {
-            console.log("not your day dawg");
-            console.error("not your day dawg");
-          }
-        });
-
-        socketRef.current.on("dealingFrame", (data) => {
-          if (mounted) handleVideoFrame(data, "dealing");
-        });
-
-        socketRef.current.on("error", (err) => {
-          console.error("Socket error:", err);
-          setError("Video stream error occurred");
         });
 
         socketRef.current.on("disconnect", () => {
@@ -68,6 +65,7 @@ export const SimulationSection = ({ gameType }) => {
     };
 
     initializeSocket();
+    startFrameProcessing();
 
     return () => {
       mounted = false;
@@ -75,16 +73,41 @@ export const SimulationSection = ({ gameType }) => {
         socketRef.current.emit("leaveVideoStream", roundId);
         socketRef.current.disconnect();
       }
+      stopFrameProcessing();
     };
   }, [roundId]);
 
-  const handleVideoFrame = (data, frameType) => {
-    console.log(`Received frame ${data.frameNumber}`);
+  const startFrameProcessing = () => {
+    const processFrame = () => {
+      if (frameQueueRef.current.length > 0) {
+        const now = Date.now();
+        const timeSinceLastFrame = now - (lastFrameTimeRef.current || 0);
 
-    if (!data || !data.frameData) {
-      console.error("Received empty frame data");
-      return;
+        // Maintain a minimum interval between frames (e.g., 30fps = ~33ms)
+        if (timeSinceLastFrame >= 33) {
+          const frame = frameQueueRef.current.shift();
+          renderFrame(frame);
+          lastFrameTimeRef.current = now;
+        }
+      }
+
+      animationFrameRef.current = requestAnimationFrame(processFrame);
+    };
+
+    animationFrameRef.current = requestAnimationFrame(processFrame);
+  };
+
+  const stopFrameProcessing = () => {
+    if (animationFrameRef.current) {
+      cancelAnimationFrame(animationFrameRef.current);
+      animationFrameRef.current = null;
     }
+    frameQueueRef.current = [];
+    lastFrameTimeRef.current = null;
+  };
+
+  const renderFrame = (data) => {
+    if (!data || !data.frameData) return;
 
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -92,33 +115,22 @@ export const SimulationSection = ({ gameType }) => {
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
-    try {
-      const img = new Image();
+    const img = new Image();
+    img.onload = () => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      img.onload = () => {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
+      const scale = Math.min(
+        canvas.width / img.width,
+        canvas.height / img.height
+      );
 
-        const scale = Math.min(
-          canvas.width / img.width,
-          canvas.height / img.height,
-        );
+      const x = (canvas.width - img.width * scale) / 2;
+      const y = (canvas.height - img.height * scale) / 2;
 
-        const x = (canvas.width - img.width * scale) / 2;
-        const y = (canvas.height - img.height * scale) / 2;
+      ctx.drawImage(img, x, y, img.width * scale, img.height * scale);
+    };
 
-        ctx.drawImage(img, x, y, img.width * scale, img.height * scale);
-      };
-
-      img.onerror = (e) => {
-        console.error("Failed to load frame image:", e);
-        setError("Failed to load video frame");
-      };
-
-      img.src = `data:image/jpeg;base64,${data.frameData}`;
-    } catch (err) {
-      console.error("Error processing frame:", err);
-      setError("Error processing video frame");
-    }
+    img.src = `data:image/jpeg;base64,${data.frameData}`;
   };
 
   return (
@@ -138,4 +150,3 @@ export const SimulationSection = ({ gameType }) => {
     </div>
   );
 };
-
