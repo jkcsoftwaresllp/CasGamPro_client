@@ -2,10 +2,13 @@ import React from "react";
 import styles from "../style/BetSection.module.css";
 import { PlayerLabel } from "../../common/BetSection/jsx/PlayerLabel";
 import { BetProfit } from "../../common/BetSection/jsx/BetProfit";
+import { PLAYER_SIDES } from "../../../../utils/gamePlayerSides";
 
 export const BetSection = ({ onClick, isLock }) => {
   const playerA = "andar";
   const playerB = "bahar";
+
+  const { andarBahar2: SIDE } = PLAYER_SIDES;
 
   return (
     <div className={styles.betSection}>
@@ -15,7 +18,7 @@ export const BetSection = ({ onClick, isLock }) => {
           betProfit={1.96}
           isLock={isLock}
           onClick={(value) => {
-            onClick({ label: playerA }, value);
+            onClick({ label: playerA, player: SIDE.andar }, value);
           }}
         />
       </div>
@@ -26,7 +29,7 @@ export const BetSection = ({ onClick, isLock }) => {
           betProfit={1.96}
           isLock={isLock}
           onClick={(value) => {
-            onClick({ label: playerB }, value);
+            onClick({ label: playerB, player: SIDE.bahar }, value);
           }}
         />
       </div>

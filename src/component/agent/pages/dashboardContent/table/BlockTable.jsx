@@ -7,7 +7,6 @@ import { Loader } from "../../../../common/Loader.jsx";
 import style from "./Table.module.css";
 import { useOutletContext } from "react-router-dom";
 
-
 export const BlockTable = () => {
   const { searchQuery } = useOutletContext();
   const { loading, data } = blockedClientsData();
@@ -76,7 +75,7 @@ export const BlockTable = () => {
           <Loader />
         </div>
       ) : (
-       <div className={style.tableContent}>
+        <div className={style.tableContent}>
           <Table
             data={currentData}
             columns={columns}

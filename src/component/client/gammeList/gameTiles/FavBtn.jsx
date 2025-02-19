@@ -3,12 +3,21 @@ import React, { useState } from "react";
 import unlikedHeart from "./images/unliked.svg"; // Unliked heart
 import likedHeart from "./images/liked.svg"; // Liked heart
 import styles from "./style/FavBtn.module.css";
+import { apiCall } from "../../../common/apiCall";
 
-export const FavBtn = ({ className }) => {
+
+export const FavBtn = ({ className, gameId }) => {
   const [isFavorite, setIsFavorite] = useState(false);
 
-  const handleClick = () => {
+
+  const handleClick = async (e) => {
+    e.stopPropagation();
+    const response = await apiCall("/auth-api/client/toggleFavoriteGame", "POST", {
+      gameId,
+    });
     setIsFavorite(!isFavorite);
+
+    console.log(response);
   };
 
   return (

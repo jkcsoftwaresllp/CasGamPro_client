@@ -3,57 +3,71 @@ import { GameTile } from "./gameTiles/GameTiles";
 import style from "./style/GameList.module.css";
 
 // images
-import teenPatti from "./img/teenPatti/image.png";
-import luckyB from "./img/luckSevenB/luckyB.jpg";
-import andarBahar from "./img/andarBahar/andarBahar.png";
-import dragonTiger from "./img/dragonTiger/dragonTiger.png";
+import imgTeenPatti from "./img/teenPatti/image.png";
+import imgLuckyB from "./img/luckSevenB/luckyB.jpg";
+import imgAndarBahar from "./img/andarBahar/andarBahar.png";
+import imgDragonTiger from "./img/dragonTiger/dragonTiger.png";
 import { useButtonNavigation } from "../../../hooks/useButtonNavigation";
 import { routesPathClient as path } from "../../routing/helper/routesPathClient";
+import { GAME_TYPES, validGames } from "../../game/helper/gameTypes";
 
 export const GameList = () => {
   const handleCardClick = useButtonNavigation();
   const { game: getGamePath } = path;
+  const andarBahar1 = validGames[0];
+  const andarBahar2 = validGames[1];
+  const lucky7B = validGames[2];
+  const teenPattiT20 = validGames[3];
+  const dragonTiger = validGames[4];
+  const dragonTigerLion = validGames[5];
 
   return (
     <div className={style.gameListWrapper}>
       <div className={style.gameList}>
         <GameTile
-          imgSrc={teenPatti}
+          imgSrc={imgTeenPatti}
           label="Teen Patti T-20"
-          onClick={() => handleCardClick(getGamePath("teenPattiT20"))}
+          onClick={() => handleCardClick(getGamePath(teenPattiT20))}
+          gameId={GAME_TYPES[teenPattiT20]}
         />
         <GameTile
-          imgSrc={luckyB}
+          imgSrc={imgLuckyB}
           label="Luck 7B"
-          onClick={() => handleCardClick(getGamePath("lucky7B"))}
+          onClick={() => handleCardClick(getGamePath(lucky7B))}
+          gameId={GAME_TYPES[teenPattiT20]}
         />
         <GameTile
-          imgSrc={andarBahar}
+          imgSrc={imgAndarBahar}
           label="Andar Bahar 1"
-          onClick={() => handleCardClick(getGamePath("andarBahar1"))}
+          onClick={() => handleCardClick(getGamePath(andarBahar1))}
+          gameId={GAME_TYPES[andarBahar1]}
         />
 
         <GameTile
-          imgSrc={andarBahar}
+          imgSrc={imgAndarBahar}
           label="Andar Bahar 2"
-          onClick={() => handleCardClick(getGamePath("andarBahar2"))}
+          onClick={() => handleCardClick(getGamePath(andarBahar2))}
+          gameId={GAME_TYPES[andarBahar2]}
         />
 
         <GameTile
-          imgSrc={dragonTiger}
+          imgSrc={imgDragonTiger}
           label="20-20 Dragon Tiger"
-          onClick={() => handleCardClick(getGamePath("dragonTiger"))}
+          onClick={() => handleCardClick(getGamePath(dragonTiger))}
+          gameId={GAME_TYPES[dragonTiger]}
         />
 
         <GameTile
-          imgSrc={dragonTiger}
+          imgSrc={imgDragonTiger}
           label="20 20 DTL"
-          onClick={() => handleCardClick(getGamePath("dragonTigerLion"))}
+          onClick={() => handleCardClick(getGamePath(dragonTigerLion))}
+          gameId={GAME_TYPES[dragonTigerLion]}
         />
         <GameTile
           imgSrc="https://media.giphy.com/media/10SvWCbt1ytWCc/giphy.gif"
           label="Card Title 4"
           onClick={() => {}}
+          gameId={""}
         />
       </div>
     </div>

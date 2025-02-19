@@ -40,19 +40,21 @@ export const manageLenDen = (searchQuery = "") => {
       setLoading(true);
       const response = await apiCall("/auth-api/agent/ledger", "GET");
       console.log("Ledger Data:", response);
-      // if (response && response.uniqueCode === "CGP0075") {
-      setLenDen(response.data);
+      if (response && response.uniqueCode === "CGP0081") {
+        setLenDen(response.data.results);
+      } else console.error("API Error:", response);
       setLoading(false);
-      // } else
-      console.error("API Error:", response);
     };
 
     fetchData();
   }, []);
 
-  const data = LenDen.filter((item) =>
-    item.entry.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+  const data =
+    LenDen.length === 0
+      ? []
+      : LenDen.filter((item) =>
+          item.entry.toLowerCase().includes(searchQuery.toLowerCase())
+        );
 
   return { loading, data };
 };

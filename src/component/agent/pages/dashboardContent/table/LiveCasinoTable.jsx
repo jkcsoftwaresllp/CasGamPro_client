@@ -41,18 +41,14 @@ export const LiveCasinoTable = ({}) => {
         </div>
       ) : (
         <div className={style.tableContent}>
-          {tableData.length === 0 ? (
-            <div className={style.noDataContainer}> No Record Found </div>
-          ) : (
-            <Table
-              data={tableData}
-              columns={columns}
-              columnWidths={columnWidths}
-              isAction={false}
-              clickableColumns={["title"]}
-              onCellClick={handleCellClick}
-            />
-          )}
+          <Table
+            data={tableData}
+            columns={columns}
+            columnWidths={columnWidths}
+            isAction={false}
+            clickableColumns={["title"]}
+            onCellClick={handleCellClick}
+          />
         </div>
       )}
     </div>

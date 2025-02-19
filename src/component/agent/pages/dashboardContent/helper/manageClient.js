@@ -9,12 +9,19 @@ export const manageClientsData = (searchQuery = "") => {
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
-      const response = await apiCall("/auth-api/agent/players", "GET");
-      if (response && response.uniqueCode === "CGP0038") {
-        setClients(response.data.clients);
-        console.log("API Response: ", response.data.clients);
-        setLoading(false);
-      } else console.error("API Error:", response.data);
+      try {
+        const response = await apiCall("/auth-api/agent/players", "GET");
+        if (response && response.uniqueCode === "CGP0038") {
+          setClients(response.data);
+          console.log("API Response: ", response.data);
+        } else {
+          console.error("API Error:", response.data);
+        }
+      } catch (error) {
+        console.error("Fetch Error:", error);
+      } finally {
+        setLoading(false); // Ensures loading is set to false in all cases
+      }
     };
 
     fetchData();

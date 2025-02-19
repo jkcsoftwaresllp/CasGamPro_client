@@ -9,11 +9,11 @@ export const games = (searchQuery = "") => {
     const fetchGames = async () => {
       setLoading(true);
       const response = await apiCall("/auth-api/agent/games/types", "GET");
-      if (response && response.uniqueCode === "CGP0051") {
-        console.log("API Response:", response.data);
+      console.log("API Response:", response);
+      if (response && response.uniqueCode === "CGP0109") {
         setGames(response.data);
-        setLoading(false);
-      } else console.error("API Error:", response.data);
+      } else console.error("API Error:", response);
+      setLoading(false);
     };
 
     fetchGames();

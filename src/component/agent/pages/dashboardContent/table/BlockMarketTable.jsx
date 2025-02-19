@@ -48,7 +48,7 @@ export const BlockMarketTable = () => {
     {
       label: "Edit",
       icon: EditIcon,
-      onClick: (row) => console.log(`Edit client ${row.id}`),
+      onClick: (row) => console.log(`Edit client ${row.id}`), // TODO : Blocking & Unblocking at Server end
     },
   ];
 
@@ -64,22 +64,7 @@ export const BlockMarketTable = () => {
           <Loader />
         </div>
       ) : (
-        <div className={style.manageCommissionsContainer}>
-          <div className={style.paginationContainer}>
-            <Button
-              label="Previous"
-              onClick={prevPage}
-              disabled={currentPage === 1}
-            />
-            <span className={style.pageIndicator}>
-              Page {currentPage} of {totalPages}
-            </span>
-            <Button
-              label="Next"
-              onClick={nextPage}
-              disabled={currentPage === totalPages}
-            />
-          </div>
+        <>
           {isGameView && (
             <GameTableWindow
               setIsGameView={setIsGameView}
@@ -87,21 +72,17 @@ export const BlockMarketTable = () => {
             />
           )}
           <div className={style.tableContent}>
-            {tableData.length === 0 ? (
-              <div className={style.noDataContainer}> No Record Found </div>
-            ) : (
-              <Table
-                data={tableData}
-                columns={columns}
-                columnWidths={columnWidths}
-                isAction={true} // Indicating that action buttons should be shown
-                btns={actionButtons} // Passing action buttons here
-                clickableColumns={["name"]}
-                onCellClick={handleCellClick}
-              />
-            )}
+            <Table
+              data={tableData}
+              columns={columns}
+              columnWidths={columnWidths}
+              isAction={true} // Indicating that action buttons should be shown
+              btns={actionButtons} // Passing action buttons here
+              clickableColumns={["name"]}
+              onCellClick={handleCellClick}
+            />
           </div>
-        </div>
+        </>
       )}
     </div>
   );

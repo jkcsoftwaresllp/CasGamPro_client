@@ -10,6 +10,8 @@ import style from "../manageClient/style/AgentNewUser.module.css";
 import { Loader } from "../../../../common/Loader";
 import { useFetchUserData } from "../helper/editUser"; // Import the helper function
 
+// TODO: Currently Blocking is not implmented neither at client side not return in API
+
 export const EditUser = () => {
   const { id } = useParams();
   console.log("Edit user id:", id);
@@ -28,11 +30,12 @@ export const EditUser = () => {
   const handleFormSubmit = async (e) => {
     e.preventDefault();
     const result = await handleSubmit(id, formData);
-    if (result.success) {
+
+    if (result?.success) {
       setSuccess(result.success);
       setTimeout(() => navigate(-1)); // Redirect after success
     } else {
-      setError(result.error);
+      setError(result?.error || "Handling Form Error");
     }
   };
 
@@ -45,7 +48,7 @@ export const EditUser = () => {
       ) : (
         <form className={style.form}>
           <h2 className={style.para}>Edit User : {id}</h2>
-
+          <UserIdInput value={formData.username} />
           <TextInput
             label="First Name"
             name="firstName"
@@ -62,58 +65,60 @@ export const EditUser = () => {
             label="Fix Limit"
             name="fixLimit"
             value={formData.fixLimit}
-            onChange={handleChange}
-            min={0}
-            max={18}
+            disable={true}
           />
           <NumberInput
-            label="My Match Share"
-            name="matchShare"
-            value={formData.matchShare}
-            onChange={handleChange}
-            min={0}
-            max={15}
+            label="My Share"
+            name="share"
+            value={formData.share}
+            disable={true}
           />
           <NumberInput
-            label="Match Commission"
-            name="matchCommission"
-            value={formData.matchCommission}
-            onChange={handleChange}
-            min={0}
-            max={3}
+            label="Casino Commission"
+            name="casinoCommission"
+            value={formData.casinoCommission}
+            disable={true}
           />
           <NumberInput
             label="Lottery Commission"
             name="lotteryCommission"
             value={formData.lotteryCommission}
-            onChange={handleChange}
-            min={0}
-            max={3}
+            disable={true}
           />
-
-          <div className={style.switchArea}>
+          <PasswordInput
+            label="Password"
+            name="password"
+            value={formData.password}
+            onChange={handleChange}
+            placeholder="Enter Password"
+          />
+          <PasswordInput
+            label="Confirm Password"
+            name="confirmPassword"
+            value={formData.confirmPassword}
+            onChange={handleChange}
+            placeholder="Confirm Password"
+          />
+          {/* <div className={style.switchArea}>
             <BlockSwitch
-              label="Agent Blocked"
+              label="Client Blocked"
               id="agentBlockedSwitch"
-              isChecked={formData.agentBlocked}
-              setIsChecked={(value) =>
-                handleSwitchChange("agentBlocked", value)
-              }
+              level={formData.blockingLevels}
+              onChange={(value) => handleSwitchChange("blockingLevels", value)}
             />
-          </div>
+          </div> */}
 
-          <div className={style.switchArea}>
+          {/* TODO: Implement Bets Blocking in the System, daatbase is configured for this we need implement in the APIs */}
+          {/* <div className={style.switchArea}>
             <BlockSwitch
               label="Bets Blocked"
               id="betsBlockedSwitch"
               isChecked={formData.betsBlocked}
               setIsChecked={(value) => handleSwitchChange("betsBlocked", value)}
             />
-          </div>
-
+          </div> */}
           {error && <div className={style.error}>{error}</div>}
           {success && <div className={style.success}>{success}</div>}
-
           <div className={style.buttonArea}>
             <Button label="Cancel" onClick={() => navigate(-1)} />
             <Button label="Save Changes" onClick={handleFormSubmit} />

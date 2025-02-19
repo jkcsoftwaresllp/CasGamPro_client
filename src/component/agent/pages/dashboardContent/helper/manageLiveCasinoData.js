@@ -13,6 +13,7 @@ export const manageLiveCasinoData = (searchQuery = "") => {
         "/auth-api/agent/liveCasinoReports",
         "GET"
       );
+      console.log(response);
       if (response && response.uniqueCode === "CGP0081") {
         setLiveGames(response.data.data);
         setLoading(false);

@@ -101,10 +101,11 @@ export const AgentManageUser = () => {
               }
             />
           </div>
-          <div className={style.cardGrid}>
+          {/* TODO : Correct this  */}
+          {/* <div className={style.cardGrid}>
             <DashboardCard label="Coins" value="-35000" />
             <DashboardCard label="Rs Exposure" value="5000" />
-          </div>
+          </div> */}
         </div>
       )}
     </div>

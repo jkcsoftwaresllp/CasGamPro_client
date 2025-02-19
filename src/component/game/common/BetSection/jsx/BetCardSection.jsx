@@ -8,6 +8,7 @@ export const BetCardSection = ({
   isLock,
   betProfit = null,
   betAmount = {},
+  player = "",
 }) => {
   let profit = betProfit;
   if (profit === null) {
@@ -26,7 +27,7 @@ export const BetCardSection = ({
             betProfit={profit}
             isLock={isLock}
             onClick={(label, value) =>
-              onClick({ label, player: code[1] }, value)
+              onClick({ label, player: `${player}${code}` }, value)
             }
           />
         ))}

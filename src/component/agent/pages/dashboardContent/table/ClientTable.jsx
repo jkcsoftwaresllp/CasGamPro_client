@@ -18,10 +18,10 @@ export const ClientTable = () => {
 
   const tableData = data.map((client) => ({
     id: client.id,
-    username: `${client.firstName} ${client.lastName}`,
-    matchCommission: client.matchShare,
+    username: `${client.firstName} ${client.lastName} (${client.userName})`,
+    casinoCommission: client.casinoCommission,
     lotteryCommission: client.lotteryCommission,
-    share: client.share,
+    share: client.matchShare,
   }));
 
   const filteredData = tableData.filter((client) =>
@@ -31,7 +31,7 @@ export const ClientTable = () => {
   const columns = [
     { key: "id", label: "ID" },
     { key: "username", label: "UserName" },
-    { key: "matchCommission", label: "Match Commission" },
+    { key: "casinoCommission", label: "Casino Commission" },
     { key: "lotteryCommission", label: "Lottery Commission" },
     { key: "share", label: "Share" },
     { key: "actions", label: "Actions" },

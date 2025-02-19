@@ -35,7 +35,7 @@ export const manageInOut = (searchQuery = "") => {
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
-      const response = await apiCall("/auth-api/agent/ledger", "GET");
+      const response = await apiCall("/auth-api/agent/inout", "GET");
       console.log("Inout Data:", response);
       if (response && response.uniqueCode === "CGP0088") {
         setInOut(response.data);

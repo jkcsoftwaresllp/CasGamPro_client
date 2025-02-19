@@ -18,6 +18,8 @@ export const Game = () => {
   const { roundId: gameId, status, winner, startTime, cards } = gameState;
   const [betItems, setBetItems] = useState();
 
+  // console.log("gameState", gameState);
+
   useGameSocket(gameType);
 
   const rountId = extractRoundId(gameId);
@@ -60,6 +62,7 @@ export const Game = () => {
               status={status}
               game={gameType}
               onClick={(label, value) => {
+                console.log(label);
                 setBetItems({ label, value }); // Example: {label: "Low", value: "0.0"}
               }}
             />
