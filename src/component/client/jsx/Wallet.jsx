@@ -19,6 +19,8 @@ export const Wallet = () => {
     user: { userId },
   } = useAuth();
 
+  console.log({ userId });
+
   // useEffect(() => {
   //   const fetchWalletPoints = async () => {
   //     try {
@@ -38,9 +40,9 @@ export const Wallet = () => {
   // }, []);
 
   const namespace = "wallet";
-  const socket = connectSocket(namespace);
 
   useEffect(() => {
+    const socket = connectSocket(namespace);
     socket.on("connect", () => {
       emitEvent(namespace, "joinWallet", userId);
     });
