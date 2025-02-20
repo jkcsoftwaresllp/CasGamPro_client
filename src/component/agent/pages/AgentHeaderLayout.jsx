@@ -13,6 +13,7 @@ export const AgentHeaderLayout = ({
   data,
   onFilter,
   paginationData,
+  tableName,
 }) => {
   const {
     showBreadcrumbs,
@@ -42,7 +43,7 @@ export const AgentHeaderLayout = ({
           {showDownloadButtons && (
             <>
               <Filter onFilter={onFilter} />
-              <DownloadButtons clients={data} />
+              <DownloadButtons data={data} tableName={tableName} />
             </>
           )}
           {showPagination && (

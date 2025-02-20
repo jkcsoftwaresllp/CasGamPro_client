@@ -9,6 +9,7 @@ import { apiCall } from "../../common/apiCall";
 export const AgentDashboard = () => {
   const [headerTitle, setHeaderTitle] = useState("Dashboard");
   const [searchQuery, setSearchQuery] = useState("");
+  const [tableName, setTableName] = useState("report");
   const [headerConfig, setHeaderConfig] = useState({
     showBreadcrumbs: false,
     breadcrumbsData: [],
@@ -68,6 +69,7 @@ export const AgentDashboard = () => {
     try {
       const currentPath = location.pathname.split("/").pop();
       const endpoint = apiEndpoints[`/${currentPath}`];
+      setTableName(currentPath);
 
       if (!endpoint) {
         console.warn("No API endpoint found for:", currentPath);
@@ -111,6 +113,7 @@ export const AgentDashboard = () => {
           setSearchQuery={setSearchQuery}
           onFilter={setFilters}
           data={data}
+          tableName={tableName}
         />
 
         {/* Content Section */}
