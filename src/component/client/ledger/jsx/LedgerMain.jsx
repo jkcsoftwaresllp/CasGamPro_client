@@ -8,7 +8,6 @@ export const LedgerMain = () => {
   const context = useOutletContext() || {};
   const { data = [], loading = false } = context;
 
-  console.log(context);
 
   const columns = [
     { key: "date", label: "Date" },
