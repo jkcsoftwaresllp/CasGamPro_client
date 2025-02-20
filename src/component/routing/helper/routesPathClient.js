@@ -12,6 +12,7 @@ export const routesPathClient = {
   settings: "/settings",
   rules: "/rules",
   playHistory: "/playHistory",
+  table: "/table",
 
   // /client/gameCatagory
   catagory1: "/casino",
