@@ -20,8 +20,10 @@ export const AgentHeaderLayout = ({
     breadcrumbsData,
     showSearchBar,
     showDownloadButtons,
-    showPagination,
+    // showPagination, // TODO : Fix this
   } = headerConfig;
+
+  const showPagination = false;
 
   return (
     <header className={style.headerContainer}>
