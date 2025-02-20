@@ -75,9 +75,9 @@ export const AgentDashboard = () => {
         return;
       }
 
-      const result = await apiCall(endpoint, "GET", null, {}, filters);
-      console.log(result);
-      setData(result);
+      const response = await apiCall(endpoint, "GET", null, {}, filters);
+      console.log({ response });
+      setData(response.data.results);
     } catch (error) {
       console.error("Error fetching data:", error);
     }

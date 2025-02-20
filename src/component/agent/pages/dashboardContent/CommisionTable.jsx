@@ -5,23 +5,17 @@ import { SettingsIcon } from "../../../../assets/assets.jsx";
 import { routesPathClient as path } from "../../../routing/helper/routesPathClient.js";
 import { CustomBtn } from "../../../common/CustomBtn.jsx";
 import { DialogBox } from "./jsx/DialogBox.jsx";
-import { handleTransaction } from "./helper/transactionHelper.js";
 import { Loader } from "../../../common/Loader.jsx";
-import { manageCommissionData } from "./helper/commision.js";
 import style from "./table/Table.module.css";
-import { DownloadButtons } from "./jsx/DownloadBtn.jsx";
-import { Button } from "../../../common/Button.jsx";
 
 export const CommissionTable = () => {
-  const [currentPage, setCurrentPage] = useState(1);
   const [showDialog, setShowDialog] = useState(false);
   const [selectedClientId, setSelectedClientId] = useState(null);
   const navigate = useNavigate();
 
-  const { loading, data } = manageCommissionData();
-  const { searchQuery } = useOutletContext();
+  const context = useOutletContext() || {};
+  const { data = [], loading = false } = context;
 
-  const rowsPerPage = 20;
   const basePath = `${path.agent}${path.manageClients}`;
 
   const openDialog = (clientId) => {
@@ -34,16 +28,7 @@ export const CommissionTable = () => {
     setSelectedClientId(null);
   };
 
-  const indexOfLastRow = currentPage * rowsPerPage;
-  const indexOfFirstRow = indexOfLastRow - rowsPerPage;
-  const currentData = data.slice(indexOfFirstRow, indexOfLastRow);
-
-  const totalPages = Math.ceil(data.length / rowsPerPage);
-  const nextPage = () =>
-    setCurrentPage((prev) => Math.min(prev + 1, totalPages));
-  const prevPage = () => setCurrentPage((prev) => Math.max(prev - 1, 1));
-
-  const tableData = currentData.map((client) => ({
+  const tableData = data.map((client) => ({
     id: client.id,
     name: `${client.firstName} ${client.lastName} (${client.username})`,
     share: client.share,
