@@ -5,7 +5,7 @@ import { Pagination } from "../../common/Pagination";
 import { Filter } from "../../common/Filter";
 import style from "./styles/ContentPage.module.css";
 
-export const AgentHeaderLayout = ({
+export const TableHeader = ({
   headerTitle,
   headerConfig = {},
   searchQuery,
