@@ -5,6 +5,7 @@ import style from "./styles/ContentPage.module.css";
 import { Outlet, useLocation } from "react-router-dom";
 import { routesPathClient as path } from "../../routing/helper/routesPathClient";
 import { apiCall } from "../../common/apiCall";
+import { filterDataBySearch } from "./helper/filterUtils";
 
 export const AgentDashboard = () => {
   const [headerTitle, setHeaderTitle] = useState("Dashboard");
@@ -17,9 +18,12 @@ export const AgentDashboard = () => {
     showDownloadButtons: false,
   });
 
+  filterDataBySearch;
+
   const location = useLocation();
 
   const [data, setData] = useState([]);
+  const [filteredData, setFilteredData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [filters, setFilters] = useState({
     startDate: "",
@@ -102,6 +106,10 @@ export const AgentDashboard = () => {
     });
   }, [location.pathname]);
 
+  useEffect(() => {
+    setFilteredData(filterDataBySearch(data, searchQuery));
+  }, [searchQuery, data]);
+
   return (
     <div className={style.pageContainer}>
       <Sidebar setHeaderTitle={setHeaderTitle} />
@@ -118,7 +126,7 @@ export const AgentDashboard = () => {
 
         {/* Content Section */}
         <div className={style.outlet}>
-          <Outlet context={{ data, loading }} />
+          <Outlet context={{ data: filteredData, loading }} />
         </div>
       </div>
     </div>
