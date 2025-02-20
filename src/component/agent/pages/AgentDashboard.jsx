@@ -4,6 +4,7 @@ import { AgentHeaderLayout } from "./AgentHeaderLayout"; // Import the layout co
 import style from "./styles/ContentPage.module.css";
 import { Outlet, useLocation } from "react-router-dom";
 import { routesPathClient as path } from "../../routing/helper/routesPathClient";
+import { apiCall } from "../../common/apiCall";
 
 export const AgentDashboard = () => {
   const [headerTitle, setHeaderTitle] = useState("Dashboard");
@@ -17,64 +18,104 @@ export const AgentDashboard = () => {
 
   const location = useLocation();
 
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [filters, setFilters] = useState({
+    startDate: "",
+    endDate: "",
+    userId: "",
+    clientName: "",
+    agentId: "",
+    limit: 30,
+    offset: 0,
+  });
+
+  const agentPath = path.agent;
+  const manageClients = path.manageClients;
+  const blockClients = path.blockClients;
+  const commision = path.commision;
+  const companyLenDen = path.companyLenDen;
+  const profitAndLoss = path.profitAndLoss;
+  const inOut = path.inOut;
+  const liveCasino = path.liveCasino;
+
+  const commonPaths = [
+    `${agentPath}${manageClients}`,
+    `${agentPath}${blockClients}`,
+    `${agentPath}${commision}`,
+    `${agentPath}${companyLenDen}`,
+    `${agentPath}${profitAndLoss}`,
+    `${agentPath}${inOut}`,
+    `${agentPath}${liveCasino}`,
+  ];
+
+  const apiEndpoints = {
+    [manageClients]: "/auth-api/agent/players",
+    [blockClients]: "/auth-api/agent/blocked",
+    [commision]: "/auth-api/agent/commissionLimits",
+    [companyLenDen]: "/auth-api/agent/ledger",
+    [profitAndLoss]: "/auth-api/agent/profit-loss",
+    [inOut]: "/auth-api/agent/inout",
+    [liveCasino]: "/auth-api/agent/liveCasinoReports",
+  };
+
+  const pagesWithSearchBar = [...commonPaths];
+  const pagesWithDownloadBtn = [...commonPaths];
+  const pagesWithshowPagination = [...commonPaths];
+
+  const fetchData = async () => {
+    setLoading(true);
+    try {
+      const currentPath = location.pathname.split("/").pop();
+      const endpoint = apiEndpoints[`/${currentPath}`];
+
+      if (!endpoint) {
+        console.warn("No API endpoint found for:", currentPath);
+        setLoading(false);
+        return;
+      }
+
+      const result = await apiCall(endpoint, "GET", null, {}, filters);
+      console.log(result);
+      setData(result);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+    setLoading(false);
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, [filters, location.pathname]);
+
   useEffect(() => {
     const currentPath = location.pathname;
 
-    const pagesWithSearchBar = [
-      `${path.agent}${path.manageClients}`,
-      `${path.agent}${path.blockClients}`,
-      `${path.agent}${path.commision}`,
-      `${path.agent}/limit`, // Assuming 'limit' is not in routesPathClient
-    ];
-    const pagesWithDownloadBtn = [
-      `${path.agent}${path.manageClients}`,
-      `${path.agent}${path.blockClients}`,
-      `${path.agent}${path.commision}`,
-      `${path.agent}${path.companyLenDen}`,
-      `${path.agent}${path.profitAndLoss}`,
-      `${path.agent}${path.inOut}`,
-      `${path.agent}/limit`, // Assuming 'limit' is not in routesPathClient
-    ];
-    const pagesWithshowPagination = [
-      `${path.agent}${path.manageClients}`,
-      `${path.agent}${path.blockClients}`,
-      `${path.agent}${path.commision}`,
-      `${path.agent}${path.companyLenDen}`,
-      `${path.agent}${path.profitAndLoss}`,
-      `${path.agent}${path.inOut}`,
-      `${path.agent}/limit`, // Assuming 'limit' is not in routesPathClient
-    ];
-
     setHeaderConfig({
-      showBreadcrumbs: currentPath.split("/").filter(Boolean).length >= 2, // Show breadcrumbs for depth >= 3
-      breadcrumbsData: currentPath.split("/").filter(Boolean), // Format breadcrumbs
+      showBreadcrumbs: currentPath.split("/").filter(Boolean).length >= 2,
+      breadcrumbsData: currentPath.split("/").filter(Boolean),
       showSearchBar: pagesWithSearchBar.includes(currentPath),
       showDownloadButtons: pagesWithDownloadBtn.includes(currentPath),
       showPagination: pagesWithshowPagination.includes(currentPath),
     });
   }, [location.pathname]);
 
-  const handleSearch = (query) => {
-    setSearchQuery(query);
-  };
-
   return (
     <div className={style.pageContainer}>
       <Sidebar setHeaderTitle={setHeaderTitle} />
       <div className={style.content}>
-        {/* Use AgentHeaderLayout component for the header */}
         <AgentHeaderLayout
           headerTitle={headerTitle}
           headerConfig={headerConfig}
           searchQuery={searchQuery}
           setSearchQuery={setSearchQuery}
+          onFilter={setFilters}
+          data={data}
         />
 
         {/* Content Section */}
         <div className={style.outlet}>
-          <Outlet
-            context={{ setHeaderConfig, searchQuery: searchQuery || "" }}
-          />
+          <Outlet context={{ data, loading }} />
         </div>
       </div>
     </div>

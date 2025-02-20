@@ -10,7 +10,8 @@ export const AgentHeaderLayout = ({
   headerConfig = {},
   searchQuery,
   setSearchQuery,
-  clients,
+  data,
+  onFilter,
   paginationData,
 }) => {
   const {
@@ -40,8 +41,8 @@ export const AgentHeaderLayout = ({
           )}
           {showDownloadButtons && (
             <>
-              <Filter />
-              <DownloadButtons clients={clients} />
+              <Filter onFilter={onFilter} />
+              <DownloadButtons clients={data} />
             </>
           )}
           {showPagination && (
