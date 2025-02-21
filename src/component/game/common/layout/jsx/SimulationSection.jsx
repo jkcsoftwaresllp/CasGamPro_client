@@ -10,21 +10,13 @@ export const SimulationSection = ({ gameType }) => {
   const socketRef = useRef(null);
   const [error, setError] = useState(null);
   const [isConnected, setIsConnected] = useState(false);
-  
-  // Refs for handling frame transitions
-  const lastFrameTimeRef = useRef(null);
-  const frameQueueRef = useRef([]);
-  const animationFrameRef = useRef(null);
 
   useEffect(() => {
     let mounted = true;
 
     const initializeSocket = () => {
       try {
-        if (socketRef.current) {
-          socketRef.current.disconnect();
-        }
-
+        // Create socket connection using the video namespace
         socketRef.current = io("http://localhost:4320/video", {
           reconnection: true,
           reconnectionAttempts: 5,
@@ -35,23 +27,33 @@ export const SimulationSection = ({ gameType }) => {
           console.log("Connected to video stream");
           setIsConnected(true);
           setError(null);
+          console.info(`Joining stream for round ${roundId}`);
           socketRef.current.emit("joinVideoStream", roundId);
-        });
-
-        socketRef.current.on("videoFrame", (data) => {
-          if (mounted) {
-            // Add frame to queue instead of rendering immediately
-            frameQueueRef.current.push(data);
-            if (!animationFrameRef.current) {
-              processNextFrame();
-            }
-          }
         });
 
         socketRef.current.on("connect_error", (err) => {
           console.error("Connection error:", err);
           setError("Failed to connect to video stream");
           setIsConnected(false);
+        });
+
+        // Handle non-dealing video frames
+        socketRef.current.on("videoFrame", (data) => {
+          if (mounted) {
+            handleVideoFrame(data, "non-dealing");
+          }
+        });
+
+        // Handle dealing frames (if sent separately)
+        socketRef.current.on("dealingFrame", (data) => {
+          if (mounted) {
+            handleVideoFrame(data, "dealing");
+          }
+        });
+
+        socketRef.current.on("error", (err) => {
+          console.error("Socket error:", err);
+          setError("Video stream error occurred");
         });
 
         socketRef.current.on("disconnect", () => {
@@ -65,49 +67,27 @@ export const SimulationSection = ({ gameType }) => {
     };
 
     initializeSocket();
-    startFrameProcessing();
 
     return () => {
       mounted = false;
       if (socketRef.current) {
+        if (!roundId) {
+          console.error("ROUNDID NOT FOUND FIX!!");
+        }
         socketRef.current.emit("leaveVideoStream", roundId);
         socketRef.current.disconnect();
       }
-      stopFrameProcessing();
     };
   }, [roundId]);
 
-  const startFrameProcessing = () => {
-    const processFrame = () => {
-      if (frameQueueRef.current.length > 0) {
-        const now = Date.now();
-        const timeSinceLastFrame = now - (lastFrameTimeRef.current || 0);
+  // Render incoming video frame to the canvas
+  const handleVideoFrame = (data, frameType) => {
+    console.log(`Received ${frameType} frame ${data.frameNumber}`);
 
-        // Maintain a minimum interval between frames (e.g., 30fps = ~33ms)
-        if (timeSinceLastFrame >= 33) {
-          const frame = frameQueueRef.current.shift();
-          renderFrame(frame);
-          lastFrameTimeRef.current = now;
-        }
-      }
-
-      animationFrameRef.current = requestAnimationFrame(processFrame);
-    };
-
-    animationFrameRef.current = requestAnimationFrame(processFrame);
-  };
-
-  const stopFrameProcessing = () => {
-    if (animationFrameRef.current) {
-      cancelAnimationFrame(animationFrameRef.current);
-      animationFrameRef.current = null;
+    if (!data || !data.frameData) {
+      console.error("Received empty frame data");
+      return;
     }
-    frameQueueRef.current = [];
-    lastFrameTimeRef.current = null;
-  };
-
-  const renderFrame = (data) => {
-    if (!data || !data.frameData) return;
 
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -115,31 +95,41 @@ export const SimulationSection = ({ gameType }) => {
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
-    const img = new Image();
-    img.onload = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
+    try {
+      const img = new Image();
 
-      const scale = Math.min(
-        canvas.width / img.width,
-        canvas.height / img.height
-      );
+      img.onload = () => {
+        // Clear the canvas before drawing the new frame
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        // Optionally, fill the canvas with a background color if needed:
+        // ctx.fillStyle = "#fff";
+        // ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-      const x = (canvas.width - img.width * scale) / 2;
-      const y = (canvas.height - img.height * scale) / 2;
+        // Scale image to fit while maintaining aspect ratio
+        const scale = Math.min(canvas.width / img.width, canvas.height / img.height);
+        const x = (canvas.width - img.width * scale) / 2;
+        const y = (canvas.height - img.height * scale) / 2;
+        ctx.drawImage(img, x, y, img.width * scale, img.height * scale);
+      };
 
-      ctx.drawImage(img, x, y, img.width * scale, img.height * scale);
-    };
+      img.onerror = (e) => {
+        console.error("Failed to load frame image:", e);
+        setError("Failed to load video frame");
+      };
 
-    img.src = `data:image/jpeg;base64,${data.frameData}`;
+      // Set image source via base64 string
+      img.src = `data:image/jpeg;base64,${data.frameData}`;
+    } catch (err) {
+      console.error("Error processing frame:", err);
+      setError("Error processing video frame");
+    }
   };
 
   return (
     <div className={styles.simulationContainer}>
       {error && <div className={styles.errorMessage}>{error}</div>}
       {!isConnected && !error && (
-        <div className={styles.loadingMessage}>
-          Connecting to video stream...
-        </div>
+        <div className={styles.loadingMessage}>Connecting to video stream...</div>
       )}
       <canvas
         ref={canvasRef}
