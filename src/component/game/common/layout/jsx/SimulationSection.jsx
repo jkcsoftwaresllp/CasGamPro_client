@@ -44,11 +44,14 @@ export const SimulationSection = ({ gameType }) => {
         };
 
         wsRef.current.onmessage = (event) => {
+          console.log("checkpoint #1")
           if (mounted) {
+          console.log("checkpoint #2")
             try {
               const data = JSON.parse(event.data);
               // Check for frame message format from Rust server
               if (data.status === 'frame') {
+          console.log("checkpoint #3")
                 handleVideoFrame(data);
               }
             } catch (err) {
