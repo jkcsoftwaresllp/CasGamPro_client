@@ -13,24 +13,7 @@ export const connectSocket = (namespace) => {
   const url = URL + namespace;
 
   if (!sockets[namespace] || !sockets[namespace].connected) {
-    sockets[namespace] = io(url, {
-      transports: ['websocket', 'polling'],
-      reconnectionAttempts: 5,
-      reconnectionDelay: 1000,
-      timeout: 20000,
-      withCredentials: true,
-      path: '/socket.io/'
-    });
-
-    // Add error handling
-    sockets[namespace].on('connect_error', (error) => {
-      console.error(`Connection error for namespace ${namespace}:`, error);
-    });
-
-    sockets[namespace].on('error', (error) => {
-      console.error(`Socket error for namespace ${namespace}:`, error);
-    });
-  }
+    sockets[namespace] = io(url);
 
   return sockets[namespace];
 };
