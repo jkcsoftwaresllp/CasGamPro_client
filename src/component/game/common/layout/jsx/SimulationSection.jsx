@@ -10,24 +10,33 @@ export const SimulationSection = ({ gameType }) => {
   const [error, setError] = useState(null);
   const [isConnected, setIsConnected] = useState(false);
 
+  const isDevelopment = import.meta.env.DEV;
+  const productionIP = "88.222.214.174";
+
+  const baseURL = isDevelopment
+    ? "ws://localhost:4500"
+    : `ws://${productionIP}:4500`;
+
   useEffect(() => {
     let mounted = true;
 
     const initializeWebSocket = () => {
       try {
         // Use native WebSocket instead of Socket.IO
-        wsRef.current = new WebSocket('ws://localhost:8000');
+        wsRef.current = new WebSocket(baseURL);
 
         wsRef.current.onopen = () => {
           console.log("Connected to video stream");
           setIsConnected(true);
           setError(null);
-          
+
           // Send join message in the format the Rust server expects
           if (roundId) {
-            wsRef.current.send(JSON.stringify({
-              joinVideoStream: roundId
-            }));
+            wsRef.current.send(
+              JSON.stringify({
+                joinVideoStream: roundId,
+              }),
+            );
             console.info(`Joining stream for round ${roundId}`);
           }
         };
@@ -44,14 +53,14 @@ export const SimulationSection = ({ gameType }) => {
         };
 
         wsRef.current.onmessage = (event) => {
-          console.log("checkpoint #1")
+          console.log("checkpoint #1");
           if (mounted) {
-          console.log("checkpoint #2")
+            console.log("checkpoint #2");
             try {
               const data = JSON.parse(event.data);
               // Check for frame message format from Rust server
-              if (data.status === 'frame') {
-          console.log("checkpoint #3")
+              if (data.status === "frame") {
+                console.log("checkpoint #3");
                 handleVideoFrame(data);
               }
             } catch (err) {
@@ -59,7 +68,6 @@ export const SimulationSection = ({ gameType }) => {
             }
           }
         };
-
       } catch (err) {
         console.error("WebSocket initialization error:", err);
         setError("Failed to initialize video stream");
@@ -98,7 +106,7 @@ export const SimulationSection = ({ gameType }) => {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         const scale = Math.min(
           canvas.width / img.width,
-          canvas.height / img.height
+          canvas.height / img.height,
         );
         const x = (canvas.width - img.width * scale) / 2;
         const y = (canvas.height - img.height * scale) / 2;
