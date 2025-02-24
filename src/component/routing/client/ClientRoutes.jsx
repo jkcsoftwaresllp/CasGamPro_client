@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import { routesPathClient as path } from "../helper/routesPathClient";
 import { ErrorPage } from "../../../pages/jsx/Error";
 import { Home } from "../../client/jsx/Home";
@@ -8,15 +8,23 @@ import { Rules } from "../../client/rules/jsx/Rules";
 import { LedgerMain } from "../../client/ledger/jsx/LedgerMain";
 import { ChangePassword } from "../../client/changePassword/jsx/ChangePassword";
 import { PlayHistory } from "../../client/playHistory/jsx/PlayeHistory";
+import { ClientTableLayout } from "./ClientTableLayout";
 
 export const ClientRoutes = () => {
+  const ledgerPath = path.ledger.replace("/", "");
+  const playHistoryPath = path.playHistory.replace("/", "");
+
   return (
     <Routes>
       <Route path={path.home} index element={<Home />} />
       <Route path={`${path.gameCatagory}/*`} element={<GameCatagoryRoutes />} />
-      <Route path={path.ledger} element={<LedgerMain />} />
+      <Route path={`${path.table}`} element={<ClientTableLayout />}>
+        <Route index element={<Navigate to={path.client} />} />
+        <Route path={ledgerPath} element={<LedgerMain />} />
+        <Route path={playHistoryPath} element={<PlayHistory />} />
+      </Route>
+
       <Route path={path.password} element={<ChangePassword />} />
-      <Route path={path.playHistory} element={<PlayHistory />} />
       <Route path={path.rules} element={<Rules />} />
       <Route path={path.settings} element={<TempComp label={"Settings"} />} />
 

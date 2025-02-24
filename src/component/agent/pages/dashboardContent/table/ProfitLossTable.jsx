@@ -1,28 +1,14 @@
-import React, { useState } from "react";
+import React from "react";
 import { Table } from "../../../../common/table/jsx/Table.jsx";
 import { Loader } from "../../../../common/Loader.jsx";
-import { manageProfitLossData } from "../helper/manageProfitLossData.js";
 import style from "../../styles/Common.module.css";
-import { Button } from "../../../../common/Button.jsx";
+import { useOutletContext } from "react-router-dom";
 
 export const ProfitLossTable = () => {
-  const { data, loading } = manageProfitLossData();
+  const context = useOutletContext() || {};
+  const { data = [], loading = false } = context;
 
-  // Pagination States
-  const [currentPage, setCurrentPage] = useState(1);
-  const rowsPerPage = 10;
-
-  // Pagination Calculations
-  const indexOfLastRow = currentPage * rowsPerPage;
-  const indexOfFirstRow = indexOfLastRow - rowsPerPage;
-  const currentData = data.slice(indexOfFirstRow, indexOfLastRow);
-
-  const totalPages = Math.ceil(data.length / rowsPerPage);
-  const nextPage = () =>
-    setCurrentPage((prev) => Math.min(prev + 1, totalPages));
-  const prevPage = () => setCurrentPage((prev) => Math.max(prev - 1, 1));
-
-  const tableData = currentData.map((entry) => ({
+  const tableData = data.map((entry) => ({
     date: entry.date,
     roundId: entry.roundId, // Fixed typo
     roundTitle: entry.roundTitle,

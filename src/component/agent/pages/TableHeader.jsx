@@ -5,21 +5,25 @@ import { Pagination } from "../../common/Pagination";
 import { Filter } from "../../common/Filter";
 import style from "./styles/ContentPage.module.css";
 
-export const AgentHeaderLayout = ({
+export const TableHeader = ({
   headerTitle,
   headerConfig = {},
   searchQuery,
   setSearchQuery,
-  clients,
+  data,
+  onFilter,
   paginationData,
+  tableName,
 }) => {
   const {
     showBreadcrumbs,
     breadcrumbsData,
     showSearchBar,
     showDownloadButtons,
-    showPagination,
+    // showPagination, // TODO : Fix this
   } = headerConfig;
+
+  const showPagination = false;
 
   return (
     <header className={style.headerContainer}>
@@ -40,8 +44,8 @@ export const AgentHeaderLayout = ({
           )}
           {showDownloadButtons && (
             <>
-              <Filter />
-              <DownloadButtons clients={clients} />
+              <Filter onFilter={onFilter} />
+              <DownloadButtons data={data} tableName={tableName} />
             </>
           )}
           {showPagination && (
