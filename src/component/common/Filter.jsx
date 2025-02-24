@@ -22,6 +22,11 @@ export const Filter = ({ onFilter }) => {
 
   const closeOverlay = () => setShowOptions(false);
 
+  const applyFilters = () => {
+    onFilter(filters);
+    closeOverlay();
+  };
+
   return (
     <div className={style.card}>
       <div className={style.cardContent}>
@@ -130,10 +135,7 @@ export const Filter = ({ onFilter }) => {
               )}
 
               {selectedFilter && (
-                <button
-                  className={style.button}
-                  onClick={() => onFilter(filters)}
-                >
+                <button className={style.button} onClick={applyFilters}>
                   Apply Filters
                 </button>
               )}

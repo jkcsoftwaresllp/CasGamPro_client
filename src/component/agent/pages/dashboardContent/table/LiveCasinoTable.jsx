@@ -1,11 +1,13 @@
 import React from "react";
 import { Table } from "../../../../common/table/jsx/Table.jsx";
 import { Loader } from "../../../../common/Loader.jsx";
-import { manageLiveCasinoData } from "../helper/manageLiveCasinoData";
 import style from "./Table.module.css";
+import { useOutletContext } from "react-router-dom";
 
 export const LiveCasinoTable = ({}) => {
-  const { loading, data } = manageLiveCasinoData();
+  const context = useOutletContext() || {};
+  const { data = [], loading = false } = context;
+
   const tableData = data.map((games) => ({
     title: games.title,
     date: games.date,

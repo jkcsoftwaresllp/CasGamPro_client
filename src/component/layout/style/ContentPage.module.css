@@ -1,0 +1,63 @@
+.pageContainer {
+  display: flex;
+  height: 100%;
+}
+
+.content {
+  --header-height: 60px;
+  flex-grow: 1;
+  height: 100%;
+  overflow-y: auto;
+}
+
+.headerContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: var(--header-height);
+  padding: 0 20px;
+  width: 100%;
+  background-color: var(--color-bg-primary);
+}
+
+.outlet {
+  height: calc(100% - var(--header-height));
+  width: 100%;
+  overflow: auto;
+}
+
+.headerTop {
+  display: flex;
+  justify-content: space-between; /* Ensures the left (title) and right (actions) are separated */
+  align-items: center; /* Vertically center the items */
+  width: 100%;
+}
+
+.headerTitle {
+  font-size: var(--text-lg); /* Adjust accordingly */
+  font-weight: var(--text-bold);
+  color: var(--color-text-primary);
+}
+
+.rightSideActions {
+  display: flex;
+  align-items: center;
+  gap: 16px; /* Adds space between Download Buttons and Pagination */
+}
+
+.headerActionsRow {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.searchBarWrapper {
+  flex-grow: 1; /* Takes up available space for search bar */
+}
+
+@media (max-width: 768px) {
+  .headerActions {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

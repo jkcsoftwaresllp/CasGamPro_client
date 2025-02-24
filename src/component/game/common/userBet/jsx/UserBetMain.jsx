@@ -1,20 +1,60 @@
 import { Table } from "../../../../common/table/jsx/Table";
 
+import { useAuth } from "../../../../../context/jsx/AuthContext";
+import {
+  connectSocket,
+  disconnectSocket,
+  subscribeToEvent,
+  emitEvent,
+} from "../../../../game/helper/socketService";
+import { useEffect, useState } from "react";
+import { useGameState } from "../../layout/helper/GameStateContext";
+
 export const UserBetMain = () => {
-  const lists = [
-    { name: "A", odd: "1.5", stake: "100", profit: "150" },
-    { name: "B", odd: "2.0", stake: "200", profit: "400" },
-    { name: "C", odd: "1.8", stake: "150", profit: "270" },
-    { name: "A", odd: "1.5", stake: "500", profit: "130" },
-    { name: "B", odd: "2.0", stake: "200", profit: "400" },
-    { name: "A", odd: "1.5", stake: "100", profit: "150" },
-    { name: "B", odd: "2.0", stake: "200", profit: "400" },
-    { name: "C", odd: "1.8", stake: "150", profit: "270" },
-    { name: "C", odd: "1.8", stake: "150", profit: "270" },
-    { name: "C", odd: "1.8", stake: "150", profit: "270" },
-    { name: "A", odd: "1.5", stake: "500", profit: "130" },
-    { name: "B", odd: "2.0", stake: "200", profit: "400" },
-  ];
+  const [stakes, setStakes] = useState([]);
+  const [error, setError] = useState(null);
+
+  const namespace = "stake";
+
+  const {
+    user: { userId },
+  } = useAuth();
+
+  const { roundId } = useGameState();
+
+  useEffect(() => {
+    const socket = connectSocket(namespace);
+    if (!userId || !namespace || !roundId) return;
+
+    console.log({ userId, roundId });
+
+    socket.on("connect", () => {
+      emitEvent(namespace, "joinStake", { userId, roundId });
+    });
+
+    subscribeToEvent(namespace, "stakeUpdate", (data) => {
+      console.log("Triggerd!!", data);
+      if (data) {
+        setStakes((prev) => [...prev, data]);
+      }
+    });
+
+    socket.on("connect_error", (error) => {
+      setError("Connection Error");
+      console.error("Connection error:", error);
+    });
+
+    socket.on("error", (error) => {
+      setError("Socket Error");
+
+      console.error("Socket error:", error);
+    });
+
+    // Cleanup on component unmount
+    return () => {
+      disconnectSocket(namespace);
+    };
+  }, [userId, namespace, roundId]);
 
   const columns = [
     { key: "name", label: "Name" },
@@ -25,7 +65,7 @@ export const UserBetMain = () => {
 
   return (
     <>
-      <Table data={lists} columns={columns} />
+      <Table data={stakes} columns={columns} />
     </>
   );
 };

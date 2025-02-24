@@ -19,7 +19,6 @@ export const BetComponent = ({ betFor, profit, setBetItems, player }) => {
   };
 
   const { gameType, roundId: gameId } = useGameState();
-  console.log({ gameType, gameId });
 
   const onSubmit = () =>
     handleSubmit({

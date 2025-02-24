@@ -1,27 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
 import { Table } from "../../../../common/table/jsx/Table.jsx";
-import { manageLenDen } from "../helper/manageLenDen.js";
 import { Loader } from "../../../../common/Loader.jsx";
 import style from "./Table.module.css";
-import { Button } from "../../../../common/Button.jsx";
+import { useOutletContext } from "react-router-dom";
 
 export const LedgerTable = () => {
-  const { data, loading } = manageLenDen();
-  console.log(data);
-
-  // // Pagination States
-  // const [currentPage, setCurrentPage] = useState(1);
-  // const rowsPerPage = 10;
-
-  // // Pagination Calculations
-  // const indexOfLastRow = currentPage * rowsPerPage;
-  // const indexOfFirstRow = indexOfLastRow - rowsPerPage;
-  // const currentData = data.slice(indexOfFirstRow, indexOfLastRow);
-
-  // const totalPages = Math.ceil(data.length / rowsPerPage);
-  // const nextPage = () =>
-  //   setCurrentPage((prev) => Math.min(prev + 1, totalPages));
-  // const prevPage = () => setCurrentPage((prev) => Math.max(prev - 1, 1));
+  const context = useOutletContext() || {};
+  const { data = [], loading = false } = context;
 
   const tableData = data.map((entry) => ({
     agentId: entry.agentId,
@@ -29,8 +14,8 @@ export const LedgerTable = () => {
     betsAmount: entry.betsAmount,
     profitAmount: entry.profitAmount,
     lossAmount: entry.lossAmount,
-    credit: entry.agentProfitShare.credit,
-    debit: entry.agentProfitShare.debit,
+    credit: entry.credit,
+    debit: entry.debit,
     agentCommission: entry.agentCommission,
     balance: entry.balance,
     note: entry.note,

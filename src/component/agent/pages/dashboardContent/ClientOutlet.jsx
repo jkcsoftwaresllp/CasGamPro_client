@@ -1,5 +1,8 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, useOutletContext } from "react-router-dom";
 
 export const ClientOutlet = () => {
-  return <Outlet />;
+  const context = useOutletContext() || {};
+  const { data = [], loading = false } = context;
+
+  return <Outlet context={{ data, loading }} />;
 };

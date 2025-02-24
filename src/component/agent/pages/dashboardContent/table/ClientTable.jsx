@@ -4,17 +4,14 @@ import { Table } from "../../../../common/table/jsx/Table.jsx";
 import { EditIcon, SettingsIcon } from "../../../../../assets/assets.jsx";
 import { routesPathClient as path } from "../../../../routing/helper/routesPathClient.js";
 import { Loader } from "../../../../common/Loader.jsx";
-import { manageClientsData } from "../helper/manageClient.js";
 import style from "./Table.module.css";
-// import style from "../../styles/Common.module.css";
-
 import { useOutletContext } from "react-router-dom";
 
 export const ClientTable = () => {
   const navigate = useNavigate();
-  const { loading, data } = manageClientsData();
-  const outletContext = useOutletContext() || {};
-  const { searchQuery = "" } = outletContext;
+
+  const context = useOutletContext() || {};
+  const { data = [], loading = false } = context;
 
   const tableData = data.map((client) => ({
     id: client.id,
@@ -23,10 +20,6 @@ export const ClientTable = () => {
     lotteryCommission: client.lotteryCommission,
     share: client.matchShare,
   }));
-
-  const filteredData = tableData.filter((client) =>
-    client.username.toLowerCase().includes(searchQuery.toLowerCase())
-  );
 
   const columns = [
     { key: "id", label: "ID" },
@@ -78,7 +71,7 @@ export const ClientTable = () => {
       ) : (
         <div className={style.tableContent}>
           <Table
-            data={filteredData}
+            data={tableData}
             columns={columns}
             columnWidths={columnWidths}
             isAction={true}

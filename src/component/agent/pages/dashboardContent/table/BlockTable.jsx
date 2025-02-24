@@ -1,44 +1,23 @@
-import React, { useState } from "react";
+import React from "react";
 import { Table } from "../../../../common/table/jsx/Table.jsx";
 import { UnBlockIcon } from "../../../../../assets/assets.jsx";
 import { showUnblockUserSwal } from "../helper/swalHelpers.js";
-import { blockedClientsData } from "../helper/blockedClient";
 import { Loader } from "../../../../common/Loader.jsx";
 import style from "./Table.module.css";
 import { useOutletContext } from "react-router-dom";
 
 export const BlockTable = () => {
-  const { searchQuery } = useOutletContext();
-  const { loading, data } = blockedClientsData();
-
-  // Pagination state
-  const [currentPage, setCurrentPage] = useState(1);
-  const rowsPerPage = 20;
+  const context = useOutletContext() || {};
+  const { data = [], loading = false } = context;
 
   // Convert data for the table
   const tableData = data.map((client) => ({
     id: client.id,
-    username: client.username.toLowerCase(),
+    username: client.username,
     matchCommission: client.matchCommission,
     sessionCommission: client.sessionCommission,
     share: client.share,
   }));
-
-  // Filter data based on search query
-  const filteredData = tableData.filter((client) =>
-    client.username.includes(searchQuery.toLowerCase())
-  );
-
-  // Paginate filtered data
-  const indexOfLastRow = currentPage * rowsPerPage;
-  const indexOfFirstRow = indexOfLastRow - rowsPerPage;
-  const currentData = filteredData.slice(indexOfFirstRow, indexOfLastRow);
-
-  // Handle pagination
-  const totalPages = Math.ceil(filteredData.length / rowsPerPage);
-  const nextPage = () =>
-    setCurrentPage((prev) => Math.min(prev + 1, totalPages));
-  const prevPage = () => setCurrentPage((prev) => Math.max(prev - 1, 1));
 
   const columns = [
     { key: "id", label: "ID" },
@@ -77,7 +56,7 @@ export const BlockTable = () => {
       ) : (
         <div className={style.tableContent}>
           <Table
-            data={currentData}
+            data={tableData}
             columns={columns}
             columnWidths={columnWidths}
             isAction={true}
