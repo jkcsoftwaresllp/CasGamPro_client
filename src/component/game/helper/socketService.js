@@ -24,6 +24,7 @@ export const connectSocket = (namespace) => {
 
   if (!sockets[namespace] || !sockets[namespace].connected) {
     sockets[namespace] = io(url, socketOptions);
+  }
 
   return sockets[namespace];
 };
