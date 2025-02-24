@@ -3,7 +3,7 @@ import { io } from "socket.io-client";
 const isDevelopment = import.meta.env.DEV;
 const productionIP = '88.222.214.174';
 
-export const URL = isDevelopment
+const URL = isDevelopment
   ? 'http://localhost:4320'
   : `http://${productionIP}:4320`;
 
