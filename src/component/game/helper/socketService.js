@@ -25,20 +25,6 @@ export const connectSocket = (namespace) => {
   if (!sockets[namespace] || !sockets[namespace].connected) {
     sockets[namespace] = io(url, socketOptions);
 
-    // Add error handling
-    sockets[namespace].on('connect_error', (error) => {
-      console.error(`Connection error for namespace ${namespace}:`, error);
-    });
-
-    sockets[namespace].on('connect', () => {
-      console.log(`Connected to namespace ${namespace}`);
-    });
-
-    sockets[namespace].on('disconnect', (reason) => {
-      console.log(`Disconnected from namespace ${namespace}:`, reason);
-    });
-  }
-
   return sockets[namespace];
 };
 
