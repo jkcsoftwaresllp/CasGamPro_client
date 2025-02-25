@@ -1,6 +1,12 @@
 import { io } from "socket.io-client";
 
-const URL = "http://localhost:4320/";
+const isDevelopment = import.meta.env.DEV;
+const productionIP = "88.222.214.174";
+
+const URL = isDevelopment
+  ? "http://localhost:4320/"
+  : `http://${productionIP}:4320/`;
+
 const sockets = {}; // Store multiple socket instances
 
 // Connect to a socket for the given namespace
