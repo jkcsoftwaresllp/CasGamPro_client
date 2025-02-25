@@ -80,13 +80,6 @@ export const GameList = () => {
           onClick={() => handleCardClick(getGamePath(lucky7A))}
           gameId={GAME_TYPES[lucky7A]}
         />
-
-        <GameTile
-          imgSrc="https://media.giphy.com/media/10SvWCbt1ytWCc/giphy.gif"
-          label="Card Title 4"
-          onClick={() => {}}
-          gameId={""}
-        />
       </div>
     </div>
   );
