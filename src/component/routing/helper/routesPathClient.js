@@ -28,7 +28,7 @@ export const routesPathClient = {
   managePassword: "/managePassword/:id",
   settings: "/settings",
   blockClients: "/blockClients",
-  commision: "/commision",
+  commision: "/commission",
   addnewuser: "/addnewuser",
   ledger: "/ledger",
   liveCasino: "/casino",

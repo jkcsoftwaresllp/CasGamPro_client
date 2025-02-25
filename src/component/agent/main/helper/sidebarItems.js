@@ -64,8 +64,8 @@ export const sidebarItems = [
       },
       {
         id: 34,
-        label: "Commision and Limits",
-        value: "commision",
+        label: "Commission and Limits",
+        value: "commission",
         icon: rupees,
         path: `${path.agent}${path.commision}`,
       },
