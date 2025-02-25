@@ -7,6 +7,7 @@ import { CustomBtn } from "../../../common/CustomBtn.jsx";
 import { DialogBox } from "./jsx/DialogBox.jsx";
 import { Loader } from "../../../common/Loader.jsx";
 import style from "./table/Table.module.css";
+import { handleTransaction } from "./helper/transactionHelper.js";
 
 export const CommissionTable = () => {
   const [showDialog, setShowDialog] = useState(false);
@@ -55,16 +56,12 @@ export const CommissionTable = () => {
     {
       label: "Deposit",
       icon: "D",
-      // onClick: (row) => handleTransaction("Deposit", row),
-      onClick: (row) =>
-        navigate(`${basePath}${path.recieveCash.replace(":id", row.id)}`),
+      onClick: (row) => handleTransaction("Deposit", row),
     },
     {
       label: "Withdrawal",
       icon: "W",
-      // onClick: (row) => handleTransaction("Withdrawal", row),
-      onClick: (row) =>
-        navigate(`${basePath}${path.payCash.replace(":id", row.id)}`),
+      onClick: (row) => handleTransaction("Withdrawal", row),
     },
     { label: "Settings", icon: SettingsIcon, onClick: (row) => {} },
   ];

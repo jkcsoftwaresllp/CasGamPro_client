@@ -31,7 +31,7 @@ export const Header = () => {
               <p className={style.userId}>
                 {username?.toUpperCase()} : {clientName}
               </p>
-              {/* <Wallet /> */}
+              <Wallet />
             </>
           )}
           <HeaderAuth />

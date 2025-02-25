@@ -115,7 +115,7 @@ export const AgentNewUser = () => {
 
       console.log("Form submitted successfully:", response);
 
-      if (response.uniqueCode === "CGP01R02") {
+      if (response.uniqueCode === "CGP01R10") {
         setSuccess("User registered successfully!");
 
         const timer = setTimeout(() => {
