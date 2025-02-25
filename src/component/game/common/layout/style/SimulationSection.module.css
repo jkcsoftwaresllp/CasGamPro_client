@@ -1,0 +1,12 @@
+.simulationSection {
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-primary);
+  border-radius: var(--borderRadius);
+  font-weight: 800;
+  border: 1px solid #8b3b3b;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

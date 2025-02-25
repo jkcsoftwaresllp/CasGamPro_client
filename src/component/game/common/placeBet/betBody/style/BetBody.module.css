@@ -1,0 +1,115 @@
+.betCoins {
+  all: unset;
+  color: var(--color-text-primary);
+  background-color: var(--color-special-green);
+  width: 70px;
+  font-size: var(--text-md);
+  font-weight: var(--textBold);
+  border-radius: var(--borderRadius);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  padding: 5px;
+}
+
+.adjuster {
+  color: var(--color-text-primary);
+  cursor: pointer;
+}
+
+.profit {
+  color: var(--color-text-primary);
+}
+
+.betFor {
+  color: var(--color-text-primary);
+
+  font-weight: var(--textBold);
+}
+.container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  border: 1px solid var(--color-text-primary);
+  padding: 10px;
+  border-radius: var(--borderRadius);
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  gap: 10px; /* Space between rows */
+}
+
+.row {
+  display: flex;
+  justify-content: space-between; /* Justify items with space between */
+  gap: 10px; /* Space between items in each row */
+}
+
+.inline {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  width: 100%;
+  margin-bottom: 10px;
+  flex: 1;
+}
+
+.betFor,
+.input,
+.profit,
+.currentProfit {
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+
+  display: flex;
+  font-size: var(--text-md);
+}
+
+.currentProfit {
+  color: var(--color-text-primary);
+}
+
+.input {
+  width: 70px;
+  padding: 5px;
+  border: none;
+  outline: none;
+  border-radius: var(--borderRadius);
+  text-align: center;
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-primary);
+}
+
+span {
+  font-weight: bold;
+}
+
+.button {
+  padding: 5px;
+  font-size: var(--text-md);
+  border: none;
+  border-radius: var(--borderRadius);
+  cursor: pointer;
+  font-weight: var(--textBold);
+  width: 150px;
+
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.button:active {
+  transform: scale(0.95);
+}
+
+.button:hover {
+  opacity: 0.9;
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}

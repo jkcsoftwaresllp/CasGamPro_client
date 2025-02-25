@@ -1,0 +1,12 @@
+.wallet {
+  display: flex;
+  gap: 5px;
+  justify-content: center;
+  align-items: center;
+}
+
+.points {
+  font-size: var(--text-md);
+  color: var(--color-text-primary);
+  font-weight: bold;
+}

@@ -1,0 +1,35 @@
+.tableContainer {
+  height: 100%;
+  width: 100%;
+}
+
+.loaderContainer {
+  z-index: 9999; /* Ensur it stays on top of other elements */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.tableContent {
+  height: 100%;
+  width: 100%;
+}
+
+.noDataContainer {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  font-size: larger;
+  color: var(--color-text-primary);
+  font-weight: var(--text-bold);
+}
+
+.commissionExpoBtn {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}

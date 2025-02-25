@@ -1,0 +1,29 @@
+.gameInterface {
+  --detailsHei: 50px;
+  height: 100%;
+  width: 100%;
+}
+
+.header {
+  height: var(--detailsHei);
+}
+
+.gameRoundId,
+.gameDetail {
+  font-size: var(--text-lg);
+  font-weight: bolder;
+  color: var(--color-text-primary);
+  text-align: center;
+}
+
+.gameRoundId {
+  font-size: var(--text-sm);
+}
+
+.content {
+  height: calc(100% - var(--detailsHei));
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

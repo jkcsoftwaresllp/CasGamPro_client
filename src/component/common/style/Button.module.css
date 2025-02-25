@@ -1,0 +1,22 @@
+/* .btn styles */
+.btn {
+  padding: 10px 35px;
+  cursor: pointer;
+  background-color: var(--color-dark-primary);
+  border-radius: var(--borderRadius);
+  border: 2px solid var(--color-text-placeholder);
+
+  color: var(--color-text-primary);
+  font-size: var(--text-sm);
+  font-weight: bold;
+  transition: 0.35s;
+  text-wrap: nowrap;
+}
+
+.btn:hover {
+  background-color: var(--color-bg-hover);
+}
+
+.btn:focus {
+  transform: scale(1.05);
+}

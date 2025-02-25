@@ -1,7 +1,136 @@
-*{
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap");
+:root {
+  --text-bold: 800;
+  --text: 500;
+  --borderRadius: 6px;
+  --borderRadius-md: 15px;
+  --borderRadius-lg: 25px;
+  --text-sm: 1rem;
+  --text-md: 1.2rem;
+  --text-lg: 1.5rem;
+  --text-xl: 2rem;
+  --header-height: 50px;
+  --header-gap: 20px;
+  --maximum-responsive-width: 2000px;
+  --color-special-gold: #daa520;
+  --color-special-yellow: #ffe600;
+  --color-special-green: #32e332;
+  --color-special-red: #8b0000;
+  --color-special-black: #2b2b2b;
+  --color-special-white: #fefbf3;
+  --color-special-hover: #212121;
+  --color-highlighter-primary: #333;
+  --color-highlighter-secondary: #cd7f32;
+  --color-rotate-primary: rgb(28, 178, 224);
+  --color-link: #2298e7;
 
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  --color-bg-primary: #f0f0f0; /* Light Gray - soft, neutral, easy on the eyes */
+  --color-bg-secondary: #b9e2e8; /* Light Champagne - warm and inviting without being too bold */
+  --color-bg-tertiary: #d3d3d3; /* Soft Silver - calming and sophisticated, with a touch of elegance */
+
+  --color-bg-hover: #f5e6c6;
+  --color-bg-trans: #fbfeff97;
+  --color-bg-primary-a: #fbfeffb6;
+  --color-border-gold: #b8860b;
+  --color-header: #add8e6;
+  --color-text-primary: #2b2b2b;
+  --color-text-secondary: #4a4a4a;
+  --color-text-tertiary: #7d7d7d;
+  --color-text-placeholder: #a0a0a0;
+}
+
+[data-theme="dark"] {
+  --color-special-gold: #b8860b;
+  --color-special-green: #228b22;
+  --color-special-red: #b22222;
+  --color-special-black: #1b1b1b;
+  --color-special-white: #dcdcdc;
+  --color-special-hover: #fbfeff;
+  --color-red-hover: #8b0000;
+  --color-highlighter-primary: #8b4513;
+  --color-highlighter-secondary: #a0522d;
+  --color-rotate-primary: #1a1a1a;
+
+  --color-bg-primary: #1c1c1c; /* Deep Charcoal - a rich, dark base that is not too intense */
+  --color-bg-secondary: #2e2e2e; /* Warm Gray - a softer gray that adds warmth while maintaining sophistication */
+  --color-bg-tertiary: #3a3a3a; /* Slate Gray - a deep, muted gray that adds a subtle contrast without being harsh */
+
+  --color-bg-hover: #1a1a1a;
+  --color-bg-trans: #1a1a1a76;
+  --color-bg-primary-a: #212121b6;
+  --color-text-placeholder: #333;
+  --color-text-hover: #fff;
+  --color-header: #3a61a2;
+  --color-text-primary: #ffffff;
+  --color-text-secondary: #c0c0c0;
+  --color-text-tertiary: #8a8a8a;
+}
+
+* {
+  font-family: "Urbanist", sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-size: var(--text-sm);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-bg-secondary);
+  transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--color-text-secondary);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: var(--color-bg-tertiary);
+}
+
+.custom-swal-popup {
+  background-color: var(--color-bg-primary) !important;
+  color: var(--color-text-primary) !important;
+  border-radius: 10px;
+}
+
+.custom-swal-title {
+  color: var(--color-text-primary) !important;
+}
+
+.custom-swal-confirm {
+  background-color: var(--color-bg-primary) !important;
+  color: var(--color-text-primary) !important;
+  border: 1px solid var(--color-text-primary) !important;
+}
+
+.custom-swal-cancel {
+  background-color: transparent !important;
+  color: var(--color-text-primary) !important;
+  border: 1px solid var(--color-text-primary) !important;
+}
+
+.custom-swal-confirm {
+  background-color: var(--color-special-green) !important;
+  color: white !important;
+}
+
+.custom-swal-cancel {
+  background-color: var(--color-special-red) !important;
+  color: white !important;
+}
+
+.custom-swal {
+  background-color: var(--color-bg-primary) !important;
+  color: var(--color-text-primary) !important;
+  border-radius: 10px;
 }

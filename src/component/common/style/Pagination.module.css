@@ -1,0 +1,23 @@
+.paginationContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.paginationContainer svg path {
+  fill: var(--color-text-primary);
+}
+
+.pageIndicator {
+  color: var(--color-text-primary);
+  font-size: var(--text-md);
+  text-wrap: nowrap;
+  padding-bottom: 3px;
+}
+
+.pageNumber {
+  font-size: 14px;
+  font-weight: bold;
+  color: var(--color-text-primary);
+}

@@ -1,0 +1,48 @@
+.containerWrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  /* width: 500px; */
+  margin: auto;
+  gap: 10px; /* Adds 10px spacing between elements */
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.heading {
+  font-size: var(--text-xl);
+  font-weight: bold;
+  color: white; /* Ensure contrast on blue background */
+  padding: 20px;
+  width: 100%;
+  text-align: center;
+  background-color: rgb(29, 29, 138); /* Optional: Different shade for title */
+}
+
+.label {
+  font-weight: bold;
+  text-align: left;
+  width: 40%;
+  color: var(--color-text-primary);
+  font-size: var(--text-md);
+}
+
+.input {
+  width: 55%;
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 10px;
+}

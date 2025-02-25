@@ -1,0 +1,153 @@
+.actions {
+  display: flex;
+  gap: 0.5rem;
+}
+/* Loader centering styles */
+.loaderContainer {
+  z-index: 9999; /* Ensur it stays on top of other elements */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+.paginationControls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+}
+.paginationContainer {
+  display: flex;
+  justify-content: right;
+  align-items: right;
+  gap: 10px;
+  padding-right: 10px;
+}
+.pageIndicator {
+  color: var(--color-text-primary);
+  font-size: --text-md;
+  margin-top: 7px;
+}
+
+.pageNumber {
+  margin: 0 10px;
+  font-size: 14px;
+  font-weight: bold;
+  color: var(--color-text-primary);
+}
+
+.edit {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.header {
+  color: var(--color-text-primary);
+  font-size: var(--text-lg);
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.manageCommissionsContainer {
+height:100%;
+}
+
+.changePassword {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.manageClientsContainer {
+  height: 80px;
+}
+
+.actionRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 30px;
+  height: 7%;
+}
+
+.tableContainer {
+  position: relative;
+  height: 93%;
+}
+
+.searchBar {
+  width: 100%;
+  max-width: 300px;
+  padding: 8px;
+  margin-right: 10px;
+  font-size: 16px;
+  border: 1px solid var(--color-text-primary);
+  border-radius: 4px;
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-primary);
+}
+
+.searchBar:focus {
+  outline: none;
+  border-color: var(--color-text-primary);
+}
+
+.downloadButtons {
+  display: flex;
+  gap: 10px;
+}
+
+.pdfButton,
+.csvButton {
+  padding: 10px 20px;
+  font-size: var(--text-sm);
+  font-weight: var(--text-bold);
+  cursor: pointer;
+  border: 1px solid var(--color-text-primary);
+  border-radius: 4px;
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-primary);
+}
+
+.pdfButton:hover,
+.csvButton:hover {
+  background-color: #007bff;
+  color: #fff;
+}
+
+/* UserHeader component styling */
+.userHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.allUsersLabel {
+  font-size: 24px;
+  font-weight: bold;
+  color: var(--color-text-primary);
+}
+
+.createNewUserButton {
+  padding: 10px 20px;
+  font-size: 14px;
+  cursor: pointer;
+  border: 1px solid var(--color-text-primary);
+  border-radius: 4px;
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-primary);
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.createNewUserButton:hover {
+  background-color: #007bff;
+  color: white;
+}

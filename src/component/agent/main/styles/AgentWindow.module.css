@@ -1,0 +1,64 @@
+/* Window.css */
+.container {
+  display: flex; /* Flexbox layout for sidebar and main content */
+  height: 100%; /* Full viewport height */
+}
+
+.sidebar {
+  width: 250px; /* Sidebar width */
+  background-color: var(--color-bg-primary);
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+  transition: width 0.3s; /* Smooth transition for minimized state */
+}
+
+.sidebar.minimized {
+  width: 50px; /* Reduced width for minimized sidebar */
+}
+
+.window {
+  flex-grow: 1; /* Take the remaining space */
+
+  background-color: var(--color-bg-secondary);
+  color: var(--color-text-primary);
+  height: 100%; /* Match the height of the container */
+
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+  overflow-y: auto;
+}
+
+h2 {
+  font-weight: var(--textBold);
+  color: var(--color-text-secondary);
+}
+
+button {
+  background-color: var(--color-special-green);
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: var(--borderRadius);
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: var(--color-special-yellow);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column; /* Stack sidebar and content vertically */
+  }
+
+  .sidebar {
+    width: 100%; /* Full width for sidebar */
+    height: auto; /* Adjust height to fit content */
+  }
+
+  .window {
+    height: auto; /* Allow content to dictate height */
+    border-radius: var(
+      --borderRadius-md
+    ); /* Restore rounded corners for smaller screens */
+  }
+}

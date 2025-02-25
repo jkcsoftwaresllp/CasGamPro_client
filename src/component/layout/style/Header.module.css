@@ -1,0 +1,46 @@
+.headerWrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.header {
+  max-width: var(--maximum-responsive-width);
+}
+
+.header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--color-bg-header);
+  color: var(--color-text-primary);
+  font-size: 1.2em;
+  height: var(--header-height);
+  padding: 0 10px;
+  gap: 10px;
+}
+
+.header__title {
+  font-weight: var(--text-bold);
+  font-size: var(--text-lg);
+  cursor: pointer;
+}
+
+.rightSection {
+  display: flex;
+  align-items: center;
+  gap: var(--header-gap);
+}
+
+.fullSection {
+  flex: 1;
+}
+
+.userId {
+  text-wrap: nowrap;
+  font-weight: var(--text-bold);
+  font-size: var(--text-md);
+  color: var(--color-text-primary);
+  padding-left: 10px;
+}

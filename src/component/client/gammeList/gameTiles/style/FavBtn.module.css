@@ -1,0 +1,47 @@
+/* FavBtn.module.css */
+.favBtn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  display: inline-block;
+  transition: transform 0.3s ease-in-out;
+  background-color: rgba(128, 128, 128, 0.457);
+  padding: 5px;
+  border-radius: 50%;
+  height: 30px;
+  width: 30px;
+}
+
+.favBtn:active {
+  transform: scale(1.2);
+  animation: bounce 0.3s ease-out;
+}
+
+.icon {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+/* Bounce effect */
+@keyframes bounce {
+  0% {
+    transform: scale(1);
+  }
+  30% {
+    transform: scale(1.1);
+  }
+  50% {
+    transform: scale(0.9);
+  }
+  70% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}

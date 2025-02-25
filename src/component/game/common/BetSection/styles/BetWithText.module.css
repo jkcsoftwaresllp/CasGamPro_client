@@ -1,0 +1,46 @@
+.betWithText {
+  width: 100px;
+  height: 70px;
+  border-radius: var(--borderRadius);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2px;
+  color: var(--color-text-primary);
+}
+
+.betWithText .betProfit {
+  font-size: calc(0.8 * var(--text-sm));
+  font-weight: var(--textBold);
+}
+
+.bet {
+  width: 100%;
+  height: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--color-bg-tertiary);
+  padding: 5px;
+
+  border-radius: var(--borderRadius);
+  cursor: pointer;
+  position: relative;
+}
+
+.bet:hover {
+  opacity: 0.8;
+}
+
+.bet p:first-child {
+  font-weight: var(--textBold);
+  text-align: center;
+  font-size: var(--text-md);
+}
+
+.bet p:nth-child(2) {
+  text-align: center;
+  font-size: calc(0.8 * var(--text-sm));
+}

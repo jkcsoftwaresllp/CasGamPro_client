@@ -1,0 +1,12 @@
+.bodyWrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  height: calc(100vh - var(--header-height));
+}
+
+.body {
+  max-width: var(--maximum-responsive-width);
+  width: 100vw;
+  overflow: auto;
+}

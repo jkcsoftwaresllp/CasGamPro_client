@@ -1,0 +1,82 @@
+.cardsList {
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  cursor: pointer;
+}
+
+.card {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  border-radius: var(--borderRadius-lg);
+  box-shadow: 5px 5px 30px 7px rgba(0, 0, 0, 0.25),
+    -5px -5px 30px 7px rgba(0, 0, 0, 0.22);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.cardImage {
+  width: 100%;
+  height: 100%;
+  border-radius: var(--borderRadius-lg);
+}
+
+.cardImage img {
+  width: 100%;
+  height: 100%;
+  border-radius: var(--borderRadius-lg);
+  object-fit: cover;
+}
+
+.cardTitle {
+  text-align: center;
+  font-family: sans-serif;
+  font-weight: bold;
+  font-size: 25px;
+  margin-top: -80px;
+  height: 40px;
+  color: var(--color-text-primary);
+  background: var(--color-background-overlay, rgba(0, 0, 0, 0.5));
+  border-radius: 0px 0px 40px 40px;
+  padding: 5px 10px;
+}
+
+.cardsList p {
+  color: var(--color-text-primary, #000);
+  font-size: var(--text-lg);
+  font-weight: var(--text-bold);
+  text-align: center;
+}
+
+.card:hover {
+  box-shadow: 5px 5px 30px 15px rgba(0, 0, 0, 0.3),
+    -5px -5px 30px 15px rgba(0, 0, 0, 0.3);
+}
+.cardsList:hover {
+  transform: scale(1.05);
+}
+
+.favBtn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 1;
+}
+
+@media all and (max-width: 500px) {
+  .cardsList {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .card {
+    width: 90%;
+    height: auto;
+    aspect-ratio: 1; /* Maintains square shape */
+  }
+}
