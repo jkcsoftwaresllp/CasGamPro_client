@@ -2,7 +2,7 @@
 .favBtn {
   position: absolute;
   top: 10px;
-  right: 20px;
+  right: 10px;
   background: none;
   border: none;
   cursor: pointer;
@@ -12,6 +12,8 @@
   background-color: rgba(128, 128, 128, 0.457);
   padding: 5px;
   border-radius: 50%;
+  height: 30px;
+  width: 30px;
 }
 
 .favBtn:active {
@@ -20,9 +22,9 @@
 }
 
 .icon {
-  width: 30px;
-  height: 30px;
-  margin-top: 5px;
+  position: relative;
+  width: 100%;
+  height: 100%;
 }
 
 /* Bounce effect */
