@@ -20,6 +20,8 @@ export const GameList = () => {
   const teenPattiT20 = validGames[3];
   const dragonTiger = validGames[4];
   const dragonTigerLion = validGames[5];
+  const dragonTigerTwo = validGames[6];
+  const lucky7A = validGames[7];
 
   return (
     <div className={style.gameListWrapper}>
@@ -34,7 +36,7 @@ export const GameList = () => {
           imgSrc={imgLuckyB}
           label="Luck 7B"
           onClick={() => handleCardClick(getGamePath(lucky7B))}
-          gameId={GAME_TYPES[teenPattiT20]}
+          gameId={GAME_TYPES[lucky7B]}
         />
         <GameTile
           imgSrc={imgAndarBahar}
@@ -61,8 +63,24 @@ export const GameList = () => {
           imgSrc={imgDragonTiger}
           label="20 20 DTL"
           onClick={() => handleCardClick(getGamePath(dragonTigerLion))}
-          gameId={GAME_TYPES[dragonTigerLion]}
+          game
+          Id={GAME_TYPES[dragonTigerLion]}
         />
+
+        <GameTile
+          imgSrc={imgDragonTiger}
+          label="20-20 Dragon Tiger Two"
+          onClick={() => handleCardClick(getGamePath(dragonTigerTwo))}
+          gameId={GAME_TYPES[dragonTigerTwo]}
+        />
+
+        <GameTile
+          imgSrc={imgLuckyB}
+          label="Luck 7A"
+          onClick={() => handleCardClick(getGamePath(lucky7A))}
+          gameId={GAME_TYPES[lucky7A]}
+        />
+
         <GameTile
           imgSrc="https://media.giphy.com/media/10SvWCbt1ytWCc/giphy.gif"
           label="Card Title 4"
