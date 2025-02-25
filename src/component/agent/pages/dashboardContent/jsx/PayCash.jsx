@@ -14,15 +14,17 @@ export const PayCash = () => {
   const navigate = useNavigate();
 
   const fetchData = async () => {
-    const response = await apiCall(
-      "/auth-api/agent/walletTransaction",
-      "POST",
-      { userId: id, type: "withdrawal", amount, note }
-    );
-    if (response && response.uniqueCode === "CGP0062") {
-      navigate(-1);
-      console.log("API Response: ", response);
-    } else console.error("API Error:", response.data);
+    console.log("API not connected");
+
+    // const response = await apiCall(
+    //   "/auth-api/agent/walletTransaction",
+    //   "POST",
+    //   { userId: id, type: "withdrawal", amount, note }
+    // );
+    // if (response && response.uniqueCode === "CGP0062") {
+    //   navigate(-1);
+    //   console.log("API Response: ", response);
+    // } else console.error("API Error:", response.data);
   };
 
   return (

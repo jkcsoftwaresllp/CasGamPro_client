@@ -14,15 +14,16 @@ export const ReceiveCash = () => {
   const navigate = useNavigate();
 
   const saveChanges = async () => {
-    const response = await apiCall(
-      "/auth-api/agent/walletTransaction",
-      "POST",
-      { userId: id, type: "deposit", amount, note }
-    );
-    if (response && response.uniqueCode === "CGP0062") {
-      console.log("API Response: ", response);
-      navigate(-1);
-    } else console.error("API Error:", response.data);
+    console.log("API not connected");
+    // const response = await apiCall(
+    //   "/auth-api/agent/walletTransaction",
+    //   "POST",
+    //   { userId: id, type: "deposit", amount, note }
+    // );
+    // if (response && response.uniqueCode === "CGP0062") {
+    //   console.log("API Response: ", response);
+    //   navigate(-1);
+    // } else console.error("API Error:", response.data);
   };
 
   return (
