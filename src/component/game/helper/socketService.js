@@ -13,8 +13,6 @@ const sockets = {}; // Store multiple socket instances
 export const connectSocket = (namespace) => {
   const url = URL + namespace;
 
-  console.log("thsi", url);
-
   // If the socket for this namespace does not exist or is disconnected, create a new one
   if (!sockets[namespace] || !sockets[namespace].connected) {
     sockets[namespace] = io(url);
@@ -47,4 +45,3 @@ export const emitEvent = (namespace, eventName, payload) => {
     throw new Error(`Socket for ${namespace} is not connected!`);
   sockets[namespace].emit(eventName, payload);
 };
-D

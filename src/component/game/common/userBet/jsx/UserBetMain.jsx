@@ -24,12 +24,15 @@ export const UserBetMain = () => {
 
   useEffect(() => {
     const socket = connectSocket(namespace);
+    
     if (!userId || !namespace || !roundId) return;
 
-    console.log({ userId, roundId });
+    console.log("Attempting to connect to stake namespace", { userId, roundId });
 
+    emitEvent(namespace, "joinStake", { userId, roundId });
+    
     socket.on("connect", () => {
-      emitEvent(namespace, "joinStake", { userId, roundId });
+      console.log(`connected to ${namespace}`);
     });
 
     subscribeToEvent(namespace, "stakeUpdate", (data) => {
