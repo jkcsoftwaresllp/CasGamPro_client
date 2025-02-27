@@ -28,9 +28,10 @@ export const UserBetMain = () => {
 
     console.log({ userId, roundId });
 
-    socket.on("connect", () => {
       emitEvent(namespace, "joinStake", { userId, roundId });
-    });
+    /* socket.on("connect", () => {
+      emitEvent(namespace, "joinStake", { userId, roundId });
+    }); */
 
     subscribeToEvent(namespace, "stakeUpdate", (data) => {
       console.log("Triggerd!!", data);
