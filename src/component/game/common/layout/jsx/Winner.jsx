@@ -5,7 +5,6 @@ export const Winner = ({ gameType, winner }) => {
   const winnerList = Array.isArray(winner)
     ? winner.map((w) => w.toUpperCase()).join(", ")
     : winner.toUpperCase();
-  console.log(winnerList);
   // let result = "";
   // if (gameType === "andarBahar")
   //   result = winner === "playerA" ? "Andar" : "Bahar";

@@ -3,15 +3,13 @@ import style from "../style/Window.module.css";
 import { ScrollBox } from "../../layout/jsx/ScrollBox";
 
 export const DetailCards = ({ cards }) => {
-  console.log(cards);
+  const winnerList = Array.isArray(cards)
+    ? cards.map((w) => w.toUpperCase()).join(", ")
+    : cards.toUpperCase();
   return (
     <div className={style.detailCards}>
       <ScrollBox direction="horizontal">
-        {cards.map((card) => (
-          <div key={card} className={style.card}>
-            {card}
-          </div>
-        ))}
+        <p className={style.winner}>{winnerList}</p>
       </ScrollBox>
     </div>
   );

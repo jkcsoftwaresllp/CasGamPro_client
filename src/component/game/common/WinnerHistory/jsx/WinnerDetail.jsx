@@ -5,9 +5,8 @@ import { apiCall } from "../../../../common/apiCall";
 import { CardToPlayer } from "../../cardSection/jsx/CardToPlayer";
 import { SetIcon } from "../../../../common/jsx/SetIcon";
 import { cancelIcon } from "../../../../../assets/assets";
-import { Card } from "../../cardSection/jsx/Card";
 
-export const WinnerDetail = ({ roundId, gameId, winner, toggleDetails }) => {
+export const WinnerDetail = ({ roundId, toggleDetails }) => {
   const [history, setHistory] = useState([]);
 
   useEffect(() => {
@@ -15,7 +14,6 @@ export const WinnerDetail = ({ roundId, gameId, winner, toggleDetails }) => {
       try {
         const apiUrl = `/auth-api/client/games/rounds/${roundId}/winning-history`;
         const result = await apiCall(apiUrl, "GET");
-        console.log(result);
 
         if ((result.uniqueCode = "CGP00G14")) {
           setHistory(result.data);
@@ -26,10 +24,9 @@ export const WinnerDetail = ({ roundId, gameId, winner, toggleDetails }) => {
     };
 
     fetchWinningCards();
-  }, [roundId, gameId]);
+  }, [roundId]);
 
   const CardRender = ({ name, cards, isCard = true }) => {
-    console.log(cards);
     return (
       <div className={style.cardRender}>
         <p className={style.cardRenderName}>{name} : </p>
@@ -68,17 +65,14 @@ export const WinnerDetail = ({ roundId, gameId, winner, toggleDetails }) => {
           {history.playerC && history.playerC.length > 0 && (
             <CardRender key={"C"} name={"C"} cards={history.playerC} />
           )}
-          {history.winner &&
-            (Array.isArray(winner) ? (
-              <CardRender
-                key={"Winner"}
-                name={"Winner"}
-                cards={history.winner}
-                isCard={false}
-              />
-            ) : (
-              <p className={style.winner}>{history.winner}</p>
-            ))}
+          {history.winner && (
+            <CardRender
+              key={"Winner"}
+              name={"Winner"}
+              cards={history.winner}
+              isCard={false}
+            />
+          )}
         </div>
 
         <div className={style.cancelIcon}>
