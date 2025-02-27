@@ -1,17 +1,18 @@
 import React from "react";
 import style from "../style/Window.module.css";
+import { ScrollBox } from "../../layout/jsx/ScrollBox";
 
 export const DetailCards = ({ cards }) => {
+  console.log(cards);
   return (
-    <div className={style.CardScrollContainer}>
-      {cards.map((card) => (
-        <div key={card.id} className={style.Card}>
-          <div className={style.CardContent}>
-            <p>{card.value}</p>
-            <p>{card.suit}</p>
+    <div className={style.detailCards}>
+      <ScrollBox direction="horizontal">
+        {cards.map((card) => (
+          <div key={card} className={style.card}>
+            {card}
           </div>
-        </div>
-      ))}
+        ))}
+      </ScrollBox>
     </div>
   );
 };
