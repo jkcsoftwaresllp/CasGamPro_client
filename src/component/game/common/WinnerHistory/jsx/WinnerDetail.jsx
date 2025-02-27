@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import style from "../style/Window.module.css";
-import Cancel from "../images/cancel.svg";
 import { DetailCards } from "./DetailCards";
 import { apiCall } from "../../../../common/apiCall";
 import { CardToPlayer } from "../../cardSection/jsx/CardToPlayer";
-import { ButtonIcon } from "@radix-ui/react-icons";
+import { SetIcon } from "../../../../common/jsx/SetIcon";
+import { cancelIcon } from "../../../../../assets/assets";
+import { Card } from "../../cardSection/jsx/Card";
 
 export const WinnerDetail = ({ roundId, gameId, winner, toggleDetails }) => {
   const [history, setHistory] = useState([]);
@@ -32,11 +33,13 @@ export const WinnerDetail = ({ roundId, gameId, winner, toggleDetails }) => {
     return (
       <div className={style.cardRender}>
         <p className={style.cardRenderName}>{name} : </p>
-        {isCard ? (
-          <CardToPlayer cards={cards} />
-        ) : (
-          <DetailCards key={name} cards={cards} />
-        )}
+        <div className={style.cardRenderCard}>
+          {isCard ? (
+            <CardToPlayer cards={cards} />
+          ) : (
+            <DetailCards key={name} cards={cards} />
+          )}
+        </div>
       </div>
     );
   };
@@ -49,6 +52,13 @@ export const WinnerDetail = ({ roundId, gameId, winner, toggleDetails }) => {
           <p>Game ID: {history?.gameId}</p>
         </div>
         <div className={style.bottom}>
+          {history.jokerCard && (
+            <CardRender
+              key={"Joker"}
+              name={"Jocker"}
+              cards={[history.jokerCard]}
+            />
+          )}
           {history.playerA && history.playerA.length > 0 && (
             <CardRender key={"A"} name={"A"} cards={history.playerA} />
           )}
@@ -71,17 +81,15 @@ export const WinnerDetail = ({ roundId, gameId, winner, toggleDetails }) => {
             ))}
         </div>
 
-        <button
-          onClick={(e) => {
-            e.stopPropagation();
-            toggleDetails();
-          }}
-          className={style.CancelIconButton}
-          aria-label="Close details"
-        >
-          <img src={Cancel} alt="Cancel" />
-        </button>
-
+        <div className={style.cancelIcon}>
+          <SetIcon
+            icon={cancelIcon}
+            onClick={(e) => {
+              e.stopPropagation();
+              toggleDetails();
+            }}
+          />
+        </div>
       </div>
     </div>
   );
