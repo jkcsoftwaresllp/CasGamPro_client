@@ -67,6 +67,7 @@
   flex-direction: row;
   gap: 15px;
   z-index: 1000;
+  overflow-x: auto;
   text-align: center;
   justify-content: right;
 }
