@@ -1,50 +1,90 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import style from "../style/Window.module.css";
-import Cancel from "../images/cancel.svg";
 import { DetailCards } from "./DetailCards";
-import { Button } from "../../../../common/Button";
+import { apiCall } from "../../../../common/apiCall";
+import { CardToPlayer } from "../../cardSection/jsx/CardToPlayer";
+import { SetIcon } from "../../../../common/jsx/SetIcon";
+import { cancelIcon } from "../../../../../assets/assets";
 
-export const WinnerDetail = ({ roundId, gameId, winner, toggleDetails }) => {
-  const cards = [
-    { id: 1, value: "A", suit: "♣" },
-    { id: 2, value: "2", suit: "♦" },
-    { id: 3, value: "3", suit: "♣" },
-    { id: 4, value: "4", suit: "♠" },
-    { id: 5, value: "5", suit: "♥" },
-    { id: 6, value: "6", suit: "♦" },
-    { id: 7, value: "7", suit: "♣" },
-    { id: 8, value: "8", suit: "♠" },
-    { id: 9, value: "9", suit: "♥" },
-    { id: 10, value: "10", suit: "♦" },
-  ];
+export const WinnerDetail = ({ roundId, toggleDetails }) => {
+  const [history, setHistory] = useState([]);
+
+  useEffect(() => {
+    const fetchWinningCards = async () => {
+      try {
+        const apiUrl = `/auth-api/client/games/rounds/${roundId}/winning-history`;
+        const result = await apiCall(apiUrl, "GET");
+
+        if ((result.uniqueCode = "CGP00G14")) {
+          setHistory(result.data);
+        } else setHistory({});
+      } catch (error) {
+        console.error("Error fetching winning cards:", error);
+      }
+    };
+
+    fetchWinningCards();
+  }, [roundId]);
+
+  const CardRender = ({ name, cards, isCard = true }) => {
+    return (
+      <div className={style.cardRender}>
+        <p className={style.cardRenderName}>{name} : </p>
+        <div className={style.cardRenderCard}>
+          {isCard ? (
+            <CardToPlayer cards={cards} />
+          ) : (
+            <DetailCards key={name} cards={cards} />
+          )}
+        </div>
+      </div>
+    );
+  };
 
   return (
     <div className={style.Overlay}>
       <div className={style.SmallWindow}>
-        <div className={style.TopRightDetails}>
-          <p>Round ID: {roundId}</p>
-          <p>Game ID: {gameId}</p>
+        <div className={style.top}>
+          <p>Round ID: {history?.roundId}</p>
+          <p>Game ID: {history?.gameId}</p>
         </div>
-        <br />
-        <br />
-        <p className={style.TopLeftDetails}>
-          <strong>Winner:</strong> {winner}
-        </p>
+        <div className={style.bottom}>
+          {history.jokerCard && (
+            <CardRender
+              key={"Joker"}
+              name={"Jocker"}
+              cards={[history.jokerCard]}
+            />
+          )}
+          {history.playerA && history.playerA.length > 0 && (
+            <CardRender key={"A"} name={"A"} cards={history.playerA} />
+          )}
+          {history.playerB && history.playerB.length > 0 && (
+            <CardRender key={"B"} name={"B"} cards={history.playerB} />
+          )}
+          {history.playerC && history.playerC.length > 0 && (
+            <CardRender key={"C"} name={"C"} cards={history.playerC} />
+          )}
+          {history.winner && (
+            <CardRender
+              key={"Winner"}
+              name={"Winner"}
+              cards={history.winner}
+              isCard={false}
+            />
+          )}
+        </div>
 
-        <DetailCards cards={cards} />
-        <br />
-        <button
-          onClick={(e) => {
-            e.stopPropagation();
-            toggleDetails();
-          }}
-          className={style.CancelIconButton}
-          aria-label="Close details"
-        >
-          <img src={Cancel} alt="Cancel" />
-        </button>
+        <div className={style.cancelIcon}>
+          <SetIcon
+            icon={cancelIcon}
+            onClick={(e) => {
+              e.stopPropagation();
+              toggleDetails();
+            }}
+          />
+        </div>
       </div>
     </div>
   );
 };
-

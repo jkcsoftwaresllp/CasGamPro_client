@@ -1,118 +1,87 @@
-/* Overlay for blur and dimming effect */
 .Overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
-  backdrop-filter: blur(2px); /* Blur effect */
-  z-index: 999; /* Ensure it overlays other content */
   display: flex;
   justify-content: center;
   align-items: center;
-}
-.TopRightDetails {
-  position: absolute; /* Allows positioning relative to the nearest positioned ancestor */
-  top: 5px; /* Distance from the top edge */
-  right: 10px; /* Distance from the right edge */
-
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #000000b9;
+  z-index: 1000;
   color: var(--color-text-primary);
-  padding: 8px; /* Add some padding around the text */
-  border-radius: 5px; /* Rounded corners for the box */
-  font-size: 0.9rem; /* Adjust font size */
-  z-index: 1000; /* Ensure it appears above other content */
-}
-
-.TopRightDetails p {
-  margin: 2px 0; /* Space between the lines */
-  font-weight: bold; /* Make the text bold */
-}
-
-.TopLeftDetails {
-  position: absolute; /* Allows positioning relative to the nearest positioned ancestor */
-  top: 5px; /* Distance from the top edge */
-  left: 10px; /* Distance from the left edge */
-
-  color: var(--color-text-primary);
-  padding: 8px; /* Add some padding around the text */
-  border-radius: 5px; /* Rounded corners for the box */
-  font-size: 0.9rem; /* Adjust font size */
-  z-index: 1000; /* Ensure it appears above other content */
-}
-
-.TopLeftDetails p {
-  margin: 2px 0; /* Space between the lines */
-  font-weight: bold; /* Make the text bold */
 }
 
 .SmallWindow {
+  width: 70%;
+  min-height: 30%;
+  display: flex;
+  flex-direction: column;
   position: relative;
-  background: var(--color-bg-primary);
-  border-radius: 10px;
-  padding: 20px;
-  width: 600px;
-
-  color: var(--color-text-primary);
-  z-index: 1000;
-  animation: fadeIn 0.3s ease-in-out;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-}
-
-.CancelIconButton {
-  position: fixed;
-  top: 10px;
-  right: 10px;
-  background: none;
-  border: none;
-  cursor: pointer;
-}
-
-.CancelIconButton img {
-  width: 20px;
-  height: 20px;
-} /* Parent container for scrolling cards */
-.CardScrollContainer {
-  display: flex;
-  gap: 10px; /* Space between cards */
-  overflow-x: auto; /* Enable horizontal scrolling */
-  max-width: 100%; /* Restrict container width to parent width */
-  padding: 10px; /* Add padding for better spacing */
-  background-color: rgba(
-    255,
-    255,
-    255,
-    0.1
-  ); /* Light background for contrast */
-  border-radius: 5px; /* Rounded container edges */
-}
-
-/* Ensure cards are not compressed */
-.Card {
-  flex: 0 0 auto; /* Prevent shrinking or growing */
-  width: 50px; /* Fixed width */
-  height: 70px; /* Fixed height */
-  background-color: var(--color-bg-primary); /* Card background color */
-  border: 1px solid #000; /* Card border */
-  border-radius: 8px; /* Rounded corners */
-  display: flex;
+  gap: 20px;
+  border: 1px solid var(--color-special-gold);
+  padding: 30px;
+  border-radius: var(--borderRadius);
   justify-content: center;
+  background-color: var(--color-bg-primary);
+}
+
+.top {
+  width: 100%;
+  height: 10%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  text-align: right;
+}
+
+.top p {
+  font-size: var(--text-md);
+}
+
+.cardRenderName,
+.card {
+  font-size: var(--text-lg);
+}
+
+.bottom {
+  width: 100%;
+  height: 70%;
+  display: flex;
+  flex-direction: column;
+}
+
+.cardRender {
+  display: flex;
+  gap: 30px;
+  z-index: 1010;
+}
+
+.cardRenderName {
+  text-align: right;
+  width: 100px;
+  display: flex;
   align-items: center;
-  position: relative;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Card shadow for 3D effect */
+  justify-content: end;
 }
 
-/* Card content styles */
-.CardContent {
-  text-align: center;
+.cardRenderCard {
+  width: calc(100% - 150px);
 }
 
-.CardContent p {
-  margin: 0;
-  font-size: 14px;
-  font-weight: bold;
+.winner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(var(--text-lg));
 }
 
-.CardContent p:first-child {
-  font-size: 18px;
+.cancelIcon {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+}
+
+.cancelIcon svg path {
+  fill: #cc3838;
 }

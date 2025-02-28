@@ -1,17 +1,16 @@
 import React from "react";
 import style from "../style/Window.module.css";
+import { ScrollBox } from "../../layout/jsx/ScrollBox";
 
 export const DetailCards = ({ cards }) => {
+  const winnerList = Array.isArray(cards)
+    ? cards.map((w) => w.toUpperCase()).join(", ")
+    : cards.toUpperCase();
   return (
-    <div className={style.CardScrollContainer}>
-      {cards.map((card) => (
-        <div key={card.id} className={style.Card}>
-          <div className={style.CardContent}>
-            <p>{card.value}</p>
-            <p>{card.suit}</p>
-          </div>
-        </div>
-      ))}
+    <div className={style.detailCards}>
+      <ScrollBox direction="horizontal">
+        <p className={style.winner}>{winnerList}</p>
+      </ScrollBox>
     </div>
   );
 };
