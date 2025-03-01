@@ -14,6 +14,7 @@
   justify-content: center;
   align-items: center;
   gap: 20px;
+  flex-wrap: wrap;
 }
 
 .lowHigh {
@@ -21,10 +22,42 @@
   justify-content: center;
   align-items: center;
   gap: 8px;
+  flex-wrap: wrap;
 }
 
+/* Responsive Design */
 @media (max-width: 1000px) {
   .lowHighEvenOdd {
     flex-direction: column;
+  }
+}
+
+@media (max-width: 768px) {
+  .betSection {
+    gap: 8px;
+    padding: 8px 4px;
+  }
+
+  .lowHighEvenOdd {
+    gap: 15px;
+  }
+
+  .lowHigh {
+    gap: 6px;
+  }
+}
+
+@media (max-width: 480px) {
+  .betSection {
+    gap: 5px;
+    padding: 6px 3px;
+  }
+
+  .lowHighEvenOdd {
+    gap: 10px;
+  }
+
+  .lowHigh {
+    gap: 4px;
   }
 }

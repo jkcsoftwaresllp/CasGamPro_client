@@ -6,14 +6,14 @@ import { Body } from "../../component/layout/jsx/Body";
 
 function App() {
   return (
-    <AuthProvider>
-      <Router>
+    <Router>
+      <AuthProvider>
         <div className={style.app}>
           <Header />
           <Body />
         </div>
-      </Router>
-    </AuthProvider>
+      </AuthProvider>
+    </Router>
   );
 }
 

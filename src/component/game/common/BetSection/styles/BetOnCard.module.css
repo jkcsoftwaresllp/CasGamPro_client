@@ -8,23 +8,71 @@
   justify-content: center;
   align-items: center;
   gap: 1px;
-
   border: 1px solid var(--color-bg-tertiary);
   cursor: pointer;
   position: relative;
+  transition: transform 0.2s ease-in-out;
+}
+
+.betOnCard:hover {
+  transform: scale(1.05);
 }
 
 .label {
   font-weight: var(--textBold);
-  font-size: calc(var(--text-md));
+  font-size: var(--text-md);
+  text-align: center;
 }
 
 .card {
   display: flex;
   justify-content: center;
+  align-items: center;
   gap: 5px;
+  flex-wrap: wrap;
 }
 
 .betAmount {
   font-size: calc(0.8 * var(--text-sm));
+  text-align: center;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .betOnCard {
+    width: 45px;
+    height: 70px;
+  }
+
+  .label {
+    font-size: calc(0.9 * var(--text-md));
+  }
+
+  .card {
+    gap: 3px;
+  }
+
+  .betAmount {
+    font-size: calc(0.7 * var(--text-sm));
+  }
+}
+
+@media (max-width: 480px) {
+  .betOnCard {
+    width: 40px;
+    height: 65px;
+    gap: 0.5px;
+  }
+
+  .label {
+    font-size: calc(0.8 * var(--text-md));
+  }
+
+  .card {
+    gap: 2px;
+  }
+
+  .betAmount {
+    font-size: calc(0.6 * var(--text-sm));
+  }
 }

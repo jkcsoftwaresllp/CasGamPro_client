@@ -2,10 +2,10 @@
   display: flex;
   justify-content: center;
   width: 100%;
-  min-height: 100vh;
+  height: 100%;
   padding-bottom: var(--header-height);
-  padding-top: var(--header-height); /* Pushes content below the header */
-  overflow-y: auto; /* Enables vertical scrolling if needed */
+  padding-top: var(--header-height);
+  overflow-y: auto;
 }
 
 .gameList {

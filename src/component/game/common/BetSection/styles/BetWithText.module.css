@@ -24,10 +24,10 @@
   align-items: center;
   background-color: var(--color-bg-tertiary);
   padding: 5px;
-
   border-radius: var(--borderRadius);
   cursor: pointer;
   position: relative;
+  transition: opacity 0.3s ease-in-out;
 }
 
 .bet:hover {
@@ -43,4 +43,43 @@
 .bet p:nth-child(2) {
   text-align: center;
   font-size: calc(0.8 * var(--text-sm));
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .betWithText {
+    width: 80px;
+    height: 60px;
+  }
+
+  .bet {
+    padding: 4px;
+  }
+
+  .bet p:first-child {
+    font-size: calc(0.9 * var(--text-md));
+  }
+
+  .bet p:nth-child(2) {
+    font-size: calc(0.7 * var(--text-sm));
+  }
+}
+
+@media (max-width: 480px) {
+  .betWithText {
+    width: 70px;
+    height: 50px;
+  }
+
+  .bet {
+    padding: 3px;
+  }
+
+  .bet p:first-child {
+    font-size: calc(0.8 * var(--text-md));
+  }
+
+  .bet p:nth-child(2) {
+    font-size: calc(0.6 * var(--text-sm));
+  }
 }
