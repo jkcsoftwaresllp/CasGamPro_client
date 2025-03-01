@@ -5,9 +5,17 @@ import { apiCall } from "../../../../common/apiCall";
 import { CardToPlayer } from "../../cardSection/jsx/CardToPlayer";
 import { SetIcon } from "../../../../common/jsx/SetIcon";
 import { cancelIcon } from "../../../../../assets/assets";
+import { getPlayerNames } from "./getPlayerNames";
+
+const getPrefixBeforeUnderscore = (roundId) => {
+  return roundId.split("_")[0];
+};
 
 export const WinnerDetail = ({ roundId, toggleDetails }) => {
   const [history, setHistory] = useState([]);
+
+  const gameId = getPrefixBeforeUnderscore(roundId);
+  const [playerA, playerB, playerC] = getPlayerNames(gameId);
 
   useEffect(() => {
     const fetchWinningCards = async () => {
@@ -57,13 +65,13 @@ export const WinnerDetail = ({ roundId, toggleDetails }) => {
             />
           )}
           {history.playerA && history.playerA.length > 0 && (
-            <CardRender key={"A"} name={"A"} cards={history.playerA} />
+            <CardRender key={playerA} name={playerA} cards={history.playerA} />
           )}
           {history.playerB && history.playerB.length > 0 && (
-            <CardRender key={"B"} name={"B"} cards={history.playerB} />
+            <CardRender key={playerB} name={playerB} cards={history.playerB} />
           )}
           {history.playerC && history.playerC.length > 0 && (
-            <CardRender key={"C"} name={"C"} cards={history.playerC} />
+            <CardRender key={playerC} name={playerC} cards={history.playerC} />
           )}
           {history.winner && (
             <CardRender

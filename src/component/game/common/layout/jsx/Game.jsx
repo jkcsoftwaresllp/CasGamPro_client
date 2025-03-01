@@ -57,15 +57,16 @@ export const Game = () => {
                 <SimulationSection />
               </div>
             </div>
-
-            <BetSection
-              status={status}
-              game={gameType}
-              onClick={(label, value) => {
-                console.log(label);
-                setBetItems({ label, value }); // Example: {label: "Low", value: "0.0"}
-              }}
-            />
+            <div className={styles.betSection}>
+              <BetSection
+                status={status}
+                game={gameType}
+                onClick={(label, value) => {
+                  console.log(label);
+                  setBetItems({ label, value }); // Example: {label: "Low", value: "0.0"}
+                }}
+              />
+            </div>
           </div>
 
           <div className={styles.detailsSection}>

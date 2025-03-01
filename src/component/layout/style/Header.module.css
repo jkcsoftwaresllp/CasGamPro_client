@@ -44,3 +44,45 @@
   color: var(--color-text-primary);
   padding-left: 10px;
 }
+.hamburger {
+  background: none;
+  border: none;
+  font-size: 1.5em;
+  color: var(--color-text-primary);
+  cursor: pointer;
+  display: none;
+}
+
+.menuDropdown {
+  position: absolute;
+  top: calc(var(--header-height) + 5px);
+  right: 10px;
+  background: var(--color-bg-primary);
+  border-radius: var(--borderRadius-md);
+  width: 100%;
+  max-width: 90%;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+  z-index: 1000;
+  overflow-x: auto;
+  text-align: center;
+  justify-content: right;
+}
+
+.menuDropdown p,
+.menuDropdown button {
+  color: var(--color-text-primary);
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+/* Show hamburger only on small screens */
+@media (max-width: 768px) {
+  .hamburger {
+    display: block;
+  }
+}

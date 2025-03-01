@@ -39,16 +39,17 @@ export const BetOnTop = ({ onClick, isLock }) => {
           }
         />
       </div>
-
-      <BetInPair
-        label={"Pair"}
-        betAmount={"0.0"}
-        betProfit={6}
-        isLock={isLock}
-        onClick={(value) =>
-          onClick({ label: "Pair", player: SIDE.pair }, value)
-        }
-      />
+      <div className={styles.pair}>
+        <BetInPair
+          label={"Pair"}
+          betAmount={"0.0"}
+          betProfit={6}
+          isLock={isLock}
+          onClick={(value) =>
+            onClick({ label: "Pair", player: SIDE.pair }, value)
+          }
+        />
+      </div>
     </div>
   );
 };
