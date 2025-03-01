@@ -99,7 +99,42 @@
   max-width: 1000px;
   text-align: center;
   overflow-y: auto;
-  /* box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); Add a subtle shadow */
+}
+
+/* Medium Screens (Tablets) */
+@media (max-width: 768px) {
+  .rulesContainer {
+    max-width: 90%;
+    padding: 12px;
+  }
+
+  .rulesContainer h2 {
+    font-size: var(--text-md); /* Reduce heading size */
+  }
+
+  .rulesContainer li {
+    font-size: var(--text-sm); /* Reduce text size for better fit */
+  }
+}
+
+/* Small Screens (Mobile) */
+@media (max-width: 480px) {
+  .rulesContainer {
+    max-width: 95%;
+    padding: 10px;
+  }
+
+  .rulesContainer h2 {
+    font-size: var(--text-sm); /* Further reduce heading size */
+  }
+
+  .rulesContainer ol {
+    padding-left: 15px; /* Reduce indentation */
+  }
+
+  .rulesContainer li {
+    font-size: var(--text-xs); /* Smallest font for better fit */
+  }
 }
 
 .rulesContainer h2 {

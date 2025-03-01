@@ -1,9 +1,9 @@
 /* Switch styles */
 .switch {
   display: block;
-  --width-of-switch: 2em;
-  --height-of-switch: 0.81em;
-  --size-of-icon: 0.5em;
+  --width-of-switch: 2.5em;
+  --height-of-switch: 1.5em;
+  --size-of-icon: 1em;
   --slider-offset: 0.22em;
   position: relative;
   width: var(--width-of-switch);
