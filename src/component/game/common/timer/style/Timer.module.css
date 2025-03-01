@@ -1,7 +1,11 @@
 .baseTimer {
   position: relative;
-  width: 75px;
-  height: 75px;
+  width: 10vw; /* Use viewport width for responsiveness */
+  height: 10vw;
+  max-width: 70px; /* Set a maximum size */
+  max-height: 70px;
+  min-width: 30px; /* Set a minimum size */
+  min-height: 30px;
 }
 
 .baseTimerSvg {
@@ -42,12 +46,22 @@
 
 .baseTimerLabel {
   position: absolute;
-  width: 75px;
-  height: 75px;
+  width: 100%;
+  height: 100%;
   top: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 35px;
+  font-size: 3vw; /* Use relative font size */
   font-weight: 800;
+}
+
+@media (max-width: 600px) {
+  .baseTimer {
+    width: 15vw;
+    height: 15vw;
+  }
+  .baseTimerLabel {
+    font-size: 4vw;
+  }
 }

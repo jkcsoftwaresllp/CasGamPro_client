@@ -8,6 +8,9 @@ import { CardSection as DragonTigerCardSection } from "../../../dragonTiger/jsx/
 import { CardSection as DragonTigerBCardSection } from "../../../dragonTigerB/jsx/CardSection";
 import { CardSection as DragonTigerLionCardSection } from "../../../dragonTigerLion/jsx/CardSection";
 import { gameNameMap } from "../../../helper/gameTypes";
+import { useState } from "react";
+import { hideIcon, showIcon } from "../../../../../assets/assets";
+import { motion } from "framer-motion";
 
 export const GameInterface = ({
   game,
@@ -28,6 +31,7 @@ export const GameInterface = ({
 
   const SelectedBetSection = betSectionMap[game] || null;
   const gameName = gameNameMap[game] || null;
+  const [isVisible, setIsVisible] = useState(true);
 
   return (
     <div className={styles.gameInterface}>
@@ -35,13 +39,27 @@ export const GameInterface = ({
         <div className={styles.gameDetail}>{gameName ? gameName : "Error"}</div>
         <div className={styles.gameRoundId}>{roundId}</div>
       </div>
-      <div className={styles.content}>
-        {status !== "betting" && SelectedBetSection ? (
-          <SelectedBetSection cards={cards} />
-        ) : (
-          <></>
-        )}
+
+      {/* Toggle Button with Icons */}
+      <div
+        onClick={() => setIsVisible((prev) => !prev)}
+        className={styles.toggleButton}
+      >
+        {isVisible ? hideIcon : showIcon}
       </div>
+
+      {/* Casino Cards Section with Smooth Fade Animation */}
+      <motion.div
+        className={styles.content}
+        initial={{ opacity: 0, height: 0 }}
+        animate={{ opacity: isVisible ? 1 : 0, height: isVisible ? "auto" : 0 }}
+        exit={{ opacity: 0, height: 0 }}
+        transition={{ duration: 0.3, ease: "easeInOut" }}
+      >
+        {isVisible && status !== "betting" && SelectedBetSection ? (
+          <SelectedBetSection cards={cards} />
+        ) : null}
+      </motion.div>
     </div>
   );
 };
