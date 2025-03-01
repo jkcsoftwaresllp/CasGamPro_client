@@ -10,3 +10,24 @@
   display: flex;
   gap: 20px;
 }
+
+/* Medium screens (md) */
+@media (max-width: 768px) {
+  .dragonTiger {
+    flex-direction: column;
+    gap: 15px;
+  }
+}
+
+/* Small screens (sm) */
+@media (max-width: 480px) {
+  .betSection {
+    padding: 5px;
+    gap: 15px;
+  }
+
+  .dragonTiger {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
