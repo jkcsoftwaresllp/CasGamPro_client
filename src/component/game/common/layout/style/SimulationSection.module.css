@@ -1,13 +1,38 @@
+.simulationContainer {
+  position: relative;
+}
+
+.videoCanvas {
+  display: block;
+}
+
+.transitionOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: black;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.transitioning {
+  opacity: 1;
+}
+
 .simulationSection {
   background-color: var(--color-bg-primary);
   color: var(--color-text-primary);
   border-radius: var(--borderRadius);
   font-weight: 800;
-  border: 1px solid #8b3b3b;
+  border: 10px solid #8b3b3b;
   height: 100%;
   width: 100%;
   min-height: 300px;
   display: flex;
   justify-content: center;
   align-items: center;
+  border-radius: 2rem;
 }
