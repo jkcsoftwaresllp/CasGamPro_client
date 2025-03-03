@@ -18,6 +18,12 @@
 .simulationSection {
   width: 70%;
 }
+.betSection {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid green;
+}
 
 .detailsSection {
   width: 30%;
@@ -25,6 +31,9 @@
   display: flex;
   flex-direction: column;
 }
+/* .detailsSection :first-child {
+  border: 1px solid blue;
+} */
 
 .gameControls {
   height: 200%;

@@ -6,24 +6,136 @@
 
 .header {
   height: var(--detailsHei);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 10px;
+  position: absolute;
+  left: 0;
+  top: 40px;
 }
 
-.gameRoundId,
-.gameDetail {
-  font-size: var(--text-lg);
+/* Default styles for large screens */
+.gameDetail,
+.gameRoundId {
   font-weight: bolder;
   color: var(--color-text-primary);
-  text-align: center;
+  width: 500px;
+}
+.gameDetail {
+  font-size: var(--text-md);
+}
+
+.gameRoundId {
+  font-size: var(--text-xs);
+  color: var(--color-special-gold);
+}
+
+/* Medium screens (Tablets, md) */
+@media (max-width: 1024px) {
+  .header {
+    flex-direction: column;
+
+    padding: 10px;
+  }
+
+  .gameDetail {
+    font-size: var(--text-md);
+  }
+
+  .gameRoundId {
+    font-size: var(--text-xs);
+  }
+}
+
+/* Small screens (Phones, sm) */
+@media (max-width: 500px) {
+  .header {
+    flex-direction: column;
+    padding: 8px;
+    top: 0;
+    margin-top: -30px;
+  }
+
+  .gameDetail {
+    font-size: var(--text-sm); /* smaller text for very small screens */
+    margin: 2px;
+  }
+  .gameRoundId {
+    font-size: var(--text-xs);
+  }
+}
+
+/* For screens between 640px and 728px */
+@media (min-width: 640px) and (max-width: 728px) {
+  .header {
+    flex-direction: column;
+    padding: 8px;
+    margin-top: -10px;
+    left: 0;
+  }
+
+  .gameDetail {
+    font-size: var(--text-md); /* adjust as needed */
+  }
+
+  .gameRoundId {
+    font-size: var(--text-xs); /* slightly larger than on <639px */
+  }
 }
 
 .gameRoundId {
   font-size: var(--text-sm);
 }
 
+/* Default (large screens) - Normal position */
 .content {
-  height: calc(100% - var(--detailsHei));
+  height: 300px;
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
+
+  position: relative;
+}
+
+/* Overlay Effect for Medium (md) and Smaller Screens */
+@media (max-width: 1024px) {
+  /* md and smaller */
+  .content {
+    position: fixed; /* Overlay effect */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    max-width: 600px;
+    height: auto;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 9999;
+    border-radius: var(--borderRadius-md);
+    padding: 20px;
+  }
+}
+
+/* Responsive for Small Screens (Phones) */
+@media (max-width: 768px) {
+  .content {
+    width: 90%;
+    max-width: 90%;
+    padding: 15px;
+  }
+}
+
+.toggleButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 14px; /* Default size */
+  display: flex;
+
+  padding: 8px;
+  border-radius: 50%;
+  margin-top: 40px;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  color: var(--color-text-primary);
 }

@@ -46,4 +46,7 @@
   .lowHighEvenOdd {
     flex-direction: column;
   }
+  .betOnTop {
+    flex-direction: column;
+  }
 }
