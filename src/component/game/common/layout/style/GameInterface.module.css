@@ -2,6 +2,9 @@
   --detailsHei: 50px;
   height: 100%;
   width: 100%;
+  display: flex;
+  border: 1px solid yellow;
+  flex-direction: column;
 }
 
 .header {
@@ -46,6 +49,10 @@
   .gameRoundId {
     font-size: var(--text-xs);
   }
+  .gameInterface {
+    width: 100%;
+    display: flex;
+  }
 }
 
 /* Small screens (Phones, sm) */
@@ -88,18 +95,19 @@
   font-size: var(--text-sm);
 }
 
-/* Default (large screens) - Normal position */
 .content {
-  height: 300px;
   width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  max-height: 500px;
 
+  display: flex;
+  flex-direction: column; /* Ensures a column layout */
+  justify-content: center; /* Centers content vertically */
+  align-items: center; /* Centers content horizontally */
   position: relative;
+  top: 50px; /* Adjust as needed */
+  border: 1px solid cyan;
 }
 
-/* Overlay Effect for Medium (md) and Smaller Screens */
 @media (max-width: 1024px) {
   /* md and smaller */
   .content {
@@ -130,9 +138,8 @@
   background: none;
   border: none;
   cursor: pointer;
-  font-size: 14px; /* Default size */
+  font-size: 14px;
   display: flex;
-
   padding: 8px;
   border-radius: 50%;
   margin-top: 40px;

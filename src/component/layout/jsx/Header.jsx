@@ -32,7 +32,7 @@ export const Header = () => {
     const handleResize = () => setIsMobile(window.innerWidth <= 768);
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
-  }, []);
+  }, [isMobile]);
 
   return (
     <header className={style.headerWrapper} onClick={handleClickOutside}>
@@ -40,9 +40,6 @@ export const Header = () => {
         <h1 className={style.header__title} onClick={() => navigate("/")}>
           CasGamPro
         </h1>
-        <div className={style.fullSection}>
-          <HeaderHelper />
-        </div>
 
         <div className={style.rightSection}>
           {/* Show all options directly on larger screens */}
@@ -56,6 +53,7 @@ export const Header = () => {
                   <Wallet />
                 </>
               )}
+
               <HeaderAuth />
               <HeaderToggle />
             </>
@@ -74,7 +72,9 @@ export const Header = () => {
                       {username?.toUpperCase()} : {clientName}
                     </p>
                   )}
-                  {username && <Wallet />}
+                  <HeaderHelper />
+                  <Wallet />
+
                   <HeaderAuth />
                   <HeaderToggle />
                 </div>
