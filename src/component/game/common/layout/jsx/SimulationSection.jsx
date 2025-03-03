@@ -15,8 +15,8 @@ export const SimulationSection = ({ gameType }) => {
   const productionIP = "88.222.214.174";
 
   const baseURL = isDevelopment
-    ? "ws://localhost:4500"
-    : `ws://${productionIP}:4320`;
+    ? "ws://localhost:5500"
+    : `ws://${productionIP}:5500`;
 
   const [isTransitioning, setIsTransitioning] = useState(false);
 
