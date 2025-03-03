@@ -43,39 +43,41 @@ export const Game = () => {
         <Winner gameType={gameType} winner={winner} />
       ) : (
         <>
-          <div className={styles.mainContent}>
-            <div className={styles.gameControls}>
-              <div className={styles.gameInterface}>
-                <GameInterface
-                  game={gameType}
-                  roundId={rountId}
-                  cards={cards}
+          <div className={styles.game}>
+            {/* Main Content Section */}
+            <div className={styles.mainContent}>
+              <div className={styles.gameControls}>
+                <div className={styles.gameInterface}>
+                  <GameInterface
+                    game={gameType}
+                    roundId={rountId}
+                    cards={cards}
+                    status={status}
+                  />
+                </div>
+                <div className={styles.simulationSection}>
+                  <SimulationSection />
+                </div>
+              </div>
+
+              <div className={styles.betSection}>
+                <BetSection
                   status={status}
+                  game={gameType}
+                  onClick={(label, value) => setBetItems({ label, value })}
                 />
               </div>
-              <div className={styles.simulationSection}>
-                <SimulationSection />
-              </div>
             </div>
-            <div className={styles.betSection}>
-              <BetSection
+
+            {/* Details Section - Moves below in small screens */}
+            <div className={styles.detailsSection}>
+              <GameHistory />
+              <StakeSection
+                betItems={betItems}
+                setBetItems={setBetItems}
                 status={status}
-                game={gameType}
-                onClick={(label, value) => {
-                  console.log(label);
-                  setBetItems({ label, value }); // Example: {label: "Low", value: "0.0"}
-                }}
               />
             </div>
-          </div>
-
-          <div className={styles.detailsSection}>
-            <GameHistory />
-            <StakeSection
-              betItems={betItems}
-              setBetItems={setBetItems}
-              status={status}
-            />
           </div>
         </>
       )}

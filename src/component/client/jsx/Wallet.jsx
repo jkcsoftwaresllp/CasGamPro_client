@@ -19,7 +19,6 @@ export const Wallet = () => {
     user: { userId },
   } = useAuth();
 
-
   // useEffect(() => {
   //   const fetchWalletPoints = async () => {
   //     try {
