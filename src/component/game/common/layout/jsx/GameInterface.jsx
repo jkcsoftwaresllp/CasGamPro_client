@@ -53,27 +53,30 @@ export const GameInterface = ({
             onClick={() => setIsVisible((prev) => !prev)}
             className={styles.toggleButton}
           >
-            {isVisible ? hideIcon : showIcon}
+            {isVisible ? <span>Hide Cards</span> : <span>Show Cards</span>}
           </div>
         )}
 
         {/* Casino Cards Section with Smooth Fade Animation */}
-        <motion.div
-          className={styles.content}
-          initial={{ opacity: 0, height: 0 }}
-          animate={{
-            opacity: isVisible || isLargeScreen ? 1 : 0,
-            height: isVisible || isLargeScreen ? "auto" : 0,
-          }}
-          exit={{ opacity: 0, height: 0 }}
-          transition={{ duration: 0.3, ease: "easeInOut" }}
-        >
-          {(isVisible || isLargeScreen) &&
-          status !== "betting" &&
-          SelectedBetSection ? (
-            <SelectedBetSection cards={cards} />
-          ) : null}
-        </motion.div>
+
+        {(isVisible || isLargeScreen) &&
+        status !== "betting" &&
+        SelectedBetSection ? (
+          <div className={styles.cardsDiv}>
+            <motion.div
+              className={styles.content}
+              initial={{ opacity: 0, height: 0 }}
+              animate={{
+                opacity: isVisible || isLargeScreen ? 1 : 0,
+                height: isVisible || isLargeScreen ? "auto" : 0,
+              }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.3, ease: "easeInOut" }}
+            >
+              <SelectedBetSection cards={cards} />
+            </motion.div>
+          </div>
+        ) : null}
       </div>
     </div>
   );
