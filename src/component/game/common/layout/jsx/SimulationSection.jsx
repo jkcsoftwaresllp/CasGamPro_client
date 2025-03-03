@@ -148,8 +148,8 @@ export const SimulationSection = ({ gameType }) => {
       <div style={{ position: "relative" }}>
         <canvas
           ref={canvasRef}
-          width={1000}
-          height={800}
+          width={900}
+          height={600}
           className={styles.videoCanvas}
         />
         <div
