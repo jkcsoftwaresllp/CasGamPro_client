@@ -42,34 +42,55 @@
   font-weight: var(--text-bold);
   font-size: var(--text-md);
   color: var(--color-text-primary);
-  padding-left: 10px;
 }
+
 .hamburger {
   background: none;
   border: none;
   font-size: 1.5em;
   color: var(--color-text-primary);
   cursor: pointer;
-  display: none;
+  display: flex;
+  flex-direction: row;
+}
+
+.menuDropdownWrapper {
+  position: absolute;
+  top: calc(var(--header-height) + 5px);
+  right: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .menuDropdown {
-  position: absolute;
-  top: calc(var(--header-height) + 5px);
-  right: 10px;
   background: var(--color-bg-primary);
   border-radius: var(--borderRadius-md);
-  width: 100%;
-  max-width: 90%;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  padding: 20px;
+  max-width: 95%;
+  padding: 10px;
+  z-index: 9999;
   display: flex;
-  flex-direction: row;
+  flex-direction: column; /* Ensure horizontal alignment */
+  align-items: center; /* Align elements vertically */
+  justify-content: flex-start; /* Start from left */
   gap: 15px;
-  z-index: 1000;
   overflow-x: auto;
-  text-align: center;
-  justify-content: right;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.one,
+.two {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Ensure all elements inside menuDropdown are properly aligned */
+.menuDropdown > * {
+  min-width: fit-content; /* Prevent shrinking */
+  flex-shrink: 0; /* Prevent wrapping */
 }
 
 .menuDropdown p,
@@ -84,5 +105,22 @@
 @media (max-width: 768px) {
   .hamburger {
     display: block;
+  }
+
+  .two {
+    order: 1;
+  }
+
+  .one {
+    order: 2;
+  }
+}
+/* Show hamburger only on small screens */
+@media (max-width: 400px) {
+  .one,
+  .two {
+    flex-direction: column-reverse;
+    gap: 20px;
+    padding: 5px;
   }
 }

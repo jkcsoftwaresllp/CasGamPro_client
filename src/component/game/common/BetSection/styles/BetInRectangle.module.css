@@ -1,5 +1,5 @@
 .betInRectangle {
-  width: 400px;
+  width: 400px; /* Default width for PC */
   height: 55px;
   padding: 10px;
   border-radius: var(--borderRadius);
@@ -13,6 +13,27 @@
 
   padding-left: var(--paddingLeft);
   padding-right: var(--paddingRight);
+}
+
+/* Medium screens (tablets) */
+@media (max-width: 1024px) {
+  .betInRectangle {
+    width: 320px; /* Reduce width */
+  }
+}
+
+/* Small screens (mobile) */
+@media (max-width: 768px) {
+  .betInRectangle {
+    width: 280px;
+  }
+}
+
+/* Extra small screens */
+@media (max-width: 480px) {
+  .betInRectangle {
+    width: 100px;
+  }
 }
 
 .betInPair {
