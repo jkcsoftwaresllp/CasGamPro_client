@@ -4,8 +4,8 @@ const isDevelopment = import.meta.env.DEV;
 const productionIP = "88.222.214.174";
 
 const URL = isDevelopment
-  ? "http://localhost:4320/"
-  : `http://${productionIP}:4320/`;
+  ? "http://localhost:5320/"
+  : `http://${productionIP}:5320/`;
 
 const sockets = {}; // Store multiple socket instances
 
