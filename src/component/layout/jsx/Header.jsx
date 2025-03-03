@@ -34,6 +34,24 @@ export const Header = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, [isMobile]);
 
+  const renderUserInfo = () => (
+    <>
+      <div className={style.one}>
+        <HeaderHelper />
+      </div>
+      <div className={style.two}>
+        {username && (
+          <p className={style.userId}>
+            {username?.toUpperCase()} : {clientName}
+          </p>
+        )}
+        <Wallet />
+        <HeaderAuth />
+        <HeaderToggle />
+      </div>
+    </>
+  );
+
   return (
     <header className={style.headerWrapper} onClick={handleClickOutside}>
       <div className={style.header}>
@@ -44,19 +62,7 @@ export const Header = () => {
         <div className={style.rightSection}>
           {/* Show all options directly on larger screens */}
           {!isMobile ? (
-            <>
-              {username && (
-                <>
-                  <p className={style.userId}>
-                    {username?.toUpperCase()} : {clientName}
-                  </p>
-                  <Wallet />
-                </>
-              )}
-
-              <HeaderAuth />
-              <HeaderToggle />
-            </>
+            <>{renderUserInfo()}</>
           ) : (
             <>
               {/* Hamburger Menu Button for Small Screens */}
@@ -66,17 +72,8 @@ export const Header = () => {
 
               {/* Dropdown Menu for Small Screens */}
               {menuOpen && (
-                <div ref={menuRef} className={style.menuDropdown}>
-                  {username && (
-                    <p className={style.userId}>
-                      {username?.toUpperCase()} : {clientName}
-                    </p>
-                  )}
-                  <HeaderHelper />
-                  <Wallet />
-
-                  <HeaderAuth />
-                  <HeaderToggle />
+                <div ref={menuRef} className={style.menuDropdownWrapper}>
+                  <div className={style.menuDropdown}>{renderUserInfo()}</div>
                 </div>
               )}
             </>
