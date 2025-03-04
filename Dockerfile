@@ -17,8 +17,8 @@ RUN npm run build
 # Install serve to run the built app
 RUN npm install -g serve
 
-# Expose port 1060 to match docker-compose
+# Expose port to match docker-compose
 EXPOSE 2060
 
-# Start the app using port 1060
-CMD ["serve", "-s", "dist", "-l", "1060"]
+# Start the app using port 
+CMD ["serve", "-s", "dist", "-l", "2060"]
