@@ -4,6 +4,8 @@ import { DownloadButtons } from "./dashboardContent/jsx/DownloadBtn";
 import { Pagination } from "../../common/Pagination";
 import { Filter } from "../../common/Filter";
 import style from "./styles/ContentPage.module.css";
+import { useState, useEffect } from "react";
+import { Button } from "../../common/Button";
 
 export const TableHeader = ({
   headerTitle,
@@ -24,6 +26,20 @@ export const TableHeader = ({
   } = headerConfig;
 
   const showPagination = false;
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+  const [showActions, setShowActions] = useState(!isMobile);
+
+  // Handle screen resize
+  useEffect(() => {
+    const handleResize = () => {
+      const isSmallScreen = window.innerWidth <= 768;
+      setIsMobile(isSmallScreen);
+      setShowActions(!isSmallScreen); // Auto-show on large screens, hide on small
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   return (
     <header className={style.headerContainer}>
@@ -36,22 +52,37 @@ export const TableHeader = ({
 
         {/* Right Side: Actions */}
         <div className={style.rightSideActions}>
-          {showSearchBar && (
-            <SearchBar
-              searchQuery={searchQuery}
-              setSearchQuery={setSearchQuery}
-            />
+          {/* Mobile Actions Button */}
+          {isMobile && (
+            <div className={style.actionButton}>
+              <Button
+                label={"Action"}
+                onClick={() => setShowActions(!showActions)}
+              />
+            </div>
           )}
-          {showDownloadButtons && (
-            <>
-              <Filter onFilter={onFilter} />
-              <DownloadButtons data={data} tableName={tableName} />
-            </>
-          )}
-          {showPagination && (
-            <Pagination data={paginationData} rowsPerPage={30}>
-              {() => null}
-            </Pagination>
+
+          {/* Action Elements (Hidden in mobile unless toggled) */}
+          {showActions && (
+            <div className={style.actionsContainer}>
+              {showSearchBar && (
+                <SearchBar
+                  searchQuery={searchQuery}
+                  setSearchQuery={setSearchQuery}
+                />
+              )}
+              {showDownloadButtons && (
+                <>
+                  <DownloadButtons data={data} tableName={tableName} />
+                  <Filter onFilter={onFilter} />
+                </>
+              )}
+              {showPagination && (
+                <Pagination data={paginationData} rowsPerPage={30}>
+                  {() => null}
+                </Pagination>
+              )}
+            </div>
           )}
         </div>
       </div>
