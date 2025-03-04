@@ -36,19 +36,28 @@ export const Header = () => {
 
   const renderUserInfo = () => (
     <>
-      <div className={style.one}>
-        <HeaderHelper />
-      </div>
-      <div className={style.two}>
-        {username && (
-          <p className={style.userId}>
-            {username?.toUpperCase()} : {clientName}
-          </p>
-        )}
-        <Wallet />
-        <HeaderAuth />
-        <HeaderToggle />
-      </div>
+      {user !== null ? (
+        <>
+          <div className={style.one}>
+            <HeaderHelper />
+          </div>
+          <div className={style.two}>
+            {username && (
+              <p className={style.userId}>
+                {username.toUpperCase()} : {clientName}
+              </p>
+            )}
+            <Wallet />
+            <HeaderAuth />
+            <HeaderToggle />
+          </div>
+        </>
+      ) : (
+        <div className={style.afterLogOut}>
+          <HeaderAuth />
+          <HeaderToggle />
+        </div>
+      )}
     </>
   );
 
