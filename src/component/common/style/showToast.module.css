@@ -1,0 +1,11 @@
+@media (max-width: 768px) {
+  .customToast {
+    max-width: 80vw; /* Adjust width for smaller screens */
+  }
+}
+
+@media (max-width: 480px) {
+  .customToast {
+    max-width: 75vw; /* Even smaller width for mobile */
+  }
+}
