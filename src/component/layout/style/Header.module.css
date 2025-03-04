@@ -101,6 +101,12 @@
   cursor: pointer;
 }
 
+.afterLogOut {
+  display: flex;
+  gap: 20px;
+  padding: 0 10px;
+}
+
 /* Show hamburger only on small screens */
 @media (max-width: 768px) {
   .hamburger {
