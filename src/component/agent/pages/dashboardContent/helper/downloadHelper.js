@@ -1,6 +1,7 @@
 import { jsPDF } from "jspdf";
 import "jspdf-autotable";
 import Papa from "papaparse";
+import { getToastTypes, showToast } from "../../../../common/showToast";
 
 /**
  * Converts camelCase or snake_case keys into readable column names.
@@ -56,6 +57,7 @@ export const generatePDF = (
     });
   }
 
+  showToast(getToastTypes.type1, `Data downlaoded successfully for ${filename}`);
   doc.save(filename);
 };
 
@@ -63,7 +65,7 @@ export const generatePDF = (
  * Generates a CSV file with formatted column headers.
  * @param {Array} data - Array of objects to be exported.
  * @param {string} filename - Filename for the exported CSV.
- */
+*/
 export const generateCSV = (data, filename = "report.csv") => {
   let csv;
   if (!data || data.length === 0) {
@@ -81,13 +83,14 @@ export const generateCSV = (data, filename = "report.csv") => {
       });
       return formattedRow;
     });
-
+    
     csv = Papa.unparse(formattedData);
   }
-
+  
   const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
   const link = document.createElement("a");
   link.href = URL.createObjectURL(blob);
   link.download = filename;
   link.click();
+  showToast(getToastTypes.type1, `Data downlaoded successfully for ${filename}`);
 };
