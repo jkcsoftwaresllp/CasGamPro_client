@@ -25,3 +25,21 @@
   align-items: center; /* Center the button vertically */
   margin-top: 2em; /* Add spacing above the button */
 }
+
+/* Show hamburger only on small screens */
+@media (max-width: 768px) {
+  .title {
+    font-size: 3em;
+  }
+}
+
+/* Show hamburger only on small screens */
+@media (max-width: 320px) {
+  .title {
+    font-size: 2.5em;
+  }
+
+  .buttonContainer button {
+    padding: 5px 10px;
+  }
+}
