@@ -47,6 +47,7 @@
   display: flex;
   align-items: center;
   gap: 16px; /* Adds space between Download Buttons and Pagination */
+  z-index: 5;
 }
 
 .headerActionsRow {

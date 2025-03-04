@@ -11,7 +11,6 @@ export const TableCell = ({
   const cssVariable = {
     "--flexValue": cellStyle.flex,
   };
-  console.log(cssVariable);
 
   return (
     <div
