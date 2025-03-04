@@ -8,10 +8,15 @@ export const TableCell = ({
   isClickable = false,
   onClick,
 }) => {
+  const cssVariable = {
+    "--flexValue": cellStyle.flex,
+  };
+  console.log(cssVariable);
+
   return (
     <div
       className={`${style.cell} ${isHeader ? style.headerCell : ""}`}
-      style={cellStyle}
+      style={cssVariable}
       onClick={isClickable ? onClick : undefined}
     >
       <div className={`${isClickable ? style.clickableCell : ""}`}>{label}</div>

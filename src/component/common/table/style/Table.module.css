@@ -16,7 +16,6 @@
   width: 100%;
   min-width: 400px; /* Ensures proper table structure */
   border-collapse: collapse;
-  border: 1px solid red;
 }
 
 /* Responsive adjustments */
@@ -88,16 +87,16 @@
 }
 
 .cell {
-  flex: 1;
+  flex: var(--flexValue);
   text-align: center;
   overflow: hidden;
   color: var(--color-text-primary);
   font-size: var(--text-md);
   display: flex;
-  flex: 1;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   text-wrap: wrap;
+  min-width: calc(var(--flexValue) * 150px);
 }
 
 .actions {
