@@ -1,8 +1,7 @@
 import { useState, useEffect } from "react";
 import style from "../style/HeaderToggle.module.css";
 
-export const HeaderToggle = () => {
-  const [isDarkMode, setIsDarkMode] = useState(true);
+export const HeaderToggle = ({isDarkMode, setIsDarkMode}) => {
 
   // Initialize theme preference on mount
   useEffect(() => {

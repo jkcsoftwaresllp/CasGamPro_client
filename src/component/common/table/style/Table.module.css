@@ -3,7 +3,7 @@
   flex-direction: column;
   width: 100%;
   max-width: 100%;
-  height: auto;
+  height: 100%;
   border: 1px solid var(--color-border);
   border-radius: var(--borderRadius);
   padding: 10px;
@@ -16,6 +16,7 @@
   width: 100%;
   min-width: 400px; /* Ensures proper table structure */
   border-collapse: collapse;
+  border: 1px solid red;
 }
 
 /* Responsive adjustments */
