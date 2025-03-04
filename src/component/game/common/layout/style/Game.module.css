@@ -61,12 +61,14 @@
   height: 400px;
   align-self: flex-end;
 }
+
 .betSection {
   height: 100%;
   display: flex;
   flex-direction: column;
   border: 1px solid green;
 }
+
 @media (max-width: 1024px) {
   .game {
     flex-direction: column;
@@ -90,10 +92,7 @@
     width: 100%;
   }
 
-  .gameInterface {
-    width: 30%;
-  }
-
+ 
   .simulationSection {
     width: 100%;
   }
@@ -113,10 +112,7 @@
   }
 
   .gameInterface {
-    position: absolute;
-    top: 20%;
-    height: 60%;
-    width: 30%;
+    flex-direction: row;
   }
 
   .simulationSection {
