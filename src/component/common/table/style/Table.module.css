@@ -1,14 +1,17 @@
 /* Wrapper to contain both header & body */
 .tableWrapper {
+  width: 100%;
   overflow-x: auto;
   position: relative;
   border: 1px solid var(--color-border);
   border-radius: var(--borderRadius);
+  width: 100%;
+  max-width: 100%;
   padding: 10px;
   min-width: 300px;
-  width: 100%;
   height: 100%;
   --tableheaderHei: 58px;
+  --marginBottomHeadere: 5px;
 }
 
 /* Fixed header section */
@@ -23,7 +26,7 @@
   scrollbar-width: none;
   -ms-overflow-style: none;
   border-bottom: 1px solid var(--color-text-secondary);
-  margin-bottom: 5px;
+  margin-bottom: var(--marginBottomHeadere);
 }
 
 /* Hides scrollbar in WebKit browsers (Chrome, Safari, Edge) */
@@ -34,7 +37,7 @@
 /* Table body wrapper, allowing horizontal scrolling */
 .bodyWrapper {
   width: 100%;
-  height: calc(100% - var(--tableheaderHei));
+  height: calc(100% - var(--tableheaderHei) - var(--marginBottomHeadere));
   overflow-x: auto;
   overflow-y: auto;
 }
@@ -43,37 +46,10 @@
 .header,
 .body {
   display: flex;
-  width: fit-content;
 }
 
 .body {
   flex-direction: column;
-  width: 100%;
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  .table {
-    min-width: 100%;
-    padding: 5px;
-  }
-
-  .table table {
-    min-width: 100%;
-  }
-}
-
-@media (max-width: 480px) {
-  .table {
-    min-width: 100%;
-    padding: 5px;
-  }
-
-  .table table {
-    min-width: 100%;
-    display: block;
-    overflow-x: auto; /* Ensures table scrolls on smaller screens */
-  }
 }
 
 .header,
@@ -90,6 +66,7 @@
 }
 
 .body {
+  height: 100%;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
@@ -104,19 +81,15 @@
 }
 
 .header {
-  display: flex;
-  width: 100%;
   gap: 5px;
 }
 
 .header .headerCell {
-  flex: 1;
-  text-align: center;
-  padding: 10px;
-  gap: 5px;
   background-color: var(--color-bg-secondary);
+  gap: 5px;
   border-radius: var(--borderRadius);
-  font-weight: bold;
+  font-weight: var(--text);
+  padding: 10px;
 }
 
 .cell {
@@ -126,36 +99,10 @@
   color: var(--color-text-primary);
   font-size: var(--text-md);
   display: flex;
-  width: 100%;
   align-items: center;
   justify-content: center;
   text-wrap: wrap;
   min-width: calc(var(--flexValue) * 150px);
-}
-@media (max-width: 768px) {
-  .cell {
-    font-size: var(--text-sm);
-    padding: 8px;
-    min-width: 120px;
-  }
-
-  .header .headerCell {
-    font-size: var(--text-sm);
-    padding: 8px;
-  }
-}
-
-@media (max-width: 480px) {
-  .cell {
-    font-size: var(--text-xs);
-    padding: 6px;
-    min-width: 100px;
-  }
-
-  .header .headerCell {
-    font-size: var(--text-xs);
-    padding: 6px;
-  }
 }
 
 .actions {
