@@ -45,9 +45,6 @@ export const GameInterface = ({
       <div className={styles.header}>
         <div className={styles.gameDetail}>{gameName}</div>
         <div className={styles.gameRoundId}>{roundId}</div>
-      </div>
-      <div className={styles.contentWrapper}>
-        {/* Show toggle button only for small & medium screens */}
         {!isLargeScreen && (
           <div
             onClick={() => setIsVisible((prev) => !prev)}
@@ -56,6 +53,9 @@ export const GameInterface = ({
             {isVisible ? <span>Hide Cards</span> : <span>Show Cards</span>}
           </div>
         )}
+      </div>
+      <div className={styles.contentWrapper}>
+        {/* Show toggle button only for small & medium screens */}
 
         {/* Casino Cards Section with Smooth Fade Animation */}
 

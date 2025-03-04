@@ -11,6 +11,7 @@ import { Wallet } from "../../client/jsx/Wallet";
 export const Header = () => {
   const navigate = useNavigate();
   const { user } = useAuth();
+
   const { username, clientName } = user || {};
 
   const [menuOpen, setMenuOpen] = useState(false);
