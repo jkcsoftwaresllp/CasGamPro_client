@@ -61,7 +61,8 @@ export const Header = () => {
       ) : (
         <div className={style.afterLogOut}>
           <HeaderAuth />
-          <HeaderToggle />
+
+          <HeaderToggle isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode} />
         </div>
       )}
     </>

@@ -1,12 +1,9 @@
 /* Wrapper to contain both header & body */
 .tableWrapper {
-  width: 100%;
   overflow-x: auto;
   position: relative;
   border: 1px solid var(--color-border);
   border-radius: var(--borderRadius);
-  width: 100%;
-  max-width: 100%;
   padding: 10px;
   min-width: 300px;
   height: 100%;
@@ -128,6 +125,31 @@
   justify-content: center;
   text-wrap: wrap;
   min-width: calc(var(--flexValue) * 150px);
+}
+@media (max-width: 768px) {
+  .cell {
+    font-size: var(--text-sm);
+    padding: 8px;
+    min-width: 120px;
+  }
+
+  .header .headerCell {
+    font-size: var(--text-sm);
+    padding: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .cell {
+    font-size: var(--text-xs);
+    padding: 6px;
+    min-width: 100px;
+  }
+
+  .header .headerCell {
+    font-size: var(--text-xs);
+    padding: 6px;
+  }
 }
 
 .actions {
