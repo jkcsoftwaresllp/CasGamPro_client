@@ -1,11 +1,11 @@
 .stakeSection {
+  width: 100%;
   display: flex;
   flex: 1;
   flex-direction: column;
   justify-content: flex-start;
-  gap: 10px;
+  gap: 1px;
   align-items: center;
   background: var(--color-bg-primary);
   overflow: auto;
-  border: 1px solid red;
 }

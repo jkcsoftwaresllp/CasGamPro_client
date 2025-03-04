@@ -26,10 +26,6 @@
   max-width: 40%;
   border: 1px solid orange;
 }
-.detailsSection > * {
-  max-width: 100%;
-  flex-shrink: 1;
-}
 
 .simulationSection {
   width: 800px;
