@@ -1,21 +1,55 @@
-.table {
-  display: flex;
-  flex-direction: column;
+/* Wrapper to contain both header & body */
+.tableWrapper {
   width: 100%;
-  max-width: 100%;
-  height: 100%;
+  overflow-x: auto;
+  position: relative;
   border: 1px solid var(--color-border);
   border-radius: var(--borderRadius);
+  width: 100%;
+  max-width: 100%;
   padding: 10px;
   min-width: 300px;
-  overflow-x: auto; /* Enables horizontal scrolling on smaller screens */
+  height: 100%;
+  --tableheaderHei: 58px;
 }
 
-/* Ensure table adapts well */
-.table table {
+/* Fixed header section */
+.headerWrapper {
   width: 100%;
-  min-width: 400px; /* Ensures proper table structure */
-  border-collapse: collapse;
+  height: var(--tableheaderHei);
+  overflow-x: auto;
+  background: var(--color-bg-primary);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  border-bottom: 1px solid var(--color-text-secondary);
+  margin-bottom: 5px;
+}
+
+/* Hides scrollbar in WebKit browsers (Chrome, Safari, Edge) */
+.headerWrapper::-webkit-scrollbar {
+  display: none;
+}
+
+/* Table body wrapper, allowing horizontal scrolling */
+.bodyWrapper {
+  width: 100%;
+  height: calc(100% - var(--tableheaderHei));
+  overflow-x: auto;
+  overflow-y: auto;
+}
+
+/* Sync scrollbars for header and body */
+.header,
+.body {
+  display: flex;
+  width: fit-content;
+}
+
+.body {
+  flex-direction: column;
 }
 
 /* Responsive adjustments */
@@ -73,9 +107,6 @@
 
 .header {
   gap: 5px;
-  margin-bottom: 5px;
-  padding-bottom: 5px;
-  border-bottom: 1px solid var(--color-text-secondary);
 }
 
 .header .headerCell {
