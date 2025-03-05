@@ -1,6 +1,17 @@
-.cardSection {
+.cardSection,
+.cardWithLabel {
   display: flex;
   justify-content: center;
   justify-items: center;
   gap: 10px;
+}
+
+.cardWithLabel {
+  flex-direction: column;
+}
+
+.cardWithLabel p {
+  color: var(--color-text-primary);
+  font-weight: bolder;
+  text-align: center;
 }
