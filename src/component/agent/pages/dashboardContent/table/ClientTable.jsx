@@ -7,7 +7,7 @@ import { Loader } from "../../../../common/Loader.jsx";
 import style from "./Table.module.css";
 import { useOutletContext } from "react-router-dom";
 
-export const ClientTable = () => {
+export const ClientTable = ({ profile = "agent" }) => {
   const navigate = useNavigate();
 
   const context = useOutletContext() || {};
@@ -32,13 +32,15 @@ export const ClientTable = () => {
 
   const columnWidths = { username: 2, actions: 2 };
 
+  let basePath = profile === "agent" ? path.agent : path.superAgent;
+
   const actionButtons = [
     {
       label: "Edit",
       icon: EditIcon,
       onClick: (row) =>
         navigate(
-          `${path.agent}${path.manageClients}${path.editUser.replace(
+          `${basePath}${path.manageClients}${path.editUser.replace(
             ":id",
             row.id
           )}`
@@ -47,16 +49,13 @@ export const ClientTable = () => {
     {
       label: "Settings",
       icon: SettingsIcon,
-      onClick: (row) => navigate(`/agent/managePassword/${row.id}`),
+      onClick: (row) => navigate(`${basePath}${path.managePassword}/${row.id}`),
     },
   ];
 
   const handleCellClick = (value, row) => {
     navigate(
-      `${path.agent}${path.manageClients}${path.userInfo.replace(
-        ":id",
-        row.id
-      )}`
+      `${basePath}${path.manageClients}${path.userInfo.replace(":id", row.id)}`
     );
   };
 
