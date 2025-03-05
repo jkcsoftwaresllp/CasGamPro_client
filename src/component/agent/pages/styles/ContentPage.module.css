@@ -46,8 +46,8 @@
 .actionsContainer {
   display: flex;
   align-items: center;
-  gap: 16px; /* Adds space between Download Buttons and Pagination */
-  z-index: 5;
+  gap: 16px;
+  z-index:999;
 }
 
 .headerActionsRow {
@@ -81,7 +81,10 @@
 }
 
 @media (max-width: 375px) {
+
+
   .actionButton button{
+
     padding: 5px 10px;
   }
 }

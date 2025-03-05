@@ -4,12 +4,10 @@ import { MainBet } from "../../placeBet/MainBet";
 import { UserBetMain } from "../../userBet/jsx/UserBetMain";
 
 export const StakeSection = ({ betItems, setBetItems, status }) => {
-  let canOpen;
-  if (status === "betting") canOpen = true;
-  else canOpen = false;
+  let canOpen = status === "betting";
 
   return (
-    <div className={styles.stakeSection}>
+    <div className={`${styles.stakeSection} ${styles.floating}`}>
       {betItems && canOpen && (
         <MainBet betItems={betItems} setBetItems={setBetItems} />
       )}
