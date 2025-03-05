@@ -96,6 +96,10 @@
   .subOptionsContainer {
     padding: 0;
   }
+
+  .sidebar.minimized {
+    width: 65px; /* Minimized sidebar width */
+  }
 }
 
 @media screen and (max-width: 480px) {

@@ -1,19 +1,21 @@
 .breadcrumbs {
   display: flex;
   align-items: center;
-  font-size: var(--text-md);
+  font-size: var(--text-sm);
   color: var(--color-text-primary);
 }
 
 .breadcrumbItem {
   display: flex;
   align-items: center;
+  font-size: var(--text-sm);
 }
 
 .breadcrumbLink {
   text-decoration: none;
   color: #007bff;
   cursor: pointer;
+  font-size: var(--text-sm);
 }
 
 .breadcrumbLink:hover {
