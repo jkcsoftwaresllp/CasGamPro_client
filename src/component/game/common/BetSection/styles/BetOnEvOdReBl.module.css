@@ -2,4 +2,15 @@
   display: flex;
   justify-content: space-between;
   gap: 4px;
+  flex-wrap: wrap;
+}
+
+/* Make it a 2x2 grid for medium screens and below */
+@media (max-width: 768px) {
+  .betOnEvOdReBl {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2 columns */
+    gap: 8px;
+    justify-content: center;
+  }
 }

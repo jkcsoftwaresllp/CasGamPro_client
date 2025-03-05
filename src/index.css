@@ -135,3 +135,20 @@ body {
   color: var(--color-text-primary) !important;
   border-radius: 10px;
 }
+
+.custom-toast {
+  margin: 10px;
+  max-width: 90vw; /* Limit width on mobile */
+}
+
+@media (max-width: 768px) {
+  .custom-toast {
+    max-width: 80vw; /* Adjust width for smaller screens */
+  }
+}
+
+@media (max-width: 480px) {
+  .custom-toast {
+    max-width: 75vw; /* Even smaller width for mobile */
+  }
+}

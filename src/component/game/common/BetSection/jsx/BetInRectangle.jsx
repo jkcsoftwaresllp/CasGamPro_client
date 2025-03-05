@@ -8,8 +8,8 @@ export const BetInRectangle = ({
   betAmount,
   onClick,
   isLock,
-  paddingLeft = "20px",
-  paddingRight = "20px",
+  paddingLeft = "5px",
+  paddingRight = "5px",
 }) => {
   const cssVariable = {
     "--paddingLeft": paddingLeft,
