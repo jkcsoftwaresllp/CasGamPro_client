@@ -4,6 +4,7 @@
   display: flex;
   justify-content: right;
   gap: var(--header-gap);
+  z-index:9999;
 }
 
 .buttonContainer .button {
