@@ -54,10 +54,22 @@
 .searchBarWrapper {
   flex-grow: 1; /* Takes up available space for search bar */
 }
-
 @media (max-width: 768px) {
   .headerActions {
     flex-direction: column;
     align-items: flex-start;
+  }
+}
+@media (max-width: 768px) {
+  .content {
+    padding: 10px;
+    font-size: var(--text-sm);
+  }
+}
+
+@media (max-width: 480px) {
+  .content {
+    padding: 8px;
+    font-size: var(--text-sm);
   }
 }
