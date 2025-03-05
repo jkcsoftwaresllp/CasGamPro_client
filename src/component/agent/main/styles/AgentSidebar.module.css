@@ -1,15 +1,25 @@
 .sidebar {
-  width: 300px; /* Default sidebar width */
+  position: absolute; /* Position the sidebar absolutely */
+  z-index: 1000; /* Ensure it appears above other content */
+  width: 300px; /* Fixed sidebar width */
+  min-width: 300px; /* Ensure minimum width */
+  max-width: 300px; /* Ensure maximum width */
   background-color: var(--color-bg-primary);
   padding: 10px;
   box-shadow: 1px 0 5px rgba(0, 0, 0, 0.1);
-  transition: width 0.3s ease; /* Smooth transition for collapsing/expanding */
+  transition: width 0.5s ease, left 0.5s ease; /* Smooth transition of 0.5s */
   overflow: hidden; /* Hide content when minimized */
   height: 100%;
+  border-radius: var(--borderRadius-md);
+  left: 0; /* Default position */
 }
 
 .sidebar.minimized {
+  position: relative; /* Change to relative when minimized */
   width: 65px; /* Minimized sidebar width */
+  min-width: 65px; /* Ensure minimum width when minimized */
+  max-width: 65px; /* Ensure maximum width when minimized */
+  left: 0; /* Align with content */
 }
 
 .sidebar.minimized .subOptionsContainer {
@@ -89,6 +99,21 @@
 }
 
 /* Responsive Design */
+@media screen and (max-width: 1024px) {
+  .sidebar.minimized {
+    width: 60px; /* Adjusted minimized sidebar width for tablets */
+  }
+
+  .sidebar li {
+    padding: 8px; /* Adjusted padding for list items */
+  }
+
+  .sidebar .toggleButton {
+    padding: 6px; /* Adjusted padding for toggle button */
+    font-size: var(--text-sm); /* Adjusted font size for toggle button */
+  }
+}
+
 @media screen and (max-width: 768px) {
   .sidebar {
     padding: 0;
@@ -98,9 +123,16 @@
   }
 
   .sidebar.minimized {
-    width: 65px; /* Minimized sidebar width */
+    width: 45px; /* Minimized sidebar width */
+    min-width: 45px; /* Ensure minimum width when minimized */
+    max-width: 45px; /* Ensure maximum width when minimized */
   }
 }
 
 @media screen and (max-width: 480px) {
+  .sidebar.minimized {
+    width: 45px; /* Minimized sidebar width */
+    min-width: 45px; /* Ensure minimum width when minimized */
+    max-width: 45px; /* Ensure maximum width when minimized */
+  }
 }

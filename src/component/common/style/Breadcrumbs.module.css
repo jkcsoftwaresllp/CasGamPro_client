@@ -3,6 +3,8 @@
   align-items: center;
   font-size: var(--text-sm);
   color: var(--color-text-primary);
+  flex-wrap: wrap;
+  padding: 5px 0;
 }
 
 .breadcrumbItem {
@@ -16,6 +18,7 @@
   color: #007bff;
   cursor: pointer;
   font-size: var(--text-sm);
+  word-break: break-word;
 }
 
 .breadcrumbLink:hover {
@@ -29,4 +32,37 @@
 
 .currentBreadcrumb {
   color: var(--color-text-tertiary);
+  word-break: break-word;
+}
+
+.desktopBreadcrumbs {
+  display: flex;
+  align-items: center;
+}
+
+.mobileBreadcrumbs {
+  display: none;
+  align-items: center;
+  gap: 4px;
+}
+
+.ellipsis {
+  color: var(--color-text-primary);
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.ellipsis:hover {
+  color: #007bff;
+  text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+  .desktopBreadcrumbs {
+    display: none;
+  }
+
+  .mobileBreadcrumbs {
+    display: flex;
+  }
 }
