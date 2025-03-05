@@ -8,12 +8,13 @@ export const PlayHistory = () => {
   const context = useOutletContext() || {};
   const { data = [], loading = false } = context;
 
-
+  console.log("Yeah");
   const columns = [
-    { key: "gameName", label: "Game Name" },
-    { key: "roundId", label: "Round ID" },
-    { key: "stakeAmount", label: "Stake Amount" },
-    { key: "result", label: "Result" },
+    { key: "date", label: "Date" },
+    { key: "description", label: "Description" },
+    { key: "profit", label: "Profit" },
+    { key: "loss", label: "Loss" },
+    { key: "balance", label: "Balance" },
   ];
 
   return (
