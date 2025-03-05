@@ -31,11 +31,11 @@ export const GameInterface = ({
   const SelectedBetSection = betSectionMap[game] || null;
   const gameName = gameNameMap[game] || "Error";
   const [isVisible, setIsVisible] = useState(true);
-  const [isLargeScreen, setIsLargeScreen] = useState(window.innerWidth >= 1024);
 
-  // Handle screen resize for responsiveness
+  const [isLargeScreen, setIsLargeScreen] = useState(window.innerWidth >= 1068);
+
   useEffect(() => {
-    const handleResize = () => setIsLargeScreen(window.innerWidth >= 1024);
+    const handleResize = () => setIsLargeScreen(window.innerWidth >= 1068);
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
@@ -45,9 +45,6 @@ export const GameInterface = ({
       <div className={styles.header}>
         <div className={styles.gameDetail}>{gameName}</div>
         <div className={styles.gameRoundId}>{roundId}</div>
-      </div>
-      <div className={styles.contentWrapper}>
-        {/* Show toggle button only for small & medium screens */}
         {!isLargeScreen && (
           <div
             onClick={() => setIsVisible((prev) => !prev)}
@@ -56,6 +53,9 @@ export const GameInterface = ({
             {isVisible ? <span>Hide Cards</span> : <span>Show Cards</span>}
           </div>
         )}
+      </div>
+      <div className={styles.contentWrapper}>
+        {/* Show toggle button only for small & medium screens */}
 
         {/* Casino Cards Section with Smooth Fade Animation */}
 

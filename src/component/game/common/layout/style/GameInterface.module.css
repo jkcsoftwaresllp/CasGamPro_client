@@ -13,6 +13,7 @@
   flex-direction: column;
   align-items: center;
   padding: 0 10px;
+  gap: 10px;
 }
 
 /* Default styles for large screens */
@@ -26,8 +27,16 @@
 }
 
 .gameRoundId {
-  font-size: var(--text-xs);
+  font-size: var(--text-sm);
   color: var(--color-special-gold);
+}
+@media (max-width: 640px) {
+  .gameDetail {
+    font-size: var(--text-md);
+  }
+  .gameRoundId {
+    font-size: var(--text-xs);
+  }
 }
 
 .toggleButton {
@@ -56,7 +65,7 @@
     position: absolute;
     top: 0;
     left: 0;
-    height: 100vh;
+    height: calc(100vh - var(--detailsHei));
     width: 100vw;
     display: flex;
     justify-content: center;
@@ -78,9 +87,6 @@
 
   .header {
     flex-direction: row;
-    gap: 20px;
-    justify-content: center;
-    align-items: center;
   }
 
   .gameRoundId,
@@ -92,10 +98,7 @@
 /* Small screens (Phones, sm) */
 @media (max-width: 500px) {
   .header {
-    flex-direction: column;
-    padding: 8px;
-    top: 0;
-    margin-top: -30px;
+    flex-direction: row;
   }
 
   .gameDetail {
@@ -110,10 +113,7 @@
 /* For screens between 640px and 728px */
 @media (min-width: 640px) and (max-width: 728px) {
   .header {
-    flex-direction: column;
-    padding: 8px;
-    margin-top: -10px;
-    left: 0;
+    flex-direction: row;
   }
 
   .gameDetail {
@@ -139,7 +139,6 @@
   align-items: center; /* Centers content horizontally */
   position: relative;
   top: 50px; /* Adjust as needed */
-  border: 1px solid cyan;
 }
 
 /* Responsive for Small Screens (Phones) */
