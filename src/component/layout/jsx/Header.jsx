@@ -29,6 +29,13 @@ export const Header = () => {
     }
   };
 
+  // Initialize theme preference on mount
+  useEffect(() => {
+    const savedTheme = localStorage.getItem("theme") || "dark";
+    setIsDarkMode(savedTheme === "dark");
+    document.documentElement.setAttribute("data-theme", savedTheme);
+  }, []);
+
   // Detect screen resize
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth <= 768);
