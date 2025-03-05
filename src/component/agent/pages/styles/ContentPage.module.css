@@ -47,7 +47,7 @@
   display: flex;
   align-items: center;
   gap: 16px;
-  z-index:999;
+  z-index: 99;
 }
 
 .headerActionsRow {
@@ -81,10 +81,7 @@
 }
 
 @media (max-width: 375px) {
-
-
-  .actionButton button{
-
+  .actionButton button {
     padding: 5px 10px;
   }
 }
