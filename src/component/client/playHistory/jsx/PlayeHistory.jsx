@@ -8,7 +8,6 @@ export const PlayHistory = () => {
   const context = useOutletContext() || {};
   const { data = [], loading = false } = context;
 
-  console.log("Yeah");
   const columns = [
     { key: "date", label: "Date" },
     { key: "description", label: "Description" },
