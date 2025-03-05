@@ -5,7 +5,7 @@ import { PaymentRecieve } from "./jsx/PaymentRecieve";
 import style from "../styles/CollectionReport.module.css";
 import { apiCall } from "../../../common/apiCall";
 
-export const CollectionReport = () => {
+export const CollectionReport = ({ profile = "agent" }) => {
   const [paymentReceivingFrom, setPaymentReceivingFrom] = useState([]);
   const [paymentPaidTo, setPaymentPaidTo] = useState([]);
   const [paymentCleared, setPaymentCleared] = useState([]);
@@ -15,7 +15,7 @@ export const CollectionReport = () => {
     const fetchData = async () => {
       setLoading(true);
       const response = await apiCall(
-        "/auth-api/agent/collection-report",
+        `/auth-api/${profile}/collection-report`,
         "GET"
       );
       console.log("Collection Report Data:", response);

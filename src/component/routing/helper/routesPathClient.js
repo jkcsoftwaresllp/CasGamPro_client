@@ -2,6 +2,7 @@ export const routesPathClient = {
   // /
   client: "/client",
   agent: "/agent",
+  superAgent: "/supperAgent",
   admin: "/admin",
 
   // /client

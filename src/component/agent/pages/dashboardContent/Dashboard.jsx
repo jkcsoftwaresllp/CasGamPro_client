@@ -4,8 +4,8 @@ import style from "../styles/DashboardCard.module.css";
 import { Loader } from "../../../common/Loader";
 import { useDashboardData } from "./helper/dashboard"; // Import the helper
 
-export const Dashboard = () => {
-  const { loading, data } = useDashboardData(); // Use the helper hook
+export const Dashboard = ({ profile = "agent" }) => {
+  const { loading, data } = useDashboardData(profile); // Use the helper hook
 
   return (
     <div className={style.dashcontent}>

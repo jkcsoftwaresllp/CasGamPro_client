@@ -1,6 +1,7 @@
 import { AgentSidebar } from "../main/jsx/AgentSidebar";
 import { routesPathClient as path } from "../../routing/helper/routesPathClient";
 import { DashboardLayout } from "../../layout/jsx/DashboardLayout";
+import { sidebarItems } from "../main/helper/sidebarItems";
 
 const agentPath = path.agent;
 const manageClients = path.manageClients;
@@ -34,6 +35,7 @@ const agentApiEndpoints = {
 export const AgentDashboard = () => {
   return (
     <DashboardLayout
+      sidebarItems={sidebarItems}
       sidebarComponent={AgentSidebar}
       apiEndpoints={agentApiEndpoints}
       defaultHeaderTitle="Agent Dashboard"

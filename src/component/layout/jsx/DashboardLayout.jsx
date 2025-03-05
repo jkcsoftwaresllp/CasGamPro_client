@@ -6,6 +6,7 @@ import { filterDataBySearch } from "../helper/filterUtils";
 import { TableHeader } from "../../agent/pages/TableHeader";
 
 export const DashboardLayout = ({
+  sidebarItems,
   sidebarComponent: Sidebar,
   apiEndpoints,
   defaultHeaderTitle = "Dashboard",
@@ -79,7 +80,9 @@ export const DashboardLayout = ({
 
   return (
     <div className={style.pageContainer}>
-      {Sidebar && <Sidebar setHeaderTitle={setHeaderTitle} />}
+      {Sidebar && (
+        <Sidebar setHeaderTitle={setHeaderTitle} sidebarItems={sidebarItems} />
+      )}
       <div className={style.content}>
         <TableHeader
           headerTitle={headerTitle}

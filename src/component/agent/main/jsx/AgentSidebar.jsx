@@ -3,9 +3,8 @@ import { useNavigate } from "react-router-dom";
 import style from "../styles/AgentSidebar.module.css";
 import { ExpandIcon, CollapseIcon } from "../../../../assets/assets";
 import { Tab } from "./Tab";
-import { sidebarItems } from "../helper/sidebarItems";
 
-export const AgentSidebar = ({ setHeaderTitle }) => {
+export const AgentSidebar = ({ setHeaderTitle, sidebarItems }) => {
   const [isMinimized, setIsMinimized] = useState(false);
   const [expandedItem, setExpandedItem] = useState(null);
   const navigate = useNavigate();
