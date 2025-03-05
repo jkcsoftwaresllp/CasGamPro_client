@@ -27,7 +27,7 @@ export const PasswordInput = ({ placeholder = "Password", onChange, name }) => {
         aria-label={placeholder}
       />
       <div className={style.visibilityIcon} onClick={toggleVisibility}>
-        <SetIcon icon={passwordVisible ? hideIcon : showIcon} />
+        <SetIcon icon={!passwordVisible ? hideIcon : showIcon} />
       </div>
     </div>
   );
