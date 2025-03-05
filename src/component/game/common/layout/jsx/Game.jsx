@@ -44,7 +44,6 @@ export const Game = () => {
       ) : (
         <>
           <div className={styles.game}>
-            {/* Main Content Section */}
             <div className={styles.mainContent}>
               <div className={styles.gameControls}>
                 <div className={styles.gameInterface}>
@@ -69,7 +68,6 @@ export const Game = () => {
               </div>
             </div>
 
-            {/* Details Section - Moves below in small screens */}
             <div className={styles.detailsSection}>
               <GameHistory />
               <StakeSection
