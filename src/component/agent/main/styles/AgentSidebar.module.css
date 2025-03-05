@@ -11,11 +11,12 @@
 .sidebar.minimized {
   width: 65px; /* Minimized sidebar width */
 }
+
 .sidebar.minimized .subOptionsContainer {
   padding-left: 0px;
-
   background-color: var(--color-bg-primary);
 }
+
 .subOptionsContainer {
   padding-left: 10px; /* Adjust the padding for sub-options */
   border-radius: var(--borderRadius);
@@ -60,14 +61,11 @@
 
 .sidebar .toggleButton {
   display: block;
-
   padding: 8px;
-
   cursor: pointer;
   background-color: var(--color-dark-primary); /* Light/dark button color */
   border-radius: var(--borderRadius); /* Border radius */
   border: 2px solid var(--color-highlighter-dark-primary); /* Light/dark border color */
-
   color: var(--color-text-primary); /* Light/dark text color */
   font-size: var(--text-md);
   font-weight: var(--text-bold);
@@ -77,16 +75,28 @@
 .sidebar .toggleButton:hover {
   background-color: var(--color-bg-tertiary);
 }
+
 .icon {
   width: 15px; /* Adjust the icon size */
   height: 20px; /* Adjust the icon size */
   font-weight: var(--textBold);
   margin-left: 5px;
 }
+
 .tab {
   text-decoration: none; /* Remove underline */
   color: inherit; /* Inherit color from the parent element */
 }
 
-.tab.active {
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+  .sidebar {
+    padding: 0;
+  }
+  .subOptionsContainer {
+    padding: 0;
+  }
+}
+
+@media screen and (max-width: 480px) {
 }
