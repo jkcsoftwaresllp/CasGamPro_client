@@ -105,4 +105,8 @@
   .actionButton button {
     padding: 5px 10px;
   }
+
+  .actionsContainer {
+    right: -20px;
+  }
 }
