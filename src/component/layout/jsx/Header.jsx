@@ -14,6 +14,8 @@ export const Header = () => {
   const { username, clientName } = user || {};
 
   const [menuOpen, setMenuOpen] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(true);
+
   const menuRef = useRef(null);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 
@@ -49,13 +51,16 @@ export const Header = () => {
             )}
             <Wallet />
             <HeaderAuth />
-            <HeaderToggle />
+            <HeaderToggle
+              isDarkMode={isDarkMode}
+              setIsDarkMode={setIsDarkMode}
+            />
           </div>
         </>
       ) : (
         <div className={style.afterLogOut}>
           <HeaderAuth />
-          <HeaderToggle />
+          <HeaderToggle isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode} />
         </div>
       )}
     </>
