@@ -11,7 +11,6 @@
   overflow-y: auto; /* Enable vertical scrolling */
   overflow-x: hidden; /* Hide horizontal overflow */
   height: 100%;
-  border-radius: var(--borderRadius-md);
   left: 0; /* Default position */
 }
 
@@ -29,6 +28,11 @@
   min-width: 65px; /* Ensure minimum width when minimized */
   max-width: 65px; /* Ensure maximum width when minimized */
   left: 0; /* Align with content */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+  padding-top: 10px;
 }
 
 .sidebar.minimized .subOptionsContainer {

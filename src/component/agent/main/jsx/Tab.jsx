@@ -1,6 +1,6 @@
 import style from "../styles/Tab.module.css";
 
-export const Tab = ({ icon, onClick, title }) => {
+export const Tab = ({ icon, onClick, title, isMinimized }) => {
   return (
     <div
       className={style.tab}
@@ -9,7 +9,7 @@ export const Tab = ({ icon, onClick, title }) => {
       <div>
         {typeof icon === "string" ? <img src={icon} alt={title} /> : icon}
       </div>
-      <span>{title}</span>
+      {!isMinimized && <span>{title}</span>}
     </div>
   );
 };
