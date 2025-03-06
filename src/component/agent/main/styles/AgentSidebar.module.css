@@ -8,10 +8,19 @@
   padding: 10px;
   box-shadow: 1px 0 5px rgba(0, 0, 0, 0.1);
   transition: width 0.5s ease, left 0.5s ease; /* Smooth transition of 0.5s */
-  overflow: hidden; /* Hide content when minimized */
+  overflow-y: auto; /* Enable vertical scrolling */
+  overflow-x: hidden; /* Hide horizontal overflow */
   height: 100%;
   border-radius: var(--borderRadius-md);
   left: 0; /* Default position */
+}
+
+.sidebar::-webkit-scrollbar {
+  display: none; /* Hide scrollbar for WebKit browsers */
+}
+
+.sidebar {
+  scrollbar-width: none; /* Hide scrollbar for Firefox */
 }
 
 .sidebar.minimized {

@@ -57,10 +57,10 @@
 .menuDropdownWrapper {
   position: absolute;
   top: calc(var(--header-height) + 5px);
-  right: 0;
-  width: 100%;
+  right: 0; /* Align to the right */
+  width: auto; /* Adjust width as needed */
   display: flex;
-  justify-content: center;
+  justify-content: flex-end; /* Align content to the right */
   align-items: center;
 }
 

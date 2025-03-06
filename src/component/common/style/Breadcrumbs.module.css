@@ -66,3 +66,21 @@
     display: flex;
   }
 }
+
+.desktopBreadcrumbs {
+  display: flex; /* Default display for larger screens */
+}
+
+.mobileBreadcrumbs {
+  display: none; /* Hide mobile breadcrumbs by default */
+}
+
+@media (max-width: 1024px) {
+  .desktopBreadcrumbs {
+    display: none; /* Hide breadcrumbs on medium screens and smaller */
+  }
+
+  .mobileBreadcrumbs {
+    display: flex; /* Show mobile breadcrumbs on medium screens and smaller */
+  }
+}
