@@ -60,8 +60,9 @@
   right: 0; /* Align to the right */
   width: auto; /* Adjust width as needed */
   display: flex;
-  justify-content: flex-end; /* Align content to the right */
   align-items: center;
+  width: 100vw;
+  justify-content: center;
 }
 
 .menuDropdown {
