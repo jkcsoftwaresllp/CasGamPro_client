@@ -1,28 +1,30 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { UserIdInput } from "../../../main/jsx/inputFeild/UserId";
 import { TextInput } from "../../../main/jsx/inputFeild/TextInput";
 import { NumberInput } from "../../../main/jsx/inputFeild/NumberInput";
 import { PasswordInput } from "../../../main/jsx/inputFeild/PasswordInput";
 import { Button } from "../../../../common/Button";
-import { BlockSwitch } from "./BlockSwitch";
 import style from "../manageClient/style/AgentNewUser.module.css";
 import { Loader } from "../../../../common/Loader";
 import { useFetchUserData } from "../helper/editUser"; // Import the helper function
+import Dropdown from "../helper/Dropdown";
+import { getToastTypes, showToast } from "../../../../common/showToast";
 
 // TODO: Currently Blocking is not implmented neither at client side not return in API
 
 export const EditUser = () => {
   const { id } = useParams();
-  console.log("Edit user id:", id);
   const navigate = useNavigate();
   const {
     formData,
     error,
     loading,
     handleChange,
-    handleSwitchChange,
+    handleDropdownChange,
     handleSubmit,
+    blockOptions,
+    getNameByValue,
   } = useFetchUserData(id); // Using helper hook
 
   const [success, setSuccess] = useState("");
@@ -33,10 +35,25 @@ export const EditUser = () => {
 
     if (result?.success) {
       setSuccess(result.success);
-      setTimeout(() => navigate(-1)); // Redirect after success
+      showToast(getToastTypes.type1, result.success);
+
+      // setTimeout(() => navigate(-1), 3000); // Redirect after success
     } else {
-      setError(result?.error || "Handling Form Error");
+      showToast(getToastTypes.type4, result?.error || "Handling Form Error");
     }
+  };
+
+  const [dropdownLabel, setDropdownLabel] = useState(
+    `Block Level: ${getNameByValue(formData.blockingLevels)}`
+  );
+
+  useEffect(() => {
+    setDropdownLabel(`Block Level: ${getNameByValue(formData.blockingLevels)}`);
+  }, [formData.blockingLevels]);
+
+  const handleDropdownSelect = (selection) => {
+    setDropdownLabel(`Block Level: ${selection.name}`);
+    handleDropdownChange(selection.value);
   };
 
   return (
@@ -99,29 +116,18 @@ export const EditUser = () => {
             onChange={handleChange}
             placeholder="Confirm Password"
           />
-          {/* <div className={style.switchArea}>
-            <BlockSwitch
-              label="Client Blocked"
-              id="agentBlockedSwitch"
-              level={formData.blockingLevels}
-              onChange={(value) => handleSwitchChange("blockingLevels", value)}
-            />
-          </div> */}
 
-          {/* TODO: Implement Bets Blocking in the System, daatbase is configured for this we need implement in the APIs */}
-          {/* <div className={style.switchArea}>
-            <BlockSwitch
-              label="Bets Blocked"
-              id="betsBlockedSwitch"
-              isChecked={formData.betsBlocked}
-              setIsChecked={(value) => handleSwitchChange("betsBlocked", value)}
-            />
-          </div> */}
+          <Dropdown
+            options={blockOptions}
+            onSelect={handleDropdownSelect}
+            buttonLabel={dropdownLabel}
+          />
+
           {error && <div className={style.error}>{error}</div>}
           {success && <div className={style.success}>{success}</div>}
           <div className={style.buttonArea}>
             <Button label="Cancel" onClick={() => navigate(-1)} />
-            <Button label="Save Changes" onClick={handleFormSubmit} />
+            <Button label="Save Changes" onClick={(e) => handleFormSubmit(e)} />
           </div>
         </form>
       )}
