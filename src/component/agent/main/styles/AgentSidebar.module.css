@@ -1,21 +1,45 @@
 .sidebar {
-  width: 300px; /* Default sidebar width */
+  position: absolute; /* Position the sidebar absolutely */
+  z-index: 1000; /* Ensure it appears above other content */
+  width: 300px; /* Fixed sidebar width */
+  min-width: 300px; /* Ensure minimum width */
+  max-width: 300px; /* Ensure maximum width */
   background-color: var(--color-bg-primary);
   padding: 10px;
   box-shadow: 1px 0 5px rgba(0, 0, 0, 0.1);
-  transition: width 0.3s ease; /* Smooth transition for collapsing/expanding */
-  overflow: hidden; /* Hide content when minimized */
+  transition: width 0.5s ease, left 0.5s ease; /* Smooth transition of 0.5s */
+  overflow-y: auto; /* Enable vertical scrolling */
+  overflow-x: hidden; /* Hide horizontal overflow */
   height: 100%;
+  left: 0; /* Default position */
+}
+
+.sidebar::-webkit-scrollbar {
+  display: none; /* Hide scrollbar for WebKit browsers */
+}
+
+.sidebar {
+  scrollbar-width: none; /* Hide scrollbar for Firefox */
 }
 
 .sidebar.minimized {
+  position: relative; /* Change to relative when minimized */
   width: 65px; /* Minimized sidebar width */
+  min-width: 65px; /* Ensure minimum width when minimized */
+  max-width: 65px; /* Ensure maximum width when minimized */
+  left: 0; /* Align with content */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+  padding-top: 10px;
 }
+
 .sidebar.minimized .subOptionsContainer {
   padding-left: 0px;
-
   background-color: var(--color-bg-primary);
 }
+
 .subOptionsContainer {
   padding-left: 10px; /* Adjust the padding for sub-options */
   border-radius: var(--borderRadius);
@@ -60,14 +84,11 @@
 
 .sidebar .toggleButton {
   display: block;
-
   padding: 8px;
-
   cursor: pointer;
   background-color: var(--color-dark-primary); /* Light/dark button color */
   border-radius: var(--borderRadius); /* Border radius */
   border: 2px solid var(--color-highlighter-dark-primary); /* Light/dark border color */
-
   color: var(--color-text-primary); /* Light/dark text color */
   font-size: var(--text-md);
   font-weight: var(--text-bold);
@@ -77,16 +98,54 @@
 .sidebar .toggleButton:hover {
   background-color: var(--color-bg-tertiary);
 }
+
 .icon {
   width: 15px; /* Adjust the icon size */
   height: 20px; /* Adjust the icon size */
   font-weight: var(--textBold);
   margin-left: 5px;
 }
+
 .tab {
   text-decoration: none; /* Remove underline */
   color: inherit; /* Inherit color from the parent element */
 }
 
-.tab.active {
+/* Responsive Design */
+@media screen and (max-width: 1024px) {
+  .sidebar.minimized {
+    width: 60px; /* Adjusted minimized sidebar width for tablets */
+  }
+
+  .sidebar li {
+    padding: 8px; /* Adjusted padding for list items */
+  }
+
+  .sidebar .toggleButton {
+    padding: 6px; /* Adjusted padding for toggle button */
+    font-size: var(--text-sm); /* Adjusted font size for toggle button */
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .sidebar {
+    padding: 0;
+  }
+  .subOptionsContainer {
+    padding: 0;
+  }
+
+  .sidebar.minimized {
+    width: 45px; /* Minimized sidebar width */
+    min-width: 45px; /* Ensure minimum width when minimized */
+    max-width: 45px; /* Ensure maximum width when minimized */
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .sidebar.minimized {
+    width: 45px; /* Minimized sidebar width */
+    min-width: 45px; /* Ensure minimum width when minimized */
+    max-width: 45px; /* Ensure maximum width when minimized */
+  }
 }
