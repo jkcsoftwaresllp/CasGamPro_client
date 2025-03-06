@@ -21,7 +21,7 @@ export const CollectionReport = () => {
       console.log("Collection Report Data:", response);
       if (
         response &&
-        (response.uniqueCode === "CGP0075" || response.uniqueCode === "CGP0074")
+        (response.uniqueCode === "CGP0075" || response.uniqueCode === "CGP0073")
       ) {
         setPaymentReceivingFrom(response.data.paymentReceivingFrom);
         setPaymentPaidTo(response.data.paymentPaidTo);

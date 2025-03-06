@@ -5,25 +5,44 @@ import { TextInput } from "../../../../common/TextInput";
 import { Button } from "../../../../common/Button";
 import style from "../../styles/RecieveCash.module.css";
 import { apiCall } from "../../../../common/apiCall";
+import { getToastTypes, showToast } from "../../../../common/showToast";
 
 export const ReceiveCash = () => {
   const { id } = useParams(); // Fetch the user ID from the URL
-  const [userValue, setUserValue] = useState("");
   const [amount, setAmount] = useState("");
+  const [exposure, setExposure] = useState("");
   const [note, setNote] = useState("");
   const navigate = useNavigate();
 
+  useEffect(() => {
+    const fetchExposure = async () => {
+      const response = await apiCall(
+        `/auth-api/agent/user-exposure/${id}`,
+        "GET"
+      );
+      console.log("API call for Exposure", response);
+
+      if (response && response.uniqueCode === "CGP0153") {
+        setExposure(response.data.balance);
+      }
+    };
+    fetchExposure();
+  }, []);
+
   const saveChanges = async () => {
-    console.log("API not connected");
-    // const response = await apiCall(
-    //   "/auth-api/agent/walletTransaction",
-    //   "POST",
-    //   { userId: id, type: "deposit", amount, note }
-    // );
-    // if (response && response.uniqueCode === "CGP0062") {
-    //   console.log("API Response: ", response);
-    //   navigate(-1);
-    // } else console.error("API Error:", response.data);
+    const response = await apiCall("/auth-api/agent/receiveCash", "POST", {
+      playerId: id,
+      amount,
+      note,
+    });
+    if (response && response.uniqueCode === "CGP0167") {
+      console.log("API Response: ", response);
+      showToast(getToastTypes.type1, response.message);
+      navigate(-1);
+    } else{
+      showToast(getToastTypes.type4, "Error in receiving cash Updation.");
+      
+    }
   };
 
   return (
@@ -36,21 +55,17 @@ export const ReceiveCash = () => {
 
         <div className={style.row}>
           <label className={style.label}>Rs. Exposure:</label>
-          <TextInput value={userValue} readOnly={true} />
+          <TextInput placeholder={exposure} readOnly={true} />
         </div>
 
         <div className={style.row}>
           <label className={style.label}>Update Ledger:</label>
-          <TextInput
-            placeholder="Enter value"
-            value={amount}
-            onChange={setAmount}
-          />
+          <TextInput placeholder="Enter value" onChange={setAmount} />
         </div>
 
         <div className={style.row}>
           <label className={style.label}>Note:</label>
-          <TextInput placeholder="Enter note" value={note} onChange={setNote} />
+          <TextInput placeholder="Enter note" onChange={setNote} />
         </div>
 
         <div className={style.buttonContainer}>
