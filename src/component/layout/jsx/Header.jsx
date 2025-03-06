@@ -29,12 +29,26 @@ export const Header = () => {
     }
   };
 
+  // Initialize theme preference on mount
+  useEffect(() => {
+    const savedTheme = localStorage.getItem("theme") || "dark";
+    setIsDarkMode(savedTheme === "dark");
+    document.documentElement.setAttribute("data-theme", savedTheme);
+  }, []);
+
   // Detect screen resize
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth <= 768);
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
-  }, [isMobile]);
+  }, []);
+
+  // Ensure dark mode setting is applied on mount
+  useEffect(() => {
+    const savedTheme = localStorage.getItem("theme") || "dark";
+    setIsDarkMode(savedTheme === "dark");
+    document.documentElement.setAttribute("data-theme", savedTheme);
+  }, []);
 
   const renderUserInfo = () => (
     <>
@@ -51,6 +65,7 @@ export const Header = () => {
             )}
             <Wallet />
             <HeaderAuth />
+            {/* Always pass setIsDarkMode */}
             <HeaderToggle
               isDarkMode={isDarkMode}
               setIsDarkMode={setIsDarkMode}
@@ -60,6 +75,7 @@ export const Header = () => {
       ) : (
         <div className={style.afterLogOut}>
           <HeaderAuth />
+          {/* Ensure setIsDarkMode is passed even when logged out */}
           <HeaderToggle isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode} />
         </div>
       )}

@@ -35,3 +35,24 @@
   max-height: 315px; /* Adjust as per your design */
   overflow-y: auto; /* Enable vertical scroll */
 }
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .heading {
+    font-size: var(--text-md); /* Adjust font size for tablets */
+  }
+
+  .totalBalance {
+    font-size: var(--text-md); /* Adjust font size for tablets */
+  }
+}
+
+@media (max-width: 480px) {
+  .heading {
+    font-size: var(--text-sm); /* Adjust font size for mobile devices */
+  }
+
+  .totalBalance {
+    font-size: var(--text-sm); /* Adjust font size for mobile devices */
+  }
+}

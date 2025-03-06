@@ -6,7 +6,7 @@ import { Tab } from "./Tab";
 import { sidebarItems } from "../helper/sidebarItems";
 
 export const AgentSidebar = ({ setHeaderTitle }) => {
-  const [isMinimized, setIsMinimized] = useState(false);
+  const [isMinimized, setIsMinimized] = useState(true);
   const [expandedItem, setExpandedItem] = useState(null);
   const navigate = useNavigate();
 
@@ -36,6 +36,7 @@ export const AgentSidebar = ({ setHeaderTitle }) => {
                 }
               }}
               title={item.label}
+              isMinimized={isMinimized}
             />
 
             {expandedItem === item.id && item.subOptions && (
@@ -51,6 +52,7 @@ export const AgentSidebar = ({ setHeaderTitle }) => {
                     }}
                     title={sub.label}
                     className={style.subOption}
+                    isMinimized={isMinimized}
                   />
                 ))}
               </div>
