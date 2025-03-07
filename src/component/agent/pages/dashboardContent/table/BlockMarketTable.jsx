@@ -65,23 +65,24 @@ export const BlockMarketTable = () => {
         </div>
       ) : (
         <>
-          {isGameView && (
+          {isGameView ? (
             <GameTableWindow
               setIsGameView={setIsGameView}
               gameName={gameName}
             />
+          ) : (
+            <div className={style.tableContent}>
+              <Table
+                data={tableData}
+                columns={columns}
+                columnWidths={columnWidths}
+                isAction={true} // Indicating that action buttons should be shown
+                btns={actionButtons} // Passing action buttons here
+                clickableColumns={["name"]}
+                onCellClick={handleCellClick}
+              />
+            </div>
           )}
-          <div className={style.tableContent}>
-            <Table
-              data={tableData}
-              columns={columns}
-              columnWidths={columnWidths}
-              isAction={true} // Indicating that action buttons should be shown
-              btns={actionButtons} // Passing action buttons here
-              clickableColumns={["name"]}
-              onCellClick={handleCellClick}
-            />
-          </div>
         </>
       )}
     </div>
