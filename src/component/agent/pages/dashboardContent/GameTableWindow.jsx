@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from "react";
-import style from "../styles/GametableWindow.module.css";
 import { BlockGameTable } from "./table/BlockGameTable";
-import { IconBtn } from "../../../common/IconBtn";
-import { closeIcon } from "../../../../assets/assets";
+
 import { apiCall } from "./manageClient/helper/apiCall";
 
-export const GameTableWindow = ({ gameName, setIsGameView }) => {
+export const GameTableWindow = ({ gameName, setIsOverlayView }) => {
   const [games, setGames] = useState([]);
 
   useEffect(() => {
@@ -23,14 +21,5 @@ export const GameTableWindow = ({ gameName, setIsGameView }) => {
     fetchLiveCasinoData();
   }, []);
 
-  return (
-    <div className={style.gameTableWindowWrapper}>
-      <div className={style.close}>
-        <IconBtn icon={closeIcon} onClick={() => setIsGameView(false)} />
-      </div>
-      <div className={style.gameTableWindow}>
-        <BlockGameTable games={games} />
-      </div>
-    </div>
-  );
+  return <BlockGameTable games={games} setIsOverlayView={setIsOverlayView} />;
 };

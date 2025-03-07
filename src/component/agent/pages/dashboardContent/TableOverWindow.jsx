@@ -12,6 +12,7 @@ export const TableOverWindow = ({
   clickableColumns = [],
   onCellClick = () => {},
   setIsOverlayView,
+  btns = [{ label: null, icon: null, onClick: null }],
 }) => {
   return (
     <div className={style.tableWindowWrapper}>
@@ -29,6 +30,7 @@ export const TableOverWindow = ({
           isAction={isAction}
           clickableColumns={clickableColumns}
           onCellClick={onCellClick}
+          btns={btns}
         />
       </div>
     </div>
