@@ -1,21 +1,18 @@
 import React from "react";
-import { Table } from "../../../../common/table/jsx/Table.jsx";
 import { EditIcon } from "../../../../../assets/assets.jsx";
+import { TableOverWindow } from "../TableOverWindow.jsx";
 
-export const BlockGameTable = ({ games }) => {
+export const BlockGameTable = ({ games, setIsOverlayView }) => {
   const tableData = games.map((games) => ({
     id: games.id,
-    betfairid: games.betfairid,
     name: games.name,
     status: games.status,
   }));
 
   const columns = [
     { key: "id", label: "So." },
-    { key: "betfairid", label: "BetfairId" },
     { key: "name", label: "Name" },
     { key: "status", label: "Status" },
-
     { key: "actions", label: "Unblock" },
   ];
 
@@ -30,12 +27,13 @@ export const BlockGameTable = ({ games }) => {
   ];
 
   return (
-    <Table
+    <TableOverWindow
       data={tableData}
       columns={columns}
       columnWidths={columnWidths}
       isAction={true} // Indicating that action buttons should be shown
       btns={actionButtons} // Passing action buttons here
+      setIsOverlayView={setIsOverlayView}
     />
   );
 };
