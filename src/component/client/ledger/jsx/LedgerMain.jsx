@@ -12,8 +12,8 @@ export const LedgerMain = () => {
   const columns = [
     { key: "date", label: "Date" },
     { key: "entry", label: "Entry" },
-    { key: "profit", label: "Profit" },
-    { key: "loss", label: "Loss" },
+    { key: "credit", label: "Credit (Win) " },
+    { key: "debit", label: "Debit (Loss)" },
     { key: "balance", label: "Balance" },
   ];
 
