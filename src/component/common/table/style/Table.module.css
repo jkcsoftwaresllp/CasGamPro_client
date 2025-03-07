@@ -92,6 +92,12 @@
   padding: 10px;
 }
 
+.headerCell .cellLabel {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .cell {
   flex: var(--flexValue);
   text-align: center;
@@ -102,7 +108,7 @@
   align-items: center;
   justify-content: center;
   text-wrap: wrap;
-  min-width: calc(var(--flexValue) * 150px);
+  min-width: calc(var(--flexValue) * 50px);
 }
 
 .actions {
