@@ -14,7 +14,6 @@ export const ClientTable = () => {
   const { data = [], loading = false } = context;
 
   const tableData = data.map((client) => ({
-    id: client.id,
     username: `${client.firstName} ${client.lastName} (${client.userName})`,
     casinoCommission: client.casinoCommission,
     lotteryCommission: client.lotteryCommission,
@@ -22,7 +21,6 @@ export const ClientTable = () => {
   }));
 
   const columns = [
-    { key: "id", label: "ID" },
     { key: "username", label: "UserName" },
     { key: "casinoCommission", label: "Casino Commission" },
     { key: "lotteryCommission", label: "Lottery Commission" },
