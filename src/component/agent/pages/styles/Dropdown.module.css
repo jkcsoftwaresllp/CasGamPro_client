@@ -1,0 +1,38 @@
+.dropdown {
+  position: relative;
+  width: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.dropdownList {
+  top: 50px;
+  position: absolute;
+  width: 100%;
+  list-style: none;
+  border-radius: var(--borderRadius);
+  background-color: var(--color-bg-secondary);
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 3px;
+  padding: 10px;
+}
+
+.dropdownList button {
+  background-color: var(--color-bg-primary);
+  width: 100%;
+  padding: 2px;
+}
+
+.dropdownItem {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.dropdownItem:hover {
+  background-color: #f0f0f0;
+}

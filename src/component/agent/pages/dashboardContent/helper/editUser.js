@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { apiCall } from "../../../../common/apiCall";
+import { getToastTypes, showToast } from "../../../../common/showToast";
 
 export const useFetchUserData = (id) => {
   const [formData, setFormData] = useState({
@@ -64,17 +65,19 @@ export const useFetchUserData = (id) => {
     }));
   };
 
-  const handleSwitchChange = (name, value) => {
+  const handleDropdownChange = (value) => {
     setFormData((prev) => ({
       ...prev,
-      [name]: value,
+      blockingLevels: value,
     }));
   };
 
   const handleSubmit = async (id, formData) => {
+    console.log("Form Data: ", formData);
     try {
       if (formData.password !== formData.confirmPassword) {
         setError("Passwords do not match.");
+        showToast(getToastTypes.type4, "Passwords do not match.");
         return;
       }
 
@@ -96,12 +99,26 @@ export const useFetchUserData = (id) => {
     }
   };
 
+  const blockOptions = [
+    { name: "Comletely Blocked", value: "LEVEL_1" },
+    { name: "Cannot Place bets", value: "LEVEL_2" },
+    { name: "Cannot play Games", value: "LEVEL_3" },
+    { name: "Can do anything", value: "NONE" },
+  ];
+
+  const getNameByValue = (value) => {
+    const option = blockOptions.find((item) => item.value === value);
+    return option ? option.name : "Unknown";
+  };
+
   return {
     formData,
     error,
     loading,
     handleChange,
-    handleSwitchChange,
+    handleDropdownChange,
     handleSubmit,
+    blockOptions,
+    getNameByValue,
   };
 };

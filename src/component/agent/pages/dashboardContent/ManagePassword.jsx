@@ -8,6 +8,7 @@ import { useAuth } from "../../../../context/jsx/AuthContext";
 import { roles } from "../../../../utils/roles";
 import { useState } from "react";
 import { apiCall } from "../../../common/apiCall";
+import { getToastTypes, showToast } from "../../../common/showToast";
 
 export const ManagePassword = () => {
   const [currentPassword, setCurrentPassword] = useState("");
@@ -47,11 +48,20 @@ export const ManagePassword = () => {
 
       if (uniqueCode === "CGP0029") {
         console.log("Password changed successfully");
+        const successMsg = selfChange
+          ? "Your Password changed successfully"
+          : "Password changed successfully for " + finalId;
+        showToast(getToastTypes.type1, successMsg);
       } else {
         console.log(response);
+        showToast(getToastTypes.type4, response.message);
       }
     } catch (err) {
       console.error("Error occurred during password change:", err);
+      showToast(
+        getToastTypes.type4,
+        error.message || "Error occurred during password change"
+      );
       setError("An error occurred while changing password.");
     } finally {
       setLoading(false);
@@ -84,13 +94,9 @@ export const ManagePassword = () => {
       );
     }
 
-    // TODO : Password Change Request for Loged in Agent
   } else {
     // TODO : Password Change Request for some client based on ClientId via Agent
     finalId = id;
-    console.log(
-      "Password Change Request for some client based on ClientId via Agent (API not Implemented)"
-    );
   }
 
   return (
