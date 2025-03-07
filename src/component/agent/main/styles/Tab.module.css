@@ -1,18 +1,17 @@
 .tab {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 15px;
+  width: 100%;
   padding: 10px;
   border-radius: var(--borderRadius);
   cursor: pointer;
-  margin: 3px;
   color: var(--color-text-primary);
 }
 
 .tab:hover {
   background-color: var(--color-special-hover);
   color: var(--color-text-placeholder);
-  min-width: 50px;
 }
 .text {
   white-space: nowrap; /* Prevent text from wrapping */

@@ -22,7 +22,6 @@ export const ClientTable = () => {
   }));
 
   const columns = [
-    { key: "id", label: "ID" },
     { key: "username", label: "UserName" },
     { key: "casinoCommission", label: "Casino Commission" },
     { key: "lotteryCommission", label: "Lottery Commission" },

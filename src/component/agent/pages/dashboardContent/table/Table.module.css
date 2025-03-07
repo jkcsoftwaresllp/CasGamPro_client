@@ -1,6 +1,7 @@
 .tableContainer {
   height: 100%;
   width: 100%;
+  position: relative;
 }
 
 .loaderContainer {
@@ -32,4 +33,21 @@
   width: 100%;
   display: flex;
   justify-content: center;
+}
+@media (max-width: 768px) {
+  .tableWrapper {
+    padding: 0.5rem;
+  }
+  .tableContainer {
+    padding: 0.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .tableWrapper {
+    padding: 0.25rem;
+  }
+  .tableContainer {
+    padding: 0.25rem;
+  }
 }

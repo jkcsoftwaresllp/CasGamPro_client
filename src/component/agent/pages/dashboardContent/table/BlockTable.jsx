@@ -12,7 +12,6 @@ export const BlockTable = () => {
 
   // Convert data for the table
   const tableData = data.map((client) => ({
-    id: client.id,
     username: client.username,
     matchCommission: client.matchCommission,
     sessionCommission: client.sessionCommission,
@@ -20,7 +19,6 @@ export const BlockTable = () => {
   }));
 
   const columns = [
-    { key: "id", label: "ID" },
     { key: "username", label: "UserName" },
     { key: "matchCommission", label: "Match Commission" },
     { key: "sessionCommission", label: "Session Commission" },
