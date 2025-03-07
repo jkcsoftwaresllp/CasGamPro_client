@@ -7,7 +7,7 @@ import { GameCatagoryRoutes } from "./GameCatagoryRoutes";
 import { Rules } from "../../client/rules/jsx/Rules";
 import { LedgerMain } from "../../client/ledger/jsx/LedgerMain";
 import { ChangePassword } from "../../client/changePassword/jsx/ChangePassword";
-import { PlayHistory } from "../../client/playHistory/jsx/PlayeHistory";
+import { Statement } from "../../client/playHistory/jsx/Statement";
 import { ClientTableLayout } from "./ClientTableLayout";
 
 export const ClientRoutes = () => {
@@ -21,7 +21,7 @@ export const ClientRoutes = () => {
       <Route path={`${path.table}`} element={<ClientTableLayout />}>
         <Route index element={<Navigate to={path.client} />} />
         <Route path={ledgerPath} element={<LedgerMain />} />
-        <Route path={playHistoryPath} element={<PlayHistory />} />
+        <Route path={playHistoryPath} element={<Statement />} />
       </Route>
 
       <Route path={path.password} element={<ChangePassword />} />

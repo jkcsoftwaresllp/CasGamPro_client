@@ -4,15 +4,15 @@ import style from "../../../agent/pages/dashboardContent/table/Table.module.css"
 import { useOutletContext } from "react-router-dom";
 import { Loader } from "../../../common/Loader.jsx";
 
-export const PlayHistory = () => {
+export const Statement = () => {
   const context = useOutletContext() || {};
   const { data = [], loading = false } = context;
 
   const columns = [
     { key: "date", label: "Date" },
     { key: "description", label: "Description" },
-    { key: "profit", label: "Profit" },
-    { key: "loss", label: "Loss" },
+    { key: "debit", label: "Debit" },
+    { key: "credit", label: "Credit" },
     { key: "balance", label: "Balance" },
   ];
 
