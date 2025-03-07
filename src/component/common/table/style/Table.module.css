@@ -100,7 +100,7 @@
 
 .cell {
   flex: var(--flexValue);
-  text-align: center;
+  text-align: left;
   overflow: hidden;
   color: var(--color-text-primary);
   font-size: var(--text-md);

@@ -1,7 +1,11 @@
 import React, { useState } from "react";
 import { useNavigate, useOutletContext } from "react-router-dom";
 import { Table } from "../../../common/table/jsx/Table.jsx";
-import { SettingsIcon } from "../../../../assets/assets.jsx";
+import {
+  depositIcon,
+  SettingsIcon,
+  withdrawalIcon,
+} from "../../../../assets/assets.jsx";
 import { routesPathClient as path } from "../../../routing/helper/routesPathClient.js";
 import { CustomBtn } from "../../../common/CustomBtn.jsx";
 import { DialogBox } from "./jsx/DialogBox.jsx";
@@ -42,7 +46,6 @@ export const CommissionTable = () => {
   const columns = [
     { key: "id", label: "Client" },
     { key: "name", label: "Name" },
-    { key: "share", label: "Share" },
     { key: "casinoCommission", label: "Casino Comm." },
     { key: "lotteryCommission", label: "Lottery Comm." },
     { key: "currentLimit", label: "Current Limit" },
@@ -50,17 +53,17 @@ export const CommissionTable = () => {
     { key: "actions", label: "Action" },
   ];
 
-  const columnWidths = { name: 2, actions: 3 };
+  const columnWidths = { name: 2, actions: 1.5 };
 
   const actionButtons = [
     {
       label: "Deposit",
-      icon: "D",
+      icon: depositIcon,
       onClick: (row) => handleTransaction("Deposit", row),
     },
     {
       label: "Withdrawal",
-      icon: "W",
+      icon: withdrawalIcon,
       onClick: (row) => handleTransaction("Withdrawal", row),
     },
     { label: "Settings", icon: SettingsIcon, onClick: (row) => {} },
