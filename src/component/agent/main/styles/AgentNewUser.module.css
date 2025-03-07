@@ -1,75 +1,98 @@
 .form {
   display: flex;
   flex-direction: column;
-  justify-content: center; /* Center items vertically */
-  align-items: center; /* Center items horizontally */
-  background-color: var(
-    --color-bg-primary
-  ); /* Light/dark background based on theme */
-  padding: 0;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--color-bg-primary);
+  padding: 1rem;
+  width: 100%;
+  max-width: 600px;
+  margin: auto;
 }
 
 /* h2 styles */
 h2 {
-  color: var(--color-text-primary); /* Light/dark text color */
-
-  text-align: left; /* Align heading with form content */
+  color: var(--color-text-primary);
+  text-align: center;
+  font-size: clamp(1.5rem, 2.5vw, 2rem);
 }
 
-/* .input styles */
+/* Input container */
 .input {
   width: 100%;
   max-width: 545px;
   display: flex;
-  gap: 30px;
+  gap: 20px;
   align-items: center;
   justify-content: space-between;
   color: var(--color-text-primary);
-  text-align: center;
+  text-align: left;
 }
 
+/* Label */
 .input label {
   font-weight: bold;
-  font-size: var(--text-md);
-  flex-shrink: 0; /* Prevent label from shrinking */
-  text-wrap: nowrap;
+  font-size: clamp(0.9rem, 1.2vw, 1rem);
+  flex-shrink: 0;
+  white-space: nowrap;
 }
 
+/* Input field */
 .field {
   width: 100%;
   min-height: 40px;
   font-size: var(--text-lg);
-  color: var(--color-text-primary); /* Light/dark text color */
+  color: var(--color-text-primary);
   padding: 0 10px;
-  border: 1px solid var(--color-highlighter-dark-secondary); /* Light/dark border color */
+  border: 1px solid var(--color-highlighter-dark-secondary);
   border-radius: var(--borderRadius);
   outline: none;
-  background-color: var(
-    --color-bg-secondary
-  ); /* Light/dark background color for input */
-  flex-grow: 1; /* Ensure input box takes up remaining space */
+  background-color: var(--color-bg-secondary);
+  flex-grow: 1;
+  transition: all 0.2s ease-in-out;
 }
 
-.input input:focus {
-  transform: scale(1.01);
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+.field:focus {
+  transform: scale(1.02);
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.15);
 }
 
+/* Small text */
 .input small {
   font-size: var(--text-sm);
-  color: var(--color-text-secondary); /* Light/dark text color for small text */
+  color: var(--color-text-secondary);
 }
 
+/* Note */
 .note {
-  margin-bottom: var(--borderRadius-md); /* Existing margin */
-  color: var(--color-text-secondary); /* Light/dark text color for small text */
-
-  float: left; /* Floats the element to the left */
-  margin-left: -50px; /* Adjusted margin to the left  , need to be changed later*/
+  margin-bottom: var(--borderRadius-md);
+  color: var(--color-text-secondary);
+  margin-left: 0;
+  font-size: clamp(0.8rem, 1vw, 0.9rem);
 }
 
+/* Disabled Input */
 .disable {
   border: 1px solid var(--color-special-gold);
   color: var(--color-special-white);
   font-weight: var(--text-bold);
+}
+
+/* Responsive adjustments */
+@media (max-width: 900px) {
+  /* For medium and small screens */
+  .input {
+    flex-direction: column; /* Stack label and input in column */
+    align-items: flex-start; /* Align text to left */
+    gap: 10px; /* Reduce gap for better spacing */
+  }
+
+  .input label {
+    width: 100%;
+    text-align: left;
+  }
+
+  .field {
+    width: 100%;
+  }
 }

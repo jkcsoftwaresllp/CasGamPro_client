@@ -53,14 +53,15 @@ export const TableHeader = ({
         {/* Right Side: Actions */}
         <div className={style.rightSideActions}>
           {/* Mobile Actions Button */}
-          {isMobile && (
-            <div className={style.actionButton}>
-              <Button
-                label={"Action"}
-                onClick={() => setShowActions(!showActions)}
-              />
-            </div>
-          )}
+          {isMobile &&
+            (showSearchBar || showDownloadButtons || showPagination) && (
+              <div className={style.actionButton}>
+                <Button
+                  label={"Action"}
+                  onClick={() => setShowActions(!showActions)}
+                />
+              </div>
+            )}
 
           {/* Action Elements (Hidden in mobile unless toggled) */}
           {showActions && (

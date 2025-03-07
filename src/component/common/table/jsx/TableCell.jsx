@@ -18,7 +18,7 @@ export const TableCell = ({
       style={cssVariable}
       onClick={isClickable ? onClick : undefined}
     >
-      <div className={`${isClickable ? style.clickableCell : ""}`}>{label}</div>
+      <div className={`${isClickable ? style.clickableCell : ""} ${style.cellLabel}`}>{label}</div>
     </div>
   );
 };
