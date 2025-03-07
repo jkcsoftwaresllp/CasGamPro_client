@@ -11,14 +11,12 @@ export const LiveCasinoTable = ({}) => {
   const tableData = data.map((games) => ({
     title: games.title,
     date: games.date,
-    declare: games.declare,
     profitLoss: games.profitLoss,
   }));
 
   const columns = [
     { key: "title", label: "Title" },
     { key: "date", label: "Date" },
-    { key: "declare", label: "Declare" },
     { key: "profitLoss", label: "Profit Loss" },
   ];
 

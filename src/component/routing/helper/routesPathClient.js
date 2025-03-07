@@ -31,7 +31,7 @@ export const routesPathClient = {
   commision: "/commission",
   addnewuser: "/addnewuser",
   ledger: "/ledger",
-  liveCasino: "/daily-report",
+  liveCasino: "/daily-report", // Change from liveCasino
   collectionReport: "/collectionReport",
   companyLenDen: "/companyLenDen",
   profitAndLoss: "/profitAndLoss",
