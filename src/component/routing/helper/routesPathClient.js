@@ -11,7 +11,7 @@ export const routesPathClient = {
   password: "/password",
   settings: "/settings",
   rules: "/rules",
-  playHistory: "/playHistory",
+  playHistory: "/statement",
   table: "/table",
 
   // /client/gameCatagory
@@ -31,7 +31,7 @@ export const routesPathClient = {
   commision: "/commission",
   addnewuser: "/addnewuser",
   ledger: "/ledger",
-  liveCasino: "/casino",
+  liveCasino: "/daily-report", // Change from liveCasino
   collectionReport: "/collectionReport",
   companyLenDen: "/companyLenDen",
   profitAndLoss: "/profitAndLoss",

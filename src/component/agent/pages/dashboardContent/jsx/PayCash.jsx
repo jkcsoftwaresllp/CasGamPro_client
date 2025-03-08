@@ -1,30 +1,47 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { UserIdInput } from "../../../main/jsx/inputFeild/UserId";
 import { TextInput } from "../../../../common/TextInput";
 import { Button } from "../../../../common/Button";
 import style from "../../styles/RecieveCash.module.css";
 import { apiCall } from "../../../../common/apiCall";
+import { getToastTypes, showToast } from "../../../../common/showToast";
 
 export const PayCash = () => {
   const { id } = useParams();
-  const [userValue, setuserValue] = useState("");
+  const [exposure, setExposure] = useState("");
   const [amount, setAmount] = useState("");
   const [note, setnote] = useState("");
   const navigate = useNavigate();
 
-  const fetchData = async () => {
-    console.log("API not connected");
+  useEffect(() => {
+    const fetchExposure = async () => {
+      const response = await apiCall(
+        `/auth-api/agent/user-exposure/${id}`,
+        "GET"
+      );
+      console.log("API call for Exposure", response);
 
-    // const response = await apiCall(
-    //   "/auth-api/agent/walletTransaction",
-    //   "POST",
-    //   { userId: id, type: "withdrawal", amount, note }
-    // );
-    // if (response && response.uniqueCode === "CGP0062") {
-    //   navigate(-1);
-    //   console.log("API Response: ", response);
-    // } else console.error("API Error:", response.data);
+      if (response && response.uniqueCode === "CGP0153") {
+        setExposure(response.data.balance);
+      }
+    };
+    fetchExposure();
+  }, []);
+
+  const saveChanges = async () => {
+    const response = await apiCall("/auth-api/agent/payCash", "POST", {
+      playerId: id,
+      amount,
+      note,
+    });
+    if (response && response.uniqueCode === "CGP0167") {
+      console.log("API Response: ", response);
+      showToast(getToastTypes.type1, response.message);
+      navigate(-1);
+    } else {
+      showToast(getToastTypes.type4, "Error in receiving cash Updation.");
+    }
   };
 
   return (
@@ -37,25 +54,21 @@ export const PayCash = () => {
 
         <div className={style.row}>
           <label className={style.label}>Rs. Exposure:</label>
-          <TextInput value={userValue} readOnly={true} />
+          <TextInput placeholder={exposure} readOnly={true} />
         </div>
 
         <div className={style.row}>
           <label className={style.label}>Update Ledger:</label>
-          <TextInput
-            placeholder="Enter value"
-            value={amount}
-            onChange={setAmount}
-          />
+          <TextInput placeholder="Enter value" onChange={setAmount} />
         </div>
 
         <div className={style.row}>
           <label className={style.label}>Note:</label>
-          <TextInput placeholder="Enter note" value={note} onChange={setnote} />
+          <TextInput placeholder="Enter note" onChange={setnote} />
         </div>
 
         <div className={style.buttonContainer}>
-          <Button label="Save Changes" onClick={fetchData} />
+          <Button label="Save Changes" onClick={saveChanges} />
         </div>
       </div>
     </div>

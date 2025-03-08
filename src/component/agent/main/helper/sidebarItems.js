@@ -25,8 +25,8 @@ export const sidebarItems = [
   },
   {
     id: 2,
-    label: "Live Casino",
-    value: "liveCasino",
+    label: "Daily P/L Report",
+    value: "DailyReport",
     icon: CasinoIcon,
     path: `${path.agent}${path.liveCasino}`,
   },

@@ -12,7 +12,7 @@ const tableURLRoutes = [
 ];
 
 const agentApiEndpoints = {
-  [playHistory]: "/auth-api/client/playHistory",
+  [playHistory]: "/auth-api/client/clientStatement",
   [ledger]: "/auth-api/client/ledger",
 };
 

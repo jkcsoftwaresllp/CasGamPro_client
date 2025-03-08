@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import style from "../styles/AgentSidebar.module.css";
 import { ExpandIcon, CollapseIcon } from "../../../../assets/assets";
@@ -6,9 +6,10 @@ import { Tab } from "./Tab";
 import { sidebarItems } from "../helper/sidebarItems";
 
 export const AgentSidebar = ({ setHeaderTitle }) => {
-  const [isMinimized, setIsMinimized] = useState(false);
+  const [isMinimized, setIsMinimized] = useState(true);
   const [expandedItem, setExpandedItem] = useState(null);
   const navigate = useNavigate();
+  const sidebarRef = useRef(null); // Reference for detecting clicks outside
 
   const toggleSidebar = () => setIsMinimized(!isMinimized);
 
@@ -16,8 +17,25 @@ export const AgentSidebar = ({ setHeaderTitle }) => {
     setExpandedItem(expandedItem === item.id ? null : item.id);
   };
 
+  // Handle click outside to minimize the sidebar
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (sidebarRef.current && !sidebarRef.current.contains(event.target)) {
+        setIsMinimized(true);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
   return (
-    <div className={`${style.sidebar} ${isMinimized ? style.minimized : ""}`}>
+    <div
+      ref={sidebarRef} // Attach the ref to sidebar
+      className={`${style.sidebar} ${isMinimized ? style.minimized : ""}`}
+    >
       <button className={style.toggleButton} onClick={toggleSidebar}>
         {isMinimized ? ExpandIcon : CollapseIcon}
       </button>
@@ -27,7 +45,6 @@ export const AgentSidebar = ({ setHeaderTitle }) => {
             <Tab
               icon={item.icon}
               onClick={() => {
-                // Update the header text
                 setHeaderTitle(item.label);
                 if (item.subOptions) {
                   handleExpand(item);
@@ -36,6 +53,7 @@ export const AgentSidebar = ({ setHeaderTitle }) => {
                 }
               }}
               title={item.label}
+              isMinimized={isMinimized}
             />
 
             {expandedItem === item.id && item.subOptions && (
@@ -45,12 +63,12 @@ export const AgentSidebar = ({ setHeaderTitle }) => {
                     key={sub.id}
                     icon={sub.icon}
                     onClick={() => {
-                      // Update the header for sub-options too
                       setHeaderTitle(sub.label);
                       navigate(sub.path);
                     }}
                     title={sub.label}
                     className={style.subOption}
+                    isMinimized={isMinimized}
                   />
                 ))}
               </div>

@@ -4,14 +4,23 @@ import { Loader } from "../../component/common/Loader";
 import { Button } from "../../component/common/Button";
 import { routesPathClient } from "../../component/routing/helper/routesPathClient";
 import { useAuth } from "../../context/jsx/AuthContext";
+import { useEffect } from "react";
+import { roles } from "../../utils/roles";
 
 export const Home = () => {
-  const { loading } = useAuth();
+  const { loading, user } = useAuth();
   const navigate = useNavigate();
 
   const handleAgentClick = () => {
     navigate(routesPathClient.client);
   };
+
+  useEffect(() => {
+    if (user)
+      if (user.userRole === roles.AGENT) {
+        navigate(routesPathClient.agent);
+      }
+  }, [user]);
 
   return (
     <div className={style.home}>

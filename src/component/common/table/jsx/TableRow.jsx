@@ -1,7 +1,7 @@
 import React from "react";
 import { TableCell } from "./TableCell";
 import style from "../style/Table.module.css";
-import { IconBtn } from "../../../common/IconBtn.jsx"; // Assuming you have IconBtn component
+import { IconBtncustom } from "../../IconBtncustom.jsx";
 
 export const TableRow = ({
   row,
@@ -35,7 +35,7 @@ export const TableRow = ({
           label={
             <div className={style.actions}>
               {actionButtons.map((btn, index) => (
-                <IconBtn
+                <IconBtncustom
                   key={index}
                   title={btn.label}
                   icon={btn.icon}

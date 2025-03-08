@@ -67,28 +67,7 @@ export const AgentManageUser = () => {
                 )
               }
             />
-            <Button
-              label="Match Ledger"
-              onClick={() =>
-                navigate(
-                  `${path.agent}${path.manageClients}${path.matchledger.replace(
-                    ":id",
-                    id
-                  )}`
-                )
-              }
-            />
-            <Button
-              label="Coin History"
-              onClick={() =>
-                navigate(
-                  `${path.agent}${path.manageClients}${path.coinhistory.replace(
-                    ":id",
-                    id
-                  )}`
-                )
-              }
-            />
+
             <Button
               label="Statements"
               onClick={() =>
@@ -101,11 +80,12 @@ export const AgentManageUser = () => {
               }
             />
           </div>
+          
           {/* TODO : Correct this  */}
-          {/* <div className={style.cardGrid}>
+          <div className={style.cardGrid}>
             <DashboardCard label="Coins" value="-35000" />
             <DashboardCard label="Rs Exposure" value="5000" />
-          </div> */}
+          </div>
         </div>
       )}
     </div>

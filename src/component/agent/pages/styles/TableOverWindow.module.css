@@ -1,0 +1,36 @@
+.tableWindowWrapper {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--color-bg-primary-a);
+  position: relative;
+}
+
+.close {
+  position: absolute;
+  top: -27px;
+  right: -27px;
+  padding: 10px;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.close svg {
+  height: 2.3em;
+  width: 2.3em;
+}
+
+.close svg path {
+  fill: var(--color-special-red);
+}
+
+.tableWindow {
+  position: relative;
+  background: var(--color-bg-primary);
+  border-radius: var(--borderRadius);
+  width: 80%;
+  max-height: 90%;
+}

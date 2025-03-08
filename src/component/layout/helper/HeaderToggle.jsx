@@ -1,15 +1,6 @@
-import { useState, useEffect } from "react";
 import style from "../style/HeaderToggle.module.css";
 
-export const HeaderToggle = ({isDarkMode, setIsDarkMode}) => {
-
-  // Initialize theme preference on mount
-  useEffect(() => {
-    const savedTheme = localStorage.getItem("theme") || "dark";
-    setIsDarkMode(savedTheme === "dark");
-    document.documentElement.setAttribute("data-theme", savedTheme);
-  }, []);
-
+export const HeaderToggle = ({ isDarkMode, setIsDarkMode }) => {
   // Toggle theme and save preference to localStorage
   const toggleTheme = () => {
     const newTheme = isDarkMode ? "light" : "dark";

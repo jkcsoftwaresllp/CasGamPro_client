@@ -16,7 +16,7 @@
   --color-special-gold: #daa520;
   --color-special-yellow: #ffe600;
   --color-special-green: #32e332;
-  --color-special-red: #8b0000;
+  --color-special-red: #c01919;
   --color-special-black: #2b2b2b;
   --color-special-white: #fefbf3;
   --color-special-hover: #212121;
@@ -43,7 +43,7 @@
 [data-theme="dark"] {
   --color-special-gold: #b8860b;
   --color-special-green: #228b22;
-  --color-special-red: #b22222;
+  --color-special-red: #eb3a3a;
   --color-special-black: #1b1b1b;
   --color-special-white: #dcdcdc;
   --color-special-hover: #fbfeff;
@@ -79,23 +79,23 @@ html {
   scroll-behavior: smooth;
 }
 
+
 body {
   background-color: var(--color-bg-secondary);
   transition: background-color 0.5s ease, color 0.5s ease;
 }
 
 ::-webkit-scrollbar {
-  width: 4px;
-  height: 4px;
+  width: 0; /* Hide scrollbar for WebKit browsers */
+  height: 0; /* Hide scrollbar for WebKit browsers */
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: var(--color-text-secondary);
-  border-radius: 10px;
+  background-color: transparent; /* Make scrollbar thumb transparent */
 }
 
 ::-webkit-scrollbar-track {
-  background-color: var(--color-bg-tertiary);
+  background-color: transparent; /* Make scrollbar track transparent */
 }
 
 .custom-swal-popup {
