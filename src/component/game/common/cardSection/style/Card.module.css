@@ -1,6 +1,23 @@
 .cardContainer {
+  border-radius: var(--borderRadius);
+  overflow: hidden;
+}
+
+img {
+  height: 100px;
+  width: auto;
+  object-fit: contain;
+  display: block;
+}
+
+
+/*
+
+// TODO : Remove if above approcah is Working
+
+
+.cardContainer {
   perspective: 1000px;
-  /* Create 3D perspective */
 }
 
 .card {
@@ -76,3 +93,7 @@
   height: 100%;
   color: var(--suitColor);
 }
+
+
+
+*/
