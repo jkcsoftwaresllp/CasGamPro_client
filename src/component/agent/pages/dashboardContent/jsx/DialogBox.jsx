@@ -1,8 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Table } from "../../../../common/table/jsx/Table.jsx";
-import { Button } from "../../../../common/Button.jsx";
-import { closeIcon } from "../../../../../assets/assets.jsx"; // Import close icon
-import styles from "../../styles/Dialog.module.css"; // Import styles
+import { TableOverWindow } from "../TableOverWindow.jsx";
 
 export const DialogBox = ({ isOpen, onClose, header, clientId }) => {
   const [tableData, setTableData] = useState([]);
@@ -45,23 +42,10 @@ export const DialogBox = ({ isOpen, onClose, header, clientId }) => {
   if (!isOpen) return null;
 
   return (
-    <div className={styles.overlay}>
-      <div className={styles.dialog}>
-        {/* Close Button on Top Right */}
-        <button className={styles.closeButton} onClick={onClose}>
-          {closeIcon}
-        </button>
-
-        <h2>{header}</h2>
-
-        {loading ? (
-          <p>Loading...</p> // Show loading text while waiting for API data
-        ) : tableData.length > 0 ? (
-          <Table data={tableData} columns={columns} />
-        ) : (
-          <p className={styles.noData}>No data found.</p>
-        )}
-      </div>
-    </div>
+    <TableOverWindow
+      data={tableData}
+      columns={columns}
+      setIsOverlayView={onClose}
+    />
   );
 };

@@ -3,7 +3,6 @@ import { Table } from "../../../../common/table/jsx/Table.jsx";
 import { Loader } from "../../../../common/Loader.jsx";
 import style from "./Table.module.css";
 import { useOutletContext } from "react-router-dom";
-import { apiCall } from "../../../../common/apiCall.js";
 import { TableOverWindow } from "../TableOverWindow.jsx";
 
 export const LiveCasinoTable = ({}) => {
@@ -12,35 +11,7 @@ export const LiveCasinoTable = ({}) => {
   const [dataDetailView, setDataDetailView] = useState([]);
   const [isOverlayView, setIsOverlayView] = useState(false);
 
-  const data1 = [
-    {
-      title: "Live Casino",
-      date: "2021-09-01",
-      profitLoss: 100,
-    },
-    {
-      title: "Live Casino",
-      date: "2021-09-02",
-      profitLoss: 200,
-    },
-    {
-      title: "Live Casino",
-      date: "2021-09-03",
-      profitLoss: 300,
-    },
-    {
-      title: "Live Casino",
-      date: "2021-09-04",
-      profitLoss: 400,
-    },
-    {
-      title: "Live Casino",
-      date: "2021-09-05",
-      profitLoss: 500,
-    },
-  ];
-
-  const tableData = data1.map((games) => ({
+  const tableData = data.map((games) => ({
     title: games.title,
     date: games.date,
     profitLoss: games.profitLoss,
@@ -67,52 +38,14 @@ export const LiveCasinoTable = ({}) => {
   const handleCellClick = async (value, row) => {
     const apiUrl = `/auth-api/agent/games/livecasino/${row.title}/${row.date}`;
 
-    // const response = await apiCall(apiUrl, "GET");
-    // console.log("API Response:", response);
+    const response = await apiCall(apiUrl, "GET");
+    console.log("API Response:", response);
 
-    // if(response.uniqueCode === "CGP0080") {
-    //   setDataDetailView(response.data);
-    // } else {
-    //   console.error("API Error:", response.data);
-    // }
-
-    setDataDetailView([
-      {
-        date: "2021-09-01",
-        description: "Teen Patti",
-        betAmount: 1000,
-        agentPL: 100,
-        companyPL: 200,
-      },
-      {
-        date: "2021-09-02",
-        description: "Andar Bahar",
-        betAmount: 2000,
-        agentPL: 200,
-        companyPL: 300,
-      },
-      {
-        date: "2021-09-03",
-        description: "Lucky 7 B",
-        betAmount: 3000,
-        agentPL: 300,
-        companyPL: 400,
-      },
-      {
-        date: "2021-09-04",
-        description: "DTL",
-        betAmount: 4000,
-        agentPL: 400,
-        companyPL: 500,
-      },
-      {
-        date: "2021-09-05",
-        description: "Dragon Tiger",
-        betAmount: 5000,
-        agentPL: 500,
-        companyPL: 600,
-      },
-    ]);
+    if (response.uniqueCode === "CGP0289") {
+      setDataDetailView(response.data.result);
+    } else {
+      console.error("API Error:", response.data);
+    }
 
     setIsOverlayView(true);
 

@@ -81,21 +81,24 @@ export const CommissionTable = () => {
         </div>
       ) : (
         <div className={style.tableContent}>
-          <Table
-            data={tableData}
-            columns={columns}
-            columnWidths={columnWidths}
-            isAction={true}
-            btns={actionButtons}
-            clickableColumns={["name"]}
-            onCellClick={handleCellClick}
-          />
-          <DialogBox
-            isOpen={showDialog}
-            onClose={closeDialog}
-            header="Client Exposure Details"
-            clientId={selectedClientId}
-          />
+          {showDialog ? (
+            <DialogBox
+              isOpen={showDialog}
+              onClose={closeDialog}
+              header="Client Exposure Details"
+              clientId={selectedClientId}
+            />
+          ) : (
+            <Table
+              data={tableData}
+              columns={columns}
+              columnWidths={columnWidths}
+              isAction={true}
+              btns={actionButtons}
+              clickableColumns={["name"]}
+              onCellClick={handleCellClick}
+            />
+          )}
         </div>
       )}
     </div>
