@@ -4,8 +4,21 @@ import { ErrorPage } from "../../../pages/jsx/Error";
 import { GameCatagory } from "../../client/jsx/GameCatagory";
 import { TempComp } from "../helper/TempComp";
 import { GameRoutes } from "./GamesRoutes";
+import { useAuth } from "../../../context/jsx/AuthContext";
+import { use } from "react";
+import { blockLevels } from "../../../utils/blockLevers";
 
 export const GameCatagoryRoutes = () => {
+  const { user } = useAuth();
+  if (user.blockingLevel === blockLevels[3]) {
+    return (
+      <ErrorPage
+        errorCode="ERR403"
+        errorMessage="Your account is blocked to play Games. Please contact your Agent"
+      />
+    );
+  }
+
   return (
     <Routes>
       <Route path={path.home} index element={<GameCatagory />} />
