@@ -100,7 +100,9 @@ export const ManagePassword = () => {
         </div>
       ) : (
         <form className={style.form} onSubmit={handleSubmit}>
-          <h2 className={style.title}>Change Password for {finalId}</h2>
+          <h2 className={style.title}>
+            {selfChange ? "Change Password" : `Change Password for ${finalId}`}
+          </h2>
 
           <PasswordInput
             placeholder="Current Password"
