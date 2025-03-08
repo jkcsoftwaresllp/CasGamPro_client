@@ -16,6 +16,8 @@ export const LedgerTable = () => {
     lossAmount: entry.lossAmount,
     agentProfit: entry.agentProfit,
     agentLoss: entry.agentLoss,
+    superAgentProfit: entry.superAgentProfit,
+    superAgentLoss: entry.superAgentLoss,
     agentCommission: entry.agentCommission,
     balance: entry.balance,
   }));
@@ -28,6 +30,8 @@ export const LedgerTable = () => {
     { key: "lossAmount", label: "Loss Amount" },
     { key: "agentProfit", label: "Profit (Agent)" },
     { key: "agentLoss", label: "Loss (Agent)" },
+    { key: "superAgentProfit", label: "Profit (Super Agent)" },
+    { key: "superAgentLoss", label: "Loss (Super Agent)" },
     { key: "agentCommission", label: "Agent Commission" },
     { key: "balance", label: "Balance" },
   ];
