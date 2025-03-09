@@ -6,9 +6,9 @@ import { TempComp } from "../helper/TempComp";
 import { GameCatagoryRoutes } from "./GameCatagoryRoutes";
 import { Rules } from "../../client/rules/jsx/Rules";
 import { LedgerMain } from "../../client/ledger/jsx/LedgerMain";
-import { ChangePassword } from "../../client/changePassword/jsx/ChangePassword";
 import { Statement } from "../../client/playHistory/jsx/Statement";
 import { ClientTableLayout } from "./ClientTableLayout";
+import { ManagePassword } from "../../agent/pages/dashboardContent/ManagePassword";
 
 export const ClientRoutes = () => {
   const ledgerPath = path.ledger.replace("/", "");
@@ -24,7 +24,7 @@ export const ClientRoutes = () => {
         <Route path={playHistoryPath} element={<Statement />} />
       </Route>
 
-      <Route path={path.password} element={<ChangePassword />} />
+      <Route path={path.password} element={<ManagePassword />} />
       <Route path={path.rules} element={<Rules />} />
       <Route path={path.settings} element={<TempComp label={"Settings"} />} />
 

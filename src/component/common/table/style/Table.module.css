@@ -90,6 +90,7 @@
   border-radius: var(--borderRadius);
   font-weight: var(--text);
   padding: 10px;
+  /* text-align: center; */
 }
 
 .headerCell .cellLabel {
@@ -111,9 +112,17 @@
   min-width: calc(var(--flexValue) * 50px);
 }
 
+.cell div {
+  width: 100%;
+}
+
 .actions {
   display: flex;
   gap: 15px;
+}
+
+.actions div {
+  width: auto;
 }
 
 .clickableCell {

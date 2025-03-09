@@ -35,13 +35,12 @@ export const ReceiveCash = () => {
       amount,
       note,
     });
-    if (response && response.uniqueCode === "CGP0167") {
+    if (response && response.uniqueCode === "CGP0183") {
       console.log("API Response: ", response);
       showToast(getToastTypes.type1, response.message);
       navigate(-1);
-    } else{
+    } else {
       showToast(getToastTypes.type4, "Error in receiving cash Updation.");
-      
     }
   };
 
