@@ -4,8 +4,8 @@ import { blockLevels } from "../../utils/blockLevers";
 
 export const login = async (setUser, credentials) => {
   try {
-    const successCodes = ["CGP00U05", "CGP00U11", "CGP00U10"];
-    const response = await apiCall("/api/login", "POST", credentials);
+    // const response = await apiCall("/api/login", "POST", credentials);
+    // // Save user data from the response
 
     console.log("Login response:", response);
 
@@ -37,6 +37,6 @@ export const login = async (setUser, credentials) => {
       }
     }
   } catch (error) {
-    showToast(getToastTypes.type4, error.message || "Failed to login");
+    console.error("Login failed:", error.response?.data || error.message);
   }
 };

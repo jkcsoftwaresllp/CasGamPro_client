@@ -12,6 +12,9 @@ export const TableCell = ({
     "--flexValue": cellStyle.flex,
   };
 
+  console.log(cssVariable);
+
+
   return (
     <div
       className={`${style.cell} ${isHeader ? style.headerCell : ""}`}

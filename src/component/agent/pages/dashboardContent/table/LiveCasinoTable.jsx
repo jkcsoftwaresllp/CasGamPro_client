@@ -11,7 +11,35 @@ export const LiveCasinoTable = ({}) => {
   const [dataDetailView, setDataDetailView] = useState([]);
   const [isOverlayView, setIsOverlayView] = useState(false);
 
-  const tableData = data.map((games) => ({
+  const data1 = [
+    {
+      title: "Live Casino",
+      date: "2021-09-01",
+      profitLoss: 100,
+    },
+    {
+      title: "Live Casino",
+      date: "2021-09-02",
+      profitLoss: 200,
+    },
+    {
+      title: "Live Casino",
+      date: "2021-09-03",
+      profitLoss: 300,
+    },
+    {
+      title: "Live Casino",
+      date: "2021-09-04",
+      profitLoss: 400,
+    },
+    {
+      title: "Live Casino",
+      date: "2021-09-05",
+      profitLoss: 500,
+    },
+  ];
+
+  const tableData = data1.map((games) => ({
     title: games.title,
     date: games.date,
     profitLoss: games.profitLoss,
