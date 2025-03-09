@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import style from "../styles/ManagePassword.module.css";
 import { PasswordInput } from "../../../common/PasswordInput";
 import { Button } from "../../../common/Button";
@@ -60,9 +60,9 @@ export const ManagePassword = () => {
       console.error("Error occurred during password change:", err);
       showToast(
         getToastTypes.type4,
-        error.message || "Error occurred during password change"
+        err.message || "Error occurred during password change"
       );
-      setError("An error occurred while changing password.");
+      setError(err.message || "An error occurred while changing password.");
     } finally {
       setLoading(false);
     }
@@ -73,30 +73,23 @@ export const ManagePassword = () => {
   const user = useAuth();
   const { userId, userRole } = user.user;
 
-  console.log({ id, userId, userRole });
   let finalId = id;
   let selfChange = false;
 
   if (id === ":id") {
-    selfChange = true;
+    selfChange = true; // handle self password change for Agent
     finalId = userId;
-    if (roles.AGENT === userRole) {
-      // TODO : Password Change Request for Loged in Agent
-    } else if (roles.CLIENT === userRole) {
-      // TODO : Password Change Request for some client based on ClientId via Agent
-      console.log(
-        "Password Change Request for Loged in Cliet (API not Implemented)"
-      );
-    } else if (roles.ADMIN === userRole) {
+    if (roles.ADMIN === userRole) {
       // TODO : Password Change Request for some client based on ClientId via Agent
       console.log(
         "Password Change Request for for Loged in Admin (API not Implemented)"
       );
     }
-
   } else {
-    // TODO : Password Change Request for some client based on ClientId via Agent
-    finalId = id;
+    if (roles.CLIENT === userRole) {
+      // Change Request for client from Client Panel
+      selfChange = true;
+    } else finalId = id;
   }
 
   return (
@@ -107,16 +100,30 @@ export const ManagePassword = () => {
         </div>
       ) : (
         <form className={style.form} onSubmit={handleSubmit}>
-          <h2 className={style.title}>Change Password for {finalId}</h2>
+          <h2 className={style.title}>
+            {selfChange ? "Change Password" : `Change Password for ${finalId}`}
+          </h2>
 
           <PasswordInput
             placeholder="Current Password"
-            onChange={setCurrentPassword}
+            onChange={(value) => {
+              setError("");
+              setCurrentPassword(value);
+            }}
           />
-          <PasswordInput placeholder="New Password" onChange={setNewPassword} />
+          <PasswordInput
+            placeholder="New Password"
+            onChange={(value) => {
+              setError("");
+              setNewPassword(value);
+            }}
+          />
           <PasswordInput
             placeholder="Confirm New Password"
-            onChange={setConfirmPassword}
+            onChange={(value) => {
+              setError("");
+              setConfirmPassword(value);
+            }}
           />
           {error && <p className={style.error}>{error}</p>}
           <Button
