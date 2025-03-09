@@ -90,6 +90,7 @@
   border-radius: var(--borderRadius);
   font-weight: var(--text);
   padding: 10px;
+  /* text-align: center; */
 }
 
 .headerCell .cellLabel {
@@ -109,6 +110,10 @@
   justify-content: center;
   text-wrap: wrap;
   min-width: calc(var(--flexValue) * 50px);
+}
+
+.cell div {
+  width: 100%;
 }
 
 .actions {
