@@ -121,6 +121,10 @@
   gap: 15px;
 }
 
+.actions div {
+  width: auto;
+}
+
 .clickableCell {
   color: var(--color-link);
   cursor: pointer;
