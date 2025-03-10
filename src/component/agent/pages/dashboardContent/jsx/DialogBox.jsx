@@ -24,7 +24,7 @@ export const DialogBox = ({ isOpen, onClose, header, clientId }) => {
         response.uniqueCode === "CGP0059" ||
         response.uniqueCode === "CGP0060"
       ) {
-        setTableData(response.data);
+        setTableData(response.data.results);
       }
     } catch (error) {
       console.error("Error fetching client data:", error);
