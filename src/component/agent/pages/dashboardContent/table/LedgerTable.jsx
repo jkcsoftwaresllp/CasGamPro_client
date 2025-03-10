@@ -34,7 +34,7 @@ export const LedgerTable = () => {
     { key: "balance", label: "Balance" },
   ];
 
-  const columnWidths = { entry: 2, note: 2 };
+  const columnWidths = { entry: 2, date: 2 };
 
   return (
     <div className={style.tableContainer}>
