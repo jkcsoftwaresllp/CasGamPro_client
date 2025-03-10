@@ -35,7 +35,8 @@ export const AgentRoutes = () => {
         <Route path={path.settings} element={<Settings />} />
         <Route path={path.blockClients} element={<BlockTable />} />
         <Route path={path.commision} element={<CommissionTable />} />
-        <Route path={path.blockMarket} element={<BlockMarketTable />} />
+        {/* TODO: if uncomment it check sidebarItems.js  */}
+        {/* <Route path={path.blockMarket} element={<BlockMarketTable />} />{" "} */}
         <Route path={path.liveCasino} element={<LiveCasinoTable />} />
         <Route path={path.collectionReport} element={<CollectionReport />} />
         <Route path={path.companyLenDen} element={<LedgerTable />} />
