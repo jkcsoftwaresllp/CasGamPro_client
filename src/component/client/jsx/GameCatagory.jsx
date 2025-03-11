@@ -2,7 +2,6 @@ import React from "react";
 import { useEffect, useState } from "react";
 import styles from "../style/Home.module.css";
 import { Button } from "../../common/Button";
-import { gameCatagoryButtonDetails as btnDetails } from "../helper/gameCatagoryButtonDetails";
 import { useButtonNavigation } from "../../../hooks/useButtonNavigation";
 import { Loader } from "../../common/Loader";
 import { ErrorPage } from "../../../pages/jsx/Error";

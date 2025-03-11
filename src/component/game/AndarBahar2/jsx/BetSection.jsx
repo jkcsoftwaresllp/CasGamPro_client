@@ -8,7 +8,7 @@ export const BetSection = ({ onClick, isLock }) => {
   const playerA = "andar";
   const playerB = "bahar";
 
-  const { andarBahar2: SIDE } = PLAYER_SIDES;
+  const { AB2: SIDE } = PLAYER_SIDES;
 
   return (
     <div className={styles.betSection}>

@@ -11,7 +11,7 @@ export const BetOnEvOdReBl = ({
   betProfit = null,
   player = "",
 }) => {
-  const { lucky7B: SIDE } = PLAYER_SIDES;
+  const { L7B: SIDE } = PLAYER_SIDES;
   const playerLower = player.toLowerCase();
 
   let profit = betProfit;

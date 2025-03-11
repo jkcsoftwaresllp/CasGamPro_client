@@ -7,7 +7,11 @@ import { GameRunner } from "../../game/common/layout/jsx/GameRunner";
 export const GameRoutes = ({ catagory }) => {
   return (
     <Routes>
-      <Route path={path.home} index element={<GameList />} />
+      <Route
+        path={path.home}
+        index
+        element={<GameList catagory={catagory} />}
+      />
       <Route path={"/game"} element={<GameRunner />} />
 
       <Route

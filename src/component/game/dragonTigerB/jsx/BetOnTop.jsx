@@ -6,7 +6,7 @@ import { BetInRectangle } from "../../common/BetSection/jsx/BetInRectangle";
 import { PLAYER_SIDES } from "../../../../utils/gamePlayerSides";
 
 export const BetOnTop = ({ onClick, isLock }) => {
-  const { dragonTiger: SIDE } = PLAYER_SIDES;
+  const { DT20: SIDE } = PLAYER_SIDES;
 
   return (
     <div className={styles.betOnTop}>
