@@ -23,7 +23,7 @@ export const BlockGameTable = ({ games, setIsOverlayView }) => {
     {
       label: "Edit",
       icon: EditIcon,
-      onClick: (row) => handleBlockUnBlockGame(row.id, "game"),
+      onClick: (row) => handleBlockUnBlockGame(row, "game"),
     },
   ];
 
