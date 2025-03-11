@@ -1,6 +1,7 @@
 import React from "react";
 import { EditIcon } from "../../../../../assets/assets.jsx";
 import { TableOverWindow } from "../TableOverWindow.jsx";
+import { handleBlockUnBlockGame } from "./BlockMarketTable.jsx";
 
 export const BlockGameTable = ({ games, setIsOverlayView }) => {
   const tableData = games.map((games) => ({
@@ -22,7 +23,7 @@ export const BlockGameTable = ({ games, setIsOverlayView }) => {
     {
       label: "Edit",
       icon: EditIcon,
-      onClick: (row) => console.log(`Edit client ${row.id}`),
+      onClick: (row) => handleBlockUnBlockGame(row.id, "game"),
     },
   ];
 

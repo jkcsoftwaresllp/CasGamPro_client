@@ -38,15 +38,26 @@ export const ManagePassword = () => {
     console.log(data);
 
     try {
-      const response = await apiCall(
-        "/auth-api/client/change_password",
-        "POST",
-        data
-      );
+      let response;
+      if (selfChange) {
+        response = await apiCall(
+          "/auth-api/client/change_password",
+          "POST",
+          data
+        );
+      } else {
+        console.log("Yeah");
+        response = await apiCall(
+          `/auth-api/agent/changeClientPassword/${finalId}`,
+          "POST",
+          { ...data, confirmPassword: confirmPassword }
+        );
+      }
 
       const { uniqueCode } = response;
+      console.log(response);
 
-      if (uniqueCode === "CGP0029") {
+      if (uniqueCode === "CGP0029" || uniqueCode === "CGP0203") {
         console.log("Password changed successfully");
         const successMsg = selfChange
           ? "Your Password changed successfully"
@@ -89,7 +100,9 @@ export const ManagePassword = () => {
     if (roles.CLIENT === userRole) {
       // Change Request for client from Client Panel
       selfChange = true;
-    } else finalId = id;
+    } else {
+      finalId = id;
+    }
   }
 
   return (
@@ -103,9 +116,9 @@ export const ManagePassword = () => {
           <h2 className={style.title}>
             {selfChange ? "Change Password" : `Change Password for ${finalId}`}
           </h2>
-
+          
           <PasswordInput
-            placeholder="Current Password"
+            placeholder={selfChange ? "Current Password" : "Your Password"}
             onChange={(value) => {
               setError("");
               setCurrentPassword(value);

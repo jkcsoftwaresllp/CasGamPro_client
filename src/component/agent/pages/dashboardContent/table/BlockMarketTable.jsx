@@ -1,11 +1,25 @@
 import React, { useState } from "react";
 import { Table } from "../../../../common/table/jsx/Table.jsx";
-import { EditIcon } from "../../../../../assets/assets.jsx";
+import {
+  BlockIcon,
+  EditIcon,
+  UnBlockIcon,
+} from "../../../../../assets/assets.jsx";
 import { GameTableWindow } from "../GameTableWindow.jsx";
 import { Loader } from "../../../../common/Loader.jsx";
 import style from "./Table.module.css";
 // import style from "../../styles//Common.module.css";
 import { games } from "../helper/games.js";
+import { apiCall } from "../../../../common/apiCall.js";
+
+export const handleBlockUnBlockGame = async (id, type) => {
+  const response = await apiCall("/auth-api/agent/gameBlock", "POST", {
+    id,
+    type,
+  });
+
+  console.log(response);
+};
 
 export const BlockMarketTable = () => {
   const { loading, data } = games();
@@ -46,7 +60,7 @@ export const BlockMarketTable = () => {
     {
       label: "Edit",
       icon: EditIcon,
-      onClick: (row) => console.log(`Edit client ${row.id}`), // TODO : Blocking & Unblocking at Server end
+      onClick: (row) => handleBlockUnBlockGame(row.id, "category"), // TODO : Blocking & Unblocking at Server end
     },
   ];
 
