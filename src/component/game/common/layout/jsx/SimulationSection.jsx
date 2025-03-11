@@ -4,12 +4,17 @@ import { useGameState } from "../helper/GameStateContext";
 
 export const SimulationSection = ({ gameType }) => {
   const canvasRef = useRef(null);
-  const overlayRef = useRef(null); // An additional overlay for transitions.
+  const overlayRef = useRef(null); 
   const wsRef = useRef(null);
   const gameState = useGameState();
   const { roundId } = gameState;
   const [error, setError] = useState(null);
   const [isConnected, setIsConnected] = useState(false);
+  
+  // Reference to track when page was hidden
+  const hiddenTimeRef = useRef(0);
+  // Threshold in milliseconds (e.g., 3 seconds)
+  const refreshThreshold = 3000;
 
   const isDevelopment = import.meta.env.DEV;
   const productionIP = "88.222.214.174";
@@ -19,6 +24,33 @@ export const SimulationSection = ({ gameType }) => {
     : `ws://${productionIP}:5500`;
 
   const [isTransitioning, setIsTransitioning] = useState(false);
+
+  // Add visibility change detection
+  useEffect(() => {
+    const handleVisibilityChange = () => {
+      if (document.hidden) {
+        // Page is now hidden - record the time
+        hiddenTimeRef.current = Date.now();
+      } else {
+        // Page is now visible again - check how long it was hidden
+        const hiddenDuration = Date.now() - hiddenTimeRef.current;
+        
+        // If hidden for longer than our threshold, refresh the page
+        if (hiddenTimeRef.current > 0 && hiddenDuration > refreshThreshold) {
+          console.log(`Page was hidden for ${hiddenDuration}ms - refreshing`);
+          window.location.reload();
+        }
+      }
+    };
+
+    // Add visibility change listener
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+    
+    // Clean up the listener when component unmounts
+    return () => {
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
+    };
+  }, []);
 
   // Sample transition handler using a simple CSS fade overlay.
   const handleTransition = (transitionType, duration) => {
