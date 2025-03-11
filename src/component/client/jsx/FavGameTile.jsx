@@ -9,12 +9,12 @@ export const FavGameTile = ({ label, gameType, closeModal }) => {
   const basePath = `${path.client}${path.gameCatagory}${path.catagory1}`;
 
   const validGames = {
-    ANDAR_BAHAR: "andarBahar1",
-    ANDAR_BAHAR_TWO: "andarBahar2",
-    LUCKY7B: "lucky7B",
-    TEEN_PATTI: "teenPattiT20",
-    DRAGON_TIGER: "dragonTiger",
-    DRAGON_TIGER_LION: "dragonTigerLion",
+    ANDAR_BAHAR: "AB1",
+    ANDAR_BAHAR_TWO: "AB2",
+    LUCKY7B: "L7B",
+    TEEN_PATTI: "TP1",
+    DRAGON_TIGER: "DT20",
+    DRAGON_TIGER_LION: "DTL20",
   };
 
   const move = `${basePath}${getGamePath(validGames[gameType])}`;

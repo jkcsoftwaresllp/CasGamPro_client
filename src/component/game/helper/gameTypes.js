@@ -1,13 +1,13 @@
 // Valid game names (example)
 export const validGames = [
-  "andarBahar1", // 0
-  "andarBahar2", // 1
-  "lucky7B", // 2
-  "teenPattiT20", // 3
-  "dragonTiger", // 4
-  "dragonTigerLion", // 5
-  "dragonTigerB", // 6
-  "lucky7A", // 7
+  "AB1", // 0
+  "AB2", // 1
+  "L7B", // 2
+  "TP1", // 3
+  "DT20", // 4
+  "DTL20", // 5
+  "DT20TWO", // 6
+  "L7A", // 7
 ];
 
 export const GAME_TYPES = {

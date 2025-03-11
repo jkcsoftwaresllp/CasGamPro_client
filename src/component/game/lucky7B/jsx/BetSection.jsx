@@ -9,7 +9,7 @@ import { BetOnCard } from "../../common/BetSection/jsx/BetOnCard";
 import { PLAYER_SIDES } from "../../../../utils/gamePlayerSides";
 
 export const BetSection = ({ onClick, isLock }) => {
-  const { lucky7B: SIDE } = PLAYER_SIDES;
+  const { L7B: SIDE } = PLAYER_SIDES;
 
   return (
     <div className={styles.betSection}>

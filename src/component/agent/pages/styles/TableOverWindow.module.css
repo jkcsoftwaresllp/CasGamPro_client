@@ -32,5 +32,5 @@
   background: var(--color-bg-primary);
   border-radius: var(--borderRadius);
   width: 80%;
-  max-height: 90%;
+  height: 90%;
 }

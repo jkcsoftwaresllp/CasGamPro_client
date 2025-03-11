@@ -15,7 +15,7 @@ export const routesPathClient = {
   table: "/table",
 
   // /client/gameCatagory
-  catagory1: "/casino",
+  catagory1: "/indian-casino",
   catagory2: "/lottery",
   catagory3: "/cricket",
 

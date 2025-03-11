@@ -18,14 +18,14 @@ export const GameInterface = ({
   status,
 }) => {
   const betSectionMap = {
-    lucky7A: Lucky7ACardSection,
-    lucky7B: Lucky7BCardSection,
-    andarBahar1: AndarBaharCardSection,
-    andarBahar2: AndarBaharCardSection,
-    teenPattiT20: TeenPattiT20CardSection,
-    dragonTiger: DragonTigerCardSection,
-    dragonTigerB: DragonTigerBCardSection,
-    dragonTigerLion: DragonTigerLionCardSection,
+    L7A: Lucky7ACardSection,
+    L7B: Lucky7BCardSection,
+    AB1: AndarBaharCardSection,
+    AB2: AndarBaharCardSection,
+    TP1: TeenPattiT20CardSection,
+    DT20: DragonTigerCardSection,
+    DT20TWO: DragonTigerBCardSection,
+    DTL20: DragonTigerLionCardSection,
   };
 
   const SelectedBetSection = betSectionMap[game] || null;

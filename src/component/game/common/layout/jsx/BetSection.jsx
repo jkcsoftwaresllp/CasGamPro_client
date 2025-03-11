@@ -11,14 +11,14 @@ import { BetSection as DragonTigerLionBetSection } from "../../../dragonTigerLio
 
 export const BetSection = ({ game, onClick, status }) => {
   const betSectionMap = {
-    lucky7A: Lucky7ABetSection,
-    lucky7B: Lucky7BBetSection,
-    andarBahar2: AndarBahar2BetSection,
-    andarBahar1: AndarBahar1BetSection,
-    teenPattiT20: TeenPattiT20BetSection,
-    dragonTiger: DragonTigerBetSection,
-    dragonTigerB: DragonTigerBBetSection,
-    dragonTigerLion: DragonTigerLionBetSection,
+    L7A: Lucky7ABetSection,
+    L7B: Lucky7BBetSection,
+    AB2: AndarBahar2BetSection,
+    AB1: AndarBahar1BetSection,
+    TP1: TeenPattiT20BetSection,
+    DT20: DragonTigerBetSection,
+    DT20TWO: DragonTigerBBetSection,
+    DTL20: DragonTigerLionBetSection,
   };
 
   let isLock;

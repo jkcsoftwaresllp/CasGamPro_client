@@ -11,14 +11,25 @@ import style from "./Table.module.css";
 // import style from "../../styles//Common.module.css";
 import { games } from "../helper/games.js";
 import { apiCall } from "../../../../common/apiCall.js";
+import { getToastTypes, showToast } from "../../../../common/showToast.jsx";
 
-export const handleBlockUnBlockGame = async (id, type) => {
+export const handleBlockUnBlockGame = async (row, type) => {
   const response = await apiCall("/auth-api/agent/gameBlock", "POST", {
-    id,
+    id: row.id,
     type,
   });
 
-  console.log(response);
+  if (response.uniqueCode === "CGP0154") {
+    showToast(getToastTypes.type1, response.message);
+    setTimeout(() => {
+      window.location.reload();
+    }, 3000);
+  } else if (response.uniqueCode === "CGP0109") {
+    showToast(getToastTypes.type2, response.message);
+    setTimeout(() => {
+      window.location.reload();
+    }, 3000);
+  }
 };
 
 export const BlockMarketTable = () => {
@@ -60,7 +71,7 @@ export const BlockMarketTable = () => {
     {
       label: "Edit",
       icon: EditIcon,
-      onClick: (row) => handleBlockUnBlockGame(row.id, "category"), // TODO : Blocking & Unblocking at Server end
+      onClick: (row) => handleBlockUnBlockGame(row, "category"), // TODO : Blocking & Unblocking at Server end
     },
   ];
 
