@@ -4,7 +4,7 @@ import { ErrorPage } from "../../../pages/jsx/Error";
 import { GameList } from "../../client/gammeList/GameList";
 import { GameRunner } from "../../game/common/layout/jsx/GameRunner";
 
-export const GameRoutes = () => {
+export const GameRoutes = ({ catagory }) => {
   return (
     <Routes>
       <Route path={path.home} index element={<GameList />} />
