@@ -25,9 +25,13 @@ export const Filter = ({ onFilter }) => {
     "companyLenDen",
     "inOut",
     "profitAndLoss",
+    "ledger",
+    "statement"
   ];
   const applyFilterType2 = ["manageClients", "blockClients", "commission"];
   const applyFilterType3 = [];
+
+  console.log(currentPath);
 
   // Define filters associated with each type
   const filterType1 = ["startDate", "endDate", "limit", "offset"];
