@@ -1,7 +1,11 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { Table } from "../../../../common/table/jsx/Table.jsx";
-import { EditIcon, SettingsIcon } from "../../../../../assets/assets.jsx";
+import {
+  ChangeLockIcon,
+  EditIcon,
+  SettingsIcon,
+} from "../../../../../assets/assets.jsx";
 import { routesPathClient as path } from "../../../../routing/helper/routesPathClient.js";
 import { Loader } from "../../../../common/Loader.jsx";
 import style from "./Table.module.css";
@@ -45,7 +49,7 @@ export const ClientTable = () => {
     },
     {
       label: "Settings",
-      icon: SettingsIcon,
+      icon: ChangeLockIcon,
       onClick: (row) => navigate(`/agent/managePassword/${row.id}`),
     },
   ];
