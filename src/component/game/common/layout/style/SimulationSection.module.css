@@ -2,6 +2,18 @@
   position: relative;
 }
 
+.fpsCounter {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-size: 14px;
+  z-index: 100;
+}
+
 .videoCanvas {
   display: block;
 }

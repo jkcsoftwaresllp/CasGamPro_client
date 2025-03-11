@@ -16,6 +16,11 @@ export const SimulationSection = ({ gameType }) => {
   // Threshold in milliseconds (e.g., 3 seconds)
   const refreshThreshold = 3000;
 
+  // Tracking frame rate from websocket
+  const frameCountRef = useRef(0);
+  const lastFpsUpdateRef = useRef(Date.now());
+  const [receivedFps, setReceivedFps] = useState(0);
+
   const isDevelopment = import.meta.env.DEV;
   const productionIP = "88.222.214.174";
 
@@ -24,6 +29,29 @@ export const SimulationSection = ({ gameType }) => {
     : `ws://${productionIP}:5500`;
 
   const [isTransitioning, setIsTransitioning] = useState(false);
+
+  // Setup FPS counter - updates the displayed FPS once per second
+  useEffect(() => {
+    const fpsInterval = setInterval(() => {
+      const now = Date.now();
+      const elapsed = now - lastFpsUpdateRef.current;
+      
+      if (elapsed > 0) {
+        // Calculate frames per second
+        const fps = Math.round((frameCountRef.current * 1000) / elapsed);
+        setReceivedFps(fps);
+        
+        // Reset counters
+        frameCountRef.current = 0;
+        lastFpsUpdateRef.current = now;
+        
+        // Log to console
+        console.log(`WebSocket receiving at ${fps} frames per second`);
+      }
+    }, 1000);
+    
+    return () => clearInterval(fpsInterval);
+  }, []);
 
   // Add visibility change detection
   useEffect(() => {
@@ -114,11 +142,18 @@ export const SimulationSection = ({ gameType }) => {
           if (!mounted) return;
           try {
             const data = JSON.parse(event.data);
+            
             if (data.status === "frame") {
+              // Increment frame counter for FPS calculation
+              frameCountRef.current++;
+              
+              // Process frame as usual
               handleVideoFrame(data);
             } else if (data.status === "transition") {
               // Call the transition handler when a transition signal is received.
               handleTransition(data.transition_type, data.duration);
+            } else if (data.status === "card_placed") {
+              console.log(`Card placed event: ${data.card} at frame ${data.frame_number}`);
             }
           } catch (err) {
             console.error("Error processing message:", err);
@@ -177,6 +212,12 @@ export const SimulationSection = ({ gameType }) => {
           Connecting to video stream...
         </div>
       )}
+      
+      {/* Display the received FPS counter */}
+      <div className={styles.fpsCounter}>
+        Receiving: {receivedFps} FPS
+      </div>
+      
       <div style={{ position: "relative" }}>
         <canvas
           ref={canvasRef}
