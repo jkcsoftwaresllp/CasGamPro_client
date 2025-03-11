@@ -116,9 +116,9 @@ export const ManagePassword = () => {
           <h2 className={style.title}>
             {selfChange ? "Change Password" : `Change Password for ${finalId}`}
           </h2>
-
+          
           <PasswordInput
-            placeholder="Current Password"
+            placeholder={selfChange ? "Current Password" : "Your Password"}
             onChange={(value) => {
               setError("");
               setCurrentPassword(value);
