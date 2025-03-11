@@ -4,6 +4,7 @@ import { Loader } from "../../../../common/Loader.jsx";
 import style from "./Table.module.css";
 import { useOutletContext } from "react-router-dom";
 import { TableOverWindow } from "../TableOverWindow.jsx";
+import { apiCall } from "../../../../common/apiCall.js";
 
 export const LiveCasinoTable = ({}) => {
   const context = useOutletContext() || {};
@@ -42,14 +43,12 @@ export const LiveCasinoTable = ({}) => {
     console.log("API Response:", response);
 
     if (response.uniqueCode === "CGP0289") {
-      setDataDetailView(response.data.result);
+      setDataDetailView(response.data.results);
     } else {
       console.error("API Error:", response.data);
     }
 
     setIsOverlayView(true);
-
-    console.log("Cell clicked", value, row);
   };
 
   return (
