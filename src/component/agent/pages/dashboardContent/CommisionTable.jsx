@@ -60,7 +60,6 @@ export const CommissionTable = () => {
 
   const columns = useMemo(
     () => [
-      { key: "id", label: "Client" },
       { key: "name", label: "Name" },
       { key: "casinoCommission", label: "Casino Comm." },
       { key: "lotteryCommission", label: "Lottery Comm." },
