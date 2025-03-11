@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { GameTile } from "./gameTiles/GameTiles";
 import style from "./style/GameList.module.css";
 
@@ -10,6 +10,7 @@ import imgDragonTiger from "./img/dragonTiger/dragonTiger.png";
 import { useButtonNavigation } from "../../../hooks/useButtonNavigation";
 import { routesPathClient as path } from "../../routing/helper/routesPathClient";
 import { GAME_TYPES, validGames } from "../../game/helper/gameTypes";
+import { apiCall } from "../../common/apiCall";
 
 export const GameList = () => {
   const handleCardClick = useButtonNavigation();
@@ -22,6 +23,22 @@ export const GameList = () => {
   const dragonTigerLion = validGames[5];
   const dragonTigerTwo = validGames[6];
   const lucky7A = validGames[7];
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await apiCall(
+        `/auth-api/client/games/categories/${id}`,
+        "GET"
+      );
+      console.log("API call for Exposure", response);
+
+      if (response && response.uniqueCode === "CGP0153") {
+        setExposure(response.data.balance);
+        setCoins(response.data.coins);
+      }
+    };
+    fetchData();
+  }, []);
 
   return (
     <div className={style.gameListWrapper}>
