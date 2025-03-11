@@ -147,7 +147,7 @@ export const Filter = ({ onFilter }) => {
                     value={filters.clientName}
                     onChange={handleChange}
                     className={style.input}
-                    placeholder="Enter Client Name"
+                    placeholder="Enter User Name"
                   />
                 </div>
               )}
