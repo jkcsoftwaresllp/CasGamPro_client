@@ -26,15 +26,14 @@ export const Filter = ({ onFilter }) => {
     "inOut",
     "profitAndLoss",
     "ledger",
-    "statement"
+    "statement",
   ];
   const applyFilterType2 = ["manageClients", "blockClients", "commission"];
   const applyFilterType3 = [];
 
-
   // Define filters associated with each type
   const filterType1 = ["startDate", "endDate", "limit", "offset"];
-  const filterType2 = ["userId", "clientName"];
+  const filterType2 = ["clientName"];
   const filterType3 = [...filterType1, ...filterType2]; // Combination of both
 
   const dropdownLimit = [10, 20, 30, 50, 100];
@@ -141,7 +140,7 @@ export const Filter = ({ onFilter }) => {
 
               {selectedFilter === "Client Name" && (
                 <div className={style.formGroup}>
-                  <label>Client Name</label>
+                  <label>User Name</label>
                   <input
                     type="text"
                     name="clientName"
