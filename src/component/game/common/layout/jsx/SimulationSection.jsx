@@ -13,6 +13,8 @@ export const SimulationSection = ({ gameType }) => {
   
   // Track the current frame being displayed
   const currentFrameRef = useRef(0);
+  // Track current frame number from metadata
+  const currentFrameNumberRef = useRef(0);
   
   // Store pending card reveals by frame number
   const pendingCardRevealsRef = useRef({});
@@ -24,7 +26,8 @@ export const SimulationSection = ({ gameType }) => {
   // Display stats
   const [stats, setStats] = useState({
     displayFps: 0,
-    frameLag: 0
+    frameLag: 0,
+    serverFps: 0
   });
 
   const isDevelopment = import.meta.env.DEV;
@@ -41,11 +44,18 @@ export const SimulationSection = ({ gameType }) => {
   
   // Frame buffer - store received frames to ensure smooth playback
   const frameBufferRef = useRef([]);
-  const maxBufferSize = 5; // Maximum frames to buffer
+  const maxBufferSize = 10; // Increased buffer size
   
   // FPS tracking
   const frameTimeRef = useRef(Date.now());
   const frameCountRef = useRef(0);
+  
+  // Server FPS tracking
+  const serverFrameCountRef = useRef(0);
+  const serverLastTimeRef = useRef(Date.now());
+  
+  // Clean up resources from memory
+  const urlsToRevoke = useRef([]);
   
   // Handle visibility change
   useEffect(() => {
@@ -87,16 +97,25 @@ export const SimulationSection = ({ gameType }) => {
       }, duration / 2);
     }
   };
+  
+  // Clean up blob URLs to prevent memory leaks
+  const cleanupResources = () => {
+    while (urlsToRevoke.current.length > 0) {
+      const url = urlsToRevoke.current.pop();
+      URL.revokeObjectURL(url);
+    }
+  };
 
   // Process any pending card reveals for the current frame
   const processCardReveals = (frameNumber) => {
     const pending = pendingCardRevealsRef.current;
     
     // Check if we have any card reveals for this frame or earlier frames
-    for (let frame = 0; frame <= frameNumber; frame++) {
-      if (pending[frame]) {
+    Object.keys(pending).forEach(frameKey => {
+      const frame = parseInt(frameKey, 10);
+      if (frame <= frameNumber) {
         // Process all cards for this frame
-        pending[frame].forEach(card => {
+        pending[frameKey].forEach(card => {
           console.log(`Revealing card ${card} at frame ${frameNumber}`);
           if (typeof gameState.handleCardPlacement === 'function') {
             gameState.handleCardPlacement(card);
@@ -104,9 +123,9 @@ export const SimulationSection = ({ gameType }) => {
         });
         
         // Remove processed reveals
-        delete pending[frame];
+        delete pending[frameKey];
       }
-    }
+    });
   };
   
   // Setup WebSocket connection
@@ -143,24 +162,52 @@ export const SimulationSection = ({ gameType }) => {
           setIsConnected(false);
         };
         
-        wsRef.current.onmessage = (event) => {
+        wsRef.current.onmessage = async (event) => {
           if (!mounted) return;
           
           try {
+            // Handle binary message (frame data)
+            if (event.data instanceof Blob) {
+              serverFrameCountRef.current++;
+              
+              // Convert blob to URL for faster rendering
+              const imgUrl = URL.createObjectURL(event.data);
+              urlsToRevoke.current.push(imgUrl);
+              
+              // Add to buffer with current frame number from metadata
+              if (frameBufferRef.current.length < maxBufferSize) {
+                frameBufferRef.current.push({
+                  frame_number: currentFrameNumberRef.current,
+                  imgUrl
+                });
+              } else {
+                // If buffer is full, just revoke the URL to avoid memory leaks
+                URL.revokeObjectURL(imgUrl);
+              }
+              
+              // Update server FPS calculation
+              const now = Date.now();
+              if (now - serverLastTimeRef.current >= 1000) {
+                const fps = Math.round((serverFrameCountRef.current * 1000) / (now - serverLastTimeRef.current));
+                setStats(prev => ({ ...prev, serverFps: fps }));
+                serverFrameCountRef.current = 0;
+                serverLastTimeRef.current = now;
+              }
+              
+              return; // Exit early - we've handled the binary message
+            }
+            
+            // Handle text messages (JSON)
             const data = JSON.parse(event.data);
             
-            if (data.status === "frame") {
-              // Add frame to buffer
-              const buffer = frameBufferRef.current;
-              buffer.push(data);
-              
-              // Keep buffer at a reasonable size
-              while (buffer.length > maxBufferSize) {
-                buffer.shift();
-              }
-            } else if (data.status === "transition") {
+            if (data.status === "frameMetadata") {
+              // Store frame number for the next binary message
+              currentFrameNumberRef.current = data.frame_number;
+            } 
+            else if (data.status === "transition") {
               handleTransition(data.transition_type, data.duration);
-            } else if (data.status === "card_placed") {
+            } 
+            else if (data.status === "card_placed") {
               // Store card reveal for specific frame
               const frameNumber = data.frame_number;
               console.log(`Received card placement: ${data.card} at frame ${frameNumber}`);
@@ -196,18 +243,23 @@ export const SimulationSection = ({ gameType }) => {
       if (animationFrameId.current) {
         cancelAnimationFrame(animationFrameId.current);
       }
+      
+      // Clean up all blob URLs
+      cleanupResources();
     };
   }, [roundId]);
   
-  // Render loop at consistent 30 FPS
+  // Render loop at fixed rate
   const startRenderLoop = () => {
     let lastFrameTime = 0;
-    const frameInterval = 1000 / 30; // 33.33ms for 30 FPS
+    const targetFps = 30; // Fixed target FPS
+    const frameInterval = 1000 / targetFps;
     
     const renderFrame = (timestamp) => {
-      // Only render at a consistent framerate
+      // Calculate time since last frame
       const elapsed = timestamp - lastFrameTime;
       
+      // Only render if enough time has passed for target FPS
       if (elapsed >= frameInterval) {
         lastFrameTime = timestamp - (elapsed % frameInterval);
         
@@ -221,8 +273,8 @@ export const SimulationSection = ({ gameType }) => {
           // Calculate frame lag for stats
           const bufferDepth = buffer.length;
           
-          // Render the frame
-          renderVideoFrame(frameData);
+          // Render the frame from the image URL
+          renderFromUrl(frameData.imgUrl, frameData.frame_number);
           
           // Process any card reveals for this frame
           processCardReveals(currentFrameRef.current);
@@ -231,12 +283,16 @@ export const SimulationSection = ({ gameType }) => {
           frameCountRef.current++;
           const now = Date.now();
           if (now - frameTimeRef.current >= 1000) {
-            setStats({
+            setStats(prev => ({
+              ...prev,
               displayFps: frameCountRef.current,
               frameLag: bufferDepth
-            });
+            }));
             frameCountRef.current = 0;
             frameTimeRef.current = now;
+            
+            // Clean up old blob URLs periodically to prevent memory leaks
+            cleanupResources();
           }
         }
       }
@@ -247,16 +303,12 @@ export const SimulationSection = ({ gameType }) => {
     animationFrameId.current = requestAnimationFrame(renderFrame);
   };
   
-  // Render a single video frame
-  const renderVideoFrame = (data) => {
-    if (!data || !data.frame_data) {
-      return;
-    }
-    
+  // Render from blob URL (much faster than decoding base64)
+  const renderFromUrl = (imgUrl, frameNumber) => {
     const canvas = canvasRef.current;
     if (!canvas) return;
     
-    const ctx = canvas.getContext("2d");
+    const ctx = canvas.getContext("2d", { alpha: false }); // disable alpha for better performance
     if (!ctx) return;
     
     const img = new Image();
@@ -269,12 +321,11 @@ export const SimulationSection = ({ gameType }) => {
       const x = (canvas.width - img.width * scale) / 2;
       const y = (canvas.height - img.height * scale) / 2;
       ctx.drawImage(img, x, y, img.width * scale, img.height * scale);
+      
+      // Clean up the URL after using it
+      URL.revokeObjectURL(imgUrl);
     };
-    img.onerror = (e) => {
-      console.error("Failed to load frame image:", e);
-      setError("Failed to load video frame");
-    };
-    img.src = `data:image/jpeg;base64,${data.frame_data}`;
+    img.src = imgUrl;
   };
   
   return (
@@ -288,7 +339,7 @@ export const SimulationSection = ({ gameType }) => {
       
       {/* Display performance stats */}
       <div className={styles.fpsCounter}>
-        Display: {stats.displayFps} FPS | Buffer: {stats.frameLag} frames
+        Display: {stats.displayFps} FPS | Buffer: {stats.frameLag} frames | Server: {stats.serverFps} FPS
       </div>
       
       <div style={{ position: "relative" }}>
