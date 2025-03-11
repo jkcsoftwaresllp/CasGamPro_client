@@ -11,15 +11,19 @@ export const SimulationSection = ({ gameType }) => {
   const [error, setError] = useState(null);
   const [isConnected, setIsConnected] = useState(false);
   
-  // Reference to track when page was hidden
-  const hiddenTimeRef = useRef(0);
-  // Threshold in milliseconds (e.g., 3 seconds)
-  const refreshThreshold = 3000;
-
-  // Tracking frame rate from websocket
+  // Latest frame data received from WebSocket
+  const latestFrameRef = useRef(null);
+  
+  // Animation frame request ID
+  const animationFrameId = useRef(null);
+  
+  // For FPS tracking
+  const [displayFps, setDisplayFps] = useState(0);
+  const frameTimeRef = useRef(Date.now());
   const frameCountRef = useRef(0);
-  const lastFpsUpdateRef = useRef(Date.now());
-  const [receivedFps, setReceivedFps] = useState(0);
+  
+  const hiddenTimeRef = useRef(0);
+  const refreshThreshold = 3000;
 
   const isDevelopment = import.meta.env.DEV;
   const productionIP = "88.222.214.174";
@@ -29,75 +33,20 @@ export const SimulationSection = ({ gameType }) => {
     : `ws://${productionIP}:5500`;
 
   const [isTransitioning, setIsTransitioning] = useState(false);
-
-  // Setup FPS counter - updates the displayed FPS once per second
-  useEffect(() => {
-    const fpsInterval = setInterval(() => {
-      const now = Date.now();
-      const elapsed = now - lastFpsUpdateRef.current;
-      
-      if (elapsed > 0) {
-        // Calculate frames per second
-        const fps = Math.round((frameCountRef.current * 1000) / elapsed);
-        setReceivedFps(fps);
-        
-        // Reset counters
-        frameCountRef.current = 0;
-        lastFpsUpdateRef.current = now;
-        
-        // Log to console
-        console.log(`WebSocket receiving at ${fps} frames per second`);
-      }
-    }, 1000);
-    
-    return () => clearInterval(fpsInterval);
-  }, []);
-
-  // Add visibility change detection
-  useEffect(() => {
-    const handleVisibilityChange = () => {
-      if (document.hidden) {
-        // Page is now hidden - record the time
-        hiddenTimeRef.current = Date.now();
-      } else {
-        // Page is now visible again - check how long it was hidden
-        const hiddenDuration = Date.now() - hiddenTimeRef.current;
-        
-        // If hidden for longer than our threshold, refresh the page
-        if (hiddenTimeRef.current > 0 && hiddenDuration > refreshThreshold) {
-          console.log(`Page was hidden for ${hiddenDuration}ms - refreshing`);
-          window.location.reload();
-        }
-      }
-    };
-
-    // Add visibility change listener
-    document.addEventListener("visibilitychange", handleVisibilityChange);
-    
-    // Clean up the listener when component unmounts
-    return () => {
-      document.removeEventListener("visibilitychange", handleVisibilityChange);
-    };
-  }, []);
-
-  // Sample transition handler using a simple CSS fade overlay.
+  
+  // Handle transitions
   const handleTransition = (transitionType, duration) => {
     if (transitionType === "fade") {
       const overlay = overlayRef.current;
       if (!overlay) return;
 
       setIsTransitioning(true);
-
-      // Fade in (black screen)
       overlay.style.transition = `opacity ${duration / 2}ms ease-in`;
       overlay.style.opacity = "1";
 
-      // After fade in, start fade out
       setTimeout(() => {
         overlay.style.transition = `opacity ${duration / 2}ms ease-out`;
         overlay.style.opacity = "0";
-
-        // Clear transitioning state after complete fade
         setTimeout(() => {
           setIsTransitioning(false);
         }, duration / 2);
@@ -105,6 +54,34 @@ export const SimulationSection = ({ gameType }) => {
     }
   };
 
+  // Visibility change detection
+  useEffect(() => {
+    const handleVisibilityChange = () => {
+      if (document.hidden) {
+        hiddenTimeRef.current = Date.now();
+        // Cancel animation frame when tab is hidden to save resources
+        if (animationFrameId.current) {
+          cancelAnimationFrame(animationFrameId.current);
+          animationFrameId.current = null;
+        }
+      } else {
+        const hiddenDuration = Date.now() - hiddenTimeRef.current;
+        if (hiddenTimeRef.current > 0 && hiddenDuration > refreshThreshold) {
+          window.location.reload();
+        } else {
+          // Restart rendering loop
+          if (!animationFrameId.current) {
+            startRenderLoop();
+          }
+        }
+      }
+    };
+
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+    return () => document.removeEventListener("visibilitychange", handleVisibilityChange);
+  }, []);
+
+  // WebSocket connection
   useEffect(() => {
     let mounted = true;
 
@@ -144,16 +121,16 @@ export const SimulationSection = ({ gameType }) => {
             const data = JSON.parse(event.data);
             
             if (data.status === "frame") {
-              // Increment frame counter for FPS calculation
-              frameCountRef.current++;
-              
-              // Process frame as usual
-              handleVideoFrame(data);
+              // Just store the latest frame, don't render immediately
+              latestFrameRef.current = data;
             } else if (data.status === "transition") {
-              // Call the transition handler when a transition signal is received.
               handleTransition(data.transition_type, data.duration);
             } else if (data.status === "card_placed") {
-              console.log(`Card placed event: ${data.card} at frame ${data.frame_number}`);
+              console.log(`Card placed: ${data.card} at frame ${data.frame_number}`);
+              // Pass this to your game state handler directly
+              if (typeof gameState.handleCardPlacement === 'function') {
+                gameState.handleCardPlacement(data.card);
+              }
             }
           } catch (err) {
             console.error("Error processing message:", err);
@@ -166,18 +143,62 @@ export const SimulationSection = ({ gameType }) => {
     };
 
     initializeWebSocket();
+    
+    // Start the render loop
+    startRenderLoop();
 
     return () => {
       mounted = false;
       if (wsRef.current) {
         wsRef.current.close();
       }
+      
+      // Clean up animation frame
+      if (animationFrameId.current) {
+        cancelAnimationFrame(animationFrameId.current);
+      }
     };
   }, [roundId]);
 
-  const handleVideoFrame = (data) => {
+  // Consistent 30 FPS render loop
+  const startRenderLoop = () => {
+    let lastFrameTime = 0;
+    const frameInterval = 1000 / 30; // 33.33ms for 30 FPS
+    
+    const renderFrame = (timestamp) => {
+      // Calculate time since last frame
+      const elapsed = timestamp - lastFrameTime;
+      
+      // Only render if enough time has passed for 30 FPS
+      if (elapsed >= frameInterval) {
+        lastFrameTime = timestamp - (elapsed % frameInterval); // Adjust for timing precision
+        
+        // Render the latest frame if available
+        if (latestFrameRef.current) {
+          renderVideoFrame(latestFrameRef.current);
+        }
+        
+        // FPS calculation
+        frameCountRef.current++;
+        const now = Date.now();
+        if (now - frameTimeRef.current >= 1000) {
+          setDisplayFps(frameCountRef.current);
+          frameCountRef.current = 0;
+          frameTimeRef.current = now;
+        }
+      }
+      
+      // Continue the loop
+      animationFrameId.current = requestAnimationFrame(renderFrame);
+    };
+    
+    // Start the loop
+    animationFrameId.current = requestAnimationFrame(renderFrame);
+  };
+
+  // Actual frame rendering function
+  const renderVideoFrame = (data) => {
     if (!data || !data.frame_data) {
-      console.error("Received empty frame data");
       return;
     }
 
@@ -213,9 +234,9 @@ export const SimulationSection = ({ gameType }) => {
         </div>
       )}
       
-      {/* Display the received FPS counter */}
+      {/* Display the FPS counter */}
       <div className={styles.fpsCounter}>
-        Receiving: {receivedFps} FPS
+        Display: {displayFps} FPS
       </div>
       
       <div style={{ position: "relative" }}>
