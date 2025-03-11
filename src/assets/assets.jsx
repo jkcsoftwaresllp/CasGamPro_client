@@ -438,7 +438,7 @@ export const likedIcon = (
     />
     <path
       fill="currentColor"
-      fill-rule="evenodd"
+      fillRule="evenodd"
       d="M2.968 9.485a.75.75 0 0 1 .78.685l.97 11.236a1.237 1.237 0 1 1-2.468.107V10.234a.75.75 0 0 1 .718-.749"
       clip-rule="evenodd"
       opacity="0.5"
@@ -459,7 +459,7 @@ export const unlikeIcon = (
     />
     <path
       fill="currentColor"
-      fill-rule="evenodd"
+      fillRule="evenodd"
       d="M2.968 15.265a.75.75 0 0 0 .78-.685l.97-11.236a1.237 1.237 0 1 0-2.468-.107v11.279a.75.75 0 0 0 .718.75"
       clip-rule="evenodd"
       opacity="0.5"
@@ -637,7 +637,7 @@ export const depositIcon = (
   </svg>
 );
 
-export const ChangeLockIcon = (
+export const changeLockIcon = (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="24"
@@ -647,6 +647,38 @@ export const ChangeLockIcon = (
     <path
       fill="currentColor"
       d="M7 13.23q-.517 0-.874-.356T5.769 12t.357-.874t.874-.357t.874.357t.357.874t-.357.874t-.874.357M7 17q-2.077 0-3.538-1.461T2 12t1.462-3.538T7 7q1.54 0 2.778.835q1.238.834 1.807 2.165h9.204l2 2l-3.193 3.154l-1.712-1.288l-1.807 1.326L14.298 14h-2.713q-.57 1.312-1.807 2.156T7 17m0-1q1.477 0 2.52-.889T10.856 13h3.76l1.43.967l1.858-1.333l1.621 1.222L21.381 12l-1-1h-9.525q-.292-1.223-1.336-2.111T7 8Q5.35 8 4.175 9.175T3 12t1.175 2.825T7 16"
+    />
+  </svg>
+);
+
+export const profitLossIcon = (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="24"
+    height="24"
+    viewBox="0 0 48 48"
+  >
+    <g fill="none" stroke="currentColor" strokeLinejoin="round" strokeWidth="4">
+      <path fill="currentColor" d="M6 20h8v14H6zm14-6h8v26h-8z" />
+      <path strokeLinecap="round" d="M24 44v-4" />
+      <path fill="currentColor" d="M34 12h8v9h-8z" />
+      <path strokeLinecap="round" d="M10 20V10m28 24V21m0-9V4" />
+    </g>
+  </svg>
+);
+
+export const statementIcon = (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="24"
+    height="24"
+    viewBox="0 0 16 16"
+  >
+    <path
+      fill="currentColor"
+      fillRule="evenodd"
+      d="M1.5 1h13l.5.5v10l-.5.5H7.707l-2.853 2.854L4 14.5V12H1.5l-.5-.5v-10zm6 10H14V2H2v9h2.5l.5.5v1.793l2.146-2.147zm0-8h1v5h-1zm0 7h1V9h-1z"
+      clipRule="evenodd"
     />
   </svg>
 );

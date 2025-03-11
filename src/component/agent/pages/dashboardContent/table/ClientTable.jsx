@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { Table } from "../../../../common/table/jsx/Table.jsx";
 import {
-  ChangeLockIcon,
+  changeLockIcon,
   EditIcon,
   SettingsIcon,
 } from "../../../../../assets/assets.jsx";
@@ -49,7 +49,7 @@ export const ClientTable = () => {
     },
     {
       label: "Settings",
-      icon: ChangeLockIcon,
+      icon: changeLockIcon,
       onClick: (row) => navigate(`/agent/managePassword/${row.id}`),
     },
   ];

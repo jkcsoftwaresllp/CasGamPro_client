@@ -20,8 +20,8 @@ export const InOutTable = ({}) => {
   const columns = [
     { key: "date", label: "Date" },
     { key: "description", label: "Description" },
-    { key: "debit", label: "Debit" },
-    { key: "credit", label: "Credit" },
+    { key: "debit", label: "Gya (Out)" },
+    { key: "credit", label: "Aya (In)" },
     { key: "balance", label: "Balance" },
   ];
 

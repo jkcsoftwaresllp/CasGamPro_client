@@ -3,7 +3,9 @@ import { useNavigate, useOutletContext } from "react-router-dom";
 import { Table } from "../../../common/table/jsx/Table.jsx";
 import {
   depositIcon,
+  profitLossIcon,
   SettingsIcon,
+  statementIcon,
   withdrawalIcon,
 } from "../../../../assets/assets.jsx";
 import { routesPathClient as path } from "../../../routing/helper/routesPathClient.js";
@@ -16,6 +18,7 @@ import { handleTransaction } from "./helper/transactionHelper.js";
 export const CommissionTable = () => {
   const [showDialog, setShowDialog] = useState(false);
   const [selectedClientId, setSelectedClientId] = useState(null);
+  const [selectedTable, setSelectedTable] = useState(null);
   const navigate = useNavigate();
 
   const context = useOutletContext() || {};
@@ -23,14 +26,16 @@ export const CommissionTable = () => {
 
   const basePath = `${path.agent}${path.manageClients}`;
 
-  const openDialog = (clientId) => {
+  const openDialog = (clientId, table) => {
     setSelectedClientId(clientId);
+    setSelectedTable(table);
     setShowDialog(true);
   };
 
   const closeDialog = () => {
     setShowDialog(false);
     setSelectedClientId(null);
+    setSelectedTable(null);
   };
 
   const tableData = data.map((client) => ({
@@ -40,7 +45,9 @@ export const CommissionTable = () => {
     casinoCommission: client.casinoCommission,
     lotteryCommission: client.lotteryCommission,
     currentLimit: client.currentLimit,
-    showExpo: <CustomBtn label="Expo" onClick={() => openDialog(client.id)} />,
+    showExpo: (
+      <CustomBtn label="Expo" onClick={() => openDialog(client.id, "Expo")} />
+    ),
   }));
 
   const columns = [
@@ -66,7 +73,20 @@ export const CommissionTable = () => {
       icon: withdrawalIcon,
       onClick: (row) => handleTransaction("Withdrawal", row),
     },
-    { label: "Settings", icon: SettingsIcon, onClick: (row) => {} },
+    {
+      label: "ProfitLoss",
+      icon: profitLossIcon,
+      onClick: (row) => {
+        openDialog(row.id, "ProfitLoss");
+      },
+    },
+    {
+      label: "Statement",
+      icon: statementIcon,
+      onClick: (row) => {
+        openDialog(row.id, "Statement");
+      },
+    },
   ];
 
   const handleCellClick = (value, row) => {
@@ -87,6 +107,7 @@ export const CommissionTable = () => {
               onClose={closeDialog}
               header="Client Exposure Details"
               clientId={selectedClientId}
+              tableName={selectedTable}
             />
           ) : (
             <Table
