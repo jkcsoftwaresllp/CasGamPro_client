@@ -2,7 +2,7 @@
   width: 90%;
   border-radius: var(--borderRadius);
   padding: 10px 5px;
-  background-color: var(--color-bg-primary);
+  background-color: var(--color-bg-secondary);
   cursor: pointer;
 }
 
