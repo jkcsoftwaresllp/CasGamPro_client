@@ -25,8 +25,8 @@ export const sidebarItems = [
   },
   {
     id: 2,
-    label: "Live Casino",
-    value: "liveCasino",
+    label: "Daily P/L Report",
+    value: "DailyReport",
     icon: CasinoIcon,
     path: `${path.agent}${path.liveCasino}`,
   },
@@ -71,13 +71,14 @@ export const sidebarItems = [
       },
     ],
   },
-  {
-    id: 4,
-    label: "Block Market",
-    value: "blockMarket",
-    icon: BlockIcon,
-    path: `${path.agent}${path.blockMarket}`,
-  },
+  //  TODO : Implement Game Playing Blocking from backend then uncomment it
+  // {
+  //   id: 4,
+  //   label: "Block Market",
+  //   value: "blockMarket",
+  //   icon: BlockIcon,
+  //   path: `${path.agent}${path.blockMarket}`,
+  // },
   {
     id: 5,
     label: "Manage Password",

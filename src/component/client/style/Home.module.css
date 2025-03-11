@@ -4,22 +4,30 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 20px;
 }
 
 .homeBtn {
-  width: 500px;
+  width: 800px;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
   gap: 20px;
 }
+
+.homeBtn button {
+  font-size: var(--text-xl);
+  flex: 1;
+}
+
 @media (max-width: 480px) {
   .homeBtn {
     width: 100%;
     padding: 10px;
   }
-}
-.home button {
-  width: 200px;
+
+  .homeBtn button {
+    font-size: var(--text-md);
+  }
 }

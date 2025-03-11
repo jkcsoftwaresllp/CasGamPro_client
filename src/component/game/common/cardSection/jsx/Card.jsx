@@ -1,5 +1,23 @@
 import React from "react";
 import styles from "../style/Card.module.css";
+import { getDeckCard } from "../../../../../assets/cards/getDeck";
+
+export const Card = ({ code, onClick, isShow = true }) => {
+  const card = getDeckCard(code);
+
+  return (
+    <div className={styles.cardContainer} onClick={() => onClick(code)}>
+      <img src={card} alt={code} />
+    </div>
+  );
+};
+
+/*
+
+// TODO : Remove if above approcah is Working
+
+import React from "react";
+import styles from "../style/Card.module.css";
 import gameImage from "../assets/game.png";
 import {
   clubIcon,
@@ -56,3 +74,7 @@ export const Card = ({ code, onClick, isShow = true }) => {
     </div>
   );
 };
+
+
+
+*/

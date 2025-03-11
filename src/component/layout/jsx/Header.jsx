@@ -14,6 +14,8 @@ export const Header = () => {
   const { username, clientName } = user || {};
 
   const [menuOpen, setMenuOpen] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(true);
+
   const menuRef = useRef(null);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 
@@ -27,6 +29,13 @@ export const Header = () => {
     }
   };
 
+  // Initialize theme preference on mount
+  useEffect(() => {
+    const savedTheme = localStorage.getItem("theme") || "dark";
+    setIsDarkMode(savedTheme === "dark");
+    document.documentElement.setAttribute("data-theme", savedTheme);
+  }, []);
+
   // Detect screen resize
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth <= 768);
@@ -34,31 +43,56 @@ export const Header = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  // Ensure dark mode setting is applied on mount
+  useEffect(() => {
+    const savedTheme = localStorage.getItem("theme") || "dark";
+    setIsDarkMode(savedTheme === "dark");
+    document.documentElement.setAttribute("data-theme", savedTheme);
+  }, []);
+
+  const renderUserInfo = () => (
+    <>
+      {user !== null ? (
+        <>
+          <div className={style.one}>
+            <HeaderHelper />
+          </div>
+          <div className={style.two}>
+            {username && (
+              <p className={style.userId}>
+                {username.toUpperCase()} : {clientName}
+              </p>
+            )}
+            <Wallet />
+            <HeaderAuth />
+            {/* Always pass setIsDarkMode */}
+            <HeaderToggle
+              isDarkMode={isDarkMode}
+              setIsDarkMode={setIsDarkMode}
+            />
+          </div>
+        </>
+      ) : (
+        <div className={style.afterLogOut}>
+          <HeaderAuth />
+          {/* Ensure setIsDarkMode is passed even when logged out */}
+          <HeaderToggle isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode} />
+        </div>
+      )}
+    </>
+  );
+
   return (
     <header className={style.headerWrapper} onClick={handleClickOutside}>
       <div className={style.header}>
         <h1 className={style.header__title} onClick={() => navigate("/")}>
           CasGamPro
         </h1>
-        <div className={style.fullSection}>
-          <HeaderHelper />
-        </div>
 
         <div className={style.rightSection}>
           {/* Show all options directly on larger screens */}
           {!isMobile ? (
-            <>
-              {username && (
-                <>
-                  <p className={style.userId}>
-                    {username?.toUpperCase()} : {clientName}
-                  </p>
-                  <Wallet />
-                </>
-              )}
-              <HeaderAuth />
-              <HeaderToggle />
-            </>
+            <>{renderUserInfo()}</>
           ) : (
             <>
               {/* Hamburger Menu Button for Small Screens */}
@@ -68,15 +102,8 @@ export const Header = () => {
 
               {/* Dropdown Menu for Small Screens */}
               {menuOpen && (
-                <div ref={menuRef} className={style.menuDropdown}>
-                  {username && (
-                    <p className={style.userId}>
-                      {username?.toUpperCase()} : {clientName}
-                    </p>
-                  )}
-                  {username && <Wallet />}
-                  <HeaderAuth />
-                  <HeaderToggle />
+                <div ref={menuRef} className={style.menuDropdownWrapper}>
+                  <div className={style.menuDropdown}>{renderUserInfo()}</div>
                 </div>
               )}
             </>

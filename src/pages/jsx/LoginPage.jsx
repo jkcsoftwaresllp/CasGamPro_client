@@ -7,6 +7,7 @@ import style from "../styles/LoginPage.module.css";
 import { Loader } from "../../component/common/Loader.jsx";
 import { useAuth } from "../../context/jsx/AuthContext.jsx";
 import { navigateByRole } from "../helper/navigateByRole.js";
+import { getToastTypes, showToast } from "../../component/common/showToast.jsx";
 
 export const LoginPage = () => {
   const [userId, setUserId] = useState("");
@@ -28,14 +29,14 @@ export const LoginPage = () => {
 
     // Input validation
     if (!userId.trim() || !password.trim()) {
-      setError("Both fields are required");
+      showToast(getToastTypes.type4, "Both fields are required");
       return;
     }
 
     try {
       await handleLogin({ userId, password });
     } catch (err) {
-      setError(err.message || "Login failed. Please try again.");
+      showToast(getToastTypes.type4, error);
     }
   };
 
@@ -47,8 +48,8 @@ export const LoginPage = () => {
         <div className={style.form}>
           <div className={style.form_container}>
             <h2 className={style.form_details}>Login</h2>
-            <UsernameInput value={userId} onChange={setUserId} />
-            <PasswordInput value={password} onChange={setPassword} />
+            <UsernameInput onChange={setUserId} />
+            <PasswordInput onChange={setPassword} />
             {error && <div className={style.error}>{error}</div>}
             <Button label="Login" onClick={handleLoginFun} />
           </div>
