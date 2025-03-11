@@ -3,6 +3,7 @@ import style from "./style/Filter.module.css";
 import { Button } from "./Button";
 import { FilterIcon } from "../../assets/assets";
 import { IconBtn } from "./IconBtn";
+import { useLocation } from "react-router-dom";
 
 export const Filter = ({ onFilter }) => {
   const [filters, setFilters] = useState({
@@ -15,6 +16,35 @@ export const Filter = ({ onFilter }) => {
   });
   const [selectedFilter, setSelectedFilter] = useState(null);
   const [showOptions, setShowOptions] = useState(false);
+  const location = useLocation();
+  const currentPath = location.pathname.split("/").pop();
+
+  // Define paths for each filter type
+  const applyFilterType1 = [
+    "daily-report",
+    "companyLenDen",
+    "inOut",
+    "profitAndLoss",
+  ];
+  const applyFilterType2 = ["manageClients", "blockClients", "commission"];
+  const applyFilterType3 = [];
+
+  // Define filters associated with each type
+  const filterType1 = ["startDate", "endDate", "limit", "offset"];
+  const filterType2 = ["userId", "clientName"];
+  const filterType3 = [...filterType1, ...filterType2]; // Combination of both
+
+  const dropdownLimit = [10, 20, 30, 50, 100];
+
+  // Determine which filters to apply based on `currentPath`
+  let applicableFilters = [];
+  if (applyFilterType1.includes(currentPath)) {
+    applicableFilters = filterType1;
+  } else if (applyFilterType2.includes(currentPath)) {
+    applicableFilters = filterType2;
+  } else if (applyFilterType3.includes(currentPath)) {
+    applicableFilters = filterType3;
+  }
 
   const handleChange = (e) => {
     setFilters({ ...filters, [e.target.name]: e.target.value });
@@ -40,14 +70,30 @@ export const Filter = ({ onFilter }) => {
             {/* Filter Options Modal */}
             <div className={style.filterOptionsModal}>
               <div className={style.filterOptions}>
-                {["Date", "User ID", "Client Name", "Limit/Offset"].map(
-                  (option) => (
-                    <Button
-                      key={option}
-                      onClick={() => setSelectedFilter(option)}
-                      label={option}
-                    />
-                  )
+                {/* Dynamically Render Available Filters */}
+                {applicableFilters.includes("startDate") && (
+                  <Button
+                    onClick={() => setSelectedFilter("Date")}
+                    label="Date"
+                  />
+                )}
+                {applicableFilters.includes("userId") && (
+                  <Button
+                    onClick={() => setSelectedFilter("User ID")}
+                    label="User ID"
+                  />
+                )}
+                {applicableFilters.includes("clientName") && (
+                  <Button
+                    onClick={() => setSelectedFilter("Client Name")}
+                    label="Client Name"
+                  />
+                )}
+                {applicableFilters.includes("limit") && (
+                  <Button
+                    onClick={() => setSelectedFilter("Limit/Offset")}
+                    label="Limit/Offset"
+                  />
                 )}
               </div>
 
@@ -114,7 +160,7 @@ export const Filter = ({ onFilter }) => {
                       onChange={handleChange}
                       className={style.select}
                     >
-                      {[10, 20, 30, 50, 100].map((num) => (
+                      {dropdownLimit.map((num) => (
                         <option key={num} value={num}>
                           {num}
                         </option>
