@@ -4,13 +4,8 @@
   flex: 1;
   flex-direction: column;
   justify-content: flex-start;
-  gap: 1px;
+  gap: 10px;
   align-items: center;
   background: var(--color-bg-primary);
   overflow: auto;
-}
-
-.stakeBlocked {
-  padding: 30px 10px;
-  color: var(--color-text-primary);
 }

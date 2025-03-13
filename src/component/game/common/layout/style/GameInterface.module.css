@@ -2,127 +2,18 @@
   --detailsHei: 50px;
   height: 100%;
   width: 100%;
-  display: flex;
-  border: 1px solid yellow;
-  flex-direction: column;
 }
 
 .header {
   height: var(--detailsHei);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 0 10px;
-  gap: 10px;
 }
 
-/* Default styles for large screens */
-.gameDetail,
-.gameRoundId {
+.gameRoundId,
+.gameDetail {
+  font-size: var(--text-lg);
   font-weight: bolder;
   color: var(--color-text-primary);
-}
-.gameDetail {
-  font-size: var(--text-md);
-}
-
-.gameRoundId {
-  font-size: var(--text-sm);
-  color: var(--color-special-gold);
-}
-@media (max-width: 640px) {
-  .gameDetail {
-    font-size: var(--text-md);
-  }
-  .gameRoundId {
-    font-size: var(--text-xs);
-  }
-}
-
-.toggleButton {
-  cursor: pointer;
-  font-size: 14px;
-  padding: 8px;
-  color: var(--color-text-primary);
-}
-
-/* Medium screens (Tablets, md) */
-@media (max-width: 1024px) {
-  /* md and smaller */
-  .content {
-    position: fixed; /* Overlay effect */
-    width: 80%;
-    max-width: 600px;
-    min-height: 200px;
-    height: auto;
-    background: rgba(0, 0, 0, 0.8);
-    z-index: 9999;
-    border-radius: var(--borderRadius-md);
-    padding: 20px;
-  }
-
-  .cardsDiv {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: calc(100vh - var(--detailsHei));
-    width: 100vw;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    pointer-events: none;
-  }
-
-  .gameInterface {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0;
-  }
-
-  .contentWrapper {
-  }
-
-  .header {
-    flex-direction: row;
-  }
-
-  .gameRoundId,
-  .gameDetail {
-    font-size: var(--text-md) !important;
-  }
-}
-
-/* Small screens (Phones, sm) */
-@media (max-width: 500px) {
-  .header {
-    flex-direction: row;
-  }
-
-  .gameDetail {
-    font-size: var(--text-sm); /* smaller text for very small screens */
-    margin: 2px;
-  }
-  .gameRoundId {
-    font-size: var(--text-xs);
-  }
-}
-
-/* For screens between 640px and 728px */
-@media (min-width: 640px) and (max-width: 728px) {
-  .header {
-    flex-direction: row;
-  }
-
-  .gameDetail {
-    font-size: var(--text-md); /* adjust as needed */
-  }
-
-  .gameRoundId {
-    font-size: var(--text-xs); /* slightly larger than on <639px */
-  }
+  text-align: center;
 }
 
 .gameRoundId {
@@ -130,22 +21,9 @@
 }
 
 .content {
+  height: calc(100% - var(--detailsHei));
   width: 100%;
-  max-height: 500px;
-
   display: flex;
-  flex-direction: column; /* Ensures a column layout */
-  justify-content: center; /* Centers content vertically */
-  align-items: center; /* Centers content horizontally */
-  position: relative;
-  top: 50px; /* Adjust as needed */
-}
-
-/* Responsive for Small Screens (Phones) */
-@media (max-width: 768px) {
-  .content {
-    width: 90%;
-    max-width: 90%;
-    padding: 15px;
-  }
+  justify-content: center;
+  align-items: center;
 }
