@@ -3,10 +3,18 @@
   color: var(--color-text-primary);
   border-radius: var(--borderRadius);
   font-weight: 800;
-  border: 1px solid #8b3b3b;
-  height: 100%;
+  background-color: var(--color-text-placeholder);
   width: 100%;
   display: flex;
+  max-width: 800px; 
+  aspect-ratio: 16 / 9;
   justify-content: center;
   align-items: center;
+}
+
+.video-container {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  background-color: black; /* Optional: for better visibility */
 }
