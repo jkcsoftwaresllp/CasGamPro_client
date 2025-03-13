@@ -7,19 +7,21 @@ import {
 } from "../../../helper/socketService";
 import { GAME_TYPES } from "../../../helper/gameTypes";
 import { useGameDispatch } from "./GameStateContext";
+import { useAuth } from "../../../../../context/jsx/AuthContext";
 
 export const useGameSocket = (gameType) => {
   const dispatch = useGameDispatch();
   const namespace = "game";
+  const { user } = useAuth();
 
   useEffect(() => {
-    if (!gameType) return;
+    if (!gameType && !user) return;
 
     const socket = connectSocket(namespace);
 
     socket.on("connect", () => {
       emitEvent(namespace, "joinGame", {
-        userId: 3,
+        userId: user.userId,
         gameType: GAME_TYPES[gameType],
       });
     });

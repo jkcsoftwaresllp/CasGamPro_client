@@ -60,7 +60,7 @@ export const GameInterface = ({
         {/* Casino Cards Section with Smooth Fade Animation */}
 
         {(isVisible || isLargeScreen) &&
-        status !== "betting" &&
+        (game === "AB2" || status !== "betting") &&
         SelectedBetSection ? (
           <div className={styles.cardsDiv}>
             <motion.div
