@@ -4,6 +4,12 @@
   width: 100%;
 }
 
+.contentWrapper {
+  --detailsHei: 50px;
+  height: calc(100% - var(--detailsHei));
+  width: 100%;
+}
+
 .header {
   height: var(--detailsHei);
 }
@@ -18,12 +24,4 @@
 
 .gameRoundId {
   font-size: var(--text-sm);
-}
-
-.content {
-  height: calc(100% - var(--detailsHei));
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }

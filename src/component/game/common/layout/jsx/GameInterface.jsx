@@ -62,20 +62,7 @@ export const GameInterface = ({
         {(isVisible || isLargeScreen) &&
         (game === "AB2" || status !== "betting") &&
         SelectedBetSection ? (
-          <div className={styles.cardsDiv}>
-            <motion.div
-              className={styles.content}
-              initial={{ opacity: 0, height: 0 }}
-              animate={{
-                opacity: isVisible || isLargeScreen ? 1 : 0,
-                height: isVisible || isLargeScreen ? "auto" : 0,
-              }}
-              exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.3, ease: "easeInOut" }}
-            >
-              <SelectedBetSection cards={cards} />
-            </motion.div>
-          </div>
+          <SelectedBetSection cards={cards} />
         ) : null}
       </div>
     </div>

@@ -11,12 +11,20 @@
   flex-direction: column;
 }
 
+.gameControls {
+  height: 70%;
+  display: flex;
+}
+
 .gameInterface {
   width: 30%;
 }
 
 .simulationSection {
   width: 70%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .detailsSection {
@@ -26,9 +34,8 @@
   flex-direction: column;
 }
 
-.gameControls {
-  height: 200%;
-  display: flex;
+.betSection {
+  height: 30%;
 }
 
 @media (max-width: 900px) {
@@ -60,7 +67,6 @@
 
   .gameControls {
     flex-direction: column;
-    border: 1px solid red;
     width: 100%;
     height: 100%;
     position: relative;
