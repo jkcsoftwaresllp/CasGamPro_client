@@ -12,18 +12,18 @@
 }
 
 .gameControls {
-  height: 70%;
+  height: 50%;
   display: flex;
 }
 
 .gameInterface {
-  width: 30%;
+  width: 35%;
 }
 
 .simulationSection {
-  width: 70%;
+  width: 65%;
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
 }
 
@@ -35,7 +35,17 @@
 }
 
 .betSection {
-  height: 30%;
+  height: 50%;
+}
+
+@media (max-width: 1300px) {
+  .gameControls {
+    height: 40%;
+  }
+
+  .betSection {
+    height: 60%;
+  }
 }
 
 @media (max-width: 900px) {
