@@ -43,6 +43,7 @@ export const SimulationSection = ({ gameType }) => {
   const animationFrameId = useRef(null);
   
   // Frame buffer - store received frames to ensure smooth playback
+  // Instead of storing blob URLs, we now store decoded ImageBitmaps.
   const frameBufferRef = useRef([]);
   const maxBufferSize = 10; // Increased buffer size
   
@@ -53,9 +54,6 @@ export const SimulationSection = ({ gameType }) => {
   // Server FPS tracking
   const serverFrameCountRef = useRef(0);
   const serverLastTimeRef = useRef(Date.now());
-  
-  // Clean up resources from memory
-  const urlsToRevoke = useRef([]);
   
   // Handle visibility change
   useEffect(() => {
@@ -97,37 +95,24 @@ export const SimulationSection = ({ gameType }) => {
       }, duration / 2);
     }
   };
-  
-  // Clean up blob URLs to prevent memory leaks
-  const cleanupResources = () => {
-    while (urlsToRevoke.current.length > 0) {
-      const url = urlsToRevoke.current.pop();
-      URL.revokeObjectURL(url);
-    }
-  };
 
   // Process any pending card reveals for the current frame
   const processCardReveals = (frameNumber) => {
     const pending = pendingCardRevealsRef.current;
-    
-    // Check if we have any card reveals for this frame or earlier frames
     Object.keys(pending).forEach(frameKey => {
       const frame = parseInt(frameKey, 10);
       if (frame <= frameNumber) {
-        // Process all cards for this frame
         pending[frameKey].forEach(card => {
           console.log(`Revealing card ${card} at frame ${frameNumber}`);
-          if (typeof gameState.handleCardPlacement === 'function') {
+          if (typeof gameState.handleCardPlacement === "function") {
             gameState.handleCardPlacement(card);
           }
         });
-        
-        // Remove processed reveals
         delete pending[frameKey];
       }
     });
   };
-  
+
   // Setup WebSocket connection
   useEffect(() => {
     let mounted = true;
@@ -145,7 +130,7 @@ export const SimulationSection = ({ gameType }) => {
             wsRef.current.send(
               JSON.stringify({
                 joinVideoStream: roundId,
-              }),
+              })
             );
             console.info(`Joining stream for round ${roundId}`);
           }
@@ -166,23 +151,18 @@ export const SimulationSection = ({ gameType }) => {
           if (!mounted) return;
           
           try {
-            // Handle binary message (frame data)
+            // Handle binary messages: decode the received Blob into an ImageBitmap
             if (event.data instanceof Blob) {
               serverFrameCountRef.current++;
+              // Decode the image off the main thread
+              const bitmap = await createImageBitmap(event.data);
               
-              // Convert blob to URL for faster rendering
-              const imgUrl = URL.createObjectURL(event.data);
-              urlsToRevoke.current.push(imgUrl);
-              
-              // Add to buffer with current frame number from metadata
+              // Push the decoded bitmap into our frame buffer
               if (frameBufferRef.current.length < maxBufferSize) {
                 frameBufferRef.current.push({
                   frame_number: currentFrameNumberRef.current,
-                  imgUrl
+                  bitmap
                 });
-              } else {
-                // If buffer is full, just revoke the URL to avoid memory leaks
-                URL.revokeObjectURL(imgUrl);
               }
               
               // Update server FPS calculation
@@ -193,31 +173,25 @@ export const SimulationSection = ({ gameType }) => {
                 serverFrameCountRef.current = 0;
                 serverLastTimeRef.current = now;
               }
-              
-              return; // Exit early - we've handled the binary message
+              return; // Binary message handled
             }
             
             // Handle text messages (JSON)
             const data = JSON.parse(event.data);
             
             if (data.status === "frameMetadata") {
-              // Store frame number for the next binary message
               currentFrameNumberRef.current = data.frame_number;
             } 
             else if (data.status === "transition") {
               handleTransition(data.transition_type, data.duration);
             } 
             else if (data.status === "card_placed") {
-              // Store card reveal for specific frame
               const frameNumber = data.frame_number;
               console.log(`Received card placement: ${data.card} at frame ${frameNumber}`);
               
-              // Initialize the array for this frame if needed
               if (!pendingCardRevealsRef.current[frameNumber]) {
                 pendingCardRevealsRef.current[frameNumber] = [];
               }
-              
-              // Add this card to the frame's reveal list
               pendingCardRevealsRef.current[frameNumber].push(data.card);
             }
           } catch (err) {
@@ -239,16 +213,12 @@ export const SimulationSection = ({ gameType }) => {
       if (wsRef.current) {
         wsRef.current.close();
       }
-      
       if (animationFrameId.current) {
         cancelAnimationFrame(animationFrameId.current);
       }
-      
-      // Clean up all blob URLs
-      cleanupResources();
     };
   }, [roundId]);
-  
+
   // Render loop at fixed rate
   const startRenderLoop = () => {
     let lastFrameTime = 0;
@@ -256,30 +226,21 @@ export const SimulationSection = ({ gameType }) => {
     const frameInterval = 1000 / targetFps;
     
     const renderFrame = (timestamp) => {
-      // Calculate time since last frame
       const elapsed = timestamp - lastFrameTime;
       
-      // Only render if enough time has passed for target FPS
       if (elapsed >= frameInterval) {
         lastFrameTime = timestamp - (elapsed % frameInterval);
         
         const buffer = frameBufferRef.current;
         
-        // Render from buffer if available
         if (buffer.length > 0) {
           const frameData = buffer.shift();
           currentFrameRef.current = frameData.frame_number;
-          
-          // Calculate frame lag for stats
           const bufferDepth = buffer.length;
           
-          // Render the frame from the image URL
-          renderFromUrl(frameData.imgUrl, frameData.frame_number);
-          
-          // Process any card reveals for this frame
+          renderFrameFromBitmap(frameData.bitmap, frameData.frame_number);
           processCardReveals(currentFrameRef.current);
           
-          // FPS calculation
           frameCountRef.current++;
           const now = Date.now();
           if (now - frameTimeRef.current >= 1000) {
@@ -290,9 +251,6 @@ export const SimulationSection = ({ gameType }) => {
             }));
             frameCountRef.current = 0;
             frameTimeRef.current = now;
-            
-            // Clean up old blob URLs periodically to prevent memory leaks
-            cleanupResources();
           }
         }
       }
@@ -302,41 +260,35 @@ export const SimulationSection = ({ gameType }) => {
     
     animationFrameId.current = requestAnimationFrame(renderFrame);
   };
-  
-  // Render from blob URL (much faster than decoding base64)
-  const renderFromUrl = (imgUrl, frameNumber) => {
+
+  // Directly draw decoded ImageBitmap to the canvas
+  const renderFrameFromBitmap = (bitmap, frameNumber) => {
     const canvas = canvasRef.current;
     if (!canvas) return;
     
-    const ctx = canvas.getContext("2d", { alpha: false }); // disable alpha for better performance
+    const ctx = canvas.getContext("2d", { alpha: false });
     if (!ctx) return;
     
-    const img = new Image();
-    img.onload = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      const scale = Math.min(
-        canvas.width / img.width,
-        canvas.height / img.height,
-      );
-      const x = (canvas.width - img.width * scale) / 2;
-      const y = (canvas.height - img.height * scale) / 2;
-      ctx.drawImage(img, x, y, img.width * scale, img.height * scale);
-      
-      // Clean up the URL after using it
-      URL.revokeObjectURL(imgUrl);
-    };
-    img.src = imgUrl;
+    // Clear the canvas and scale the image to fit
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    const scale = Math.min(
+      canvas.width / bitmap.width,
+      canvas.height / bitmap.height
+    );
+    const x = (canvas.width - bitmap.width * scale) / 2;
+    const y = (canvas.height - bitmap.height * scale) / 2;
+    
+    ctx.drawImage(bitmap, x, y, bitmap.width * scale, bitmap.height * scale);
+    // No need to revoke any URL because we’re using an ImageBitmap
   };
   
   return (
     <div className={styles.simulationContainer}>
       {error && <div className={styles.errorMessage}>{error}</div>}
       {!isConnected && !error && (
-        <div className={styles.loadingMessage}>
-        </div>
+        <div className={styles.loadingMessage}></div>
       )}
       
-      {/* Display performance stats */}
       <div className={styles.fpsCounter}>
         Display: {stats.displayFps} FPS | Buffer: {stats.frameLag} frames | Server: {stats.serverFps} FPS
       </div>
