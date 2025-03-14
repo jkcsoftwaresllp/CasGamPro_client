@@ -5,15 +5,24 @@ import { useGameState } from "../helper/GameStateContext";
 const isDevelopment = import.meta.env.DEV;
 
 export const SimulationSection = ({ gameType }) => {
-  
-
   const canvasRef = useRef(null);
   const overlayRef = useRef(null);
   const wsRef = useRef(null);
   const gameState = useGameState();
   const { roundId } = gameState;
-  const gamePlayed = gameState.gameType;
-  console.log("GAME TYPE IS THIS:", gamePlayed);
+
+  const validGames = [
+    "LUCKY7B",
+    "DRAGON_TIGER",
+    "TEEN_PATTI",
+    // "ANDAR_BAHAR",
+    // "ANDAR_BAHAR_TWO",
+    // "DRAGON_TIGER_LION",
+    // "DRAGON_TIGER_TWO",
+    // "LUCKY7A",
+  ];
+  const validGame = validGames.includes(gameState.gameType);
+
   const [error, setError] = useState(null);
   const [isConnected, setIsConnected] = useState(false);
 
@@ -36,7 +45,6 @@ export const SimulationSection = ({ gameType }) => {
     serverFps: 0,
   });
 
-  const isDevelopment = import.meta.env.DEV;
   const productionIP = "88.222.214.174";
 
   const baseURL = isDevelopment
@@ -229,7 +237,7 @@ export const SimulationSection = ({ gameType }) => {
     };
   }, [roundId]);
 
-  // Render loop at fixed rate
+  // Render loop at a fixed rate
   const startRenderLoop = () => {
     let lastFrameTime = 0;
     const targetFps = 30; // Fixed target FPS
@@ -305,7 +313,7 @@ export const SimulationSection = ({ gameType }) => {
       )}
 
       <div style={{ position: "relative" }}>
-        {gamePlayed === "LUCKY7B" || gamePlayed === "DRAGON_TIGER" ? (
+        {validGame ? (
           <>
             <canvas
               ref={canvasRef}
