@@ -333,7 +333,6 @@ export const SimulationSection = ({ gameType }) => {
       {error && <div className={styles.errorMessage}>{error}</div>}
       {!isConnected && !error && (
         <div className={styles.loadingMessage}>
-          Connecting to video stream...
         </div>
       )}
       
@@ -345,8 +344,8 @@ export const SimulationSection = ({ gameType }) => {
       <div style={{ position: "relative" }}>
         <canvas
           ref={canvasRef}
-          width={900}
-          height={600}
+          width={600}
+          height={300}
           className={styles.videoCanvas}
         />
         <div
