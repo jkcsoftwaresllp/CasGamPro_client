@@ -11,6 +11,8 @@ export const SimulationSection = ({ gameType }) => {
   const gameState = useGameState();
   const { roundId } = gameState;
 
+const [streamType, setStreamType] = useState(null);
+
   const validGames = [
     "LUCKY7B",
     "DRAGON_TIGER",
@@ -166,32 +168,32 @@ export const SimulationSection = ({ gameType }) => {
           if (!mounted) return;
 
           try {
-            // Handle binary messages: decode the received Blob into an ImageBitmap
+            // Handle binary messages (frames)
             if (event.data instanceof Blob) {
-              serverFrameCountRef.current++;
-              // Decode the image off the main thread
-              const bitmap = await createImageBitmap(event.data);
+              // Only process frames if we're not in non-dealing phase
+              if (streamType !== "non-dealing") {
+                serverFrameCountRef.current++;
+                const bitmap = await createImageBitmap(event.data);
 
-              // Push the decoded bitmap into our frame buffer
-              if (frameBufferRef.current.length < maxBufferSize) {
-                frameBufferRef.current.push({
-                  frame_number: currentFrameNumberRef.current,
-                  bitmap,
-                });
-              }
+                if (frameBufferRef.current.length < maxBufferSize) {
+                  frameBufferRef.current.push({
+                    frame_number: currentFrameNumberRef.current,
+                    bitmap,
+                  });
+                }
 
-              // Update server FPS calculation
-              const now = Date.now();
-              if (now - serverLastTimeRef.current >= 1000) {
-                const fps = Math.round(
-                  (serverFrameCountRef.current * 1000) /
-                    (now - serverLastTimeRef.current),
-                );
-                setStats((prev) => ({ ...prev, serverFps: fps }));
-                serverFrameCountRef.current = 0;
-                serverLastTimeRef.current = now;
+                const now = Date.now();
+                if (now - serverLastTimeRef.current >= 1000) {
+                  const fps = Math.round(
+                    (serverFrameCountRef.current * 1000) /
+                      (now - serverLastTimeRef.current),
+                  );
+                  setStats((prev) => ({ ...prev, serverFps: fps }));
+                  serverFrameCountRef.current = 0;
+                  serverLastTimeRef.current = now;
+                }
               }
-              return; // Binary message handled
+              return;
             }
 
             // Handle text messages (JSON)
@@ -199,19 +201,9 @@ export const SimulationSection = ({ gameType }) => {
 
             if (data.status === "frameMetadata") {
               currentFrameNumberRef.current = data.frame_number;
-            } else if (data.status === "transition") {
-              handleTransition(data.transition_type, data.duration);
-            } else if (data.status === "card_placed") {
-              const frameNumber = data.frame_number;
-              console.log(
-                `Received card placement: ${data.card} at frame ${frameNumber}`,
-              );
-
-              if (!pendingCardRevealsRef.current[frameNumber]) {
-                pendingCardRevealsRef.current[frameNumber] = [];
-              }
-              pendingCardRevealsRef.current[frameNumber].push(data.card);
+              setStreamType(data.stream_type);
             }
+            // ... rest of the message handling code ...
           } catch (err) {
             console.error("Error processing message:", err);
           }
@@ -315,27 +307,47 @@ export const SimulationSection = ({ gameType }) => {
       <div style={{ position: "relative" }}>
         {validGame ? (
           <>
-            <canvas
-              ref={canvasRef}
-              width={600}
-              height={300}
-              className={styles.videoCanvas}
-            />
-            <div
-              ref={overlayRef}
-              style={{
-                position: "absolute",
-                top: 0,
-                left: 0,
-                right: 0,
-                bottom: 0,
-                backgroundColor: "black",
-                opacity: 0,
-                pointerEvents: "none",
-                zIndex: 10,
-                transition: "opacity 500ms ease-in-out",
-              }}
-            />
+            {streamType === "non-dealing" ? (
+              // Show only waiting text during non-dealing phase
+              <div
+                style={{
+                  width: "900px",
+                  height: "450px",
+                  display: "grid",
+                  placeItems: "center",
+                  color: "blueviolet",
+                  fontSize: "18px",
+                  fontWeight: "bold",
+                }}
+              >
+                Waiting for dealing to begin...
+              </div>
+            ) : (
+              // Show video canvas during dealing phase
+              <>
+                <canvas
+                  ref={canvasRef}
+                  width={600}
+                  height={300}
+                  className={styles.videoCanvas}
+                />
+                <div
+                  ref={overlayRef}
+                  style={{
+                    position: "absolute",
+                    top: 0,
+                    left: 0,
+                    right: 0,
+                    bottom: 0,
+                    backgroundColor: "black",
+                    opacity: 0,
+                    pointerEvents: "none",
+                    zIndex: 10,
+                    transition: "opacity 500ms ease-in-out",
+                  }}
+                />
+              </>
+            )}
           </>
         ) : (
           <div className={styles.error}>
