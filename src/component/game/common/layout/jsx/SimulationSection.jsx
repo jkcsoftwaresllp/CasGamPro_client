@@ -305,7 +305,7 @@ export const SimulationSection = ({ gameType }) => {
       )}
 
       <div style={{ position: "relative" }}>
-        {gamePlayed === "LUCKY7B" || gamePlayed === "DRAGON_TIGER" || gamePlayed === "TEEN_PATTI" ? (
+        {gamePlayed === "LUCKY7B" || gamePlayed === "DRAGON_TIGER" ? (
           <>
             <canvas
               ref={canvasRef}
