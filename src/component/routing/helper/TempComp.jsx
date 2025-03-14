@@ -10,6 +10,7 @@ export const TempComp = ({ label }) => {
         justifyContent: "center",
         alignItems: "center",
         color: "var(--color-text-primary)",
+        fontSize: "3em",
         fontWeight: "bold",
       }}
     >

@@ -18,7 +18,9 @@ export const CardSection = ({ cards = {} }) => {
           </>
         )}
       </div>
-      <ABCardSection playerA="Andar" playerB="Bahar" cards={cardsToSend} />
+      {cardsToSend.length > 0 && (
+        <ABCardSection playerA="Andar" playerB="Bahar" cards={cardsToSend} />
+      )}
     </div>
   );
 };

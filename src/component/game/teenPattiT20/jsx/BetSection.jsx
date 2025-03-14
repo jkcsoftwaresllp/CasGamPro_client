@@ -5,7 +5,7 @@ import { PlayerLabel } from "../../common/BetSection/jsx/PlayerLabel";
 import { PLAYER_SIDES } from "../../../../utils/gamePlayerSides";
 
 export const BetSection = ({ onClick, isLock }) => {
-  const { teenPattiT20: SIDE } = PLAYER_SIDES;
+  const { TP1: SIDE } = PLAYER_SIDES;
 
   return (
     <div className={styles.betSection}>

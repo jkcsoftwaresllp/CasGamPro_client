@@ -44,8 +44,9 @@
   border: 10px solid #8b3b3b;
   height: 100%;
   width: 100%;
-  min-height: 300px;
   display: flex;
+  max-width: 800px; 
+  aspect-ratio: 16 / 9;
   justify-content: center;
   align-items: center;
   border-radius: 2rem;

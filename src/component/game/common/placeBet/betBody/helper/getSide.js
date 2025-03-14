@@ -1,13 +1,13 @@
 export const getSide = (value, gameType) => {
   const betSides = {
-    lucky7B: ["low", "high", "mid", "odd", "even", "black", "red"],
+    L7B: ["low", "high", "mid", "odd", "even", "black", "red"],
     teenPatti: ["playerA", "playerB"],
 
     AndarBahar2: [
       "andar",
       "aahar", // Base sides
     ],
-    dragonTiger: [
+    DT20: [
       "dragon",
       "tiger",
       "tie",
@@ -81,7 +81,7 @@ export const getSide = (value, gameType) => {
   }
 
   // **Handle DragonTiger Special Case**
-  if (gameType === "dragonTiger") {
+  if (gameType === "DT20") {
     const match = value.match(/^(D|T)\s*(\d+)?$/i);
     if (match) return match[1] === "D" ? "dragon" : "tiger";
   }

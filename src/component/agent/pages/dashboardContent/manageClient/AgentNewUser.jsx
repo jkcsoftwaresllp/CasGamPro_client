@@ -10,7 +10,7 @@ import { useNavigate } from "react-router-dom";
 
 export const AgentNewUser = () => {
   const navigate = useNavigate();
-  const [info, initalInfo] = useState([]);
+  const [initialInfo, setInitalInfo] = useState([]);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState(null);
   const [formData, setFormData] = useState({
@@ -18,9 +18,9 @@ export const AgentNewUser = () => {
     firstName: "",
     lastName: "",
     fixLimit: 0,
-    maxShare: "",
-    userLotteryCommission: "",
-    userCasinoCommission: "",
+    maxShare: 0,
+    userLotteryCommission: 0,
+    userCasinoCommission: 0,
     password: "",
     confirmPassword: "",
   });
@@ -33,7 +33,13 @@ export const AgentNewUser = () => {
       );
       console.log("API Response: ", response);
       if (response && response.uniqueCode === "CGP0107") {
-        initalInfo(response.data);
+        setInitalInfo((prev) => ({
+          ...prev,
+          userId: response.data.userId,
+          maxShare: 0,
+          maxLotteryCommission: 0,
+          maxCasinoCommission: 0,
+        }));
       } else {
         console.error("API Error:", response.data);
       }
@@ -52,21 +58,21 @@ export const AgentNewUser = () => {
   };
   useEffect(() => {
     setFormData({
-      userId: info.userId,
+      userId: initialInfo.userId,
       firstName: "",
       lastName: "",
       fixLimit: 0,
-      maxShare: info.maxShare,
-      userLotteryCommission: info.maxLotteryCommission,
-      userCasinoCommission: info.maxCasinoCommission,
+      maxShare: initialInfo.maxShare,
+      userLotteryCommission: initialInfo.maxLotteryCommission,
+      userCasinoCommission: initialInfo.maxCasinoCommission,
       password: "",
       confirmPassword: "",
     });
-  }, [info]);
+  }, [initialInfo]);
 
   const handleChange = (e) => {
-
-    if (!e.target) { //  Special Case for Paswords
+    if (!e.target) {
+      //  Special Case for Paswords
       const { name, value } = e;
       setFormData((prev) => ({
         ...prev,

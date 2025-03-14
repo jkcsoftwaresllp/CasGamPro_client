@@ -1,5 +1,5 @@
 export const PLAYER_SIDES = {
-  andarBahar1: {
+  AB1: {
     A2: "A2",
     A3: "A3",
     AA: "AA",
@@ -27,11 +27,11 @@ export const PLAYER_SIDES = {
     BQ: "BQ",
     BK: "BK",
   },
-  andarBahar2: {
+  AB2: {
     andar: "andar",
     bahar: "bahar",
   },
-  lucky7B: {
+  L7B: {
     low: "low",
     high: "high",
     mid: "mid",
@@ -53,11 +53,11 @@ export const PLAYER_SIDES = {
     Q: "Q",
     K: "K",
   },
-  teenPattiT20: {
+  TP1: {
     playerA: "playerA",
     playerB: "playerB",
   },
-  dragonTiger: {
+  DT20: {
     dragon: "dragon",
     tiger: "tiger",
     tie: "tie",
@@ -97,7 +97,7 @@ export const PLAYER_SIDES = {
     dodd: "dred",
     dblack: "dred",
   },
-  dragonTigerLion: {
+  DTL20: {
     dragon: "dragon",
     tiger: "tiger",
     lion: "lion",

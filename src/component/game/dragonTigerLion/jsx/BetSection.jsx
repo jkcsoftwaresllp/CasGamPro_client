@@ -5,7 +5,7 @@ import { BetHeading } from "./BetHeading";
 import { PLAYER_SIDES } from "../../../../utils/gamePlayerSides";
 
 export const BetSection = ({ onClick, isLock }) => {
-  const { dragonTigerLion: SIDE } = PLAYER_SIDES;
+  const { DTL20: SIDE } = PLAYER_SIDES;
 
   const winner = { d: SIDE.dragon, t: SIDE.tiger, l: SIDE.lion };
   const red = { d: SIDE.DR, t: SIDE.TR, l: SIDE.LR };

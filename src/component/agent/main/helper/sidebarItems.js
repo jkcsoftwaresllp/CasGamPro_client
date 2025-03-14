@@ -72,13 +72,13 @@ export const sidebarItems = [
     ],
   },
   //  TODO : Implement Game Playing Blocking from backend then uncomment it
-  // {
-  //   id: 4,
-  //   label: "Block Market",
-  //   value: "blockMarket",
-  //   icon: BlockIcon,
-  //   path: `${path.agent}${path.blockMarket}`,
-  // },
+  {
+    id: 4,
+    label: "Block Market",
+    value: "blockMarket",
+    icon: BlockIcon,
+    path: `${path.agent}${path.blockMarket}`,
+  },
   {
     id: 5,
     label: "Manage Password",

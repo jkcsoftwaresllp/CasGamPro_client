@@ -1,15 +1,50 @@
 import { Routes, Route } from "react-router-dom";
-import { routesPathClient as path } from "../helper/routesPathClient";
 import { ErrorPage } from "../../../pages/jsx/Error";
 import { GameCatagory } from "../../client/jsx/GameCatagory";
-import { TempComp } from "../helper/TempComp";
 import { GameRoutes } from "./GamesRoutes";
 import { useAuth } from "../../../context/jsx/AuthContext";
-import { use } from "react";
 import { blockLevels } from "../../../utils/blockLevers";
+import { apiCall } from "../../common/apiCall";
+import { Loader } from "../../common/Loader";
+import { toKebabCase } from "../../../utils/utils";
+import { useEffect, useState } from "react";
+import { TempComp } from "../helper/TempComp";
+
+// Define category-to-component mapping
+const categoryComponentMap = {
+  "indian-casino": GameRoutes,
+};
 
 export const GameCatagoryRoutes = () => {
   const { user } = useAuth();
+  const [categories, setCategories] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const response = await apiCall(
+          "/auth-api/client/games/categories",
+          "GET"
+        );
+        console.log("API call for Game Category Routes:", response);
+
+        if (response?.uniqueCode === "CGP0009") {
+          setCategories(response.data);
+        } else {
+          setError("Failed to fetch categories.");
+        }
+      } catch (err) {
+        setError("An error occurred while fetching Game Category Routes.");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchCategories();
+  }, []);
+
   if (user.blockingLevel === blockLevels[3]) {
     return (
       <ErrorPage
@@ -19,28 +54,30 @@ export const GameCatagoryRoutes = () => {
     );
   }
 
+  if (loading) return <Loader />;
+  if (error) return <ErrorPage errorCode="ERR500" errorMessage={error} />;
+
   return (
     <Routes>
-      <Route path={path.home} index element={<GameCatagory />} />
-      <Route path={`${path.catagory1}/*`} element={<GameRoutes />} />
-      <Route
-        path={path.catagory2}
-        element={<TempComp label={"Lottery games"} />}
-      />
-      <Route
-        path={path.catagory3}
-        element={<TempComp label={"Criket Games"} />}
-      />
+      {/* Home Page */}
+      <Route path="/" index element={<GameCatagory />} />
 
-      <Route
-        path="*"
-        element={
-          <ErrorPage
-            errorCode="ERR404"
-            errorMessage="The page you are looking for does not exist."
+      {/*  Dynamically map fetched categories */}
+      {categories.map((category) => {
+        const categoryPath = toKebabCase(category.name);
+        const Component = categoryComponentMap[categoryPath] || TempComp; // Default to TempComp if not mapped
+
+        return (
+          <Route
+            key={category.id}
+            path={`/${categoryPath}/*`}
+            element={<Component catagory={category} />}
           />
-        }
-      />
+        );
+      })}
+
+      {/*  Catch-all for any undefined paths */}
+      <Route path="*" element={<TempComp label="Unknown Category" />} />
     </Routes>
   );
 };

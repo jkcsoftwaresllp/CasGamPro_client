@@ -1,14 +1,18 @@
 .container {
+  height: 100%;
 }
 
 .rotateContainer {
-  background-color: var(--color-rotate-primary);
   padding: 5px;
   border-radius: var(--borderRadius);
   overflow: hidden; /* Ensures content outside the container is clipped */
   position: relative;
   white-space: nowrap;
   width: 100%;
+  height: var(--header-height);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .rotating {
@@ -79,10 +83,11 @@
 .btnContainer {
   display: flex;
   justify-content: flex-end;
+  align-items: center;
   gap: 10px;
-  margin-top: 20px;
-  padding-right: 20px;
+  padding: 20px;
   color: var(--color-text-primary);
+  height: var(--header-height);
 }
 
 .btnContainer .selected button {
@@ -91,14 +96,24 @@
   font-weight: var(--textBold);
 }
 
+.ruleList {
+  height: calc(100% - 2 * var(--header-height));
+}
+
+.ruleList .label {
+  height: var(--header-height);
+  overflow: auto;
+}
+
 .rulesContainer {
   margin: auto;
-  padding: 15px;
   background-color: var(--color-bg-primary);
   border-radius: var(--borderRadius);
+  padding: 20px;
+  padding-left: 40px;
   max-width: 1000px;
-  text-align: center;
-  overflow-y: auto;
+  height: calc(100% - 2 * var(--header-height));
+  overflow: auto;
 }
 
 /* Medium Screens (Tablets) */

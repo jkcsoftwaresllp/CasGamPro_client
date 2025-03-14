@@ -1,100 +1,50 @@
 .game {
-  display: flex;
-  flex-direction: row;
-  gap: 5px;
-  width: 100vw;
+  width: 100%;
   height: 100%;
-}
-
-.error p {
-  color: red;
+  display: flex;
 }
 
 .mainContent {
-  flex: 6;
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-  width: 100%;
-}
-.detailsSection {
-  display: flex;
-  flex: 4;
-  flex-direction: column;
-  gap: 5px;
-  min-width: 0; /* Prevents flexbox from expanding */
-  max-width: 40%;
-  border: 1px solid orange;
-}
-
-.simulationSection {
-  width: 800px;
-  height: 400px;
-  align-self: flex-end;
-}
-
-.betSection {
+  width: 70%;
   height: 100%;
   display: flex;
   flex-direction: column;
-  border: 1px solid green;
 }
 
 .gameControls {
+  height: 50%;
   display: flex;
-  flex-direction: row; /* Default for large screens */
-  gap: 5px;
-  width: 100%;
 }
 
 .gameInterface {
-  flex: 1; /* Takes less space */
+  width: 35%;
 }
 
 .simulationSection {
-  flex: 2; /* Takes more space */
-  width: 100%; /* Ensure full width when in column */
+  width: 65%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
 }
-@media (max-width: 1024px) {
+
+.detailsSection {
+  width: 30%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.betSection {
+  height: 50%;
+}
+
+@media (max-width: 1300px) {
   .gameControls {
-    flex-direction: column; /* Switch to column layout on smaller screens */
-  }
-  .detailsSection {
-    flex: 1;
-    flex-basis: 100%; /* Takes full width */
-    max-width: 100%;
-    width: 100%;
+    height: 40%;
   }
 
-  .mainContent {
-    flex: 1;
-    flex-basis: 100%; /* Takes full width */
-    width: 100%;
-  }
-
-  .gameInterface {
-    width: 100%; /* Full width in column layout */
-  }
-
-  .simulationSection {
-    width: 100%;
-  }
-  .mainContent {
-    flex: 1;
-  }
-  .detailsSection {
-    display: flex;
-    flex: 1;
-  }
-}
-
-@media (max-width: 1024px) {
-  .game {
-    flex-direction: column;
-  }
-
-  .detailsSection {
-    flex: 1;
+  .betSection {
+    height: 60%;
   }
 }
 
@@ -111,8 +61,12 @@
     width: 100%;
   }
 
+  .gameInterface {
+    width: 30%;
+  }
+
   .simulationSection {
-    width: 100%;
+    width: 70%;
   }
 }
 
@@ -123,14 +77,16 @@
 
   .gameControls {
     flex-direction: column;
-    border: 1px solid red;
     width: 100%;
     height: 100%;
     position: relative;
   }
 
   .gameInterface {
-    flex-direction: row;
+    position: absolute;
+    top: 20%;
+    height: 60%;
+    width: 30%;
   }
 
   .simulationSection {

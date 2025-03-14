@@ -20,9 +20,9 @@ export const RulesList = ({ language }) => {
   }, [language]);
 
   return (
-    <div className={style.rulesContainer}>
-      <h2>{language === "hindi" ? "नियम" : "Rules"}</h2>
-      <ol>
+    <div className={style.ruleList}>
+      <h2 className={style.label}>{language === "hindi" ? "नियम" : "Rules"}</h2>
+      <ol className={style.rulesContainer}>
         {rules.map((rule, index) => (
           <li key={index}>{rule.rule}</li>
         ))}
