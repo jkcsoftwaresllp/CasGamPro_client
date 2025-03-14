@@ -13,6 +13,18 @@ export const SimulationSection = ({ gameType }) => {
 
 const [streamType, setStreamType] = useState(null);
 
+
+const nonDealingValidGames = [
+    // "LUCKY7B",
+    // "DRAGON_TIGER",
+    // "TEEN_PATTI",
+    // "ANDAR_BAHAR",
+    // "ANDAR_BAHAR_TWO",
+    // "DRAGON_TIGER_LION",
+    "DRAGON_TIGER_TWO",
+    // "LUCKY7A",
+  ];
+
   const validGames = [
     "LUCKY7B",
     "DRAGON_TIGER",
@@ -20,10 +32,11 @@ const [streamType, setStreamType] = useState(null);
     // "ANDAR_BAHAR",
     // "ANDAR_BAHAR_TWO",
     // "DRAGON_TIGER_LION",
-    // "DRAGON_TIGER_TWO",
+    "DRAGON_TIGER_TWO",
     // "LUCKY7A",
   ];
   const validGame = validGames.includes(gameState.gameType);
+  const nonDealingAllowed = nonDealingValidGames.includes(gameState.gameType);
 
   const [error, setError] = useState(null);
   const [isConnected, setIsConnected] = useState(false);
@@ -307,7 +320,7 @@ const [streamType, setStreamType] = useState(null);
       <div style={{ position: "relative" }}>
         {validGame ? (
           <>
-            {streamType === "non-dealing" ? (
+            {streamType === "non-dealing" && !nonDealingAllowed ? (
               // Show only waiting text during non-dealing phase
               <div
                 style={{
