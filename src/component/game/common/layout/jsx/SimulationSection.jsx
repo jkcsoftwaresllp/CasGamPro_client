@@ -5,11 +5,15 @@ import { useGameState } from "../helper/GameStateContext";
 const isDevelopment = import.meta.env.DEV;
 
 export const SimulationSection = ({ gameType }) => {
+  
+
   const canvasRef = useRef(null);
   const overlayRef = useRef(null);
   const wsRef = useRef(null);
   const gameState = useGameState();
   const { roundId } = gameState;
+  const gamePlayed = gameState.gameType;
+  console.log("GAME TYPE IS THIS:", gamePlayed);
   const [error, setError] = useState(null);
   const [isConnected, setIsConnected] = useState(false);
 
@@ -301,7 +305,7 @@ export const SimulationSection = ({ gameType }) => {
       )}
 
       <div style={{ position: "relative" }}>
-        {gameType === "LUCKY7B" || gameType === "DRAGON_TIGER" ? (
+        {gamePlayed === "LUCKY7B" || gamePlayed === "DRAGON_TIGER" || gamePlayed === "TEEN_PATTI" ? (
           <>
             <canvas
               ref={canvasRef}
