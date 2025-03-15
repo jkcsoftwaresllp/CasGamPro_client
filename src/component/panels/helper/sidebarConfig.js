@@ -1,8 +1,7 @@
-import { DashboardIcon } from "../../../../assets/assets";
 import {
   ManageClientsIcon,
   ManagePasswordIcon,
-  SettingsIcon,
+  DashboardIcon,
   myClient,
   blockClient,
   rupees,
@@ -12,10 +11,11 @@ import {
   InOutIcon,
   BookIcon,
   BlockIcon,
-} from "../../../../assets/assets";
+} from "../../../assets/assets";
+import { roles } from "../../../utils/roles";
+import { routesPathClient as path } from "../../routing/helper/routesPathClient";
 
-import { routesPathClient as path } from "../../../routing/helper/routesPathClient";
-export const sidebarItems = [
+export const agentSidebarItems = [
   {
     id: 1,
     label: "Dashboard",
@@ -71,7 +71,6 @@ export const sidebarItems = [
       },
     ],
   },
-  //  TODO : Implement Game Playing Blocking from backend then uncomment it
   {
     id: 4,
     label: "Block Market",
@@ -126,3 +125,9 @@ export const sidebarItems = [
     ],
   },
 ];
+
+export const sidebarConfig = {
+  [roles.AGENT]: agentSidebarItems,
+  [roles.SUPERAGENT]: [...agentSidebarItems],
+  [roles.ADMIN]: [...agentSidebarItems],
+};

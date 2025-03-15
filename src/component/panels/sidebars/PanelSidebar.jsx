@@ -1,15 +1,15 @@
 import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import style from "../styles/AgentSidebar.module.css";
-import { ExpandIcon, CollapseIcon } from "../../../../assets/assets";
-import { Tab } from "./Tab";
-import { sidebarItems } from "../helper/sidebarItems";
+import style from "./PanelSidebar.module.css";
+import { ExpandIcon, CollapseIcon } from "../../../assets/assets";
+import { Tab } from "../../agent/main/jsx/Tab";
+import { sidebarConfig } from "../helper/sidebarConfig";
 
-export const AgentSidebar = ({ setHeaderTitle }) => {
+export const PanelSidebar = ({ role, setHeaderTitle }) => {
   const [isMinimized, setIsMinimized] = useState(true);
   const [expandedItem, setExpandedItem] = useState(null);
   const navigate = useNavigate();
-  const sidebarRef = useRef(null); // Reference for detecting clicks outside
+  const sidebarRef = useRef(null);
 
   const toggleSidebar = () => setIsMinimized(!isMinimized);
 
@@ -17,7 +17,6 @@ export const AgentSidebar = ({ setHeaderTitle }) => {
     setExpandedItem(expandedItem === item.id ? null : item.id);
   };
 
-  // Handle click outside to minimize the sidebar
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (sidebarRef.current && !sidebarRef.current.contains(event.target)) {
@@ -31,9 +30,11 @@ export const AgentSidebar = ({ setHeaderTitle }) => {
     };
   }, []);
 
+  const sidebarItems = sidebarConfig[role] || [];
+
   return (
     <div
-      ref={sidebarRef} // Attach the ref to sidebar
+      ref={sidebarRef}
       className={`${style.sidebar} ${isMinimized ? style.minimized : ""}`}
     >
       <button className={style.toggleButton} onClick={toggleSidebar}>

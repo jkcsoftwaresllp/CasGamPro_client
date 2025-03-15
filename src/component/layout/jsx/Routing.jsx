@@ -4,10 +4,19 @@ import { ProtectedRoutes } from "../helper/ProtectedRoutes";
 import { LoginPage } from "../../../pages/jsx/LoginPage";
 import { roles } from "../../../utils/roles";
 import { ClientRoutes } from "../../routing/client/ClientRoutes";
-import { AgentRoutes } from "../../routing/agent/AgentRoutes";
 import { ErrorPage } from "../../../pages/jsx/Error";
 import { routesPathClient } from "../../routing/helper/routesPathClient";
-import { Test } from "../helper/Test";
+import { PanelRoutes } from "../../routing/panel/PanelRoutes";
+
+/***
+ * 
+ * 
+ * Working Here : Arraning All the Panels & Checking Breaking Apth
+ * 
+ * 
+ * 
+ * 
+ */
 
 export const Routing = () => {
   return (
@@ -31,7 +40,27 @@ export const Routing = () => {
         element={
           <ProtectedRoutes
             allowedRoles={[roles.AGENT]}
-            children={<AgentRoutes />}
+            children={<PanelRoutes role={roles.AGENT} />}
+          />
+        }
+      />
+
+      <Route
+        path={`${routesPathClient.superagent}/*`}
+        element={
+          <ProtectedRoutes
+            allowedRoles={[roles.SUPERAGENT]}
+            children={<PanelRoutes role={roles.SUPERAGENT} />}
+          />
+        }
+      />
+
+      <Route
+        path={`${routesPathClient.admin}/*`}
+        element={
+          <ProtectedRoutes
+            allowedRoles={[roles.ADMIN]}
+            children={<PanelRoutes role={roles.ADMIN} />}
           />
         }
       />
