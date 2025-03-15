@@ -28,7 +28,7 @@ const nonDealingValidGames = [
   const validGames = [
     "LUCKY7B",
     "DRAGON_TIGER",
-    // "TEEN_PATTI",
+    "TEEN_PATTI",
     // "ANDAR_BAHAR",
     // "ANDAR_BAHAR_TWO",
     // "DRAGON_TIGER_LION",
