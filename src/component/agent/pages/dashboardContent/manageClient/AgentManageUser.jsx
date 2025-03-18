@@ -7,6 +7,8 @@ import { DashboardCard } from "../jsx/DashboardCard";
 import { routesPathClient as path } from "../../../../routing/helper/routesPathClient";
 import { apiCall } from "../../../../common/apiCall";
 import { RenderOverlayWindow } from "./helper/RenderOverlayWindow";
+import { getManageClients } from "../../../../panels/helper/sidebarConfig";
+import { useAuth } from "../../../../../context/jsx/AuthContext";
 
 export const AgentManageUser = () => {
   const { id } = useParams(); // Extract the user ID from the URL
@@ -16,6 +18,8 @@ export const AgentManageUser = () => {
   const [coins, setCoins] = useState("");
   const [isOverlayView, setIsOverlayView] = useState(false);
   const [tableName, setTableName] = useState("");
+  const { user } = useAuth();
+  const userRole = user.userRole;
 
   useEffect(() => {
     setTimeout(() => setLoading(false), 100); // Simulating data fetch
@@ -37,10 +41,14 @@ export const AgentManageUser = () => {
     fetchExposure();
   }, []);
 
+  const heading = getManageClients(userRole);
+
   const RenderButtons = () => {
     return (
       <div className={style.infoBody}>
-        <h2 className={style.heading}>Manage User {id}</h2>
+        <h2 className={style.heading}>
+          {heading} : {id}
+        </h2>
         <div className={style.buttonGrid}>
           <Button
             label="Receive Cash"

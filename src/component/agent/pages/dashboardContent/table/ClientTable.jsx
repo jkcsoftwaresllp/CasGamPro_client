@@ -10,9 +10,13 @@ import { routesPathClient as path } from "../../../../routing/helper/routesPathC
 import { Loader } from "../../../../common/Loader.jsx";
 import style from "./Table.module.css";
 import { useOutletContext } from "react-router-dom";
+import { rolePathData } from "../../../../panels/dashboard/AgentDashboard.jsx";
+import { useAuth } from "../../../../../context/jsx/AuthContext.jsx";
 
 export const ClientTable = () => {
   const navigate = useNavigate();
+  const { user } = useAuth();
+  const userRole = user.userRole;
 
   const context = useOutletContext() || {};
   const { data = [], loading = false } = context;
@@ -34,6 +38,7 @@ export const ClientTable = () => {
   ];
 
   const columnWidths = { username: 2, actions: 2 };
+  const basePath = rolePathData[userRole];
 
   const actionButtons = [
     {
@@ -41,7 +46,7 @@ export const ClientTable = () => {
       icon: EditIcon,
       onClick: (row) =>
         navigate(
-          `${path.agent}${path.manageClients}${path.editUser.replace(
+          `${basePath}${path.manageClients}${path.editUser.replace(
             ":id",
             row.id
           )}`
@@ -56,10 +61,7 @@ export const ClientTable = () => {
 
   const handleCellClick = (value, row) => {
     navigate(
-      `${path.agent}${path.manageClients}${path.userInfo.replace(
-        ":id",
-        row.id
-      )}`
+      `${basePath}${path.manageClients}${path.userInfo.replace(":id", row.id)}`
     );
   };
 

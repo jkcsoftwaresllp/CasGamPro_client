@@ -15,10 +15,38 @@ import {
 import { roles } from "../../../utils/roles";
 import { routesPathClient as path } from "../../routing/helper/routesPathClient";
 
-export const agentSidebarItems = (basePath) => [
+export const getDashboard = (role) => {
+  const temp = {
+    [roles.AGENT]: "Agent Dashboard",
+    [roles.ADMIN]: "Admin Dasboard",
+    [roles.SUPERAGENT]: "Super Agent Dashboard",
+    [roles.PLAYER]: "Client Dashboard",
+  };
+  return temp[role];
+};
+
+export const getManageClients = (role) => {
+  const temp = {
+    [roles.AGENT]: "Manage Clients",
+    [roles.ADMIN]: "Manage Super Agents",
+    [roles.SUPERAGENT]: "Manage Agents",
+  };
+  return temp[role];
+};
+
+export const getMyChilds = (role) => {
+  const temp = {
+    [roles.AGENT]: "My Clients",
+    [roles.ADMIN]: "My Super Agents",
+    [roles.SUPERAGENT]: "My Agents",
+  };
+  return temp[role];
+};
+
+export const agentSidebarItems = (basePath, role) => [
   {
     id: 1,
-    label: "Dashboard",
+    label: getDashboard(role),
     value: "dashboard",
     icon: DashboardIcon,
     path: `${basePath}${path.home}`,
@@ -32,21 +60,21 @@ export const agentSidebarItems = (basePath) => [
   },
   {
     id: 3,
-    label: "Manage Clients",
+    label: getManageClients(role),
     value: "addnewuser",
     path: `${basePath}${path.manageClients}`,
     icon: ManageClientsIcon,
     subOptions: [
       {
         id: 31,
-        label: " Add New User",
+        label: "Add New User",
         value: "addnewuser",
         icon: AddUserIcon,
         path: `${basePath}${path.manageClients}${path.addnewuser}`,
       },
       {
         id: 32,
-        label: "My Clients",
+        label: getMyChilds(role),
         value: "myClients",
         icon: myClient,
         path: `${basePath}${path.manageClients}`,
@@ -123,7 +151,7 @@ export const agentSidebarItems = (basePath) => [
 ];
 
 export const sidebarConfig = {
-  [roles.AGENT]: agentSidebarItems(path.agent),
-  [roles.SUPERAGENT]: [...agentSidebarItems(path.superagent)],
-  [roles.ADMIN]: [...agentSidebarItems(path.admin)],
+  [roles.AGENT]: agentSidebarItems(path.agent, roles.AGENT),
+  [roles.SUPERAGENT]: [...agentSidebarItems(path.superagent, roles.SUPERAGENT)],
+  [roles.ADMIN]: [...agentSidebarItems(path.admin, roles.ADMIN)],
 };

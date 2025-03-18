@@ -22,33 +22,44 @@ const agentApiEndpoints = {
   [liveCasino]: "/auth-api/agent/liveCasinoReports",
 };
 
-const rolePathData = {
+export const rolePathData = {
   [roles.AGENT]: path.agent,
   [roles.ADMIN]: path.admin,
   [roles.SUPERAGENT]: path.superagent,
   [roles.PLAYER]: path.client,
 };
 
+const getDefaultTitle = (role) => {
+  const temp = {
+    [roles.AGENT]: "Agent Dashboard",
+    [roles.ADMIN]: "Admin Dasboard",
+    [roles.SUPERAGENT]: "Super Agent Dashboard",
+    [roles.PLAYER]: "Client Dashboard",
+  };
+  return temp[role];
+};
+
+const getTableURL = (agentPath) => [
+  `${agentPath}${manageClients}`,
+  `${agentPath}${blockClients}`,
+  `${agentPath}${commision}`,
+  `${agentPath}${companyLenDen}`,
+  `${agentPath}${profitAndLoss}`,
+  `${agentPath}${inOut}`,
+  `${agentPath}${liveCasino}`,
+];
+
 export const AgentDashboard = () => {
   const { user } = useAuth();
   const role = user?.userRole;
   const agentPath = rolePathData[role];
-
-  const tableURLRoutes = [
-    `${agentPath}${manageClients}`,
-    `${agentPath}${blockClients}`,
-    `${agentPath}${commision}`,
-    `${agentPath}${companyLenDen}`,
-    `${agentPath}${profitAndLoss}`,
-    `${agentPath}${inOut}`,
-    `${agentPath}${liveCasino}`,
-  ];
+  const tableURLRoutes = getTableURL(agentPath);
 
   return (
     <DashboardLayout
       sidebarComponent={PanelSidebar}
       apiEndpoints={agentApiEndpoints}
-      defaultHeaderTitle="Agent Dashboard"
+      defaultHeaderTitle={getDefaultTitle(role)}
       tableURLRoutes={tableURLRoutes}
     />
   );
