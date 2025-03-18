@@ -3,7 +3,7 @@ import { getToastTypes, showToast } from "../../component/common/showToast";
 
 export const logout = async (setUser, navigate) => {
   try {
-    await apiCall("/api/logout", "POST");
+    await apiCall("/auth-api/logout", "POST");
 
     setUser(null); // Clear user data
     showToast(getToastTypes.type1, "You have successfully logged out.");
