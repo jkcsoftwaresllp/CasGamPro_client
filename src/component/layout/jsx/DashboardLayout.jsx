@@ -48,6 +48,8 @@ export const DashboardLayout = ({
         return;
       }
 
+      console.log(endpoint);
+
       const response = await apiCall(endpoint, "GET", null, {}, filters);
       console.log(response);
       setData(response.data.results);

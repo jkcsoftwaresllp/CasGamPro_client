@@ -15,30 +15,26 @@ import {
 import { roles } from "../../../utils/roles";
 import { routesPathClient as path } from "../../routing/helper/routesPathClient";
 
-export const agentSidebarItems = [
+export const agentSidebarItems = (basePath) => [
   {
     id: 1,
     label: "Dashboard",
     value: "dashboard",
     icon: DashboardIcon,
-    path: `${path.agent}${path.home}`,
+    path: `${basePath}${path.home}`,
   },
   {
     id: 2,
     label: "Daily P/L Report",
     value: "DailyReport",
     icon: CasinoIcon,
-    path: `${path.agent}${path.liveCasino}`,
+    path: `${basePath}${path.liveCasino}`,
   },
   {
     id: 3,
     label: "Manage Clients",
     value: "addnewuser",
-
-    path: `${path.agent}${path.manageClients}${path.addnewuser}`,
-
-    path: `${path.agent}${path.manageClients}`,
-
+    path: `${basePath}${path.manageClients}`,
     icon: ManageClientsIcon,
     subOptions: [
       {
@@ -46,28 +42,28 @@ export const agentSidebarItems = [
         label: " Add New User",
         value: "addnewuser",
         icon: AddUserIcon,
-        path: `${path.agent}${path.manageClients}${path.addnewuser}`,
+        path: `${basePath}${path.manageClients}${path.addnewuser}`,
       },
       {
         id: 32,
         label: "My Clients",
         value: "myClients",
         icon: myClient,
-        path: `${path.agent}${path.manageClients}`,
+        path: `${basePath}${path.manageClients}`,
       },
       {
         id: 33,
         label: "Blocked Client",
         value: "blockClient",
         icon: blockClient,
-        path: `${path.agent}${path.blockClients}`,
+        path: `${basePath}${path.blockClients}`,
       },
       {
         id: 34,
         label: "Commission and Limits",
         value: "commission",
         icon: rupees,
-        path: `${path.agent}${path.commision}`,
+        path: `${basePath}${path.commision}`,
       },
     ],
   },
@@ -76,14 +72,14 @@ export const agentSidebarItems = [
     label: "Block Market",
     value: "blockMarket",
     icon: BlockIcon,
-    path: `${path.agent}${path.blockMarket}`,
+    path: `${basePath}${path.blockMarket}`,
   },
   {
     id: 5,
     label: "Manage Password",
     value: "managePassword",
     icon: ManagePasswordIcon,
-    path: `${path.agent}${path.managePassword}`,
+    path: `${basePath}${path.managePassword}`,
   },
 
   {
@@ -92,42 +88,42 @@ export const agentSidebarItems = [
     label: "Ledger",
     value: "ledger",
     icon: LedgerIcon,
-    path: `${path.agent}${path.collectionReport}`,
+    path: `${basePath}${path.collectionReport}`,
     subOptions: [
       {
         id: 61,
         label: "Collection Report",
         value: "collectionReport",
         icon: BookIcon,
-        path: `${path.agent}${path.collectionReport}`,
+        path: `${basePath}${path.collectionReport}`,
       },
       {
         id: 62,
         label: "Company Len/Den",
         value: "companyLenDen",
         icon: BookIcon,
-        path: `${path.agent}${path.companyLenDen}`,
+        path: `${basePath}${path.companyLenDen}`,
       },
       {
         id: 63,
         label: "In-Out",
         value: "inOut",
         icon: InOutIcon,
-        path: `${path.agent}${path.inOut}`,
+        path: `${basePath}${path.inOut}`,
       },
       {
         id: 64,
         label: "Profit & Loss",
         value: "profitAndLoss",
         icon: rupees,
-        path: `${path.agent}${path.profitAndLoss}`,
+        path: `${basePath}${path.profitAndLoss}`,
       },
     ],
   },
 ];
 
 export const sidebarConfig = {
-  [roles.AGENT]: agentSidebarItems,
-  [roles.SUPERAGENT]: [...agentSidebarItems],
-  [roles.ADMIN]: [...agentSidebarItems],
+  [roles.AGENT]: agentSidebarItems(path.agent),
+  [roles.SUPERAGENT]: [...agentSidebarItems(path.superagent)],
+  [roles.ADMIN]: [...agentSidebarItems(path.admin)],
 };
