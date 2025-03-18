@@ -18,6 +18,7 @@ export const LoginPage = () => {
 
   // Redirect after login
   useEffect(() => {
+    console.log(user);
     if (user?.userRole) {
       navigateByRole(user.userRole, navigate, setError);
     }
