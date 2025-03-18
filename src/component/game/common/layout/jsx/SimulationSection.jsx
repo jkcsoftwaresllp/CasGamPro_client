@@ -323,54 +323,72 @@ const nonDealingValidGames = [
 
       <div style={{ position: "relative" }}>
         {validGame ? (
-          <>
-            {streamType === "non-dealing" && !nonDealingAllowed ? (
-              // Show only waiting text during non-dealing phase
-              <div
-                style={{
-                  width: "900px",
-                  height: "450px",
-                  display: "grid",
-                  placeItems: "center",
-                  color: "blueviolet",
-                  fontSize: "18px",
-                  fontWeight: "bold",
-                }}
-              >
-                {error ? error : "Waiting for dealing to begin..."}
-              </div>
-            ) : (
-              // Show video canvas during dealing phase
-              <>
-                <canvas
-                  ref={canvasRef}
-                  width={600}
-                  height={300}
-                  className={styles.videoCanvas}
-                />
-                <div
-                  ref={overlayRef}
-                  style={{
-                    position: "absolute",
-                    top: 0,
-                    left: 0,
-                    right: 0,
-                    bottom: 0,
-                    backgroundColor: "black",
-                    opacity: 0,
-                    pointerEvents: "none",
-                    zIndex: 10,
-                    transition: "opacity 500ms ease-in-out",
-                  }}
-                />
-              </>
-            )}
-          </>
-        ) : (
-          <div className={styles.error}>
-            <p>An error occurred while playing the video :(</p>
+  <>
+    {streamType === "non-dealing" && !nonDealingAllowed ? (
+      // Show only waiting text during non-dealing phase
+      <div
+        style={{
+          width: "900px",
+          height: "450px",
+          display: "grid",
+          placeItems: "center",
+          color: "blueviolet",
+          fontSize: "18px",
+          fontWeight: "bold",
+        }}
+      >
+        Waiting for dealing to begin...
+      </div>
+    ) : (
+      // Show video canvas during dealing phase or error message if there's an error
+      <>
+        {error ? (
+          <div
+            style={{
+              width: "900px",
+              height: "450px",
+              display: "grid",
+              placeItems: "center",
+              color: "red",
+              fontSize: "18px",
+              fontWeight: "bold",
+            }}
+          >
+            {error}
           </div>
+        ) : (
+          <>
+            <canvas
+              ref={canvasRef}
+              width={600}
+              height={300}
+              className={styles.videoCanvas}
+            />
+            <div
+              ref={overlayRef}
+              style={{
+                position: "absolute",
+                top: 0,
+                left: 0,
+                right: 0,
+                bottom: 0,
+                backgroundColor: "black",
+                opacity: 0,
+                pointerEvents: "none",
+                zIndex: 10,
+                transition: "opacity 500ms ease-in-out",
+              }}
+            />
+          </>
         )}
+      </>
+    )}
+  </>
+) : (
+  <div className={styles.error}>
+    <p>An error occurred while playing the video :(</p>
+  </div>
+)}
       </div>
     </div>
   );
