@@ -8,9 +8,9 @@ export const useDashboardData = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await apiCall("/auth-api/agent/agentDashboard", "GET");
+      const response = await apiCall("/auth-api/panel/dashboard", "GET");
       console.log(response);
-      if (response.uniqueCode === "CGP0065") {
+      if (response.uniqueCode === "CGP0016") {
         setData(response.data);
       }
       setLoading(false);
