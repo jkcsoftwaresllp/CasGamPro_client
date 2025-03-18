@@ -22,7 +22,7 @@ const tableURLRoutes = [
 ];
 
 const agentApiEndpoints = {
-  [manageClients]: "/auth-api/agent/players",
+  [manageClients]: "/auth-api/panel/childs",
   [blockClients]: "/auth-api/agent/blocked",
   [commision]: "/auth-api/agent/commissionLimits",
   [companyLenDen]: "/auth-api/agent/ledger",

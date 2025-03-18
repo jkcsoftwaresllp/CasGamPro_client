@@ -19,7 +19,7 @@ export const ClientTable = () => {
 
   const tableData = data.map((client) => ({
     id: client.id,
-    username: `${client.firstName} ${client.lastName} (${client.userName})`,
+    username: `${client.firstName} ${client.lastName} (${client.id})`,
     casinoCommission: client.casinoCommission,
     lotteryCommission: client.lotteryCommission,
     share: client.matchShare,
