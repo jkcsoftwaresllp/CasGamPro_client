@@ -4,12 +4,17 @@ import style from "./PanelSidebar.module.css";
 import { ExpandIcon, CollapseIcon } from "../../../assets/assets";
 import { Tab } from "../../agent/main/jsx/Tab";
 import { sidebarConfig } from "../helper/sidebarConfig";
+import { useAuth } from "../../../context/jsx/AuthContext";
 
-export const PanelSidebar = ({ role, setHeaderTitle }) => {
+export const PanelSidebar = ({ setHeaderTitle }) => {
   const [isMinimized, setIsMinimized] = useState(true);
   const [expandedItem, setExpandedItem] = useState(null);
   const navigate = useNavigate();
   const sidebarRef = useRef(null);
+
+  const { user } = useAuth();
+  let role;
+  if (user) role = user.userRole;
 
   const toggleSidebar = () => setIsMinimized(!isMinimized);
 
