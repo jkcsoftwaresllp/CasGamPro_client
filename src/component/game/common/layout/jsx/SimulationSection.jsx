@@ -211,6 +211,11 @@ const nonDealingValidGames = [
             // Handle text messages (JSON)
             const data = JSON.parse(event.data);
 
+            if (data.status === "error") {
+              setError(data.message);
+              return ;
+            }
+
             if (data.status === "frameMetadata") {
               currentFrameNumberRef.current = data.frame_number;
               setStreamType(data.stream_type);
@@ -332,7 +337,7 @@ const nonDealingValidGames = [
                   fontWeight: "bold",
                 }}
               >
-                Waiting for dealing to begin...
+                {error ? error : "Waiting for dealing to begin..."}
               </div>
             ) : (
               // Show video canvas during dealing phase
