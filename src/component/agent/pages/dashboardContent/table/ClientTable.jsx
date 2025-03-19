@@ -23,21 +23,22 @@ export const ClientTable = () => {
 
   const tableData = data.map((client) => ({
     id: client.id,
-    username: `${client.firstName} ${client.lastName} (${client.id})`,
+    username: `${client.firstName} ${client.lastName}`,
     casinoCommission: client.casinoCommission,
     lotteryCommission: client.lotteryCommission,
     share: client.matchShare,
   }));
 
   const columns = [
-    { key: "username", label: "UserName" },
+    { key: "username", label: "Full Name" },
+    { key: "id", label: "Client ID" },
     { key: "casinoCommission", label: "Casino Commission" },
     { key: "lotteryCommission", label: "Lottery Commission" },
     { key: "share", label: "Share" },
     { key: "actions", label: "Actions" },
   ];
 
-  const columnWidths = { username: 2, actions: 2 };
+  const columnWidths = { actions: 2 };
   const basePath = rolePathData[userRole];
 
   const actionButtons = [
@@ -81,7 +82,7 @@ export const ClientTable = () => {
             columnWidths={columnWidths}
             isAction={true}
             btns={actionButtons}
-            clickableColumns={["username"]}
+            clickableColumns={["id"]}
             onCellClick={handleCellClick}
           />
           {/* Pagination Controls */}
