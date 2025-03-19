@@ -5,8 +5,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: var(--color-bg-primary-a);
   position: relative;
+  
 }
 
 .close {
@@ -29,8 +29,16 @@
 
 .tableWindow {
   position: relative;
-  background: var(--color-bg-primary);
   border-radius: var(--borderRadius);
+  border: 2px solid var(--color-bg-secondary);
   width: 80%;
   height: 90%;
+}
+
+.title {
+  font-size: var(--text-lg);
+  color: var(--color-text-primary);
+  font-weight: var(--text-bold);
+  text-align: center;
+  padding-top: 5px;
 }
