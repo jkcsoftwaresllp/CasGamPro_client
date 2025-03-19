@@ -9,6 +9,17 @@ import { apiCall } from "../../../../common/apiCall";
 import { RenderOverlayWindow } from "./helper/RenderOverlayWindow";
 import { getManageClients } from "../../../../panels/helper/sidebarConfig";
 import { useAuth } from "../../../../../context/jsx/AuthContext";
+import { roles } from "../../../../../utils/roles";
+
+const getChildsLabel = (role) => {
+  const temp = {
+    [roles.ADMIN]: `View Agents `,
+    [roles.SUPERAGENT]: `View Clients`,
+  };
+  return temp[role];
+};
+
+const rolesToOpen = [roles.ADMIN, roles.SUPERAGENT];
 
 export const AgentManageUser = () => {
   const { id } = useParams(); // Extract the user ID from the URL
@@ -94,6 +105,16 @@ export const AgentManageUser = () => {
               setTableName("userStatementLedger");
             }}
           />
+
+          {rolesToOpen.includes(userRole) && (
+            <Button
+              label={getChildsLabel(userRole)}
+              onClick={() => {
+                setIsOverlayView(true);
+                setTableName("userChilds");
+              }}
+            />
+          )}
         </div>
 
         {/* TODO : Correct this  */}
@@ -114,6 +135,7 @@ export const AgentManageUser = () => {
           setIsOverlayView={setIsOverlayView}
           tableName={tableName}
           id={id}
+          userRole={userRole}
         />
       ) : (
         <RenderButtons />
