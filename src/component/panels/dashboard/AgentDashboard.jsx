@@ -14,12 +14,12 @@ const liveCasino = path.liveCasino;
 
 const agentApiEndpoints = {
   [manageClients]: "/auth-api/panel/childs",
-  [blockClients]: "/auth-api/agent/blocked",
-  [commision]: "/auth-api/agent/commissionLimits",
-  [companyLenDen]: "/auth-api/agent/ledger",
-  [profitAndLoss]: "/auth-api/agent/profit-loss",
-  [inOut]: "/auth-api/agent/inout",
-  [liveCasino]: "/auth-api/agent/liveCasinoReports",
+  [blockClients]: "/auth-api/panel/blocked",
+  [commision]: "/auth-api/panel/commission-limits",
+  [companyLenDen]: "/auth-api/panel/ledger",
+  [profitAndLoss]: "/auth-api/panel/profit-loss",
+  [inOut]: "/auth-api/panel/inout",
+  [liveCasino]: "/auth-api/panel/liveCasinoReports",
 };
 
 export const rolePathData = {

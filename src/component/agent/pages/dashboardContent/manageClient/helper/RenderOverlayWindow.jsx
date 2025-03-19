@@ -47,6 +47,7 @@ const COLUMN_CONFIGS = {
       { key: "casinoCommission", label: "Casino Commission" },
       { key: "lotteryCommission", label: "Lottery Commission" },
       { key: "matchShare", label: "Share" },
+      { key: "currentLimit", label: "Current Limit" },
     ],
     columnWidths: { firstName: 0.5, lastName: 0.5 },
   },
