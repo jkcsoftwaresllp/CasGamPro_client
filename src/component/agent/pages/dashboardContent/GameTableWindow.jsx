@@ -9,7 +9,7 @@ export const GameTableWindow = ({ gameName, setIsOverlayView }) => {
   useEffect(() => {
     const fetchLiveCasinoData = async () => {
       const response = await apiCall(
-        `/auth-api/agent/games/${gameName}`,
+        `/auth-api/panel/games/${gameName}`,
         "GET"
       );
       console.log("API Response:", response);

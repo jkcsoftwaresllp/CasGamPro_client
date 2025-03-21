@@ -6,12 +6,14 @@ import { handleBlockUnBlockGame } from "./BlockMarketTable.jsx";
 export const BlockGameTable = ({ games, setIsOverlayView }) => {
   const tableData = games.map((games) => ({
     id: games.id,
+    gameId: games.betfairid,
     name: games.name,
     status: games.status,
   }));
 
   const columns = [
     { key: "id", label: "So." },
+    { key: "gameId", label: "Game ID" },
     { key: "name", label: "Name" },
     { key: "status", label: "Status" },
     { key: "actions", label: "Unblock" },
