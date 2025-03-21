@@ -16,6 +16,8 @@ export const SimulationSection = ({ gameType }) => {
   const [isConnected, setIsConnected] = useState(false);
   const [isTransitioning, setIsTransitioning] = useState(false);
 
+  const [time, setTime] = useState(0);
+
   const deviceConfig = useRef(DeviceCapabilities.getDeviceConfig());
   const frameProcessorRef = useRef(null);
   const animationFrameId = useRef(null);
@@ -27,6 +29,15 @@ export const SimulationSection = ({ gameType }) => {
     frameLag: 0,
     serverFps: 0,
   });
+
+  // Add this useEffect for the timer
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setTime(prev => prev + 1);
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, []);
 
   const frameTimeRef = useRef(Date.now());
   const frameCountRef = useRef(0);
@@ -46,7 +57,7 @@ export const SimulationSection = ({ gameType }) => {
     if (!ctx) return;
 
     const config = deviceConfig.current;
-    
+
     // Set canvas size based on device capabilities
     if (config.quality === 'low') {
       canvas.width = Math.floor(600 * config.resolution);
@@ -64,7 +75,7 @@ export const SimulationSection = ({ gameType }) => {
       );
       const x = (canvas.width - frameData.bitmap.width * scale) / 2;
       const y = (canvas.height - frameData.bitmap.height * scale) / 2;
-      
+
       ctx.drawImage(
         frameData.bitmap,
         x, y,
@@ -83,10 +94,10 @@ export const SimulationSection = ({ gameType }) => {
     const renderFrame = (timestamp) => {
       if (frameProcessorRef.current?.shouldRenderFrame(timestamp)) {
         const frameData = frameProcessorRef.current.getNextFrame();
-        
+
         if (frameData) {
           renderFrameToCanvas(frameData);
-          
+
           // Update stats
           frameCountRef.current++;
           const now = Date.now();
@@ -159,7 +170,7 @@ export const SimulationSection = ({ gameType }) => {
                 event.data,
                 currentFrameNumberRef.current
               );
-              
+
               if (frameData) {
                 frameProcessorRef.current?.addFrame(frameData);
               }
@@ -179,7 +190,7 @@ export const SimulationSection = ({ gameType }) => {
 
           // Handle JSON messages
           const data = JSON.parse(event.data);
-          
+
           if (data.status === 'error') {
             setError(data.message);
             return;
@@ -270,6 +281,30 @@ export const SimulationSection = ({ gameType }) => {
             transition: 'opacity 500ms ease-in-out',
           }}
         />
+      </div>
+      <div className={styles.controlsOverlay}>
+        <div className={styles.topRightControls}>
+          <button
+            className={styles.controlButton}
+            onClick={() => window.location.href = '/'}
+            title="Home"
+          >
+            🏠
+          </button>
+          <button
+            className={styles.controlButton}
+            onClick={() => {/* Add info modal logic here */}}
+            title="Information"
+          >
+            ℹ️
+          </button>
+        </div>
+        <div className={styles.bottomRightTimer}>
+          <div className={styles.timer}>
+            {String(Math.floor(time / 60)).padStart(2, '0')}:
+            {String(time % 60).padStart(2, '0')}
+          </div>
+        </div>
       </div>
     </div>
   );
