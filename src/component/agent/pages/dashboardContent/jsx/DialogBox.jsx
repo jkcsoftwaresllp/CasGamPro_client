@@ -17,13 +17,13 @@ export const DialogBox = ({ isOpen, onClose, header, clientId, tableName }) => {
 
     switch (tableName) {
       case "Expo":
-        URL = `/auth-api/agent/exposure/${clientId}`;
+        URL = `/auth-api/panel/exposure/${clientId}`;
         break;
       case "ProfitLoss":
-        URL = `/auth-api/agent/clientPL/${clientId}`;
+        URL = `/auth-api/panel/clientPL/${clientId}`;
         break;
       case "Statement":
-        URL = `/auth-api/agent/userStatementLedger/${clientId}`;
+        URL = `/auth-api/panel/userStatementLedger/${clientId}`;
         break;
       default:
         console.error("Invalid table name:", tableName);
