@@ -48,7 +48,7 @@ export const ManagePassword = () => {
       } else {
         console.log("Yeah");
         response = await apiCall(
-          `/auth-api/agent/changeClientPassword/${finalId}`,
+          `/auth-api/panel/changeUserPassword/${finalId}`,
           "POST",
           { ...data, confirmPassword: confirmPassword }
         );
