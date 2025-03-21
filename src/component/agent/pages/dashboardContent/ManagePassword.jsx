@@ -57,7 +57,7 @@ export const ManagePassword = () => {
       const { uniqueCode } = response;
       console.log(response);
 
-      if (uniqueCode === "CGP0029" || uniqueCode === "CGP0203") {
+      if (uniqueCode === "CGP0074" || uniqueCode === "CGP0077") {
         console.log("Password changed successfully");
         const successMsg = selfChange
           ? "Your Password changed successfully"
@@ -80,6 +80,7 @@ export const ManagePassword = () => {
   };
 
   const { id } = useParams();
+  console.log("DDDD", id)
 
   const user = useAuth();
   const { userId, userRole } = user.user;
