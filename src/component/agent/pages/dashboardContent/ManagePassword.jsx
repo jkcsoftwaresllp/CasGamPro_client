@@ -35,7 +35,6 @@ export const ManagePassword = () => {
       id: selfChange ? null : finalId,
     };
 
-    console.log(data);
 
     try {
       let response;
@@ -80,7 +79,6 @@ export const ManagePassword = () => {
   };
 
   const { id } = useParams();
-  console.log("DDDD", id)
 
   const user = useAuth();
   const { userId, userRole } = user.user;
