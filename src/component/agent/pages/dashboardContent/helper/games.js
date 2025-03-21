@@ -8,7 +8,7 @@ export const games = (searchQuery = "") => {
   useEffect(() => {
     const fetchGames = async () => {
       setLoading(true);
-      const response = await apiCall("/auth-api/agent/games/types", "GET");
+      const response = await apiCall("/auth-api/panel/games/types", "GET");
       console.log("API Response:", response);
       if (response && response.uniqueCode === "CGP0109") {
         setGames(response.data);

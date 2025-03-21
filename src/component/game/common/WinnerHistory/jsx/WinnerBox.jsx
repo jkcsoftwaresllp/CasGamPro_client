@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import style from "../style/WinnerHistory.module.css";
 import { WinnerDetail } from "./WinnerDetail";
 
-export const WinnerBox = ({ winner, roundId, gameId }) => {
+export const WinnerBox = ({ winner, roundId, gameName }) => {
   const [showDetails, setShowDetails] = useState(false);
 
   const toggleDetails = (e) => {
@@ -20,7 +20,7 @@ export const WinnerBox = ({ winner, roundId, gameId }) => {
       {showDetails && (
         <WinnerDetail
           roundId={roundId}
-          gameId={gameId}
+          gameName={gameName}
           winner={winner}
           toggleDetails={toggleDetails}
         />

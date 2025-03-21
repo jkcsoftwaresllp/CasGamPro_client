@@ -6,7 +6,7 @@ export const DialogBox = ({ isOpen, onClose, header, clientId, tableName }) => {
   const [tableData, setTableData] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  const uniqueCodes = ["CGP0164", "CGP0177", "CGP0059", "CGP0060"];
+  const uniqueCodes = ["CGP0164", "CGP0177", "CGP0024", "CGP0025"];
 
   // Ensure fetchClientData gets updated dependencies
   const fetchClientData = useCallback(async () => {
@@ -17,13 +17,13 @@ export const DialogBox = ({ isOpen, onClose, header, clientId, tableName }) => {
 
     switch (tableName) {
       case "Expo":
-        URL = `/auth-api/agent/exposure/${clientId}`;
+        URL = `/auth-api/panel/exposure/${clientId}`;
         break;
       case "ProfitLoss":
-        URL = `/auth-api/agent/clientPL/${clientId}`;
+        URL = `/auth-api/panel/clientPL/${clientId}`;
         break;
       case "Statement":
-        URL = `/auth-api/agent/userStatementLedger/${clientId}`;
+        URL = `/auth-api/panel/userStatementLedger/${clientId}`;
         break;
       default:
         console.error("Invalid table name:", tableName);

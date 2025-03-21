@@ -11,7 +11,7 @@ export const WinnerRectangle = ({ results }) => {
           <WinnerBox
             key={index}
             winner={result.winner}
-            gameId={result.gameName}
+            gameName={result.gameName}
             roundId={result.roundId}
           />
         ))}

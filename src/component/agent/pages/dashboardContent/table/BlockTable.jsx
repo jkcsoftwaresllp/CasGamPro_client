@@ -15,7 +15,7 @@ export const BlockTable = () => {
     { key: "username", label: "User Name" },
     { key: "lotteryCommission", label: "Lottery Commission" },
     { key: "casinoCommission", label: "Casino Commission" },
-    { key: "share", label: "Share" },
+    { key: "share", label: "Share" }, 
     { key: "actions", label: "Action" },
   ];
 
