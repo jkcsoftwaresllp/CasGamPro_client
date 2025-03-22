@@ -56,7 +56,8 @@ export const ClientTable = () => {
     {
       label: "Settings",
       icon: changeLockIcon,
-      onClick: (row) => navigate(`${basePath}${path.managePassword}${row.id}`),
+      onClick: (row) =>
+        navigate(`${basePath}${path.managePassword.replace(":id", row.id)}`),
     },
   ];
 
