@@ -17,7 +17,7 @@ export const PayCash = () => {
   useEffect(() => {
     const fetchExposure = async () => {
       const response = await apiCall(
-        `/auth-api/agent/agent-exposure/${id}`,
+        `/auth-api/panel/parent-exposure/${id}`,
         "GET"
       );
       console.log("API call for Exposure", response);
@@ -30,7 +30,7 @@ export const PayCash = () => {
   }, []);
 
   const saveChanges = async () => {
-    const response = await apiCall("/auth-api/agent/payCash", "POST", {
+    const response = await apiCall("/auth-api/panel/payCash", "POST", {
       playerId: id,
       amount,
       note,
