@@ -37,7 +37,7 @@ export const LiveCasinoTable = ({}) => {
   const columnWidthsOverlay = { description: 2 };
 
   const handleCellClick = async (value, row) => {
-    const apiUrl = `/auth-api/agent/games/livecasino/${row.title}/${row.date}`;
+    const apiUrl = `/auth-api/panel/games/livecasino/${row.title}/${row.date}`;
 
     const response = await apiCall(apiUrl, "GET");
     console.log("API Response:", response);
