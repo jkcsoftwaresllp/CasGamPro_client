@@ -1,67 +1,116 @@
 .baseTimer {
-  position: relative;
-  width: 10vw; /* Use viewport width for responsiveness */
-  height: 10vw;
-  max-width: 70px; /* Set a maximum size */
-  max-height: 70px;
-  min-width: 30px; /* Set a minimum size */
-  min-height: 30px;
+    position: relative;
+    width: 10vw; /* Use viewport width for responsiveness */
+    height: 10vw;
+    max-width: 70px; /* Set a maximum size */
+    max-height: 70px;
+    min-width: 30px; /* Set a minimum size */
+    min-height: 30px;
 }
 
 .baseTimerSvg {
-  transform: scaleX(-1);
+    transform: scaleX(-1);
 }
 
 .baseTimerCircle {
-  fill: none;
-  stroke: none;
+    fill: none;
+    stroke: none;
 }
 
 .baseTimerPathElapsed {
-  stroke-width: 7px;
-  stroke: grey;
+    stroke-width: 7px;
+    stroke: grey;
 }
 
 .baseTimerPathRemaining {
-  stroke-width: 7px;
-  stroke-linecap: round;
-  transform: rotate(90deg);
-  transform-origin: center;
-  transition: 1s linear all;
-  fill-rule: nonzero;
-  stroke: currentColor;
+    stroke-width: 7px;
+    stroke-linecap: round;
+    transform: rotate(90deg);
+    transform-origin: center;
+    transition: 1s linear all;
+    fill-rule: nonzero;
+    stroke: currentColor;
 }
 
 .baseTimerPathRemaining.green {
-  color: rgb(65, 184, 131);
+    color: rgb(65, 184, 131);
 }
 
 .baseTimerPathRemaining.orange {
-  color: orange;
+    color: orange;
 }
 
 .baseTimerPathRemaining.red {
-  color: red;
+    color: red;
 }
 
 .baseTimerLabel {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 3vw; /* Use relative font size */
-  font-weight: 800;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3vw; /* Use relative font size */
+    font-weight: 800;
 }
 
 @media (max-width: 600px) {
-  .baseTimer {
-    width: 15vw;
-    height: 15vw;
-  }
-  .baseTimerLabel {
-    font-size: 4vw;
-  }
+    .baseTimer {
+        width: 15vw;
+        height: 15vw;
+    }
+    .baseTimerLabel {
+        font-size: 4vw;
+    }
+}
+
+.timer {
+    font-size: 24px;
+    font-weight: bold;
+    padding: 8px 16px;
+    border-radius: 20px;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    min-width: 80px;
+    text-align: center;
+}
+
+.bettingPhase {
+    color: #ffd700; /* Gold color for betting phase */
+}
+
+.dealingPhase {
+    color: #00ff00; /* Green color for dealing phase */
+}
+
+.completedPhase {
+    color: #ff4444; /* Red color for completed phase */
+}
+
+/* Add animation for last 5 seconds */
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.timer.timeRunningOut {
+    animation: pulse 1s infinite;
+    color: #ff0000;
+}
+
+.bottomRightTimer {
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+    z-index: 100;
+    pointer-events: none;
 }
