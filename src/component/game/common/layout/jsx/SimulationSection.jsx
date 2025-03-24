@@ -46,11 +46,10 @@ export const SimulationSection = ({ gameType }) => {
   const baseURL = isDevelopment ? 'ws://localhost:5500' : `ws://${productionIP}:5500`;
   const refreshThreshold = 3000;
 
-  // Handle timer state updates
+  // Timer update routine.
   const updateTimerState = (phase, durationInMs) => {
     const durationInSeconds = Math.floor(durationInMs / 1000);
     console.log(`Updating timer: phase=${phase}, duration=${durationInSeconds}s`);
-
     setTimerState({
       phase,
       duration: durationInSeconds,
@@ -67,11 +66,9 @@ export const SimulationSection = ({ gameType }) => {
             event.data,
             currentFrameNumberRef.current
           );
-
           if (frameData) {
             frameProcessorRef.current?.addFrame(frameData);
           }
-
           const now = Date.now();
           if (now - serverLastTimeRef.current >= 1000) {
             setStats(prev => ({
@@ -86,42 +83,33 @@ export const SimulationSection = ({ gameType }) => {
       }
 
       const data = JSON.parse(event.data);
-
       switch (data.status) {
         case 'frameMetadata':
           currentFrameNumberRef.current = data.frame_number;
           setStreamType(data.stream_type);
-          // Start betting phase timer when non-dealing phase starts
           if (data.stream_type === 'non-dealing') {
-            updateTimerState('betting', 20000); // 20 seconds for betting phase
+            updateTimerState('betting', 20000);
           }
           break;
-
         case 'transition':
           handleTransition(data.transition_type, data.duration);
-          // When transitioning to dealing phase, prepare for card dealing
           if (data.transition_type === 'fade') {
             updateTimerState('cardDealing', 3000);
           }
           break;
-
         case 'card_placed':
           console.log(`Card placed: ${data.card} at frame ${data.frame_number}`);
           setDealtCount(prev => prev + 1);
-          // Reset the card dealing timer for each card
           updateTimerState('cardDealing', 3000);
           break;
-
         case 'duration':
           if (data.phase === 'final_dealing') {
             updateTimerState('completed', data.duration);
           }
           break;
-
         case 'error':
           setError(data.message);
           break;
-
         default:
           console.log('Unhandled message type:', data.status);
       }
@@ -132,42 +120,23 @@ export const SimulationSection = ({ gameType }) => {
 
   const handleTimerComplete = () => {
     console.log(`Timer completed for phase: ${timerState.phase}`);
-
-    switch (timerState.phase) {
-      case 'betting':
-        setTimerState(prev => ({ ...prev, isActive: false }));
-        break;
-      case 'cardDealing':
-        setTimerState(prev => ({ ...prev, isActive: false }));
-        break;
-      case 'completed':
-        setTimerState(prev => ({ ...prev, isActive: false }));
-        break;
-      default:
-        console.log('Unknown timer phase completed');
-    }
+    setTimerState(prev => ({ ...prev, isActive: false }));
   };
 
-  // Render current frame to canvas as before
+  // Renders the current frame onto the canvas.
   const renderFrameToCanvas = (frameData) => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-
     const ctx = canvas.getContext('2d', { alpha: false });
     if (!ctx) return;
-
     const config = deviceConfig.current;
-
-    // Adjust canvas size for device capabilities
     if (config.quality === 'low') {
       canvas.width = Math.floor(600 * config.resolution);
       canvas.height = Math.floor(300 * config.resolution);
       canvas.style.width = '600px';
       canvas.style.height = '300px';
     }
-
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-
     if (frameData.bitmap) {
       const scale = Math.min(
         canvas.width / frameData.bitmap.width,
@@ -175,7 +144,6 @@ export const SimulationSection = ({ gameType }) => {
       );
       const x = (canvas.width - frameData.bitmap.width * scale) / 2;
       const y = (canvas.height - frameData.bitmap.height * scale) / 2;
-
       ctx.drawImage(
         frameData.bitmap,
         x, y,
@@ -190,12 +158,10 @@ export const SimulationSection = ({ gameType }) => {
     }
   };
 
-  // Start the hybrid render loop by calling our new method
+  // Start the optimized hybrid render loop.
   const startRenderLoop = () => {
     frameProcessorRef.current?.startHybridRendering((frameData) => {
       renderFrameToCanvas(frameData);
-
-      // Update stats as before
       frameCountRef.current++;
       const now = Date.now();
       if (now - frameTimeRef.current >= 1000) {
@@ -216,7 +182,6 @@ export const SimulationSection = ({ gameType }) => {
       const overlay = overlayRef.current;
       overlay.style.transition = `opacity ${duration / 2}ms ease-in`;
       overlay.style.opacity = '1';
-
       setTimeout(() => {
         overlay.style.transition = `opacity ${duration / 2}ms ease-out`;
         overlay.style.opacity = '0';
@@ -228,9 +193,9 @@ export const SimulationSection = ({ gameType }) => {
   const initializeWebSocket = () => {
     try {
       const config = deviceConfig.current;
+      // You may add config.maxBufferSize or config.maxLagMs here for further tuning.
       frameProcessorRef.current = new FrameProcessor(config);
       wsRef.current = new WebSocket(`${baseURL}?config=${JSON.stringify(config)}`);
-
       wsRef.current.onopen = () => {
         setIsConnected(true);
         setError(null);
@@ -241,13 +206,11 @@ export const SimulationSection = ({ gameType }) => {
           }));
         }
       };
-
       wsRef.current.onclose = () => setIsConnected(false);
       wsRef.current.onerror = () => {
         setError('Failed to connect to video stream');
         setIsConnected(false);
       };
-
       wsRef.current.onmessage = handleWebSocketMessage;
     } catch (err) {
       console.error('WebSocket initialization error:', err);
@@ -255,7 +218,6 @@ export const SimulationSection = ({ gameType }) => {
     }
   };
 
-  // Handle document visibility for refresh purposes
   useEffect(() => {
     const handleVisibilityChange = () => {
       if (document.hidden) {
@@ -267,16 +229,13 @@ export const SimulationSection = ({ gameType }) => {
         }
       }
     };
-
     document.addEventListener('visibilitychange', handleVisibilityChange);
     return () => document.removeEventListener('visibilitychange', handleVisibilityChange);
   }, []);
 
-  // Initialize the WebSocket and the hybrid render loop
   useEffect(() => {
     initializeWebSocket();
     startRenderLoop();
-
     return () => {
       if (wsRef.current) wsRef.current.close();
       if (frameProcessorRef.current) {
@@ -291,7 +250,6 @@ export const SimulationSection = ({ gameType }) => {
       {!isConnected && !error && (
         <div className={styles.loadingMessage}>Connecting...</div>
       )}
-
       {isDevelopment && (
         <div className={styles.stats}>
           <div>Phase: {timerState.phase}</div>
@@ -306,7 +264,6 @@ export const SimulationSection = ({ gameType }) => {
           <div>Quality: {deviceConfig.current.quality}</div>
         </div>
       )}
-
       <div className={styles.videoContainer}>
         <canvas
           ref={canvasRef}
@@ -323,19 +280,20 @@ export const SimulationSection = ({ gameType }) => {
           }}
         />
       </div>
-
       <div className={styles.controlsOverlay}>
         <div className={styles.topRightControls}>
           <button
             className={styles.controlButton}
-            onClick={() => window.location.href = '/'}
+            onClick={() => (window.location.href = '/')}
             title="Home"
           >
             🏠
           </button>
           <button
             className={styles.controlButton}
-            onClick={() => {/* Add info modal logic here */}}
+            onClick={() => {
+              /* Add info modal logic here */
+            }}
             title="Information"
           >
             ℹ️
