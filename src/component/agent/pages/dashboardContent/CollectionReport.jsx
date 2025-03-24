@@ -15,7 +15,7 @@ export const CollectionReport = () => {
     const fetchData = async () => {
       setLoading(true);
       const response = await apiCall(
-        "/auth-api/agent/collection-report",
+        "/auth-api/panel/collection-report",
         "GET"
       );
       console.log("Collection Report Data:", response);
