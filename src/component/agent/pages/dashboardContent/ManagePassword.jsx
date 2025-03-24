@@ -35,7 +35,6 @@ export const ManagePassword = () => {
       id: selfChange ? null : finalId,
     };
 
-    console.log(data);
 
     try {
       let response;
@@ -48,7 +47,7 @@ export const ManagePassword = () => {
       } else {
         console.log("Yeah");
         response = await apiCall(
-          `/auth-api/agent/changeClientPassword/${finalId}`,
+          `/auth-api/panel/changeUserPassword/${finalId}`,
           "POST",
           { ...data, confirmPassword: confirmPassword }
         );
@@ -57,7 +56,7 @@ export const ManagePassword = () => {
       const { uniqueCode } = response;
       console.log(response);
 
-      if (uniqueCode === "CGP0029" || uniqueCode === "CGP0203") {
+      if (uniqueCode === "CGP0074" || uniqueCode === "CGP0077") {
         console.log("Password changed successfully");
         const successMsg = selfChange
           ? "Your Password changed successfully"

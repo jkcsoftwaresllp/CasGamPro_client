@@ -10,20 +10,13 @@ export const BlockTable = () => {
   const context = useOutletContext() || {};
   const { data = [], loading = false } = context;
 
-  // Convert data for the table
-  const tableData = data.map((client) => ({
-    username: client.username,
-    matchCommission: client.matchCommission,
-    sessionCommission: client.sessionCommission,
-    share: client.share,
-  }));
-
   const columns = [
-    { key: "username", label: "UserName" },
-    { key: "matchCommission", label: "Match Commission" },
-    { key: "sessionCommission", label: "Session Commission" },
-    { key: "share", label: "Share" },
-    { key: "actions", label: "Actions" },
+    { key: "id", label: "User Id" },
+    { key: "username", label: "User Name" },
+    { key: "lotteryCommission", label: "Lottery Commission" },
+    { key: "casinoCommission", label: "Casino Commission" },
+    { key: "share", label: "Share" }, 
+    { key: "actions", label: "Action" },
   ];
 
   const columnWidths = { username: 2, actions: 2 };
@@ -54,7 +47,7 @@ export const BlockTable = () => {
       ) : (
         <div className={style.tableContent}>
           <Table
-            data={tableData}
+            data={data}
             columns={columns}
             columnWidths={columnWidths}
             isAction={true}

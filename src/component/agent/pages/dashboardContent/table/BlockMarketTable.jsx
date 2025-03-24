@@ -14,18 +14,18 @@ import { apiCall } from "../../../../common/apiCall.js";
 import { getToastTypes, showToast } from "../../../../common/showToast.jsx";
 
 export const handleBlockUnBlockGame = async (row, type) => {
-  const response = await apiCall("/auth-api/agent/gameBlock", "POST", {
-    id: row.id,
+  const response = await apiCall("/auth-api/panel/gameBlock", "POST", {
+    gameId: row.gameId,
     type,
   });
 
-  if (response.uniqueCode === "CGP0154") {
+  if (response.uniqueCode === "CGP0082") {
     showToast(getToastTypes.type1, response.message);
     setTimeout(() => {
       window.location.reload();
     }, 3000);
-  } else if (response.uniqueCode === "CGP0109") {
-    showToast(getToastTypes.type2, response.message);
+  } else {
+    showToast(getToastTypes.type4, response.message);
     setTimeout(() => {
       window.location.reload();
     }, 3000);

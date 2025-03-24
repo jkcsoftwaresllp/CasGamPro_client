@@ -22,7 +22,7 @@ export const useFetchUserData = (id) => {
     const fetchUserData = async () => {
       try {
         setLoading(true);
-        const response = await apiCall(`/auth-api/agent/user/${id}`, "GET");
+        const response = await apiCall(`/auth-api/panel/user/${id}`, "GET");
         console.log("User data fetched successfully:", response);
 
         if (response.uniqueCode === "CGP0113") setFormData(response.data);
@@ -82,7 +82,7 @@ export const useFetchUserData = (id) => {
       }
 
       const response = await apiCall(
-        `/auth-api/agent/players/${id}`,
+        `/auth-api/panel/users/${id}`,
         "PUT",
         formData
       );

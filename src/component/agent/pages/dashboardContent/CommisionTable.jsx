@@ -43,7 +43,7 @@ export const CommissionTable = () => {
     () =>
       data.map((client) => ({
         id: client.id,
-        name: `${client.firstName} ${client.lastName} (${client.username})`,
+        name: `${client.firstName} ${client.lastName}`,
         share: client.share,
         casinoCommission: client.casinoCommission,
         lotteryCommission: client.lotteryCommission,
@@ -60,7 +60,8 @@ export const CommissionTable = () => {
 
   const columns = useMemo(
     () => [
-      { key: "name", label: "Name" },
+      { key: "name", label: "Full Name" },
+      { key: "id", label: "User Id" },
       { key: "casinoCommission", label: "Casino Comm." },
       { key: "lotteryCommission", label: "Lottery Comm." },
       { key: "currentLimit", label: "Current Limit" },
@@ -121,7 +122,7 @@ export const CommissionTable = () => {
               columnWidths={columnWidths}
               isAction={true}
               btns={actionButtons}
-              clickableColumns={["name"]}
+              clickableColumns={["id"]}
               onCellClick={(value, row) =>
                 navigate(`${basePath}${path.userInfo.replace(":id", row.id)}`)
               }

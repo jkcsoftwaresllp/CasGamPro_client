@@ -10,30 +10,36 @@ import { routesPathClient as path } from "../../../../routing/helper/routesPathC
 import { Loader } from "../../../../common/Loader.jsx";
 import style from "./Table.module.css";
 import { useOutletContext } from "react-router-dom";
+import { rolePathData } from "../../../../panels/dashboard/AgentDashboard.jsx";
+import { useAuth } from "../../../../../context/jsx/AuthContext.jsx";
 
 export const ClientTable = () => {
   const navigate = useNavigate();
+  const { user } = useAuth();
+  const userRole = user.userRole;
 
   const context = useOutletContext() || {};
   const { data = [], loading = false } = context;
 
   const tableData = data.map((client) => ({
     id: client.id,
-    username: `${client.firstName} ${client.lastName} (${client.userName})`,
+    username: `${client.firstName} ${client.lastName}`,
     casinoCommission: client.casinoCommission,
     lotteryCommission: client.lotteryCommission,
     share: client.matchShare,
   }));
 
   const columns = [
-    { key: "username", label: "UserName" },
+    { key: "username", label: "Full Name" },
+    { key: "id", label: "Client ID" },
     { key: "casinoCommission", label: "Casino Commission" },
     { key: "lotteryCommission", label: "Lottery Commission" },
     { key: "share", label: "Share" },
     { key: "actions", label: "Actions" },
   ];
 
-  const columnWidths = { username: 2, actions: 2 };
+  const columnWidths = { actions: 2 };
+  const basePath = rolePathData[userRole];
 
   const actionButtons = [
     {
@@ -41,7 +47,7 @@ export const ClientTable = () => {
       icon: EditIcon,
       onClick: (row) =>
         navigate(
-          `${path.agent}${path.manageClients}${path.editUser.replace(
+          `${basePath}${path.manageClients}${path.editUser.replace(
             ":id",
             row.id
           )}`
@@ -50,16 +56,14 @@ export const ClientTable = () => {
     {
       label: "Settings",
       icon: changeLockIcon,
-      onClick: (row) => navigate(`/agent/managePassword/${row.id}`),
+      onClick: (row) =>
+        navigate(`${basePath}${path.managePassword.replace(":id", row.id)}`),
     },
   ];
 
   const handleCellClick = (value, row) => {
     navigate(
-      `${path.agent}${path.manageClients}${path.userInfo.replace(
-        ":id",
-        row.id
-      )}`
+      `${basePath}${path.manageClients}${path.userInfo.replace(":id", row.id)}`
     );
   };
 
@@ -79,7 +83,7 @@ export const ClientTable = () => {
             columnWidths={columnWidths}
             isAction={true}
             btns={actionButtons}
-            clickableColumns={["username"]}
+            clickableColumns={["id"]}
             onCellClick={handleCellClick}
           />
           {/* Pagination Controls */}

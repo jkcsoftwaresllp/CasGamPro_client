@@ -13,10 +13,12 @@ export const TableOverWindow = ({
   onCellClick = () => {},
   setIsOverlayView,
   btns = [{ label: null, icon: null, onClick: null }],
+  title,
 }) => {
   return (
     <div className={style.tableWindowWrapper}>
       <div className={style.tableWindow}>
+        <div className={style.title}>{title}</div>
         <div className={style.close}>
           <IconBtncustom
             icon={closeIcon}

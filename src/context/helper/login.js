@@ -4,7 +4,7 @@ import { blockLevels } from "../../utils/blockLevers";
 
 export const login = async (setUser, credentials) => {
   try {
-    const successCodes = ["CGP00U05", "CGP00U11", "CGP00U10"];
+    const successCodes = ["CGP0046"];
     const response = await apiCall("/api/login", "POST", credentials);
 
     console.log("Login response:", response);
@@ -22,7 +22,7 @@ export const login = async (setUser, credentials) => {
           getToastTypes.type4,
           "Your account is blocked. Please contact Agent"
         );
-      } else {
+      } else if (response.uniqueCode === "CGP0046") {
         // Save user data from the response
         setUser({
           status: response.data.status,

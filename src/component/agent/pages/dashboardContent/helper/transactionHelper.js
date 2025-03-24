@@ -33,7 +33,7 @@ export const handleTransaction = async (type, row) => {
     const amount_1 = result.value;
     try {
       const response = await apiCall(
-        "/auth-api/agent/walletTransaction",
+        "/auth-api/panel/walletTransaction",
         "POST",
         {
           userId: row.id,

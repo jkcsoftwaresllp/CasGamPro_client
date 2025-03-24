@@ -27,12 +27,9 @@ export const AgentNewUser = () => {
 
   const fetchData = async () => {
     try {
-      const response = await apiCall(
-        "/auth-api/agent/generateUserIdCommissionLimit",
-        "GET"
-      );
+      const response = await apiCall("/auth-api/panel/generate-user-id", "GET");
       console.log("API Response: ", response);
-      if (response && response.uniqueCode === "CGP0107") {
+      if (response && response.uniqueCode === "CGP0108") {
         setInitalInfo((prev) => ({
           ...prev,
           userId: response.data.userId,
@@ -114,14 +111,14 @@ export const AgentNewUser = () => {
     try {
       // Send form data to the backend
       const response = await apiCall(
-        "/auth-api/agent/register-client",
+        "/auth-api/panel/register-user",
         "POST",
         formData
       );
 
       console.log("Form submitted successfully:", response);
 
-      if (response.uniqueCode === "CGP01R10") {
+      if (response.uniqueCode === "CGP0011") {
         setSuccess("User registered successfully!");
 
         const timer = setTimeout(() => {
@@ -132,9 +129,11 @@ export const AgentNewUser = () => {
 
         return () => clearTimeout(timer);
       } else {
+        console.log("Backend Error:", response);
         setError(response?.message || "Registration failed.");
       }
     } catch (err) {
+      console.log("Backend Error:", err);
       setError(err?.message || "An error occurred during registration.");
     }
   };
