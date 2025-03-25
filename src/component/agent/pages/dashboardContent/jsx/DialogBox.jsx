@@ -6,7 +6,7 @@ export const DialogBox = ({ isOpen, onClose, header, clientId, tableName }) => {
   const [tableData, setTableData] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  const uniqueCodes = ["CGP0164", "CGP0177", "CGP0059", "CGP0060"];
+  const uniqueCodes = ["CGP0164", "CGP0177", "CGP0059", "CGP0060", "CGP0058"];
 
   // Ensure fetchClientData gets updated dependencies
   const fetchClientData = useCallback(async () => {
