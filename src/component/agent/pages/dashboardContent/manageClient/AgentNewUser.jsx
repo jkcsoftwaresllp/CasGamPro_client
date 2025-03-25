@@ -192,6 +192,7 @@ export const AgentNewUser = () => {
         value={formData.maxShare}
         onChange={handleChange}
         placeholder="My Share"
+        maxLimit={initialInfo.maxShare}
       />
       <NumberInput
         label="Casino Commission"

@@ -3,7 +3,6 @@ import { useParams, useNavigate } from "react-router-dom";
 import { UserIdInput } from "../../../main/jsx/inputFeild/UserId";
 import { TextInput } from "../../../main/jsx/inputFeild/TextInput";
 import { NumberInput } from "../../../main/jsx/inputFeild/NumberInput";
-import { PasswordInput } from "../../../main/jsx/inputFeild/PasswordInput";
 import { Button } from "../../../../common/Button";
 import style from "../manageClient/style/AgentNewUser.module.css";
 import { Loader } from "../../../../common/Loader";
@@ -88,33 +87,22 @@ export const EditUser = () => {
             label="My Share"
             name="share"
             value={formData.share}
-            disable={true}
+            maxLimit={100}
+            onChange={handleChange}
           />
           <NumberInput
             label="Casino Commission"
             name="casinoCommission"
             value={formData.casinoCommission}
-            disable={true}
+            maxLimit={40}
+            onChange={handleChange}
           />
           <NumberInput
             label="Lottery Commission"
             name="lotteryCommission"
             value={formData.lotteryCommission}
-            disable={true}
-          />
-          <PasswordInput
-            label="Password"
-            name="password"
-            value={formData.password}
+            maxLimit={40}
             onChange={handleChange}
-            placeholder="Enter Password"
-          />
-          <PasswordInput
-            label="Confirm Password"
-            name="confirmPassword"
-            value={formData.confirmPassword}
-            onChange={handleChange}
-            placeholder="Confirm Password"
           />
 
           <Dropdown

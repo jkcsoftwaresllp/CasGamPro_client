@@ -38,31 +38,54 @@ export const useFetchUserData = (id) => {
   }, [id]);
 
   const handleChange = (e) => {
-    setError("");
-    if (!e.target) {
-      //  Special Case for Paswords
-      const { name, value } = e;
-      setFormData((prev) => ({
-        ...prev,
-        [name]: value,
-      }));
-      return;
-    }
+    if (typeof e !== "object") return;
 
-    const { name, value } = e.target;
-    const parsedValue = [
-      "fixLimit",
-      "matchShare",
-      "matchCommission",
-      "lotteryCommission",
-    ].includes(name)
-      ? parseFloat(value)
-      : value;
+    const { name, value } = e.target || e; // Handles both input & password cases
+    if (!name) return;
 
-    setFormData((prev) => ({
-      ...prev,
-      [name]: parsedValue,
-    }));
+    setError(""); // Ensure error state resets
+
+    // Store raw input value as a string
+    let rawValue = value;
+
+    // Convert to float only if needed (excluding empty value)
+    let parsedValue = rawValue === "" ? "" : Number(rawValue);
+
+    // Ensure parsedValue does not turn NaN
+    if (isNaN(parsedValue)) parsedValue = "";
+
+    // Get max limits
+    const maxLotteryCommission = 40,
+      maxCasinoCommission = 40;
+
+    setFormData((prev) => {
+      let finalValue = rawValue; // Keep the original value for correct display
+
+      if (
+        ["fixLimit", "share", "casinoCommission", "lotteryCommission"].includes(
+          name
+        )
+      ) {
+        finalValue = parsedValue;
+      }
+
+      // Apply limits
+      if (name === "share" && parsedValue > 100) {
+        finalValue = prev.share; // Prevent exceeding 100
+      } else if (
+        name === "casinoCommission" &&
+        parsedValue > parseFloat(maxCasinoCommission)
+      ) {
+        finalValue = prev.casinoCommission; // Enforce max casino commission
+      } else if (
+        name === "lotteryCommission" &&
+        parsedValue > parseFloat(maxLotteryCommission)
+      ) {
+        finalValue = prev.lotteryCommission; // Enforce max lottery commission
+      }
+
+      return prev[name] === finalValue ? prev : { ...prev, [name]: finalValue };
+    });
   };
 
   const handleDropdownChange = (value) => {
