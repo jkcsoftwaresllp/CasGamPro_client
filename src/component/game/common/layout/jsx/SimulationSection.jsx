@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import styles from '../style/SimulationSection.module.css';
 import { useGameState } from '../helper/GameStateContext';
 import { DeviceCapabilities } from '../helper/devices.js';
@@ -16,7 +16,7 @@ export const SimulationSection = ({ gameType }) => {
   const [timerState, setTimerState] = useState({
     phase: 'betting',
     duration: 20,
-    isActive: false
+    isActive: true
   });
 
   const [streamType, setStreamType] = useState(null);
@@ -41,21 +41,27 @@ export const SimulationSection = ({ gameType }) => {
   const serverFrameCountRef = useRef(0);
   const serverLastTimeRef = useRef(Date.now());
 
-  const isDevelopment = process.env.NODE_ENV === 'development';
+  const isDevelopment = import.meta.env.DEV;
   const productionIP = '88.222.214.174';
   const baseURL = isDevelopment ? 'ws://localhost:5500' : `ws://${productionIP}:5500`;
   const refreshThreshold = 3000;
 
   // Timer update routine.
   const updateTimerState = (phase, durationInMs) => {
-    const durationInSeconds = Math.floor(durationInMs / 1000);
-    console.log(`Updating timer: phase=${phase}, duration=${durationInSeconds}s`);
-    setTimerState({
-      phase,
-      duration: durationInSeconds,
-      isActive: true
-    });
-  };
+     const durationInSeconds = Math.floor(durationInMs / 1000);
+     setTimerState(prev => {
+      if (prev.phase === phase && prev.duration === durationInSeconds && prev.isActive) {
+       // nothing has changed, so do not reset the timer
+       return prev;
+      }
+      console.log(`Updating timer: phase=${phase}, duration=${durationInSeconds}s`);
+      return {
+       phase,
+       duration: durationInSeconds,
+       isActive: true
+      };
+     });
+    };
 
   const handleWebSocketMessage = async (event) => {
     try {
@@ -83,13 +89,13 @@ export const SimulationSection = ({ gameType }) => {
       }
 
       const data = JSON.parse(event.data);
+
+      // console.log("TRACK:", data);
+
       switch (data.status) {
         case 'frameMetadata':
           currentFrameNumberRef.current = data.frame_number;
           setStreamType(data.stream_type);
-          if (data.stream_type === 'non-dealing') {
-            updateTimerState('betting', 20000);
-          }
           break;
         case 'transition':
           handleTransition(data.transition_type, data.duration);
@@ -97,14 +103,18 @@ export const SimulationSection = ({ gameType }) => {
             updateTimerState('cardDealing', 3000);
           }
           break;
-        case 'card_placed':
+        case 'reset_countdown':
           console.log(`Card placed: ${data.card} at frame ${data.frame_number}`);
           setDealtCount(prev => prev + 1);
           updateTimerState('cardDealing', 3000);
           break;
         case 'duration':
-          if (data.phase === 'final_dealing') {
+          console.log(`Timer duration updated: ${data.status}`);
+          if (data.phase === 'waiting') {
             updateTimerState('completed', data.duration);
+          }
+          if (data.phase === 'non-dealing') {
+            updateTimerState('betting', 20000);
           }
           break;
         case 'error':
@@ -302,6 +312,7 @@ export const SimulationSection = ({ gameType }) => {
         <div className={styles.bottomRightTimer}>
           {timerState.isActive && (
             <CountdownTimer
+               key={`${timerState.phase}-${timerState.duration}`}
               initialTime={timerState.duration}
               phase={timerState.phase}
               onComplete={handleTimerComplete}
