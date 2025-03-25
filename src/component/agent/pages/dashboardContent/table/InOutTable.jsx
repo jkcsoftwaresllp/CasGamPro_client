@@ -25,7 +25,7 @@ export const InOutTable = ({}) => {
     { key: "balance", label: "Balance" },
   ];
 
-  const columnWidths = { date: 0.5, description: 4 };
+  const columnWidths = { description: 3 };
 
   return (
     <div className={style.tableContainer}>
