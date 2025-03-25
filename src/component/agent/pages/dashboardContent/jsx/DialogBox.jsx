@@ -6,7 +6,7 @@ export const DialogBox = ({ isOpen, onClose, header, clientId, tableName }) => {
   const [tableData, setTableData] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  const uniqueCodes = ["CGP0164", "CGP0177", "CGP0059", "CGP0060"];
+  const uniqueCodes = ["CGP0164", "CGP0177", "CGP0059", "CGP0060", "CGP0058"];
 
   // Ensure fetchClientData gets updated dependencies
   const fetchClientData = useCallback(async () => {
@@ -72,8 +72,8 @@ export const DialogBox = ({ isOpen, onClose, header, clientId, tableName }) => {
           { key: "date", label: "Date" },
           { key: "roundId", label: "Round ID" },
           { key: "roundTitle", label: "Round Title" },
-          { key: "roundEarning", label: "Win/Loss Amount" },
-          { key: "commissionEarning", label: "Commission Earning" },
+          // { key: "roundEarning", label: "Win/Loss Amount" },
+          // { key: "commissionEarning", label: "Commission Earning" },
           { key: "totalEarning", label: "Total Earning" },
         ];
       case "Statement":

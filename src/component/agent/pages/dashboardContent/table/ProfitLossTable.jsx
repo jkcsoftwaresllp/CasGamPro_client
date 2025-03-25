@@ -21,8 +21,8 @@ export const ProfitLossTable = () => {
     { key: "date", label: "Date" },
     { key: "roundId", label: "Round ID" },
     { key: "roundTitle", label: "Round Title" },
-    { key: "roundEarning", label: "Win/Loss Amount" },
-    { key: "commissionEarning", label: "Commission Earning" },
+    // { key: "roundEarning", label: "Win/Loss Amount" },
+    // { key: "commissionEarning", label: "Commission Earning" },
     { key: "totalEarning", label: "Total Earning" },
   ];
 

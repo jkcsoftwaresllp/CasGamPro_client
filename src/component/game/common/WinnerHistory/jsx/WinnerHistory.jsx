@@ -17,8 +17,6 @@ export const WinnerHistory = () => {
           `/auth-api/client/games/history?gameType=${gameType}`,
           "GET"
         );
-        
-        console.log("History API response : ", response)
         setResult(response.data);
       } catch (error) {
         console.error(error);
