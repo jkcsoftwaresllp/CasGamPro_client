@@ -10,6 +10,7 @@ import { RenderOverlayWindow } from "./helper/RenderOverlayWindow";
 import { getManageClients } from "../../../../panels/helper/sidebarConfig";
 import { useAuth } from "../../../../../context/jsx/AuthContext";
 import { roles } from "../../../../../utils/roles";
+import { rolePathData } from "../../../../panels/dashboard/AgentDashboard";
 
 const getChildsLabel = (role) => {
   const temp = {
@@ -31,6 +32,8 @@ export const AgentManageUser = () => {
   const [tableName, setTableName] = useState("");
   const { user } = useAuth();
   const userRole = user.userRole;
+
+  const basePath = rolePathData[userRole];
 
   useEffect(() => {
     setTimeout(() => setLoading(false), 100); // Simulating data fetch
@@ -65,7 +68,7 @@ export const AgentManageUser = () => {
             label="Receive Cash"
             onClick={() =>
               navigate(
-                `${path.agent}${path.manageClients}${path.recieveCash.replace(
+                `${basePath}${path.manageClients}${path.recieveCash.replace(
                   ":id",
                   id
                 )}`
@@ -76,7 +79,7 @@ export const AgentManageUser = () => {
             label="Pay Cash"
             onClick={() =>
               navigate(
-                `${path.agent}${path.manageClients}${path.payCash.replace(
+                `${basePath}${path.manageClients}${path.payCash.replace(
                   ":id",
                   id
                 )}`

@@ -6,10 +6,15 @@ import { DownloadIcon } from "../../../../../assets/assets";
 import { downloadPDF } from "../helper/paymentRecieve";
 import { routesPathClient as path } from "../../../../routing/helper/routesPathClient";
 import { IconBtncustom } from "../../../../common/IconBtncustom";
+import { rolePathData } from "../../../../panels/dashboard/AgentDashboard";
+import { useAuth } from "../../../../../context/jsx/AuthContext";
 
 export const PaymentRecieve = ({ data }) => {
   const navigate = useNavigate();
-
+  const { user } = useAuth();
+  const userRole = user.userRole;
+  const basePath = rolePathData[userRole];
+  
   // const [data, setClients] = useState([
   //   { id: 85800, name: "Ankur", balance: 1500 },
   //   { id: 85801, name: "Rahul", balance: 2300 },
@@ -38,7 +43,7 @@ export const PaymentRecieve = ({ data }) => {
   // Handle table cell click (navigates to client details)
   const handleCellClick = (value, row) => {
     navigate(
-      `${path.agent}${path.manageClients}${path.userInfo.replace(
+      `${basePath}${path.manageClients}${path.userInfo.replace(
         ":id",
         row.id
       )}`
