@@ -42,13 +42,13 @@ export const AgentManageUser = () => {
   useEffect(() => {
     const fetchExposure = async () => {
       const response = await apiCall(
-        `/auth-api/panel/user-exposure/${id}`,
+        `/auth-api/panel/get-coins-exposure/${id}`,
         "GET"
       );
       console.log("API call for Exposure", response);
 
       if (response && response.uniqueCode === "CGP0153") {
-        setExposure(response.data.balance);
+        setExposure(response.data.exposure);
         setCoins(response.data.coins);
       }
     };

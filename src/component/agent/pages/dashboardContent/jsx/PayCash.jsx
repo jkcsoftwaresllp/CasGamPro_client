@@ -17,13 +17,13 @@ export const PayCash = () => {
   useEffect(() => {
     const fetchExposure = async () => {
       const response = await apiCall(
-        `/auth-api/panel/parent-exposure/${id}`,
+        `/auth-api/panel/get-coins-exposure/${id}`,
         "GET"
       );
       console.log("API call for Exposure", response);
 
       if (response && response.uniqueCode === "CGP0156") {
-        setExposure(response.data.balance);
+        setExposure(response.data.exposure);
       }
     };
     fetchExposure();
