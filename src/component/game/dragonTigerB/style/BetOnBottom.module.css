@@ -34,6 +34,7 @@
   justify-content: space-around;
   align-items: center;
   flex-direction: row;
+  width: 100%;
 }
 
 .rectangeCircle {
@@ -45,9 +46,6 @@
 
 @media (max-width: 1000px) {
   .lowHighEvenOdd {
-    flex-direction: column;
-  }
-  .betOnTop {
     flex-direction: column;
   }
 }

@@ -1,13 +1,19 @@
 .simulationSection {
-  background-color: var(--color-bg-primary);
   color: var(--color-text-primary);
   border-radius: var(--borderRadius);
   font-weight: 800;
-  border: 1px solid #8b3b3b;
-  height: 100%;
   width: 100%;
-  min-height: 300px;
   display: flex;
+  max-width: 800px; 
+  aspect-ratio: 16 / 9;
   justify-content: center;
   align-items: center;
+  border: 2px solid var(--color-text-placeholder);
+}
+
+.video-container {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  background-color: black; /* Optional: for better visibility */
 }

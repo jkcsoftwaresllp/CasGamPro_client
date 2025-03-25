@@ -11,7 +11,7 @@ const getPrefixBeforeUnderscore = (roundId) => {
   return roundId.split("_")[0];
 };
 
-export const WinnerDetail = ({ roundId, gameName, winner, toggleDetails }) => {
+export const WinnerDetail = ({ roundId, toggleDetails }) => {
   const [history, setHistory] = useState([]);
 
   const gameId = getPrefixBeforeUnderscore(roundId);
@@ -22,8 +22,6 @@ export const WinnerDetail = ({ roundId, gameName, winner, toggleDetails }) => {
       try {
         const apiUrl = `/auth-api/client/games/rounds/${roundId}/winning-history`;
         const result = await apiCall(apiUrl, "GET");
-
-        console.log("Reponse API for Winner Details: ", result);
 
         if ((result.uniqueCode = "CGP00G14")) {
           setHistory(result.data);
@@ -56,7 +54,7 @@ export const WinnerDetail = ({ roundId, gameName, winner, toggleDetails }) => {
       <div className={style.SmallWindow}>
         <div className={style.top}>
           <p>Round ID: {history?.roundId}</p>
-          <p>Game ID: {gameName}</p>
+          <p>Game ID: {history?.gameId}</p>
         </div>
         <div className={style.bottom}>
           {history.jokerCard && (

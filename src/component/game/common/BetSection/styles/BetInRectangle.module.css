@@ -16,9 +16,15 @@
 }
 
 /* Medium screens (tablets) */
-@media (max-width: 1024px) {
+@media (max-width: 1500px) {
   .betInRectangle {
-    width: 320px; /* Reduce width */
+    width: 200px; /* Reduce width */
+  }
+}
+/* Medium screens (tablets) */
+@media (max-width: 1090px) {
+  .betInRectangle {
+    width: 150px; /* Reduce width */
   }
 }
 
