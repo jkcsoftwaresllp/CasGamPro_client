@@ -10,7 +10,6 @@ import { useFetchUserData } from "../helper/editUser"; // Import the helper func
 import Dropdown from "../helper/Dropdown";
 import { getToastTypes, showToast } from "../../../../common/showToast";
 
-// TODO: Currently Blocking is not implmented neither at client side not return in API
 
 export const EditUser = () => {
   const { id } = useParams();
