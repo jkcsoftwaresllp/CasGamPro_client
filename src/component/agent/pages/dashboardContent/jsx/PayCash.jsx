@@ -22,7 +22,7 @@ export const PayCash = () => {
       );
       console.log("API call for Exposure", response);
 
-      if (response && response.uniqueCode === "CGP0156") {
+      if (response && response.uniqueCode === "CGP0153") {
         setExposure(response.data.exposure);
       }
     };
@@ -30,12 +30,20 @@ export const PayCash = () => {
   }, []);
 
   const saveChanges = async () => {
-    const response = await apiCall("/auth-api/panel/payCash", "POST", {
-      playerId: id,
-      amount,
-      note,
-    });
-    if (response && response.uniqueCode === "CGP0167") {
+    const response = await apiCall(
+      "/auth-api/panel/exposure-transection",
+      "POST",
+      {
+        userId: id,
+        amount,
+        note,
+        type: "pay",
+      }
+    );
+
+    console.log("Response for Pay Cash", response);
+
+    if (response && response.uniqueCode === "CGP0065") {
       console.log("API Response: ", response);
       showToast(getToastTypes.type1, response.message);
       navigate(-1);
