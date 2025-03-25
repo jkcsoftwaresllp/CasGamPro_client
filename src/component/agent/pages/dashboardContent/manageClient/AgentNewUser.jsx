@@ -149,6 +149,11 @@ export const AgentNewUser = () => {
           fetchData();
           setError("");
           setSuccess(null);
+          setFormData((prev) => ({
+            ...prev,
+            password: "",
+            confirmPassword: "",
+          }));
         }, 3000);
 
         return () => clearTimeout(timer);
