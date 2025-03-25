@@ -7,20 +7,27 @@ export const NumberInput = ({
   onChange = () => {},
   placeholder,
   disable = false,
-}) => (
-  <>
-    <div className={style.input}>
-      <label>{label}</label>
+  maxLimit = "MAX",
+}) => {
+  const modifedDisable =
+    maxLimit === "MAX" ? disable : String(maxLimit) === "0" || disable;
 
-      <input
-        className={`${style.field} ${disable ? style.disable : ""}`}
-        type="number"
-        name={name}
-        value={value === "" ? "" : value}
-        onChange={onChange}
-        placeholder={placeholder}
-        disabled={disable}
-      />
-    </div>
-  </>
-);
+  return (
+    <>
+      <div className={style.input}>
+        <label>{label}</label>
+
+        <input
+          className={`${style.field} ${modifedDisable ? style.disable : ""}`}
+          type="number"
+          name={name}
+          value={value === "" ? "" : value}
+          onChange={onChange}
+          placeholder={placeholder}
+          disabled={modifedDisable}
+        />
+        {maxLimit !== "MAX" && <p className={style.maxLimit}>{maxLimit}%</p>}
+      </div>
+    </>
+  );
+};

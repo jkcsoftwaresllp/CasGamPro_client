@@ -10,7 +10,7 @@ import { useNavigate } from "react-router-dom";
 
 export const AgentNewUser = () => {
   const navigate = useNavigate();
-  const [initialInfo, setInitalInfo] = useState([]);
+  const [initialInfo, setInitalInfo] = useState({});
   const [error, setError] = useState("");
   const [success, setSuccess] = useState(null);
   const [formData, setFormData] = useState({
@@ -33,9 +33,9 @@ export const AgentNewUser = () => {
         setInitalInfo((prev) => ({
           ...prev,
           userId: response.data.userId,
-          maxShare: 0,
-          maxLotteryCommission: 0,
-          maxCasinoCommission: 0,
+          maxShare: response.data.maxShare,
+          maxLotteryCommission: response.data.maxLotteryCommission,
+          maxCasinoCommission: response.data.maxCasinoCommission,
         }));
       } else {
         console.error("API Error:", response.data);
@@ -53,48 +53,72 @@ export const AgentNewUser = () => {
   const goBack = () => {
     navigate(-1);
   };
+
   useEffect(() => {
     setFormData({
       userId: initialInfo.userId,
       firstName: "",
       lastName: "",
       fixLimit: 0,
-      maxShare: initialInfo.maxShare,
-      userLotteryCommission: initialInfo.maxLotteryCommission,
-      userCasinoCommission: initialInfo.maxCasinoCommission,
+      maxShare: "",
+      userLotteryCommission: 0,
+      userCasinoCommission: 0,
       password: "",
       confirmPassword: "",
     });
   }, [initialInfo]);
 
   const handleChange = (e) => {
-    if (!e.target) {
-      //  Special Case for Paswords
-      const { name, value } = e;
-      setFormData((prev) => ({
-        ...prev,
-        [name]: value,
-      }));
-      return;
-    }
+    if (typeof e !== "object") return;
 
-    const { name, value } = e.target;
-    setError("");
+    const { name, value } = e.target || e; // Handles both input & password cases
+    if (!name) return;
 
-    const parsedValue =
-      name === "fixLimit" ||
-      name === "maxShare" ||
-      name === "userCasinoCommission" ||
-      name === "userLotteryCommission"
-        ? value === ""
-          ? ""
-          : parseFloat(value)
-        : value;
+    setError(""); // Ensure error state resets
 
-    setFormData((prev) => ({
-      ...prev,
-      [name]: parsedValue,
-    }));
+    // Store raw input value as a string
+    let rawValue = value;
+
+    // Convert to float only if needed (excluding empty value)
+    let parsedValue = rawValue === "" ? "" : Number(rawValue);
+
+    // Ensure parsedValue does not turn NaN
+    if (isNaN(parsedValue)) parsedValue = "";
+
+    // Get max limits
+    const { maxLotteryCommission, maxCasinoCommission } = initialInfo;
+
+    setFormData((prev) => {
+      let finalValue = rawValue; // Keep the original value for correct display
+
+      if (
+        [
+          "fixLimit",
+          "maxShare",
+          "userCasinoCommission",
+          "userLotteryCommission",
+        ].includes(name)
+      ) {
+        finalValue = parsedValue;
+      }
+
+      // Apply limits
+      if (name === "maxShare" && parsedValue > 100) {
+        finalValue = prev.maxShare; // Prevent exceeding 100
+      } else if (
+        name === "userCasinoCommission" &&
+        parsedValue > parseFloat(maxCasinoCommission)
+      ) {
+        finalValue = prev.userCasinoCommission; // Enforce max casino commission
+      } else if (
+        name === "userLotteryCommission" &&
+        parsedValue > parseFloat(maxLotteryCommission)
+      ) {
+        finalValue = prev.userLotteryCommission; // Enforce max lottery commission
+      }
+
+      return prev[name] === finalValue ? prev : { ...prev, [name]: finalValue };
+    });
   };
 
   const handleSubmit = async (e) => {
@@ -125,6 +149,11 @@ export const AgentNewUser = () => {
           fetchData();
           setError("");
           setSuccess(null);
+          setFormData((prev) => ({
+            ...prev,
+            password: "",
+            confirmPassword: "",
+          }));
         }, 3000);
 
         return () => clearTimeout(timer);
@@ -146,45 +175,45 @@ export const AgentNewUser = () => {
         name="firstName"
         value={formData.firstName}
         onChange={handleChange}
-        placeholder="Enter First Name"
+        placeholder="First Name"
       />
       <TextInput
         label="Last Name"
         name="lastName"
         value={formData.lastName}
         onChange={handleChange}
-        placeholder="Enter Last Name"
+        placeholder="Last Name"
       />
       <NumberInput
         label="Fix Limit"
         name="fixLimit"
         value={formData.fixLimit}
         onChange={handleChange}
-        placeholder="Enter Fix Limit"
+        placeholder="Fix Limit"
       />
       <NumberInput
         label="My Share"
         name="maxShare"
         value={formData.maxShare}
         onChange={handleChange}
-        placeholder="Enter My Match Share"
-        disable={true}
+        placeholder="My Share"
+        maxLimit={initialInfo.maxShare}
       />
       <NumberInput
-        label="User Casino Commission"
+        label="Casino Commission"
         name="userCasinoCommission"
         value={formData.userCasinoCommission}
         onChange={handleChange}
-        placeholder="Enter User Match Commission"
-        disable={true}
+        placeholder="Match Commission"
+        maxLimit={initialInfo.maxCasinoCommission}
       />
       <NumberInput
-        label="User Lottery Commission"
+        label="Lottery Commission"
         name="userLotteryCommission"
         value={formData.userLotteryCommission}
         onChange={handleChange}
-        placeholder="Enter User Session Commission"
-        disable={true}
+        placeholder="Session Commission"
+        maxLimit={initialInfo.maxLotteryCommission}
       />
       <PasswordInput
         label="Password"
