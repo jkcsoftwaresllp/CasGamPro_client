@@ -5,6 +5,15 @@ import { DeviceCapabilities } from '../helper/devices.js';
 import { FrameProcessor } from '../helper/frames.js';
 import { GameTimer } from './GameTimer.jsx';
 
+const VALID_GAMES = [
+    "LUCKY7A",
+    "LUCKY7B",
+    "DRAGON_TIGER_TWO",
+    // "DRAGON_TIGER",
+    // "TEEN_PATTI",
+    // "DRAGON_TIGER",
+];
+
 export const SimulationSection = ({ gameType }) => {
   const canvasRef = useRef(null);
   const overlayRef = useRef(null);
@@ -16,6 +25,8 @@ export const SimulationSection = ({ gameType }) => {
   // Add new state variables at the top with other state declarations
   const [isWaitingForFrame, setIsWaitingForFrame] = useState(false);
   const lastFrameTimeRef = useRef(Date.now());
+
+  const [isValidGame, setIsValidGame] = useState(false);
 
   const [streamType, setStreamType] = useState(null);
   const [error, setError] = useState(null);
@@ -32,6 +43,10 @@ export const SimulationSection = ({ gameType }) => {
     frameLag: 0,
     serverFps: 0,
   });
+
+  useEffect(() => {
+          setIsValidGame(VALID_GAMES.includes(correctGameType));
+      }, [correctGameType]);
 
   const frameCountRef = useRef(0);
   const frameTimeRef = useRef(Date.now());
@@ -248,64 +263,76 @@ export const SimulationSection = ({ gameType }) => {
   // }, [isTransitioning]);
 
   return (
-    <div className={styles.simulationContainer}>
-      {error && <div className={styles.errorMessage}>{error}</div>}
-      {!isConnected && !error && (
-        <div className={styles.loadingMessage}>Connecting...</div>
-      )}
-      {isDevelopment && (
-        <div className={styles.stats}>
-          <div>Display FPS: {stats.displayFps}</div>
-          <div>Buffer Size: {stats.frameLag}</div>
-          <div>Server FPS: {stats.serverFps}</div>
-          <div>
-            Device: {DeviceCapabilities.isLowEndDevice() ? 'Low-end' : 'High-end'}
+          <div className={styles.simulationContainer}>
+              {/* Main content area */}
+              {!isValidGame ? (
+                  <div className={styles.invalidGameContainer}>
+                      <div className={styles.spinnerContainer}>
+                          <div className={styles.spinner}></div>
+                      </div>
+                  </div>
+              ) : (
+                  <>
+                      {error && <div className={styles.errorMessage}>{error}</div>}
+                      {!isConnected && !error && (
+                          <div className={styles.loadingMessage}>Connecting...</div>
+                      )}
+                      {isDevelopment && (
+                          <div className={styles.stats}>
+                              <div>Display FPS: {stats.displayFps}</div>
+                              <div>Buffer Size: {stats.frameLag}</div>
+                              <div>Server FPS: {stats.serverFps}</div>
+                              <div>
+                                  Device: {DeviceCapabilities.isLowEndDevice() ? 'Low-end' : 'High-end'}
+                              </div>
+                              <div>Quality: {deviceConfig.current.quality}</div>
+                          </div>
+                      )}
+                      <div className={styles.videoContainer}>
+                          <canvas
+                              ref={canvasRef}
+                              width={600}
+                              height={300}
+                              className={styles.videoCanvas}
+                          />
+                          {isTransitioning && (
+                              <div className={styles.spinnerContainer}>
+                                  <div className={styles.spinner}></div>
+                              </div>
+                          )}
+                      </div>
+                  </>
+              )}
+
+              {/* Controls overlay - Now outside the conditional rendering */}
+              <div className={styles.controlsOverlay}>
+                  <div className={styles.topRightControls}>
+                      <button
+                          className={styles.controlButton}
+                          onClick={() => (window.location.href = '/')}
+                          title="Home"
+                      >
+                          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                              <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                          </svg>
+                      </button>
+                      <button
+                          className={styles.controlButton}
+                          onClick={() => {/* Add info modal logic here */}}
+                          title="Information"
+                      >
+                          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                              <circle cx="12" cy="12" r="10"></circle>
+                              <line x1="12" y1="16" x2="12" y2="12"></line>
+                              <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                          </svg>
+                      </button>
+                  </div>
+                  <div className={styles.bottomRightTimer}>
+                    <GameTimer gameType={correctGameType} isValidGame={isValidGame} />
+                  </div>
+              </div>
           </div>
-          <div>Quality: {deviceConfig.current.quality}</div>
-        </div>
-      )}
-      <div className={styles.videoContainer}>
-        <canvas
-          ref={canvasRef}
-          width={600}
-          height={300}
-          className={styles.videoCanvas}
-        />
-        {/* Conditionally render the spinner during transition */}
-        {isTransitioning && (
-          <div className={styles.spinnerContainer}>
-            <div className={styles.spinner}></div>
-          </div>
-        )}
-      </div>
-      <div className={styles.controlsOverlay}>
-        <div className={styles.topRightControls}>
-            <button
-                className={styles.controlButton}
-                onClick={() => (window.location.href = '/')}
-                title="Home"
-            >
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
-                    <polyline points="9 22 9 12 15 12 15 22"></polyline>
-                </svg>
-            </button>
-            <button
-                className={styles.controlButton}
-                onClick={() => {/* Add info modal logic here */}}
-                title="Information"
-            >
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <circle cx="12" cy="12" r="10"></circle>
-                    <line x1="12" y1="16" x2="12" y2="12"></line>
-                    <line x1="12" y1="8" x2="12.01" y2="8"></line>
-                </svg>
-            </button>
-        </div>
-        <div className={styles.bottomRightTimer}>
-          <GameTimer gameType={correctGameType} />
-        </div>
-      </div>
-    </div>
-  );
+      );
 };

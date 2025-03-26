@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { connectSocket, disconnectSocket } from '../../../helper/socketService';
 import styles from '../style/Timer.module.css';
 
-export const GameTimer = ({ gameType }) => {
+export const GameTimer = ({ gameType, isValidGame }) => {
     const [timerData, setTimerData] = useState({
         label: '',
         currentTime: 0,
@@ -10,6 +10,9 @@ export const GameTimer = ({ gameType }) => {
         timestamp: 0,
         isActive: false
     });
+
+    // Adding a tick state to force periodic re-rendering
+    const [tick, setTick] = useState(0);
 
     useEffect(() => {
         const socket = connectSocket('timer');
@@ -24,9 +27,20 @@ export const GameTimer = ({ gameType }) => {
         });
 
         return () => {
-            disconnectSocket('time');
+            disconnectSocket('timer');
         };
     }, [gameType]);
+
+    // Set up an interval that triggers every second
+    // Only set up the interval if the game is invalid
+        useEffect(() => {
+            if (!isValidGame) {
+                const interval = setInterval(() => {
+                    setTick(t => t + 1);
+                }, 1000);
+                return () => clearInterval(interval);
+            }
+        }, [isValidGame]);
 
     const getRemainingTime = () => {
         if (!timerData.isActive) return 0;
@@ -55,19 +69,16 @@ export const GameTimer = ({ gameType }) => {
     const seconds = remainingTime % 60;
     const formattedTime = `${minutes}:${seconds.toString().padStart(2, '0')}`;
 
-    // Calculate progress percentage
+    // Calculate progress percentage etc. (same as before)
     const progress = timerData.duration
         ? ((timerData.duration - (remainingTime * 1000)) / timerData.duration) * 100
         : 0;
-
-    // Calculate the stroke dash offset based on progress
     const circumference = 2 * Math.PI * 45; // radius is 45
     const strokeDashoffset = circumference - (progress / 100) * circumference;
 
     return (
         <div className={`${styles.circularTimer} ${getPhaseStyle()}`}>
             <svg className={styles.progressRing} width="120" height="120">
-                {/* Background circle */}
                 <circle
                     className={styles.progressRingCircleBg}
                     stroke="rgba(255, 255, 255, 0.2)"
@@ -77,7 +88,6 @@ export const GameTimer = ({ gameType }) => {
                     cx="60"
                     cy="60"
                 />
-                {/* Progress circle */}
                 <circle
                     className={`${styles.progressRingCircle} ${getPhaseStyle()}`}
                     stroke="currentColor"
