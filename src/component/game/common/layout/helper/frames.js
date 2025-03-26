@@ -142,6 +142,11 @@ export class FrameProcessor {
     return this.frameBuffer.length;
   }
 
+  resetBuffer() {
+      this.frameBuffer = [];
+      this.processedFrames.clear();
+    }
+
   clear() {
     this.stopHybridRendering();
     this.frameBuffer = [];
