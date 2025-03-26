@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { connectSocket, disconnectSocket } from '../../../helper/socketService';
 import styles from '../style/Timer.module.css';
 
-export const GameTimer = ({ gameType }) => {  // Add gameType prop
+export const GameTimer = ({ gameType }) => {
     const [timerData, setTimerData] = useState({
         label: '',
         currentTime: 0,
@@ -13,8 +13,6 @@ export const GameTimer = ({ gameType }) => {  // Add gameType prop
 
     useEffect(() => {
         const socket = connectSocket('timer');
-
-        // Join the specific game type timer room
         socket.emit('joinTimer', gameType);
 
         socket.on('timerUpdate', (data) => {
@@ -28,9 +26,8 @@ export const GameTimer = ({ gameType }) => {  // Add gameType prop
         return () => {
             disconnectSocket('time');
         };
-    }, [gameType]); // Add gameType to dependency array
+    }, [gameType]);
 
-    // Calculate remaining time
     const getRemainingTime = () => {
         if (!timerData.isActive) return 0;
 
@@ -58,9 +55,47 @@ export const GameTimer = ({ gameType }) => {  // Add gameType prop
     const seconds = remainingTime % 60;
     const formattedTime = `${minutes}:${seconds.toString().padStart(2, '0')}`;
 
+    // Calculate progress percentage
+    const progress = timerData.duration
+        ? ((timerData.duration - (remainingTime * 1000)) / timerData.duration) * 100
+        : 0;
+
+    // Calculate the stroke dash offset based on progress
+    const circumference = 2 * Math.PI * 45; // radius is 45
+    const strokeDashoffset = circumference - (progress / 100) * circumference;
+
     return (
-        <div className={`${styles.timer} ${getPhaseStyle()}`}>
-            {timerData.label}: {formattedTime}
+        <div className={`${styles.circularTimer} ${getPhaseStyle()}`}>
+            <svg className={styles.progressRing} width="120" height="120">
+                {/* Background circle */}
+                <circle
+                    className={styles.progressRingCircleBg}
+                    stroke="rgba(255, 255, 255, 0.2)"
+                    strokeWidth="8"
+                    fill="transparent"
+                    r="45"
+                    cx="60"
+                    cy="60"
+                />
+                {/* Progress circle */}
+                <circle
+                    className={`${styles.progressRingCircle} ${getPhaseStyle()}`}
+                    stroke="currentColor"
+                    strokeWidth="8"
+                    fill="transparent"
+                    r="45"
+                    cx="60"
+                    cy="60"
+                    style={{
+                        strokeDasharray: `${circumference} ${circumference}`,
+                        strokeDashoffset: strokeDashoffset
+                    }}
+                />
+            </svg>
+            <div className={styles.timerContent}>
+                <div className={styles.time}>{formattedTime}</div>
+                <div className={styles.label}>{timerData.label}</div>
+            </div>
         </div>
     );
 };

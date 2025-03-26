@@ -1,59 +1,85 @@
-.timer {
-    font-size: 24px;
-    font-weight: bold;
-    padding: 8px 16px;
-    border-radius: 4px;
-    z-index: 1000; /* Ensure it's above other elements */
+.circularTimer {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background: rgba(0, 0, 0, 0.7);
+    border-radius: 50%;
+}
+
+.progressRing {
+    position: absolute;
+    transform: rotate(-90deg);
+}
+
+.progressRingCircleBg {
+    transition: stroke-dashoffset 0.35s;
+}
+
+.progressRingCircle {
+    transition: stroke-dashoffset 0.35s;
+}
+
+.timerContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
     color: white;
 }
 
-.bettingPhase {
-    color: #4caf50;
+.time {
+    font-size: 24px;
+    font-weight: bold;
 }
 
-.dealingPhase {
-    color: #ffc107;
+.label {
+    font-size: 14px;
+    text-transform: capitalize;
 }
 
-.completedPhase {
-    color: #f44336;
+/* Phase colors */
+.bettingPhase .progressRingCircle {
+    stroke: #ffd700;
 }
 
-.bettingPhase {
-    color: #ffd700; /* Gold color for betting phase */
+.dealingPhase .progressRingCircle {
+    stroke: #00ff00;
 }
 
-.dealingPhase {
-    color: #00ff00; /* Green color for dealing phase */
+.completedPhase .progressRingCircle {
+    stroke: #ff4444;
 }
 
-.completedPhase {
-    color: #ff4444; /* Red color for completed phase */
+/* Text colors */
+.bettingPhase .timerContent {
+    color: #ffd700;
 }
 
-/* Add animation for last 5 seconds */
+.dealingPhase .timerContent {
+    color: #00ff00;
+}
+
+.completedPhase .timerContent {
+    color: #ff4444;
+}
+
+/* Animation for last 5 seconds */
 @keyframes pulse {
     0% {
         transform: scale(1);
     }
     50% {
-        transform: scale(1.1);
+        transform: scale(1.05);
     }
     100% {
         transform: scale(1);
     }
 }
 
-.timer.timeRunningOut {
+.timeRunningOut {
     animation: pulse 1s infinite;
-    color: #ff0000;
-}
-
-.bottomRightTimer {
-    position: absolute;
-    bottom: 15px;
-    right: 15px;
-    z-index: 100;
-    pointer-events: none;
 }

@@ -280,21 +280,27 @@ export const SimulationSection = ({ gameType }) => {
       </div>
       <div className={styles.controlsOverlay}>
         <div className={styles.topRightControls}>
-          <button
-            className={styles.controlButton}
-            onClick={() => (window.location.href = '/')}
-            title="Home"
-          >
-            🏠
-          </button>
-          <button
-            className={styles.controlButton}
-            onClick={() => {
-              /* Add info modal logic here */
-            }}
-            title="Information"
-          >
-          </button>
+            <button
+                className={styles.controlButton}
+                onClick={() => (window.location.href = '/')}
+                title="Home"
+            >
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                    <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                </svg>
+            </button>
+            <button
+                className={styles.controlButton}
+                onClick={() => {/* Add info modal logic here */}}
+                title="Information"
+            >
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="12" y1="16" x2="12" y2="12"></line>
+                    <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                </svg>
+            </button>
         </div>
         <div className={styles.bottomRightTimer}>
           <GameTimer gameType={correctGameType} />
