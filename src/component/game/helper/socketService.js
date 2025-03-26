@@ -23,7 +23,7 @@ export const connectSocket = (namespace) => {
 
 // Disconnect the socket and clean up the reference
 export const disconnectSocket = (namespace) => {
-  console.log("Disconnected from namespace:", namespace);
+  // console.log("Disconnected from namespace:", namespace);
 
   if (sockets[namespace]) {
     // Remove event listeners before disconnecting if necessary

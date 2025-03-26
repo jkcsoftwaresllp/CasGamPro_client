@@ -18,7 +18,7 @@ export const WinnerHistory = () => {
           "GET"
         );
         
-        console.log("History API response : ", response)
+        // console.log("History API response : ", response)
         setResult(response.data);
       } catch (error) {
         console.error(error);

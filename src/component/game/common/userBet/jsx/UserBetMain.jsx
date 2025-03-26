@@ -26,7 +26,7 @@ export const UserBetMain = () => {
     const socket = connectSocket(namespace);
     if (!userId || !namespace || !roundId) return;
 
-    console.log({ userId, roundId });
+    // console.log({ userId, roundId });
 
       emitEvent(namespace, "joinStake", { userId, roundId });
     /* socket.on("connect", () => {

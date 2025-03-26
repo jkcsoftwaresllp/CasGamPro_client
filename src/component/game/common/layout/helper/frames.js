@@ -50,7 +50,7 @@ export class FrameProcessor {
 
   addFrame(frameData) {
     if (this.frameBuffer.length >= this.config.maxBufferSize) {
-      console.warn('Buffer full, dropping one oldest frame');
+      // console.warn('Buffer full, dropping one oldest frame');
       this.frameBuffer.shift();
     }
     this.frameBuffer.push(frameData);
@@ -62,7 +62,7 @@ export class FrameProcessor {
       this.frameBuffer.length > 1 &&
       now - this.frameBuffer[0].timestamp > this.maxLagMs
     ) {
-      console.warn('Dropping frame due to lag:', now - this.frameBuffer[0].timestamp, 'ms behind');
+      // console.warn('Dropping frame due to lag:', now - this.frameBuffer[0].timestamp, 'ms behind');
       this.frameBuffer.shift();
     }
     return this.frameBuffer.shift();

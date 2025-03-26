@@ -3,12 +3,14 @@ import styles from '../style/SimulationSection.module.css';
 import { useGameState } from '../helper/GameStateContext';
 import { DeviceCapabilities } from '../helper/devices.js';
 import { FrameProcessor } from '../helper/frames.js';
+import { GameTimer } from './GameTimer.jsx';
 
 export const SimulationSection = ({ gameType }) => {
   const canvasRef = useRef(null);
   const overlayRef = useRef(null);
   const wsRef = useRef(null);
   const gameState = useGameState();
+  const correctGameType = gameState.gameType;
   const { roundId } = gameState;
 
   // Add new state variables at the top with other state declarations
@@ -72,10 +74,14 @@ export const SimulationSection = ({ gameType }) => {
         case 'frameMetadata':
           currentFrameNumberRef.current = data.frame_number;
           setStreamType(data.stream_type);
+          if (data.stream_type === 'dealing') {
+            setIsTransitioning(false);
+          }
           break;
         case 'transition':
           frameProcessorRef.current?.resetBuffer();
-          handleTransition(data.transition_type, data.duration);
+          setIsTransitioning(true);
+          setIsWaitingForFrame(true);
           break;
         case 'reset_countdown':
           // console.log(`Card placed: ${data.card} at frame ${data.frame_number}`);
@@ -102,20 +108,24 @@ export const SimulationSection = ({ gameType }) => {
     }
   };
 
+  useEffect(() => {
+
+    // console.info("Transition Triggered:", isTransitioning);
+
+  }, [isTransitioning])
+
   // Renders the current frame onto the canvas.
   const renderFrameToCanvas = (frameData) => {
+
+    // console.info("RENDERING TO CANVAS...");
+
     const canvas = canvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext('2d', { alpha: false });
     if (!ctx) return;
 
     // Update last frame time
-     lastFrameTimeRef.current = Date.now();
-
-     // Handle frame arrival for transitions
-     if (isWaitingForFrame) {
-       handleFrameArrival();
-     }
+    lastFrameTimeRef.current = Date.now();
 
     const config = deviceConfig.current;
     if (config.quality === 'low') {
@@ -162,29 +172,6 @@ export const SimulationSection = ({ gameType }) => {
         frameTimeRef.current = now;
       }
     });
-  };
-
-  const handleTransition = (transitionType, duration) => {
-    if (transitionType === 'fade' && overlayRef.current) {
-      setIsTransitioning(true);
-      setIsWaitingForFrame(true);
-      const overlay = overlayRef.current;
-      // Fade to black over half the duration.
-      overlay.style.transition = `opacity ${duration / 2}ms ease-in`;
-      overlay.style.opacity = '1';
-      // Do NOT set any forced timeout here. Wait until a dealing frame arrives.
-    }
-  };
-
-  // Add a function to handle frame arrival
-  const handleFrameArrival = () => {
-    if (isWaitingForFrame && overlayRef.current) {
-      setIsWaitingForFrame(false);
-      const overlay = overlayRef.current;
-      overlay.style.transition = `opacity 500ms ease-out`;
-      overlay.style.opacity = '0';
-      setTimeout(() => setIsTransitioning(false), 500);
-    }
   };
 
   const initializeWebSocket = () => {
@@ -241,24 +228,24 @@ export const SimulationSection = ({ gameType }) => {
     };
   }, [roundId]);
 
-  useEffect(() => {
-    let safetyTimeout;
-    if (isWaitingForFrame) {
-      // If no frame arrives within 2 seconds, force complete the transition
-      safetyTimeout = setTimeout(() => {
-        if (isWaitingForFrame && overlayRef.current) {
-          console.warn('Forcing transition completion due to timeout');
-          handleFrameArrival();
-        }
-      }, 8000);
-    }
+  // useEffect(() => {
+  //   let safetyTimeout;
+  //   if (isWaitingForFrame) {
+  //     // If no frame arrives within 2 seconds, force complete the transition
+  //     safetyTimeout = setTimeout(() => {
+  //       if (isWaitingForFrame) {
+  //         console.warn('Forcing transition completion due to timeout');
+  //         handleFrameArrival();
+  //       }
+  //     }, 8000);
+  //   }
 
-    return () => {
-      if (safetyTimeout) {
-        clearTimeout(safetyTimeout);
-      }
-    };
-  }, [isWaitingForFrame]);
+  //   return () => {
+  //     if (safetyTimeout) {
+  //       clearTimeout(safetyTimeout);
+  //     }
+  //   };
+  // }, [isTransitioning]);
 
   return (
     <div className={styles.simulationContainer}>
@@ -268,9 +255,6 @@ export const SimulationSection = ({ gameType }) => {
       )}
       {isDevelopment && (
         <div className={styles.stats}>
-          {/* <div>Phase: {timerState.phase}</div> */}
-          {/* <div>Duration: {timerState.duration}s</div> */}
-          {/* <div>Cards Dealt: {dealtCount}</div> */}
           <div>Display FPS: {stats.displayFps}</div>
           <div>Buffer Size: {stats.frameLag}</div>
           <div>Server FPS: {stats.serverFps}</div>
@@ -287,14 +271,12 @@ export const SimulationSection = ({ gameType }) => {
           height={300}
           className={styles.videoCanvas}
         />
-        <div
-          ref={overlayRef}
-          className={styles.overlay}
-          style={{
-            opacity: 0,
-            transition: 'opacity 500ms ease-in-out',
-          }}
-        />
+        {/* Conditionally render the spinner during transition */}
+        {isTransitioning && (
+          <div className={styles.spinnerContainer}>
+            <div className={styles.spinner}></div>
+          </div>
+        )}
       </div>
       <div className={styles.controlsOverlay}>
         <div className={styles.topRightControls}>
@@ -312,11 +294,10 @@ export const SimulationSection = ({ gameType }) => {
             }}
             title="Information"
           >
-            ℹ️
           </button>
         </div>
         <div className={styles.bottomRightTimer}>
-
+          <GameTimer gameType={correctGameType} />
         </div>
       </div>
     </div>

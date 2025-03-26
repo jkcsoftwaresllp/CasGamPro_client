@@ -14,7 +14,7 @@ export const interleaveCards = (cards) => {
     }
   }
 
-  console.log(cardsToPresnt);
+  // console.log(cardsToPresnt);
   return cardsToPresnt;
 };
 
