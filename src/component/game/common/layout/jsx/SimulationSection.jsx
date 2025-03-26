@@ -169,16 +169,10 @@ export const SimulationSection = ({ gameType }) => {
       setIsTransitioning(true);
       setIsWaitingForFrame(true);
       const overlay = overlayRef.current;
-
-      // Fade to black
+      // Fade to black over half the duration.
       overlay.style.transition = `opacity ${duration / 2}ms ease-in`;
       overlay.style.opacity = '1';
-
-      // Wait for the fade-in to complete before starting fade-out
-      setTimeout(() => {
-        // Only start fade-out when we receive a new frame
-        lastFrameTimeRef.current = Date.now();
-      }, duration / 2);
+      // Do NOT set any forced timeout here. Wait until a dealing frame arrives.
     }
   };
 
@@ -256,7 +250,7 @@ export const SimulationSection = ({ gameType }) => {
           console.warn('Forcing transition completion due to timeout');
           handleFrameArrival();
         }
-      }, 2000);
+      }, 8000);
     }
 
     return () => {
