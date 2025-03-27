@@ -17,25 +17,32 @@ export const ReceiveCash = () => {
   useEffect(() => {
     const fetchExposure = async () => {
       const response = await apiCall(
-        `/auth-api/agent/user-exposure/${id}`,
+        `/auth-api/panel/get-coins-exposure/${id}`,
         "GET"
       );
       console.log("API call for Exposure", response);
 
       if (response && response.uniqueCode === "CGP0153") {
-        setExposure(response.data.balance);
+        setExposure(response.data.exposure);
       }
     };
     fetchExposure();
   }, []);
 
   const saveChanges = async () => {
-    const response = await apiCall("/auth-api/agent/receiveCash", "POST", {
-      playerId: id,
-      amount,
-      note,
-    });
-    if (response && response.uniqueCode === "CGP0183") {
+    const response = await apiCall(
+      "/auth-api/panel/exposure-transection",
+      "POST",
+      {
+        userId: id,
+        amount,
+        note,
+        type: "receive",
+      }
+    );
+    console.log("Response for Recieve Cash", response);
+
+    if (response && response.uniqueCode === "CGP0065") {
       console.log("API Response: ", response);
       showToast(getToastTypes.type1, response.message);
       navigate(-1);

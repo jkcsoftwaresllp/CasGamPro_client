@@ -13,17 +13,22 @@ import { DialogBox } from "./jsx/DialogBox.jsx";
 import { Loader } from "../../../common/Loader.jsx";
 import style from "./table/Table.module.css";
 import { handleTransaction } from "./helper/transactionHelper.js";
+import { useAuth } from "../../../../context/jsx/AuthContext.jsx";
+import { rolePathData } from "../../../panels/dashboard/AgentDashboard.jsx";
 
 export const CommissionTable = () => {
   const [showDialog, setShowDialog] = useState(false);
   const [selectedClientId, setSelectedClientId] = useState(null);
   const [selectedTable, setSelectedTable] = useState(null);
   const navigate = useNavigate();
+  const { user } = useAuth();
+  const userRole = user.userRole;
+  const basePathTemp = rolePathData[userRole];
 
   const context = useOutletContext() || {};
   const { data = [], loading = false } = context;
 
-  const basePath = `${path.agent}${path.manageClients}`;
+  const basePath = `${basePathTemp}${path.manageClients}`;
 
   // Memoized function to prevent unnecessary re-renders
   const openDialog = useCallback((clientId, table) => {

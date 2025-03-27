@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { PaymentClear } from "./jsx/PaymentClear";
-import { PaymentPaid } from "./jsx/PaymentPaid";
-import { PaymentRecieve } from "./jsx/PaymentRecieve";
+
 import style from "../styles/CollectionReport.module.css";
 import { apiCall } from "../../../common/apiCall";
+import { PaymentTable } from "./jsx/PaymentTable";
 
 export const CollectionReport = () => {
   const [paymentReceivingFrom, setPaymentReceivingFrom] = useState([]);
@@ -15,7 +14,7 @@ export const CollectionReport = () => {
     const fetchData = async () => {
       setLoading(true);
       const response = await apiCall(
-        "/auth-api/agent/collection-report",
+        "/auth-api/panel/collection-report",
         "GET"
       );
       console.log("Collection Report Data:", response);
@@ -38,17 +37,26 @@ export const CollectionReport = () => {
       {/* Row with first two components */}
       <div className={style.row}>
         <div className={style.element}>
-          <PaymentRecieve data={paymentReceivingFrom} />
+          <PaymentTable
+            data={paymentReceivingFrom}
+            title={"Payment Receiving From (Lena Hai)"}
+          />
         </div>
         <div className={style.element}>
-          <PaymentPaid data={paymentPaidTo} />
+          <PaymentTable
+            data={paymentPaidTo}
+            title={"Payment Paid To (Dena Hai)"}
+          />
         </div>
       </div>
 
       {/* Row with the third component */}
       <div className={style.row}>
         <div className={style.element}>
-          <PaymentClear data={paymentCleared} />
+          <PaymentTable
+            data={paymentCleared}
+            title={"Payment Clear (Clear Hai)"}
+          />
         </div>
       </div>
     </div>

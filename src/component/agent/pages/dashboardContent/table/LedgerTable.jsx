@@ -22,15 +22,28 @@ export const LedgerTable = () => {
   //   { key: "balance", label: "Balance" },
   // ];
 
+  // const columns = [
+  //   { key: "date", label: "Date" },
+  //   { key: "entry", label: "Entry" },
+  //   { key: "betsAmount", label: "Bets Amount" },
+  //   { key: "clientPL", label: "Client P/L" },
+  //   { key: "agentShare", label: "Agent Share" },
+  //   { key: "superComm", label: "Agent Commission" },
+  //   { key: "agentPL", label: "Agent P/L" },
+  //   { key: "supeerAgentPL", label: "Super Agent P/L" },
+  //   { key: "balance", label: "Balance" },
+  // ];
+
   const columns = [
     { key: "date", label: "Date" },
     { key: "entry", label: "Entry" },
     { key: "betsAmount", label: "Bets Amount" },
     { key: "clientPL", label: "Client P/L" },
-    { key: "agentShare", label: "Agent Share" },
-    { key: "superComm", label: "Agent Commission" },
+    // { key: "agentShare", label: "Agent Share" },
+    // { key: "superComm", label: "Agent Commission" },
     { key: "agentPL", label: "Agent P/L" },
-    { key: "supeerAgentPL", label: "Super Agent P/L" },
+    { key: "superAgentPL", label: "Super Agent P/L" },
+    { key: "adminPL", label: "Admin P/L" },
     { key: "balance", label: "Balance" },
   ];
 
