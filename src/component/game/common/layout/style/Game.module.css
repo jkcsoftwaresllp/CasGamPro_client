@@ -2,6 +2,7 @@
   width: 100%;
   height: 100%;
   display: flex;
+  
 }
 
 .mainContent {
@@ -25,6 +26,9 @@
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  border: 2px solid #a2a854;
+  border-radius: 8px; 
+  padding: 10px;
 }
 
 .detailsSection {
@@ -32,10 +36,13 @@
   height: 100%;
   display: flex;
   flex-direction: column;
+  border: 2px solid #df00d0;
+  border-radius: 8px; 
 }
 
 .betSection {
   height: 50%;
+  
 }
 
 @media (max-width: 1300px) {
@@ -92,5 +99,68 @@
   .simulationSection {
     width: 100%;
     height: 100%;
+  }
+
+  @media (max-width: 600px) {
+    .game {
+      flex-direction: column;
+      height: auto;
+    }
+  
+    .mainContent,
+    .detailsSection {
+      width: 100%;
+    }
+  
+    .gameControls {
+      flex-direction: column;
+      height: auto;
+    }
+  
+    .gameInterface {
+      width: 100%;
+      height: auto;
+      position: static;
+    }
+  
+    .simulationSection {
+      width: 100%;
+      height: auto;
+      justify-content: center;
+    }
+  
+    .betSection {
+      width: 100%;
+      height: auto;
+      padding: 10px;
+    }
+  }
+  
+  @media (max-width: 400px) {
+    .gameControls {
+      height: auto;
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .gameInterface {
+      width: 100%;
+      height: auto;
+      margin-bottom: 10px;
+    }
+  
+    .simulationSection {
+      width: 100%;
+      height: auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  
+    .detailsSection {
+      width: 100%;
+      height: auto;
+      margin-top: 10px;
+    }
   }
 }

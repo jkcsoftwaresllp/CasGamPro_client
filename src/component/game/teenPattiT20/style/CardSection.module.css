@@ -1,7 +1,26 @@
 .cardSection {
   display: flex;
   justify-content: center;
-  justify-items: center;
+  align-items: center; /* Changed to align-items for better centering */
   width: 100%;
   height: 100%;
+  border: 2px solid #ff0000;
+  border-radius: 8px;
+}
+
+/* Mobile View - Adjust Card Section Height */
+@media (max-width: 600px) {
+  .simulationSection {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .cardSection {
+    width: 100%;
+    height: 20%; /* Ensures it takes 20% of simulation section */
+  }
 }
