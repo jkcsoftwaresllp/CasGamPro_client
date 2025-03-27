@@ -27,7 +27,6 @@ export const login = async (setUser, credentials) => {
         setUser({
           status: response.data.status,
           userId: response.data.userId,
-          username: response.data.username,
           profilePic: response.data.profilePic,
           userRole: response.data.userRole,
           clientName: response.data.clientName,
