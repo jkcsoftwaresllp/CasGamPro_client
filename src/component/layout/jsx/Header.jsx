@@ -11,7 +11,7 @@ import { Wallet } from "../../client/jsx/Wallet";
 export const Header = () => {
   const navigate = useNavigate();
   const { user } = useAuth();
-  const { username, clientName } = user || {};
+  const { userId, clientName } = user || {};
 
   const [menuOpen, setMenuOpen] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(true);
@@ -50,6 +50,8 @@ export const Header = () => {
     document.documentElement.setAttribute("data-theme", savedTheme);
   }, []);
 
+  console.log(user);
+
   const renderUserInfo = () => (
     <>
       {user !== null ? (
@@ -57,12 +59,12 @@ export const Header = () => {
           <div className={style.one}>
             <HeaderHelper />
           </div>
+          {userId && (
+            <p className={style.userId}>
+              {userId} : {clientName}
+            </p>
+          )}
           <div className={style.two}>
-            {username && (
-              <p className={style.userId}>
-                {username.toUpperCase()} : {clientName}
-              </p>
-            )}
             <Wallet />
             <HeaderAuth />
             {/* Always pass setIsDarkMode */}

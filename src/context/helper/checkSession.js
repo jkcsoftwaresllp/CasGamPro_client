@@ -17,7 +17,6 @@ export const checkSession = async (setUser, setLoading) => {
     setUser({
       status: response.data.status,
       userId: response.data.userId,
-      username: response.data.username,
       profilePic: response.data.profilePic,
       userRole: response.data.userRole,
       clientName: response.data.clientName,
