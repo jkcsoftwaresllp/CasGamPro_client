@@ -12,7 +12,13 @@
 }
 
 .header {
+  display: flex;
+  flex-direction: column; 
+  align-items: flex-start;
+  justify-content: center; 
+  gap: 4px; /* Ensures spacing between elements */
   height: var(--detailsHei);
+  margin-left: 10%;
 }
 
 .gameRoundId,
@@ -20,9 +26,23 @@
   font-size: var(--text-lg);
   font-weight: bolder;
   color: var(--color-text-primary);
-  text-align: center;
+  width: 100%;
+  text-align: left;
+  
 }
 
 .gameRoundId {
   font-size: var(--text-sm);
+ 
+}
+/* Center on mobile devices */
+@media (max-width: 600px) {
+  .header {
+    align-items: center;   margin-left: 0;
+  }
+
+  .gameRoundId,
+  .gameDetail {
+    text-align: center;
+  }
 }

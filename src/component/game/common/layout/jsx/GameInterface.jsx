@@ -31,10 +31,6 @@ export const GameInterface = ({
 
   return (
     <div className={styles.gameInterface}>
-      <div className={styles.header}>
-        <div className={styles.gameDetail}>{gameName}</div>
-        <div className={styles.gameRoundId}>{roundId}</div>
-      </div>
       <div className={styles.contentWrapper}>
         {/* Show toggle button only for small & medium screens */}
 

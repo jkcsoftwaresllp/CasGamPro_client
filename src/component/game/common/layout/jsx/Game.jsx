@@ -11,6 +11,7 @@ import { useGameState } from "../helper/GameStateContext";
 import { extractRoundId } from "../helper/extractRoundId";
 import { useButtonNavigation } from "../../../../../hooks/useButtonNavigation";
 import { Winner } from "./Winner";
+import { GameName } from "./GameName";
 
 export const Game = () => {
   const { gameType, error } = useQueryParams();
@@ -46,6 +47,12 @@ export const Game = () => {
           <div className={styles.game}>
             {/* Main Content Section */}
             <div className={styles.mainContent}>
+              <GameName
+                game={gameType}
+                roundId={rountId}
+                cards={cards}
+                status={status}
+              />
               <div className={styles.gameControls}>
                 <div className={styles.gameInterface}>
                   <GameInterface
