@@ -10,7 +10,7 @@ const VALID_GAMES = [
     "LUCKY7B",
     "DRAGON_TIGER_TWO",
     // "DRAGON_TIGER",
-    // "TEEN_PATTI",
+    "TEEN_PATTI",
     // "DRAGON_TIGER",
 ];
 
@@ -91,6 +91,9 @@ export const SimulationSection = ({ gameType }) => {
           setStreamType(data.stream_type);
           if (data.stream_type === 'dealing') {
             setIsTransitioning(false);
+            if (correctGameType === 'TEEN_PATTI') {
+              setIsValidGame(false);
+            }
           }
           break;
         case 'transition':
