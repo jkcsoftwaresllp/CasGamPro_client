@@ -1,5 +1,6 @@
-.header {
+.gameHeader {
   height: var(--detailsHei);
+  padding-bottom: 9px;
 }
 
 .gameRoundId,
@@ -12,4 +13,19 @@
 
 .gameRoundId {
   font-size: var(--text-sm);
+}
+
+@media (min-width: 500px) {
+
+  .gameNameMobile {
+    display: none;
+  }
+  .gameHeader{
+    display: none;
+   
+  }
+  .gameNameMobile {
+    display: block;
+  }
+  
 }

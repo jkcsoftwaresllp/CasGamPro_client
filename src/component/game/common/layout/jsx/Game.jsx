@@ -47,6 +47,18 @@ export const Game = () => {
           <div className={styles.game}>
             {/* Main Content Section */}
             <div className={styles.mainContent}>
+              {gameType && (
+                <div className={styles.gameNameMobile}>
+                  {" "}
+                  <GameName
+                    game={gameType}
+                    roundId={rountId}
+                    cards={cards}
+                    status={status}
+                  />
+                </div>
+              )}
+
               <div className={styles.gameControls}>
                 <div className={styles.gameInterface}>
                   <GameInterface
@@ -56,9 +68,6 @@ export const Game = () => {
                     status={status}
                   />
                 </div>
-                {gameType && (
-                  <div className={styles.gameNameMobile}>{gameType}</div>
-                )}
                 <div className={styles.simulationSection}>
                   <SimulationSection />
                 </div>

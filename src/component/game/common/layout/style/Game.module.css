@@ -73,8 +73,18 @@
 @media (max-width: 500px) {
   .game {
     flex-direction: column;
+    height: auto;
+  }
+  .mainContent,
+  .detailsSection {
+    width: 100%;
   }
 
+ .detailsSection {
+    width: 100%;
+    height: auto;
+    margin-top: 10px;
+  }
   .gameControls {
     flex-direction: column;
     width: 100%;
@@ -82,7 +92,16 @@
   }
 
   .gameInterface {
-    display: none;
+    width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+  }
+  .simulationSection {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   .gameInterfaceMobile {
     display: block;
@@ -91,25 +110,20 @@
   }
 
 
-  .simulationSection {
-    width: 100%;
-  }
-  .gameNameMobile {
-    display: block;
-    text-align: center;
-    font-size: 20px;
-    font-weight: bold;
-    padding: 10px;
-    background: var(--color-background-overlay, rgba(0, 0, 0, 0.5));
-    color: var(--color-text-primary);
-    border-radius: 10px;
-    margin-bottom: 10px;
-  }
+  
 }
 
-@media (min-width: 501px) {
+@media (min-width: 500px) {
 
   .gameNameMobile {
     display: none;
   }
+  .gameHeader{
+    display: none;
+   
+  }
+  .gameNameMobile {
+    display: block;
+  }
+  
 }
