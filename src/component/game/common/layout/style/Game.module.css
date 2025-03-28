@@ -107,11 +107,21 @@
     display: block;
     width: 100%;
     margin-top: 10px;
-  }
-
-
-  
+ 
+  display: none;
 }
+
+/* Move SimulationSection to the top in mobile view */
+.simulationSectionMobile {
+  display: block;
+  width: 100%;
+  margin-bottom: 10px;
+}
+.simulationSection {
+  order: -1; /* Moves SimulationSection to the top in mobile view */
+}
+}
+
 
 @media (min-width: 500px) {
 
@@ -125,5 +135,7 @@
   .gameNameMobile {
     display: block;
   }
-  
+  .simulationSectionMobile {
+    display: none; /* Hide mobile-specific SimulationSection for larger screens */
+  }
 }
