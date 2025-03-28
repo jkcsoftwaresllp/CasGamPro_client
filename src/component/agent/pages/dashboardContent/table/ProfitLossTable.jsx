@@ -26,7 +26,7 @@ export const ProfitLossTable = () => {
     { key: "totalEarning", label: "Total Earning" },
   ];
 
-  const columnWidths = { date: 0.5, roundTitle: 2 };
+  const columnWidths = { roundTitle: 2 };
 
   const handleCellClick = (value, row) => {
     console.log("Cell clicked", value, row);
@@ -45,7 +45,7 @@ export const ProfitLossTable = () => {
             columns={columns}
             columnWidths={columnWidths}
             isAction={false} // No action buttons required
-            clickableColumns={["roundId"]}
+            // clickableColumns={["roundId"]}
             onCellClick={handleCellClick}
           />
         </div>
