@@ -75,7 +75,7 @@
   }
 
   .card {
-    width: 90%;
+    width: 60%;
     height: auto;
     aspect-ratio: 1; /* Maintains square shape */
   }

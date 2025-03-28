@@ -1,0 +1,15 @@
+.header {
+  height: var(--detailsHei);
+}
+
+.gameRoundId,
+.gameDetail {
+  font-size: var(--text-lg);
+  font-weight: bolder;
+  color: var(--color-text-primary);
+  text-align: center;
+}
+
+.gameRoundId {
+  font-size: var(--text-sm);
+}
