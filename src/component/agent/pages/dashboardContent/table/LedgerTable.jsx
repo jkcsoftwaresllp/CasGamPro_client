@@ -54,7 +54,7 @@ export const LedgerTable = () => {
         ]
       : role === roles.AGENT
       ? [{ key: "agentPL", label: "Agent P/L" }]
-      : [{ key: "clientPL", label: "Client P/L" }];
+      : [];
 
   const columns = [
     { key: "date", label: "Date" },
@@ -62,7 +62,7 @@ export const LedgerTable = () => {
     { key: "betsAmount", label: "Bets Amount" },
     { key: "clientPL", label: "Client P/L" },
     ...additional,
-    { key: "balance", label: "Balance" },
+    { key: "pass", label: "Passing Amount" },
   ];
 
   const columnWidths = { entry: 2, date: 2 };
