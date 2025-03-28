@@ -22,7 +22,7 @@ export const PaymentTable = ({ data, title }) => {
 
   const formattedClients = data.map(({ id, name, balance }) => ({
     id,
-    client: `CGP${id} (${name})`,
+    client: `${id} (${name})`,
     balance,
   }));
 
