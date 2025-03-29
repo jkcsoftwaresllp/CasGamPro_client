@@ -1,5 +1,4 @@
 .playerLabel,
-.betProfit,
 .betWithText {
   flex: 1;
   height: 50px;
@@ -12,6 +11,22 @@
   justify-content: center;
   align-items: center;
   position: relative;
+
+}
+.betProfit{
+  flex: 1;
+  height: 50px;
+  background-color: var(--color-bg-betPrimary);
+  color: var(--color-text-primary);
+  padding: 7px;
+  border: 2px solid var(--color-border-secondary);
+  border-radius: var(--borderRadius);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+
 }
 
 .playerLabel p:first-child {
@@ -37,6 +52,7 @@
   justify-content: center;
   z-index: 1;
   border-radius: var(--borderRadius);
+
 }
 
 .betProfit {
@@ -47,4 +63,5 @@
 
 .betProfit:hover {
   opacity: 0.8;
+  border: 1px solid var(--color-hover-primary);
 }

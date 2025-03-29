@@ -35,9 +35,12 @@
   --color-border-gold: #b8860b;
   --color-header: #add8e6;
   --color-text-primary: #2b2b2b;
+  --color-bg-betPrimary: #878787;
   --color-text-secondary: #4a4a4a;
   --color-text-tertiary: #7d7d7d;
   --color-text-placeholder: #a0a0a0;
+  --color-border-secondary: #5be3d8;
+  --color-hover-primary: #68fd88;
 }
 
 [data-theme="dark"] {
@@ -51,6 +54,7 @@
   --color-highlighter-primary: #8b4513;
   --color-highlighter-secondary: #a0522d;
   --color-rotate-primary: #1a1a1a;
+  --color-hover-primary: #68fd88;
 
   --color-bg-primary: #1c1c1c; /* Deep Charcoal - a rich, dark base that is not too intense */
   --color-bg-secondary: #2e2e2e; /* Warm Gray - a softer gray that adds warmth while maintaining sophistication */
