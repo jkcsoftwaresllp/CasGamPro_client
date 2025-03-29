@@ -1,6 +1,6 @@
 .winner {
   width: 100%;
-  height: 100%;
+  height: 90vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -11,21 +11,23 @@
   padding: 10px;
 }
 
+/* Tablet View */
 @media (max-width: 768px) {
   .winner {
-    font-size: calc(2.5 * var(--text-lg)); 
+    font-size: calc(2.5 * var(--text-lg));
   }
 }
 
+/* Mobile View */
 @media (max-width: 480px) {
   .winner {
     font-size: calc(2 * var(--text-lg));
-    padding: 5px; 
   }
 }
 
+/* Small Mobile View */
 @media (max-width: 360px) {
   .winner {
-    font-size: calc(1.8 * var(--text-lg)); 
+    font-size: calc(1.8 * var(--text-lg));
   }
 }
