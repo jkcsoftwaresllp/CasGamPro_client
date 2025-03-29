@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import styles from "../style/Game.module.css";
 import { BetSection } from "./BetSection";
 import { GameHistory } from "./GameHistory";
@@ -19,7 +19,7 @@ export const Game = () => {
   const { roundId: gameId, status, winner, startTime, cards } = gameState;
   const [betItems, setBetItems] = useState();
 
-  // console.log("gameState", gameState);
+  const stakeSectionRef = useRef(null); // Reference for StakeSection
 
   useGameSocket(gameType);
 
@@ -29,6 +29,19 @@ export const Game = () => {
   useEffect(() => {
     addRoundIdToURL(`?gameName=${gameType}&roundId=${rountId}`);
   }, [gameType, rountId]);
+
+  // Function to handle bet selection and scroll to StakeSection
+  const handleBetSelection = (label, value) => {
+    setBetItems({ label, value });
+
+    // Scroll to the StakeSection smoothly
+    if (stakeSectionRef.current) {
+      stakeSectionRef.current.scrollIntoView({
+        behavior: "smooth",
+        block: "center",
+      });
+    }
+  };
 
   if (error) {
     return (
@@ -72,13 +85,13 @@ export const Game = () => {
                 <BetSection
                   status={status}
                   game={gameType}
-                  onClick={(label, value) => setBetItems({ label, value })}
+                  onClick={handleBetSelection}
                 />
               </div>
             </div>
 
             {/* Details Section - Moves below in small screens */}
-            <div className={styles.detailsSection}>
+            <div className={styles.detailsSection} ref={stakeSectionRef}>
               <GameHistory />
               <StakeSection
                 betItems={betItems}
