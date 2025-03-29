@@ -4,7 +4,28 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: calc(3 * var(--text-lg));
+  font-size: calc(3 * var(--text-lg)); 
   color: var(--color-text-primary);
   font-weight: var(--text-bold);
+  text-align: center;
+  padding: 10px;
+}
+
+@media (max-width: 768px) {
+  .winner {
+    font-size: calc(2.5 * var(--text-lg)); 
+  }
+}
+
+@media (max-width: 480px) {
+  .winner {
+    font-size: calc(2 * var(--text-lg));
+    padding: 5px; 
+  }
+}
+
+@media (max-width: 360px) {
+  .winner {
+    font-size: calc(1.8 * var(--text-lg)); 
+  }
 }

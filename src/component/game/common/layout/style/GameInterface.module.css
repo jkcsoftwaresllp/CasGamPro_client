@@ -26,3 +26,9 @@
 .gameRoundId {
   font-size: var(--text-sm);
 }
+
+@media (max-width: 500px) {
+  .header {
+    display: none;
+  }
+}
