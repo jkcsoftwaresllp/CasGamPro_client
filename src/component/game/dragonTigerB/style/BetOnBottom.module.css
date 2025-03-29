@@ -31,21 +31,31 @@
 
 .betOnTop {
   display: flex;
-  justify-content: space-around;
+  /* justify-content: space-around; */
   align-items: center;
-  flex-direction: row;
   width: 100%;
 }
-
+@media (max-width: 480px) {
+  .betOnTop {
+    width: 100%; 
+  }
+}
 .rectangeCircle {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 10px;
 }
-
+@media (max-width: 480px) {
+  .rectangeCircle {
+    width: 100%; 
+  }
+}
 @media (max-width: 1000px) {
   .lowHighEvenOdd {
+    flex-direction: column;
+  }
+  .betOnTop {
     flex-direction: column;
   }
 }

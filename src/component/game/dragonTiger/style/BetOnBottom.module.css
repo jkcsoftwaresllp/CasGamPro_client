@@ -31,15 +31,27 @@
 
 .betOnTop {
   display: flex;
-  justify-content: space-around;
+  /* justify-content: space-around; */
   align-items: center;
+  width: auto; /* Default width */
 }
 
+/* Small screens (sm) - Full width on mobile */
+@media (max-width: 480px) {
+  .betOnTop {
+    width: 100%; 
+  }
+}
 .rectangeCircle {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 10px;
+}
+@media (max-width: 480px) {
+  .rectangeCircle {
+    width: 100%; /* Makes it full width */
+  }
 }
 
 @media (max-width: 1000px) {

@@ -10,7 +10,6 @@
   background-color: var(--color-bg-tertiary);
   cursor: pointer;
   position: relative;
-
   padding-left: var(--paddingLeft);
   padding-right: var(--paddingRight);
 }
@@ -52,13 +51,25 @@
   padding-right: var(--paddingRight);
   border: 1px solid #ccc;
   border-radius: var(--borderRadius);
-
   color: var(--color-text-primary);
   background-color: var(--color-bg-tertiary);
   cursor: pointer;
   position: relative;
 }
 
+/* Full width for mobile screens */
+@media (max-width: 768px) {
+  .betInPair {
+    margin-top: 10px;
+    width: 100px;  /* Makes it take full width */
+  }
+}
+@media (min-width: 768px) {
+  .betInPair {
+    margin-left: 10px;
+    
+  }
+}
 .rowContainer {
   display: flex;
   flex-direction: row; /* Place label and column in a row */
@@ -98,6 +109,7 @@
   align-items: center;
   position: relative;
   overflow: hidden;
+  border: 1px solid #ccc;
 }
 
 .betInCircle p:nth-child(1) {
