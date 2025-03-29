@@ -55,7 +55,7 @@ export const GameList = ({ catagory }) => {
               imgSrc={game.img || casinoImg}
               label={game.name}
               onClick={() => handleCardClick(`/game?gameName=${game.gameId}`)}
-              gameType={game.gameType}
+              gameId={game.id}
               isFavourite={game.isFavourite}
             />
           );

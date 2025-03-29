@@ -3,13 +3,13 @@ import React from "react";
 import style from "./style/GameTiles.module.css";
 import { FavBtn } from "./FavBtn";
 
-export const GameTile = ({ imgSrc, label, onClick, gameType, isFavourite }) => {
+export const GameTile = ({ imgSrc, label, onClick, gameId, isFavourite }) => {
   return (
     <div className={style.cardsList} onClick={onClick}>
       <div className={style.card}>
         <FavBtn
           className={style.favBtn}
-          gameId={gameType}
+          gameId={gameId}
           isFavourite={isFavourite}
         />
         <div className={style.cardImage}>
