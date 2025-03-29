@@ -15,9 +15,7 @@ export const BetStatus = ({
 
   return (
     <div className={styles.inline}>
-      <div className={styles.betFor}>
-        {player} {betFor}
-      </div>
+      <div className={styles.betFor}>{player?.toUpperCase()}</div>
       <div className={styles.currentProfit}>{currentProfit}</div>
 
       <input
