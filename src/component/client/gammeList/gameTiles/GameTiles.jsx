@@ -17,7 +17,7 @@ export const GameTile = ({ imgSrc, label, onClick, gameType, isFavourite }) => {
         </div>
         <div className={`${style.cardTitle} ${style.titleWhite}`}></div>
       </div>
-      <p>{label}</p>
+      <p className={style.titleLabel}>{label}</p>
     </div>
   );
 };

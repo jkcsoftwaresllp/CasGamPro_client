@@ -14,9 +14,15 @@
   flex-wrap: wrap;
   justify-content: center;
   gap: 50px;
-  padding: 50px;
+  padding: 50px 10px;
 }
 
 h2 {
   text-align: center;
+}
+
+@media all and (max-width: 700px) {
+  .gameList {
+    gap: 20px;
+  }
 }
