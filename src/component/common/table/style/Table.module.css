@@ -111,7 +111,7 @@
   align-items: center;
   justify-content: center;
   text-wrap: wrap;
-  min-width: calc(var(--flexValue) * 100px);
+  min-width: var(--minumumWidth);
   border-radius: var(--borderRadius);
   padding: 10px;
 }
