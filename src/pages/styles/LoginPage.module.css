@@ -17,6 +17,7 @@
   align-items: center;
   transform-style: preserve-3d;
   transition: all 3s ease;
+  padding: 10px;
 }
 
 .form_container {
