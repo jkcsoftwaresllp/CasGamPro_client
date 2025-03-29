@@ -11,6 +11,7 @@ export const Table = ({
   btns = [{ label: null, icon: null, onClick: null }],
   clickableColumns = [],
   onCellClick = () => {},
+  isMinimunCellWidth = true,
 }) => {
   const bodyRef = useRef(null);
   const headerRef = useRef(null);
@@ -53,6 +54,7 @@ export const Table = ({
           headerRef={headerRef}
           columns={columns}
           columnWidths={columnWidths}
+          isMinimunCellWidth={isMinimunCellWidth}
         />
       </div>
 
@@ -67,6 +69,7 @@ export const Table = ({
           actionButtons={btns}
           clickableColumns={clickableColumns}
           onCellClick={onCellClick}
+          isMinimunCellWidth={isMinimunCellWidth}
         />
       </div>
     </div>

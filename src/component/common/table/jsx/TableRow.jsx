@@ -11,6 +11,7 @@ export const TableRow = ({
   actionButtons,
   clickableColumns,
   onCellClick,
+  isMinimunCellWidth,
 }) => {
   return (
     <div className={style.row}>
@@ -26,6 +27,7 @@ export const TableRow = ({
               clickableColumns.includes(col.key) &&
               onCellClick(row[col.key], row)
             }
+            isMinimunCellWidth={isMinimunCellWidth}
           />
         ))}
 
@@ -45,6 +47,7 @@ export const TableRow = ({
               ))}
             </div>
           }
+          isMinimunCellWidth={isMinimunCellWidth}
           style={{ flex: columnWidths["actions"] || 1 }}
         />
       )}

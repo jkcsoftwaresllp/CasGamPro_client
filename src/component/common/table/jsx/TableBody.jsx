@@ -11,6 +11,7 @@ export const TableBody = ({
   clickableColumns,
   onCellClick,
   bodyRef,
+  isMinimunCellWidth,
 }) => {
   return (
     <div className={style.body} ref={bodyRef}>
@@ -27,6 +28,7 @@ export const TableBody = ({
             actionButtons={actionButtons}
             clickableColumns={clickableColumns}
             onCellClick={onCellClick}
+            isMinimunCellWidth={isMinimunCellWidth}
           />
         ))
       )}

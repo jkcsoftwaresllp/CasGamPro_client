@@ -7,9 +7,13 @@ export const TableCell = ({
   isHeader = false,
   isClickable = false,
   onClick,
+  isMinimunCellWidth,
 }) => {
   const cssVariable = {
     "--flexValue": cellStyle.flex,
+    "--minumumWidth": isMinimunCellWidth
+      ? `${parseFloat(cellStyle.flex) * 100}px`
+      : `0px`,
   };
 
   return (
@@ -18,7 +22,13 @@ export const TableCell = ({
       style={cssVariable}
       onClick={isClickable ? onClick : undefined}
     >
-      <div className={`${isClickable ? style.clickableCell : ""} ${style.cellLabel}`}>{label}</div>
+      <div
+        className={`${isClickable ? style.clickableCell : ""} ${
+          style.cellLabel
+        }`}
+      >
+        {label}
+      </div>
     </div>
   );
 };
