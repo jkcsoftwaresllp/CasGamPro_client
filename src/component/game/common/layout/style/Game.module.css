@@ -123,6 +123,18 @@
 }
 }
 
+.detailsSection {
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Adjust spacing */
+}
+
+
+@media (max-width: 768px) {
+  .detailsSection {
+    flex-direction: column-reverse;
+  }
+}
 
 @media (min-width: 500px) {
 
