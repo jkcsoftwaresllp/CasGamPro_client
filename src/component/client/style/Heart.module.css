@@ -81,3 +81,26 @@
   margin: 10px;
   font-weight: var(--textBold);
 }
+
+@media all and (max-width: 450px) {
+  .modalContent {
+    min-width: 300px;
+  }
+}
+
+@media all and (max-width: 400px) {
+  .modalContent {
+    min-width: 250px;
+  }
+}
+
+@media all and (max-width: 300px) {
+  .modalContent {
+    min-width: 200px;
+  }
+
+  .close {
+    top: 0px;
+    right: 0px;
+  }
+}

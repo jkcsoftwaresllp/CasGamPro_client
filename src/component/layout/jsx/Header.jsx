@@ -23,11 +23,18 @@ export const Header = () => {
   const toggleMenu = () => setMenuOpen((prev) => !prev);
 
   // Close menu when clicking outside
-  const handleClickOutside = (event) => {
-    if (menuRef.current && !menuRef.current.contains(event.target)) {
-      setMenuOpen(false);
-    }
-  };
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (menuRef.current && !menuRef.current.contains(event.target)) {
+        setMenuOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   // Initialize theme preference on mount
   useEffect(() => {
@@ -41,13 +48,6 @@ export const Header = () => {
     const handleResize = () => setIsMobile(window.innerWidth <= 768);
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
-  // Ensure dark mode setting is applied on mount
-  useEffect(() => {
-    const savedTheme = localStorage.getItem("theme") || "dark";
-    setIsDarkMode(savedTheme === "dark");
-    document.documentElement.setAttribute("data-theme", savedTheme);
   }, []);
 
   console.log(user);
@@ -85,14 +85,13 @@ export const Header = () => {
   );
 
   return (
-    <header className={style.headerWrapper} onClick={handleClickOutside}>
+    <header className={style.headerWrapper}>
       <div className={style.header}>
         <h1 className={style.header__title} onClick={() => navigate("/")}>
           CasGamPro
         </h1>
 
         <div className={style.rightSection}>
-          {/* Show all options directly on larger screens */}
           {!isMobile ? (
             <>{renderUserInfo()}</>
           ) : (

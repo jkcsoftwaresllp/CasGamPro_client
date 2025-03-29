@@ -1,6 +1,6 @@
 .inputWrapper {
   position: relative;
-  width: 350px;
+  max-width: 350px;
   min-height: 45px;
 }
 

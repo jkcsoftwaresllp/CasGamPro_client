@@ -1,0 +1,31 @@
+.gameHeader {
+  height: var(--detailsHei);
+  padding-bottom: 9px;
+}
+
+.gameRoundId,
+.gameDetail {
+  font-size: var(--text-lg);
+  font-weight: bolder;
+  color: var(--color-text-primary);
+  text-align: center;
+}
+
+.gameRoundId {
+  font-size: var(--text-sm);
+}
+
+@media (min-width: 500px) {
+
+  .gameNameMobile {
+    display: none;
+  }
+  .gameHeader{
+    display: none;
+   
+  }
+  .gameNameMobile {
+    display: block;
+  }
+  
+}

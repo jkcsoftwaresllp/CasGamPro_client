@@ -10,9 +10,11 @@ export const TableBody = ({
   actionButtons,
   clickableColumns,
   onCellClick,
+  bodyRef,
+  isMinimunCellWidth,
 }) => {
   return (
-    <div className={style.body}>
+    <div className={style.body} ref={bodyRef}>
       {data.length === 0 ? (
         <p className={style.emptyMsg}>No Records to Show</p>
       ) : (
@@ -26,6 +28,7 @@ export const TableBody = ({
             actionButtons={actionButtons}
             clickableColumns={clickableColumns}
             onCellClick={onCellClick}
+            isMinimunCellWidth={isMinimunCellWidth}
           />
         ))
       )}

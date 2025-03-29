@@ -74,7 +74,7 @@ export const UserBetMain = () => {
 
   return (
     <>
-      <Table data={stakes} columns={columns} />
+      <Table data={stakes} columns={columns} isMinimunCellWidth={false} />
     </>
   );
 };

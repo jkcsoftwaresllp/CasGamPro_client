@@ -67,30 +67,76 @@
 
   .simulationSection {
     width: 70%;
+    margin-bottom: 12px;
   }
 }
 
 @media (max-width: 500px) {
   .game {
     flex-direction: column;
+    height: auto;
+  }
+  .mainContent,
+  .detailsSection {
+    width: 100%;
   }
 
+ .detailsSection {
+    width: 100%;
+    height: auto;
+    margin-top: 10px;
+  }
   .gameControls {
     flex-direction: column;
     width: 100%;
     height: 100%;
-    position: relative;
   }
 
   .gameInterface {
-    position: absolute;
-    top: 20%;
-    height: 60%;
-    width: 30%;
+    width: 100%;
+    height: auto;
+    margin-bottom: 10px;
   }
-
   .simulationSection {
     width: 100%;
-    height: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .gameInterfaceMobile {
+    display: block;
+    width: 100%;
+    margin-top: 10px;
+ 
+  display: none;
+}
+
+/* Move SimulationSection to the top in mobile view */
+.simulationSectionMobile {
+  display: block;
+  width: 100%;
+  margin-bottom: 10px;
+}
+.simulationSection {
+  order: -1; 
+}
+}
+
+
+@media (min-width: 500px) {
+
+  .gameNameMobile {
+    display: none;
+  }
+  .gameHeader{
+    display: none;
+   
+  }
+  .gameNameMobile {
+    display: block;
+  }
+  .simulationSectionMobile {
+    display: none; /* Hide mobile-specific SimulationSection for larger screens */
   }
 }
