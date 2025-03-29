@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useEffect } from "react";
 import { TableHeader } from "./TableHeader";
 import { TableBody } from "./TableBody";
 import style from "../style/Table.module.css";
@@ -9,33 +9,57 @@ export const Table = ({
   columnWidths = {},
   isAction = false,
   btns = [{ label: null, icon: null, onClick: null }],
-  clickableColumns = [], // Columns that should be clickable
-  onCellClick = () => {}, // Callback function for cell click
+  clickableColumns = [],
+  onCellClick = () => {},
 }) => {
-  const scrollContainerRef = useRef(null);
+  const bodyRef = useRef(null);
   const headerRef = useRef(null);
+  const isSyncingRef = useRef(false); // Prevent infinite loops
 
-  // Sync header scroll with table body scroll
-  const handleScroll = (e) => {
-    if (headerRef.current) {
-      headerRef.current.scrollLeft = e.target.scrollLeft;
-    }
-  };
+  useEffect(() => {
+    const header = headerRef.current;
+    const body = bodyRef.current;
+
+    if (!header || !body) return;
+
+    const handleScroll = (source, target) => {
+      if (isSyncingRef.current) return;
+      isSyncingRef.current = true;
+
+      if (target.scrollLeft !== source.scrollLeft) {
+        target.scrollLeft = source.scrollLeft;
+      }
+
+      isSyncingRef.current = false;
+    };
+
+    const handleHeaderScroll = () => handleScroll(header, body);
+    const handleBodyScroll = () => handleScroll(body, header);
+
+    header.addEventListener("scroll", handleHeaderScroll);
+    body.addEventListener("scroll", handleBodyScroll);
+
+    return () => {
+      header.removeEventListener("scroll", handleHeaderScroll);
+      body.removeEventListener("scroll", handleBodyScroll);
+    };
+  }, []);
 
   return (
     <div className={style.tableWrapper}>
       {/* Table Header - Fixed at Top */}
-      <div ref={headerRef} className={style.headerWrapper}>
-        <TableHeader columns={columns} columnWidths={columnWidths} />
+      <div className={style.headerWrapper} ref={headerRef}>
+        <TableHeader
+          headerRef={headerRef}
+          columns={columns}
+          columnWidths={columnWidths}
+        />
       </div>
 
       {/* Table Body - Scrollable */}
-      <div
-        ref={scrollContainerRef}
-        className={style.bodyWrapper}
-        onScroll={handleScroll}
-      >
+      <div className={style.bodyWrapper}>
         <TableBody
+          bodyRef={bodyRef}
           data={data}
           columns={columns}
           columnWidths={columnWidths}
@@ -48,36 +72,3 @@ export const Table = ({
     </div>
   );
 };
-
-/*
-const [lists, setLists] = useState([
-    {
-      date: "20-12-2023",
-      entry: "Added to the database",
-      debit: "200",
-      credit: 500,
-      balance: "530",
-    },
-    {
-      date: "20-12-2023",
-      entry: "Added to the database. Added to the database",
-      debit: "200",
-      credit: 500,
-      balance: "530",
-    }])
-
-  const columns = [
-    { key: "date", label: "Date" },
-    { key: "entry", label: "Entry" },
-    { key: "debit", label: "Debit" },
-    { key: "credit", label: "Credit" },
-    { key: "balance", label: "Balance" },
-  ];
-
-  const columnWidths = {
-    entry: 2,
-  };
-
-  return <Table data={lists} columns={columns} columnWidths={columnWidths} />;
-
-*/

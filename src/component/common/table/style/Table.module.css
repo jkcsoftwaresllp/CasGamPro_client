@@ -74,10 +74,11 @@
 }
 
 .row {
-  background-color: var(--color-bg-secondary);
+  /* background-color: var(--color-bg-secondary); */
   font-size: var(--text-md);
   border-radius: var(--borderRadius);
-  padding: 10px 5px;
+  /* padding: 10px 5px; */
+  gap: 5px;
 }
 
 .header {
@@ -104,12 +105,15 @@
   text-align: left;
   overflow: hidden;
   color: var(--color-text-primary);
+  background-color: var(--color-bg-secondary);
   font-size: var(--text-md);
   display: flex;
   align-items: center;
   justify-content: center;
   text-wrap: wrap;
-  min-width: calc(var(--flexValue) * 50px);
+  min-width: calc(var(--flexValue) * 100px);
+  border-radius: var(--borderRadius);
+  padding: 10px;
 }
 
 .cell div {

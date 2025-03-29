@@ -2,7 +2,7 @@ import React from "react";
 import { TableCell } from "./TableCell";
 import style from "../style/Table.module.css";
 
-export const TableHeader = ({ columns, columnWidths }) => {
+export const TableHeader = ({ columns, columnWidths, headerRef }) => {
   return (
     <div className={style.header}>
       {columns.map((col) => (
