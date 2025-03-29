@@ -28,10 +28,18 @@ export const UserBetMain = () => {
 
     // console.log({ userId, roundId });
 
-      emitEvent(namespace, "joinStake", { userId, roundId });
+    emitEvent(namespace, "joinStake", { userId, roundId });
     /* socket.on("connect", () => {
       emitEvent(namespace, "joinStake", { userId, roundId });
     }); */
+
+    // Listen for existing stakes
+    subscribeToEvent(namespace, "existingStakes", (data) => {
+      console.log("Received existing stakes:", data);
+      if (Array.isArray(data)) {
+        setStakes(data);
+      }
+    });
 
     subscribeToEvent(namespace, "stakeUpdate", (data) => {
       console.log("Triggerd!!", data);
